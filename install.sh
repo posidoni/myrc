@@ -3,16 +3,21 @@
 OLD_CONFIGS_DIR=$HOME/old_configs
 
 configs=(
-    .zshrc
-    .bashrc
+    # Editor configs
     .vimrc
-    .brewconfig.zsh
+
+    # Git configs
     .gitmessage
     .gitconfig
     .gitignore_global
-    .vscode_ext.zsh
-    .clean_cache.zsh
-    .brew_packages.zsh
+
+    # Shell configs
+    .zshrc
+        .bashrc
+        .brewconfig.zsh
+        .vscode_ext.zsh
+        .clean_cache.zsh
+        .brew_packages.zsh
 )
 
 install_configs() {
@@ -21,10 +26,15 @@ install_configs() {
 
     for file in ${configs[@]}; do
         echo -e "$file is installed!"
-        # Save old configs
-        mv $HOME/$file $OLD_CONFIGS_DIR/$file 2>&1 > /dev/null
-        # Make soft links for every config-file
-        ln -s $PWD/$file $HOME/$file 2>&1
+
+        # Save old configs (if they are not a symlink to sth)
+        if [[ ! -L "$HOME/$file" ]]; then
+            echo "[WARNING] $HOME/$file - link already exists"
+        else
+            mv $HOME/$file $OLD_CONFIGS_DIR/$file 2>&1 > /dev/null
+            # Make soft links for every config-file
+            ln -s $PWD/$file $HOME/$file 2>&1
+        fi
     done
 }
 

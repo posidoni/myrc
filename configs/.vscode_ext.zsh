@@ -22,17 +22,19 @@ code_plugins=(
 
     # C/C++
     "jeff-hykin.better-cpp-syntax"
-    "jbenden.c-cpp-flylint"
-    "ms-vscode.cmake-tools"
-    "ms-vscode.cpptools"
-    "ms-vscode.cpptools-extension-pack"
-    "ms-vscode.cpptools-themes"
-    "ms-vscode.hexeditor"
-    "twxs.cmake"
-    "vadimcn.vscode-lldb"
-    "llvm-vs-code-extensions.vscode-clangd"
-    "xaver.clang-format"
-    "notskm.clang-tidy"
+    # Microsoft Suite
+        "jbenden.c-cpp-flylint"
+        "ms-vscode.cmake-tools"
+        "ms-vscode.cpptools"
+        "ms-vscode.cpptools-extension-pack"
+        "ms-vscode.cpptools-themes"
+        "ms-vscode.hexeditor"
+        "twxs.cmake"
+    # LLVM Suite
+        "vadimcn.vscode-lldb"
+        "llvm-vs-code-extensions.vscode-clangd"
+        "xaver.clang-format"
+        "notskm.clang-tidy"
 
     # DevOps & CI/CD
     "ms-azuretools.vscode-docker"

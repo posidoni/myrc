@@ -8,25 +8,27 @@
 	name = "Mikhail Kuznetsov"
 	email = mikhail.n.kuznetsov@gmail.com
 	username = MikhailKuzntsov1
-[pull]
-    rebase = false
-[merge]
-  tool = vscode
-[mergetool "vscode"]
-  cmd = code --wait $MERGED
-[mergetool]
-    prompt = false
-[commit]
-  template = ~/.gitmessage
+	signingkey = EC56FBF894A2E4A6
 [github]
     user = mikhail.n.kuznetsov@gmail.com
     username = MikhailKuzntsov1
     name = MikhailKuzntsov1
+[pull]
+    rebase = true
+[merge]
+  	tool = vscode
+[mergetool]
+    prompt = false
+[mergetool "vscode"]
+  	cmd = code --wait $MERGED
+[commit]
+  	template = ~/.commit-msg-template
+	gpgsign = true
 [init]
 	defaultBranch = main
+[web]
+	browser = google-chrome
 [alias]
-    tag = tag
-    commit = commit
     log = log --graph
     sign = rebase --exec 'git commit --amend --no-edit -n -S' -i --root
     rr = rebase -i --root
@@ -34,27 +36,11 @@
 	browser = google-chrome
 [color]
 	ui = auto
-[color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-[color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red bold
 [diff]
 	tool = vscode
 [gitflow "prefix"]
 	versiontag = v
 [sequence]
 	editor = code --wait
-[mergetool "vscode"]
-	cmd = code --args $* --wait
 [difftool "vscode"]
 	cmd = code --wait  --diff $LOCAL $REMOTE

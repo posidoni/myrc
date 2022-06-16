@@ -12,5 +12,6 @@ brew_packages=(
     gdbm                    libgcrypt               lua                     pcre                    valgrind
     gettext                 libgpg-error            luajit-openresty        pinentry                xz
     gh                      libidn2                 luarocks                pkg-config              zstd
-    pkg-config               node                    llvm                   bear
+    pkg-config               node                    llvm                    bear                    gpg
+    qt                      
 )
