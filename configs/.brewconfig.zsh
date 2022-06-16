@@ -4,8 +4,8 @@
 export PATH=$HOME/goinfre/mybrew:$PATH
 
 # Set Homebrew temporary folders
-export HOMEBREW_CACHE=$HOME/goinfre/.Homebrew/Temp/Caches
-export HOMEBREW_TEMP=$HOME/goinfre/.Homebrew/Temp
+export HOMEBREW_CACHE=$HOME/Library/Homebrew/Temp/Caches
+export HOMEBREW_TEMP=$HOME/Library/Homebrew/Temp
 
 mkdir -p $HOMEBREW_CACHE
 mkdir -p $HOMEBREW_TEMP

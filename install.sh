@@ -16,7 +16,6 @@ configs=(
         .bashrc
         .brewconfig.zsh
         .vscode_ext.zsh
-        .clean_cache.zsh
         .brew_packages.zsh
 )
 

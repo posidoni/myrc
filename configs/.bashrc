@@ -4,7 +4,6 @@
 
 # Including dependencies
 source $HOME/.vscode_ext.zsh
-source $HOME/.clean_cache.zsh
 source $HOME/.brew_packages.zsh
 
 # MacOS Specific config
