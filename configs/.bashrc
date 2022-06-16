@@ -1,4 +1,4 @@
-# File: ZSH Config
+# File: Bash Config
 # Author: Mikhail Kuznetsov https://github.com/MikhailKuzntsov1
 # upd: 16/06/2022
 
@@ -7,14 +7,10 @@ source $HOME/.vscode_ext.zsh
 source $HOME/.clean_cache.zsh
 source $HOME/.brew_packages.zsh
 
-ZSH_THEME="af-magic"
-
-
 # MacOS Specific config
     # Turns 'press & hold OS X' false for VSCode
     if [[ "$OSTYPE" == "darwin"* ]]; then
         defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-        # Prints available space
         df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
         export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
         export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
@@ -26,10 +22,6 @@ ZSH_THEME="af-magic"
     export ZSH="$HOME/.oh-my-zsh"
     export EDITOR="vim"
     export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
-# ZSH config
-    plugins=(git docker docker-compose)
-    source $ZSH/oh-my-zsh.sh
 
 # Load Homebrew config script
     source $HOME/.brewconfig.zsh

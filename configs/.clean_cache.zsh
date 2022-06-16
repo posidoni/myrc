@@ -1,4 +1,3 @@
-
 # Asyncronous cleaner script
 ccleaner() {
     find ~/ -name ".DS_Store" -print -delete 2>&1 > /dev/null  2>&1 > /dev/null &
