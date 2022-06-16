@@ -28,7 +28,7 @@ install_configs() {
         echo -e "$file is installed!"
 
         # Save old configs (if they are not a symlink to sth)
-        if [[ ! -L "$HOME/$file" ]]; then
+        if [[ -L "$HOME/$file" ]]; then
             echo "[WARNING] $HOME/$file - link already exists"
         else
             mv $HOME/$file $OLD_CONFIGS_DIR/$file 2>&1 > /dev/null

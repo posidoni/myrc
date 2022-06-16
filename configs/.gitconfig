@@ -22,8 +22,8 @@
 [mergetool "vscode"]
   	cmd = code --wait $MERGED
 [commit]
-  	template = ~/.commit-msg-template
-	gpgsign = true
+  	template = ~/.gitmessage
+	# gigpgsign = true
 [init]
 	defaultBranch = main
 [web]
