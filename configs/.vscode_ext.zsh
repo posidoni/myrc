@@ -23,7 +23,6 @@ code_plugins=(
     # C/C++
     "jeff-hykin.better-cpp-syntax"
     # Microsoft Suite
-        "jbenden.c-cpp-flylint"
         "ms-vscode.cmake-tools"
         "ms-vscode.cpptools"
         "ms-vscode.cpptools-extension-pack"
