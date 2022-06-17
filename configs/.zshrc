@@ -66,6 +66,10 @@ install_brew() {
         ( brew install $package )
     done
 
+    brew tap LouisBrunner/valgrind
+    brew install --HEAD LouisBrunner/valgrind/valgrind
+
+
     export PATH=$HOME/goinfre/mybrew:$PATH
 }
 

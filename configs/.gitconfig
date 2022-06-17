@@ -14,7 +14,7 @@
     username = MikhailKuzntsov1
     name = MikhailKuzntsov1
 [pull]
-    rebase = true
+    rebase = false
 [merge]
   	tool = vscode
 [mergetool]
