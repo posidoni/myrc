@@ -37,7 +37,7 @@ ZSH_THEME="af-magic"
 # Aliases
     # alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-report.txt"
     alias flash="cd /Volumes/MISHA"
-    alias code="code --wait --extensions-dir="/Users/posidoni/goinfre/vscode_ext/extensions""
+    # alias code="code --wait --extensions-dir="/Users/posidoni/goinfre/vscode_ext/extensions""
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
