@@ -8,7 +8,6 @@ source $HOME/myrc/configs/.brew_packages.zsh
 
 ZSH_THEME="af-magic"
 
-
 # MacOS Specific config
     # Turns 'press & hold OS X' false for VSCode
     if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -17,6 +16,7 @@ ZSH_THEME="af-magic"
         df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
         export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
         export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+		export PATH=$PATH:$HOME/homebrew/bin
         # Function for launching VSCode (if not available via binary in path)
         # code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
     fi;
@@ -27,7 +27,13 @@ ZSH_THEME="af-magic"
     export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # ZSH config
-    plugins=(git docker docker-compose tmux)
+    plugins=(
+	git 
+	docker 
+	docker-compose 
+	tmux
+	zsh-autosuggestions
+	)
     source $ZSH/oh-my-zsh.sh
 
 # Load Homebrew config script
