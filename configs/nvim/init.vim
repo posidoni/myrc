@@ -1,0 +1,4 @@
+set hidden
+set nocompatible
+
+
