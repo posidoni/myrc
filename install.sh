@@ -44,7 +44,8 @@ install_configs() {
 
         # Make soft links for every config-file
         ln -s $PWD/$file $HOME/$file 2>&1
-		git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+		# Install tmux plugin manager
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     done
 }
 

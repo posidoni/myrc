@@ -14,6 +14,7 @@ source $HOME/.brew_packages.zsh
         export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
         export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
         # Function for launching VSCode (if not available via binary in path)
+	    export PATH=$PATH:$HOME/goinfre/mybrew/bin
         # code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
     fi;
 
@@ -24,7 +25,6 @@ source $HOME/.brew_packages.zsh
 
 # Load Homebrew config script
     source $HOME/.brewconfig.zsh
-    export PATH=$PATH:$HOME/goinfre/mybrew/bin
 
 # Aliases
     # alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-report.txt"

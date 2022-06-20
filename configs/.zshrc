@@ -28,11 +28,10 @@ ZSH_THEME="af-magic"
 
 # ZSH config
     plugins=(
-	git 
-	docker 
-	docker-compose 
-	tmux
-	zsh-autosuggestions
+		git 
+		docker 
+		docker-compose 
+		tmux
 	)
     source $ZSH/oh-my-zsh.sh
 
@@ -41,11 +40,9 @@ ZSH_THEME="af-magic"
     export PATH=$PATH:$HOME/goinfre/mybrew/bin
 
 # Aliases
-    # alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-report.txt"
     alias flash="cd /Volumes/MISHA"
 	alias tks="tmux kill-session -t"
 	alias vimdiff="nvim -d"
-    # alias code="code --wait --extensions-dir="/Users/posidoni/goinfre/vscode_ext/extensions""
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
@@ -76,7 +73,6 @@ install_brew() {
 
     brew tap LouisBrunner/valgrind
     brew install --HEAD LouisBrunner/valgrind/valgrind
-
 
     export PATH=$HOME/goinfre/mybrew:$PATH
 }

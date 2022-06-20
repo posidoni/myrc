@@ -45,7 +45,6 @@ set tabstop=4								" Column count in tab character
 set hidden
 set nocompatible
 set backspace=indent,eol,start
-
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
@@ -69,7 +68,7 @@ map <leader>v :sp ~/.vimrc<cr>
 " ==============================================================================
 let g:onedark_termcolors = 256
 let g:onedark_hide_endofbuffer = 1
-let g:onedark_terminal_italics = 1
+let g:onedark_terminal_italics = 0
 
 let g:onedark_color_overrides = {
 \ "background": {"gui": "#2F343F", "cterm": "235", "cterm16": "0" },
