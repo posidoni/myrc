@@ -3,8 +3,8 @@
 # upd: 16/06/2022
 
 # Including dependencies
-source $HOME/.vscode_ext.zsh
-source $HOME/.brew_packages.zsh
+source $HOME/myrc/configs/.vscode_ext.zsh
+source $HOME/myrc/configs/.brew_packages.zsh
 
 ZSH_THEME="af-magic"
 
@@ -27,7 +27,7 @@ ZSH_THEME="af-magic"
     export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # ZSH config
-    plugins=(git docker docker-compose)
+    plugins=(git docker docker-compose tmux)
     source $ZSH/oh-my-zsh.sh
 
 # Load Homebrew config script
@@ -37,6 +37,8 @@ ZSH_THEME="af-magic"
 # Aliases
     # alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-report.txt"
     alias flash="cd /Volumes/MISHA"
+	alias tks="tmux kill-session -t"
+	alias vimdiff="nvim -d"
     # alias code="code --wait --extensions-dir="/Users/posidoni/goinfre/vscode_ext/extensions""
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)

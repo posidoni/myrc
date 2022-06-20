@@ -1,5 +1,5 @@
 [core]
-	editor = code --wait
+	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = less
     hooksPath = /Users/posidoni/.githooks
@@ -16,11 +16,9 @@
 [pull]
     rebase = false
 [merge]
-  	tool = vscode
+  	tool = vimdiff
 [mergetool]
     prompt = false
-[mergetool "vscode"]
-  	cmd = code --wait $MERGED
 [commit]
   	template = ~/.gitmessage
 	# gigpgsign = true
@@ -37,10 +35,8 @@
 [color]
 	ui = auto
 [diff]
-	tool = vscode
+	tool = vimdiff
 [gitflow "prefix"]
 	versiontag = v
 [sequence]
 	editor = code --wait
-[difftool "vscode"]
-	cmd = code --wait  --diff $LOCAL $REMOTE
