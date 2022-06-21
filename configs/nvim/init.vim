@@ -31,6 +31,8 @@ call plug#begin('~/.vim/plugins')
 	" Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
 	Plug 'tpope/vim-surround'
 	Plug 'rhysd/vim-clang-format' " Clang Autoformat
+	" Knowledge management plugin. Fully compatible with Obsidian app links
+	Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ==============================================================================
@@ -56,11 +58,15 @@ set hidden
 set nocompatible
 set backspace=indent,eol,start
 set clipboard=unnamedplus
+:set ignorecase
+:set smartcase
+filetype plugin on
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
 											" ⭐️ Leader key
-map <space> 	<leader> 											
+nnoremap <Space> <nop> 
+let mapleader=" "
 											" Navigation between panes
 map <C-H>		<C-W><C-H>
 map <C-J>		<C-W><C-J>
@@ -71,7 +77,7 @@ map <leader>o		:NERDTreeToggle<CR>
 											" Open Fuzzy Finder
 map <leader>g	:FZF --preview cat\ {}<CR>
 											" Edit vimrc quickly
-map <leader>v :sp ~/.vimrc<CR>
+map <leader>v :sp ~/.config/nvim/init.vim<CR>
 noremap <TAB> %
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -140,31 +146,6 @@ colorscheme onedark
    
 autocmd FileType c ClangFormatAutoEnable 
 noremap <F1> :make<CR>
-
-" ==============================================================================
-"                                  Fuzzy Finder
-" ==============================================================================
-let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
-					\'bg':      ['bg', 'Normal'],
-					\'hl':      ['fg', 'Comment'],
-					\'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-					\'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-					\'hl+':     ['fg', 'Statement'],
-					\'info':    ['fg', 'PreProc'],
-					\'border':  ['fg', 'Ignore'],
-					\'prompt':  ['fg', 'Conditional'],
-					\'pointer': ['fg', 'Exception'],
-					\'marker':  ['fg', 'Keyword'],
-					\'spinner': ['fg', 'Label'],
-					\'header':  ['fg', 'Comment'] }
-
-let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf$|\.bak$|\.swp$|\.class|\.png$'
-
-" Search & explore current buffers
-nnoremap <silent> <Leader>b :Buffers<CR>
-" Search & explore lines in current buffer
-nnoremap <silent> <Leader>l :BLines<CR>
-nnoremap <silent> <Leader>c :Commits<CR>
 
 " ==============================================================================
 "                              File System Explorer
@@ -242,7 +223,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent> K  :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -349,4 +330,35 @@ vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
+" ==============================================================================
+"                             Vim Wiki
+"                  https://github.com/vimwiki/vimwiki
+" ==============================================================================
+let g:vimwiki_list = [{'path': '~/Obsidian/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" ==============================================================================
+"                                  Fuzzy Finder
+" ==============================================================================
+let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
+					\'bg':      ['bg', 'Normal'],
+					\'hl':      ['fg', 'Comment'],
+					\'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+					\'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+					\'hl+':     ['fg', 'Statement'],
+					\'info':    ['fg', 'PreProc'],
+					\'border':  ['fg', 'Ignore'],
+					\'prompt':  ['fg', 'Conditional'],
+					\'pointer': ['fg', 'Exception'],
+					\'marker':  ['fg', 'Keyword'],
+					\'spinner': ['fg', 'Label'],
+					\'header':  ['fg', 'Comment'] }
+
+let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf$|\.bak$|\.swp$|\.class|\.png$'
+
+" Search & explore current buffers
+map <silent> <leader>b :Buffers<CR>
+" Search & explore lines in current buffer
+map <silent> <leader>l :BLines<CR>
+map <silent> <leader>c :Commits<CR>
+
 
