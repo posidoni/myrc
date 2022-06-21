@@ -18,17 +18,14 @@ ZSH_THEME="af-magic"
         # Prints available space
         df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
         export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
-        export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-		export PATH=$PATH:$HOME/homebrew/bin
-        # Function for launching VSCode (if not available via binary in path)
-        # code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+		export PATH=$PATH:$HOME/goinfre/posidoni/mybrew/bin
+        export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     fi;
 
 # ENV config
     export ZSH="$HOME/.oh-my-zsh"
     export EDITOR="vim"
-    export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
+    
 # ZSH config
     plugins=(
 		git 
@@ -125,3 +122,5 @@ ccleaner() {
     rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/  2>&1 > /dev/null &
     rm -rf ~/.Trash/  2>&1 > /dev/null &
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

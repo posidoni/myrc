@@ -12,7 +12,6 @@ endif
 " ==============================================================================
 call plug#begin('~/.vim/plugins')
 	Plug 'mhartington/oceanic-next'
-	Plug 'joshdick/onedark.vim'
 	Plug 'sheerun/vim-polyglot'				" Syntax highlighting
 	Plug 'jceb/vim-orgmode'					" Org mode for Vim
 	Plug 'cohama/lexima.vim'				" Auto close parentheses
@@ -22,7 +21,7 @@ call plug#begin('~/.vim/plugins')
 	Plug 'airblade/vim-gitgutter'			" Vim diff
 	Plug 'junegunn/fzf.vim'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'neoclide/coc.nvim', { 'branch' = 'release' }
+	Plug 'neoclide/coc.nvim', { 'branch':'release' }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-fugitive'
@@ -55,7 +54,6 @@ set encoding=utf-8
 set hidden
 set nocompatible
 set backspace=indent,eol,start
-set clipboard=unnamedplus
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
@@ -71,8 +69,8 @@ map <leader>o		:NERDTreeToggle<CR>
 											" Open Fuzzy Finder
 map <leader>g	:FZF --preview cat\ {}<CR>
 											" Edit vimrc quickly
-map <leader>v :sp ~/.vimrc<cr>
-map <F1> :make
+map <leader>v :sp ~/.vimrc<CR>
+noremap <F1> :make<CR>
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -119,13 +117,13 @@ let g:onedark_config = {
   \ 'style': 'deep',
   \ 'term_colors': v:true,
   \ 'ending_tildes': v:true,
-  \ 'code_style' = {
-    \ 'comments' = 'italic',
-    \ 'keywords' = 'none',
-    \ 'functions' = 'bold',
-    \ 'strings' = 'italic',
-    \ 'variables' = 'none'
-    },
+  \ 'code_style' : {
+    \ 'comments' : 'italic',
+    \ 'keywords' : 'none',
+    \ 'functions' : 'bold',
+    \ 'strings' : 'italic',
+    \ 'variables' : 'none',
+	\    },
   \ 'diagnostics': {
     \ 'darker': v:true,
     \ 'background': v:true,
@@ -133,7 +131,6 @@ let g:onedark_config = {
   \ },
 \ }
 colorscheme onedark
-
 
 " ==============================================================================
 "                                  Fuzzy Finder
@@ -188,7 +185,7 @@ highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterChangeDelete ctermfg=3
 highlight GitGutterDelete ctermfg=1
-highlight SignColumn ctermbg=bg
+" highlight SignColumn ctermbg=bg0
 function! GitStatus()						" Git status to status line
   let [a,m,r] = GitGutterGetHunkSummary()
   return printf('+%d ~%d -%d', a, m, r)
@@ -267,7 +264,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
-
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
 
@@ -299,10 +295,8 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
-
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 

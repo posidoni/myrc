@@ -60,3 +60,5 @@ install_brew() {
 
     export PATH=$HOME/goinfre/mybrew:$PATH
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
