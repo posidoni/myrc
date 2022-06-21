@@ -26,10 +26,11 @@ call plug#begin('~/.vim/plugins')
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-repeat'
-	Plug 'chaoren/vim-wordmotion'
+	Plug 'chaoren/vim-wordmotion' " Camel, snake case & etc. handling
 	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
-	Plug 'tpope/vim-speeddating'
-	Plug 'tpope/vim-surround' " Adding parenthesis
+	" Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
+	Plug 'tpope/vim-surround'
+	Plug 'rhysd/vim-clang-format' " Clang Autoformat
 call plug#end()
 
 " ==============================================================================
@@ -54,12 +55,13 @@ set encoding=utf-8
 set hidden
 set nocompatible
 set backspace=indent,eol,start
+set clipboard=unnamedplus
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
-
-map <space> 	<leader>
-											" Navigating between panes
+											" ⭐️ Leader key
+map <space> 	<leader> 											
+											" Navigation between panes
 map <C-H>		<C-W><C-H>
 map <C-J>		<C-W><C-J>
 map <C-K>		<C-W><C-K>
@@ -70,7 +72,7 @@ map <leader>o		:NERDTreeToggle<CR>
 map <leader>g	:FZF --preview cat\ {}<CR>
 											" Edit vimrc quickly
 map <leader>v :sp ~/.vimrc<CR>
-noremap <F1> :make<CR>
+noremap <TAB> %
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -131,6 +133,13 @@ let g:onedark_config = {
   \ },
 \ }
 colorscheme onedark
+
+" ==============================================================================
+"                                 C/C++ Development 
+" ==============================================================================
+   
+autocmd FileType c ClangFormatAutoEnable 
+noremap <F1> :make<CR>
 
 " ==============================================================================
 "                                  Fuzzy Finder

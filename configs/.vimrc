@@ -11,10 +11,7 @@ endif
 "                                  VIM Plugins
 " ==============================================================================
 call plug#begin('~/.vim/plugins')
-	Plug 'mhartington/oceanic-next'
-	Plug 'joshdick/onedark.vim'
 	Plug 'sheerun/vim-polyglot'				" Syntax highlighting
-	Plug 'jceb/vim-orgmode'					" Org mode for Vim
 	Plug 'cohama/lexima.vim'				" Auto close parentheses
 	Plug 'preservim/nerdtree'				" File system explorer
 	Plug 'vim-airline/vim-airline'			" Status line
@@ -31,6 +28,8 @@ call plug#begin('~/.vim/plugins')
 	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
 	Plug 'tpope/vim-speeddating'
 	Plug 'tpope/vim-surround' " Adding parenthesis
+	Plug 'lldb-tools/vim-lldb' " Debugger 
+	Plug 'vim-scripts/DoxygenToolkit.vim'
 call plug#end()
 
 " ==============================================================================
@@ -347,3 +346,16 @@ vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
 
+" ==============================================================================
+"                            DoxygenToolkit 
+" ==============================================================================
+nnoremap <F2> ":Dox"
+nnoremap <F3> ":DoxBlock"
+
+let g:DoxygenToolkit_briefTag_pre="@Brief "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Mikhail Kuznetsov "
+let g:DoxygenToolkit_licenseTag="GNU GPL v3.0"
