@@ -6,6 +6,9 @@
 source $HOME/myrc/configs/.vscode_ext.zsh
 source $HOME/myrc/configs/.brew_packages.zsh
 
+# Set colors to match iTerm2 Terminal Colors
+
+export TERM=xterm-256color
 ZSH_THEME="af-magic"
 
 # MacOS Specific config
@@ -43,6 +46,9 @@ ZSH_THEME="af-magic"
     alias flash="cd /Volumes/MISHA"
 	alias tks="tmux kill-session -t"
 	alias vimdiff="nvim -d"
+ 	alias vim="nvim"
+ 	alias vi="nvim"
+	alias tmux="TERM=screen-256color-bce tmux -2"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
