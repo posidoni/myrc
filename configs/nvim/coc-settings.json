@@ -3,4 +3,5 @@
   "clangd.inlayHints.enable":"false",
   "clangd.fallbackFlags":"-Wall -Wextra -std=c11 -pedantic",
   "clangd.arguments": ["-background-index"],
+  "clangd.compilationDatabasePath": ".",
 }

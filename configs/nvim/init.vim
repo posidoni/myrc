@@ -11,31 +11,31 @@ endif
 "                                  VIM Plugins
 " ==============================================================================
 call plug#begin('~/.vim/plugins')
-	Plug 'mhartington/oceanic-next'
 	Plug 'sheerun/vim-polyglot'				" Syntax highlighting
 	Plug 'jceb/vim-orgmode'					" Org mode for Vim
 	Plug 'cohama/lexima.vim'				" Auto close parentheses
 	Plug 'preservim/nerdtree'				" File system explorer
 	Plug 'vim-airline/vim-airline'			" Status line
 	Plug 'vim-airline/vim-airline-themes'	" Status line themes
-	Plug 'airblade/vim-gitgutter'			" Vim diff
-	Plug 'junegunn/fzf.vim'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'neoclide/coc.nvim', { 'branch':'release' }
+    Plug 'airblade/vim-gitgutter'			" Vim diff 
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'neoclide/coc.nvim', { 'branch':'release' }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-repeat'
 	Plug 'chaoren/vim-wordmotion' " Camel, snake case & etc. handling
-	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
+"	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
 	" Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
 	Plug 'tpope/vim-surround'
-	Plug 'rhysd/vim-clang-format' " Clang Autoformat
 	" Knowledge management plugin. Fully compatible with Obsidian app links
 	Plug 'vimwiki/vimwiki'
-                                        " Fira-code font with ligatures is
-                                        " recommended for this to work
+    " Fira-code font with ligatures is recommended for icons to work
 	Plug 'ryanoasis/vim-devicons'
+"    Plug 'preservim/tagbar'
+"    Plug 'xolox/vim-easytags'
+"    Plug 'universal-ctags/ctags'
 call plug#end()
 
 " ==============================================================================
@@ -87,26 +87,31 @@ map <C-H>		<C-W><C-H>
 map <C-J>		<C-W><C-J>
 map <C-K>		<C-W><C-K>
 map <C-L>		<C-W><C-L>
-									" Open NERDTree
+                                " Open NERDTree
 map <leader>o		:NERDTreeToggle<CR>
-											" Open Fuzzy Finder
+                                        " Open Fuzzy Finder
 map <leader>g	:FZF --preview cat\ {}<CR>
-											" Edit vimrc quickly
+                                        " Edit vimrc quickly
 map <leader>v :sp ~/.config/nvim/init.vim<CR>
+
 noremap <TAB> %
+noremap <leader>r :re<CR>
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" GoTo code navigation.
+                                                        " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+                                                    " Clear search highlighting
+map <esc> :noh <CR>
+" nmap <F3> :TagbarToggle<CR>
 " ==============================================================================
-"                                  CoC Mapping
+"                             CoC Mapping & Config
 " ==============================================================================
 											" Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
@@ -135,7 +140,6 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " ==============================================================================
 "                                  Color Scheme
 " ==============================================================================
-" Vim
 let g:onedark_config = {
   \ 'style': 'deep',
   \ 'term_colors': v:true,
@@ -158,8 +162,7 @@ colorscheme onedark
 " ==============================================================================
 "                                 C/C++ Development 
 " ==============================================================================
-   
-autocmd FileType c ClangFormatAutoEnable 
+
 noremap <F1> :make<CR>
 
 " ==============================================================================
@@ -174,6 +177,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
 "                                  Status Line
 " ==============================================================================
 let g:airline#extensions#tabline#enabled=1	" Enable tab line
+let g:airline#extensions#coc#enabled=1
 let g:airline_theme='onedark'					" Setup Status line theme
 " ==============================================================================
 "                                  Git Gutter
@@ -366,6 +370,12 @@ let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf|\.bak$|\.swp$|\.class|\.png$'
 map <silent> <leader>b :Buffers<CR>
 " Search & explore lines in current buffer
 map <silent> <leader>l :BLines<CR>
+
+" ==============================================================================
+"                                 Git Fugitive 
+" ==============================================================================
+nmap <silent> <F12> :Git split HEAD~1:%<CR>
+nmap <silent> <F5>  :Gdiffsplit<CR>
+nmap <silent> <F6>  :Git blame<CR>
+" Commits fuzzy finder
 map <silent> <leader>c :Commits<CR>
-
-
