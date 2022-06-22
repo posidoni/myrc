@@ -33,6 +33,9 @@ call plug#begin('~/.vim/plugins')
 	Plug 'rhysd/vim-clang-format' " Clang Autoformat
 	" Knowledge management plugin. Fully compatible with Obsidian app links
 	Plug 'vimwiki/vimwiki'
+                                        " Fira-code font with ligatures is
+                                        " recommended for this to work
+	Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " ==============================================================================
@@ -52,15 +55,27 @@ set relativenumber							" Display relative line numbering
 set shiftwidth=4							" Number of spaces for autoindent
 set showcmd									" Show (partial) command
 set splitright								" Open new splits on the right
+set splitbelow 								" Open new splits below
 set tabstop=4								" Column count in tab character
-set encoding=utf-8
+set expandtab
 set hidden
 set nocompatible
 set backspace=indent,eol,start
 set clipboard=unnamedplus
-:set ignorecase
-:set smartcase
+set ignorecase
+set smartcase
+set encoding=utf-8
+									" CoC-specific configs
+set nobackup
+set nowritebackup
+									" Give more space for displaying messages.
+set cmdheight=2
+set updatetime=300
+								" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 filetype plugin on
+											" Remove trailing spaces
+autocmd FileType c,cpp,bash,md autocmd BufWritePre <buffer> %s/\s\+$//e
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
@@ -72,7 +87,7 @@ map <C-H>		<C-W><C-H>
 map <C-J>		<C-W><C-J>
 map <C-K>		<C-W><C-K>
 map <C-L>		<C-W><C-L>
-											" Open NERDTree
+									" Open NERDTree
 map <leader>o		:NERDTreeToggle<CR>
 											" Open Fuzzy Finder
 map <leader>g	:FZF --preview cat\ {}<CR>
@@ -185,14 +200,6 @@ set statusline+=%{GitStatus()}
 " ==============================================================================
 "                               CoC
 " ==============================================================================
-set encoding=utf-8
-set nobackup
-set nowritebackup
-									" Give more space for displaying messages.
-set cmdheight=2
-set updatetime=300
-								" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -353,7 +360,7 @@ let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
 					\'spinner': ['fg', 'Label'],
 					\'header':  ['fg', 'Comment'] }
 
-let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf$|\.bak$|\.swp$|\.class|\.png$'
+let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf|\.bak$|\.swp$|\.class|\.png$'
 
 " Search & explore current buffers
 map <silent> <leader>b :Buffers<CR>
