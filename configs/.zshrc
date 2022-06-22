@@ -3,11 +3,13 @@
 # upd: 16/06/2022
 
 # Including dependencies
-source $HOME/.vscode_ext.zsh
-source $HOME/.brew_packages.zsh
+source $HOME/myrc/configs/.vscode_ext.zsh
+source $HOME/myrc/configs/.brew_packages.zsh
 
+# Set colors to match iTerm2 Terminal Colors
+
+export TERM=xterm-256color
 ZSH_THEME="af-magic"
-
 
 # MacOS Specific config
     # Turns 'press & hold OS X' false for VSCode
@@ -16,18 +18,21 @@ ZSH_THEME="af-magic"
         # Prints available space
         df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
         export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
-        export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-        # Function for launching VSCode (if not available via binary in path)
-        # code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+		export PATH=$PATH:$HOME/goinfre/posidoni/mybrew/bin
+        export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     fi;
 
 # ENV config
     export ZSH="$HOME/.oh-my-zsh"
     export EDITOR="vim"
-    export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
+    
 # ZSH config
-    plugins=(git docker docker-compose)
+    plugins=(
+		git 
+		docker 
+		docker-compose 
+		tmux
+	)
     source $ZSH/oh-my-zsh.sh
 
 # Load Homebrew config script
@@ -35,9 +40,12 @@ ZSH_THEME="af-magic"
     export PATH=$PATH:$HOME/goinfre/mybrew/bin
 
 # Aliases
-    # alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-report.txt"
     alias flash="cd /Volumes/MISHA"
-    alias code="code --wait --extensions-dir="/Users/posidoni/goinfre/vscode_ext/extensions""
+	alias tks="tmux kill-session -t"
+	alias vimdiff="nvim -d"
+ 	alias vim="nvim"
+ 	alias vi="nvim"
+	alias tmux="TERM=screen-256color-bce tmux -2"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
@@ -68,7 +76,6 @@ install_brew() {
 
     brew tap LouisBrunner/valgrind
     brew install --HEAD LouisBrunner/valgrind/valgrind
-
 
     export PATH=$HOME/goinfre/mybrew:$PATH
 }
@@ -115,3 +122,5 @@ ccleaner() {
     rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/  2>&1 > /dev/null &
     rm -rf ~/.Trash/  2>&1 > /dev/null &
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

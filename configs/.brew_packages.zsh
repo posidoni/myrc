@@ -1,5 +1,6 @@
 # Brew packages list
 brew_packages=(
+    nvim                    tmux
     autoconf                gmp                     libksba                 luv                     python@3.10
     automake                gnu-sed                 libnghttp2              m4                      readline
     bdw-gc                  gnupg                   libtasn1                mpdecimal               sqlite
@@ -12,7 +13,7 @@ brew_packages=(
     gdbm                    libgcrypt               lua                     pcre                    valgrind
     gettext                 libgpg-error            luajit-openresty        pinentry                xz
     gh                      libidn2                 luarocks                pkg-config              zstd
-    pkg-config               node                    llvm                    bear                    gpg
-    qt                  valgrind
+    pkg-config              node                    llvm                    bear                    gpg
+    qt                       
 )
 

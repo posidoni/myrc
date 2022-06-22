@@ -12,24 +12,30 @@ endif
 " ==============================================================================
 call plug#begin('~/.vim/plugins')
 	Plug 'sheerun/vim-polyglot'				" Syntax highlighting
+	Plug 'jceb/vim-orgmode'					" Org mode for Vim
 	Plug 'cohama/lexima.vim'				" Auto close parentheses
 	Plug 'preservim/nerdtree'				" File system explorer
 	Plug 'vim-airline/vim-airline'			" Status line
 	Plug 'vim-airline/vim-airline-themes'	" Status line themes
-	Plug 'airblade/vim-gitgutter'			" Vim diff
-	Plug 'junegunn/fzf.vim'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'neoclide/coc.nvim', { 'branch' = 'release' }
+    Plug 'airblade/vim-gitgutter'			" Vim diff 
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'neoclide/coc.nvim', { 'branch':'release' }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-repeat'
-	Plug 'chaoren/vim-wordmotion'
-	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
-	Plug 'tpope/vim-speeddating'
-	Plug 'tpope/vim-surround' " Adding parenthesis
-	Plug 'lldb-tools/vim-lldb' " Debugger 
-	Plug 'vim-scripts/DoxygenToolkit.vim'
+	Plug 'chaoren/vim-wordmotion' " Camel, snake case & etc. handling
+"	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
+	" Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
+	Plug 'tpope/vim-surround'
+	" Knowledge management plugin. Fully compatible with Obsidian app links
+	Plug 'vimwiki/vimwiki'
+    " Fira-code font with ligatures is recommended for icons to work
+	Plug 'ryanoasis/vim-devicons'
+"    Plug 'preservim/tagbar'
+"    Plug 'xolox/vim-easytags'
+"    Plug 'universal-ctags/ctags'
 call plug#end()
 
 " ==============================================================================
@@ -49,42 +55,63 @@ set relativenumber							" Display relative line numbering
 set shiftwidth=4							" Number of spaces for autoindent
 set showcmd									" Show (partial) command
 set splitright								" Open new splits on the right
+set splitbelow 								" Open new splits below
 set tabstop=4								" Column count in tab character
-set encoding=utf-8
+set expandtab
 set hidden
 set nocompatible
 set backspace=indent,eol,start
 set clipboard=unnamedplus
+set ignorecase
+set smartcase
+set encoding=utf-8
+									" CoC-specific configs
+set nobackup
+set nowritebackup
+									" Give more space for displaying messages.
+set cmdheight=2
+set updatetime=300
+								" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+filetype plugin on
+											" Remove trailing spaces
+autocmd FileType c,cpp,bash,md autocmd BufWritePre <buffer> %s/\s\+$//e
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
-
-map <space> 	<leader>
-											" Navigating between panes
+											" ⭐️ Leader key
+nnoremap <Space> <nop> 
+let mapleader=" "
+											" Navigation between panes
 map <C-H>		<C-W><C-H>
 map <C-J>		<C-W><C-J>
 map <C-K>		<C-W><C-K>
 map <C-L>		<C-W><C-L>
-											" Open NERDTree
+                                " Open NERDTree
 map <leader>o		:NERDTreeToggle<CR>
-											" Open Fuzzy Finder
+                                        " Open Fuzzy Finder
 map <leader>g	:FZF --preview cat\ {}<CR>
-											" Edit vimrc quickly
-map <leader>v :sp ~/.vimrc<cr>
-map <F1> :make
+                                        " Edit vimrc quickly
+map <leader>v :sp ~/.config/nvim/init.vim<CR>
+
+noremap <TAB> %
+noremap <leader>r :re<CR>
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" GoTo code navigation.
+                                                        " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+                                                    " Clear search highlighting
+map <esc> :noh <CR>
+" nmap <F3> :TagbarToggle<CR>
 " ==============================================================================
-"                                  CoC Mapping
+"                             CoC Mapping & Config
 " ==============================================================================
 											" Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
@@ -113,18 +140,17 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " ==============================================================================
 "                                  Color Scheme
 " ==============================================================================
-" Vim
 let g:onedark_config = {
   \ 'style': 'deep',
   \ 'term_colors': v:true,
   \ 'ending_tildes': v:true,
-  \ 'code_style' = {
-    \ 'comments' = 'italic',
-    \ 'keywords' = 'none',
-    \ 'functions' = 'bold',
-    \ 'strings' = 'italic',
-    \ 'variables' = 'none'
-    },
+  \ 'code_style' : {
+    \ 'comments' : 'italic',
+    \ 'keywords' : 'none',
+    \ 'functions' : 'bold',
+    \ 'strings' : 'italic',
+    \ 'variables' : 'none',
+	\    },
   \ 'diagnostics': {
     \ 'darker': v:true,
     \ 'background': v:true,
@@ -133,31 +159,11 @@ let g:onedark_config = {
 \ }
 colorscheme onedark
 
-
 " ==============================================================================
-"                                  Fuzzy Finder
+"                                 C/C++ Development 
 " ==============================================================================
-let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
-					\'bg':      ['bg', 'Normal'],
-					\'hl':      ['fg', 'Comment'],
-					\'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-					\'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-					\'hl+':     ['fg', 'Statement'],
-					\'info':    ['fg', 'PreProc'],
-					\'border':  ['fg', 'Ignore'],
-					\'prompt':  ['fg', 'Conditional'],
-					\'pointer': ['fg', 'Exception'],
-					\'marker':  ['fg', 'Keyword'],
-					\'spinner': ['fg', 'Label'],
-					\'header':  ['fg', 'Comment'] }
 
-let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf$|\.bak$|\.swp$|\.class|\.png$'
-
-" Search & explore current buffers
-nnoremap <silent> <Leader>b :Buffers<CR>
-" Search & explore lines in current buffer
-nnoremap <silent> <Leader>l :BLines<CR>
-nnoremap <silent> <Leader>c :Commits<CR>
+noremap <F1> :make<CR>
 
 " ==============================================================================
 "                              File System Explorer
@@ -171,6 +177,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
 "                                  Status Line
 " ==============================================================================
 let g:airline#extensions#tabline#enabled=1	" Enable tab line
+let g:airline#extensions#coc#enabled=1
 let g:airline_theme='onedark'					" Setup Status line theme
 " ==============================================================================
 "                                  Git Gutter
@@ -187,7 +194,7 @@ highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterChangeDelete ctermfg=3
 highlight GitGutterDelete ctermfg=1
-highlight SignColumn ctermbg=bg
+" highlight SignColumn ctermbg=bg0
 function! GitStatus()						" Git status to status line
   let [a,m,r] = GitGutterGetHunkSummary()
   return printf('+%d ~%d -%d', a, m, r)
@@ -197,14 +204,6 @@ set statusline+=%{GitStatus()}
 " ==============================================================================
 "                               CoC
 " ==============================================================================
-set encoding=utf-8
-set nobackup
-set nowritebackup
-									" Give more space for displaying messages.
-set cmdheight=2
-set updatetime=300
-								" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -235,7 +234,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent> K  :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -266,7 +265,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
-
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
 
@@ -298,10 +296,8 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
-
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
@@ -345,17 +341,41 @@ vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
+" ==============================================================================
+"                             Vim Wiki
+"                  https://github.com/vimwiki/vimwiki
+" ==============================================================================
+let g:vimwiki_list = [{'path': '~/Obsidian/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" ==============================================================================
+"                                  Fuzzy Finder
+" ==============================================================================
+let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
+					\'bg':      ['bg', 'Normal'],
+					\'hl':      ['fg', 'Comment'],
+					\'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+					\'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+					\'hl+':     ['fg', 'Statement'],
+					\'info':    ['fg', 'PreProc'],
+					\'border':  ['fg', 'Ignore'],
+					\'prompt':  ['fg', 'Conditional'],
+					\'pointer': ['fg', 'Exception'],
+					\'marker':  ['fg', 'Keyword'],
+					\'spinner': ['fg', 'Label'],
+					\'header':  ['fg', 'Comment'] }
+
+let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf|\.bak$|\.swp$|\.class|\.png$'
+
+" Search & explore current buffers
+map <silent> <leader>b :Buffers<CR>
+" Search & explore lines in current buffer
+map <silent> <leader>l :BLines<CR>
 
 " ==============================================================================
-"                            DoxygenToolkit 
+"                                 Git Fugitive 
 " ==============================================================================
-nnoremap <F2> ":Dox"
-nnoremap <F3> ":DoxBlock"
-
-let g:DoxygenToolkit_briefTag_pre="@Brief "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="Mikhail Kuznetsov "
-let g:DoxygenToolkit_licenseTag="GNU GPL v3.0"
+nmap <silent> <F12> :Git split HEAD~1:%<CR>
+nmap <silent> <F5>  :Gdiffsplit<CR>
+nmap <silent> <F6>  :Git blame<CR>
+" Commits fuzzy finder
+map <silent> <leader>c :Commits<CR>

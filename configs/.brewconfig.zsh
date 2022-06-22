@@ -1,7 +1,8 @@
 # HOMEBREW CONFIG
 
 # Add brew to path
-export PATH=$HOME/goinfre/mybrew:$PATH
+export PATH=$HOME/goinfre/mybrew/bin:$PATH
+export PATH=$PATH:$HOME/homebrew/bin
 
 # Set Homebrew temporary folders
 export HOMEBREW_CACHE=$HOME/Library/Homebrew/Temp/Caches

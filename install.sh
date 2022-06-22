@@ -5,6 +5,7 @@ OLD_CONFIGS_DIR=$HOME/old_configs
 configs=(
     # Editor configs
     .vimrc
+	.tmux.conf
 
     # Git configs
     .gitmessage
@@ -43,6 +44,12 @@ install_configs() {
 
         # Make soft links for every config-file
         ln -s $PWD/$file $HOME/$file 2>&1
+		# Install tmux plugin manager
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+    rm -rf $HOME/.config/nvim
+    ln -s $HOME/myrc/configs/nvim $HOME/.configs/nvim/
+    echo "Nvim is installed!"
 
     done
 }
