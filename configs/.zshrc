@@ -24,11 +24,7 @@ ZSH_THEME="af-magic"
 
 # ENV config
     export ZSH="$HOME/.oh-my-zsh"
-<<<<<<< HEAD
     export EDITOR="nvim"
-=======
-    export EDITOR="vim"
->>>>>>> e7ee51eb097fb909e354d8e4000791692a85220d
     
 # ZSH config
     plugins=(
