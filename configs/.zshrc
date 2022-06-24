@@ -4,7 +4,7 @@
 
 # Including dependencies
 # source $HOME/myrc/configs/.vscode_ext.zsh
-source $HOME/myrc/configs/.brew_packages.zsh
+source $HOME/myrc/configs/.vscode_ext.zsh
 
 # Set colors to match iTerm2 Terminal Colors
 
@@ -24,7 +24,11 @@ ZSH_THEME="af-magic"
 
 # ENV config
     export ZSH="$HOME/.oh-my-zsh"
+<<<<<<< HEAD
     export EDITOR="nvim"
+=======
+    export EDITOR="vim"
+>>>>>>> e7ee51eb097fb909e354d8e4000791692a85220d
     
 # ZSH config
     plugins=(
