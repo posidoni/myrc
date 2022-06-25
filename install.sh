@@ -47,7 +47,8 @@ install_configs() {
 		# Install tmux plugin manager
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-    rm -rf $HOME/.config/nvim
+    # Install NeoVim config
+    mv $HOME/.config/nvim $OLD_CONFIGS_DIR 
     ln -s $HOME/myrc/configs/nvim $HOME/.configs/nvim/
     echo "Nvim is installed!"
 

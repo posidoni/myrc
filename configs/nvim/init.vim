@@ -1,19 +1,22 @@
 " ==============================================================================
 "                           Plugin Manager (vim-plug)
 " ==============================================================================
+
 if empty(glob('~/.vim/autoload/plug.vim'))	" Install plugin manager if needed
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 " ==============================================================================
 "                                  VIM Plugins
 " ==============================================================================
+
 call plug#begin('~/.vim/plugins')
     Plug 'sheerun/vim-polyglot'				" Syntax highlighting
     Plug 'cohama/lexima.vim'				" Auto close parentheses
+    " Fira-code font with ligatures is recommended for icons to work
     Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons'
+    Plug '907th/vim-auto-save'
     Plug 'vim-airline/vim-airline'			" Status line
     Plug 'vim-airline/vim-airline-themes'	" Status line themes
     Plug 'airblade/vim-gitgutter'			" Vim diff 
@@ -27,25 +30,22 @@ call plug#begin('~/.vim/plugins')
     Plug 'tpope/vim-unimpaired'
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-repeat'
-"	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
-	" Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
+    " Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
 	Plug 'tpope/vim-surround'
+
 	" Knowledge management plugin. Fully compatible with Obsidian app links
 	Plug 'vimwiki/vimwiki'
-    " Fira-code font with ligatures is recommended for icons to work
 	
-    " New (25/06/2022)
+    " Note-taking & productivity plugins
     Plug 'MikhailKuzntsov1/vim_git_sync'
     Plug 'mattn/calendar-vim' 
-    Plug '907th/vim-auto-save'
-    Plug 'godlygeek/tabular'
-    Plug 'preservim/vim-markdown'
+    Plug 'godlygeek/tabular', {'for':'markdown'}
+    Plug 'preservim/vim-markdown', {'for':'markdown'}
     " :source %
     " :call mkdp#util#install()
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
     Plug 'ferrine/md-img-paste.vim' " <leader>ip -> image paste
 call plug#end()
-
 " ==============================================================================
 "                             General Configuration
 " ==============================================================================
@@ -103,20 +103,19 @@ map <leader>g	:FZF --preview cat\ {}<CR>
 map <leader>v :sp ~/.config/nvim/init.vim<CR>
 
 noremap <TAB> %
-noremap <leader>r :re<CR>
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-                                                        " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
                                                     " Clear search highlighting
-map <esc> :noh <CR>
+map <silent> <esc> :noh <CR>
+nmap <silent><nowait> <leader>t :vsplit term://zsh<CR>
 " nmap <F3> :TagbarToggle<CR>
 " ==============================================================================
 "                             CoC Mapping & Config
@@ -425,8 +424,20 @@ map <silent> <leader>l :BLines<CR>
 " ==============================================================================
 "                                 Git Fugitive 
 " ==============================================================================
+
 nmap <silent> <F12> :Git split HEAD~1:%<CR>
 nmap <silent> <F5>  :Gdiffsplit<CR>
 nmap <silent> <F6>  :Git blame<CR>
 " Commits fuzzy finder
 map <silent> <leader>c :Commits<CR>
+" ==============================================================================
+"                                NVim Terminal Mode 
+" ==============================================================================
+
+" Make terminal mode usable: map ESC -> return to normal mode
+tnoremap <ESC> <C-\><C-n>
+
+" You can define your own shortcuts (mappings) to control gdb, that can work in
+" any window, using the TermDebugSendCommand() function.  Example: >
+" 	map ,w :call TermDebugSendCommand('where')<CR>
+" The argument is the gdb command.
