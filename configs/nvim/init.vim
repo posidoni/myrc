@@ -33,9 +33,9 @@ call plug#begin('~/.vim/plugins')
 	Plug 'vimwiki/vimwiki'
     " Fira-code font with ligatures is recommended for icons to work
 	Plug 'ryanoasis/vim-devicons'
-"    Plug 'preservim/tagbar'
-"    Plug 'xolox/vim-easytags'
-"    Plug 'universal-ctags/ctags'
+    " [e - Killer feature of VsCode (line changing)
+    " [<Space> , [x , [y & other
+    Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 " ==============================================================================
@@ -345,6 +345,10 @@ vnoremap <Up> <Nop>
 "                             Vim Wiki
 "                  https://github.com/vimwiki/vimwiki
 " ==============================================================================
+
+
+" Disables TemporaryWiki feature (every .md file considered as wiki)
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Obsidian/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 " ==============================================================================
