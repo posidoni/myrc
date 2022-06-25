@@ -27,6 +27,7 @@ call plug#begin('~/.vim/plugins')
                 \ 'for': ['c', 'cpp', 'cmake', 'sh', 'json', 'vim'] }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
+    Plug 'neomake/neomake'
     " [e - Killer feature of VsCode (line changing)
     " [<Space> , [x , [y & other
     Plug 'tpope/vim-unimpaired'
