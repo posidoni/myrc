@@ -171,21 +171,21 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " ==============================================================================
 
 let g:onedark_config = {
-\ 'style': 'deep',
-\ 'term_colors': v:true,
-\ 'ending_tildes': v:true,
-\ 'code_style' : {
-\ 'comments' : 'italic',
-\ 'keywords' : 'none',
-\ 'functions' : 'bold',
-\ 'strings' : 'italic',
-\ 'variables' : 'none',
-\    },
-\ 'diagnostics': {
-\ 'darker': v:true,
-\ 'background': v:true,
-\ 'undercurl': v:true,
-\ },
+    \ 'style': 'deep',
+    \ 'term_colors': v:true,
+    \ 'ending_tildes': v:true,
+    \ 'code_style' : {
+        \ 'comments' : 'italic',
+        \ 'keywords' : 'none',
+        \ 'functions' : 'bold',
+        \ 'strings' : 'italic',
+        \ 'variables' : 'none',
+    \    },
+    \ 'diagnostics': {
+        \ 'darker': v:true,
+        \ 'background': v:true,
+        \ 'undercurl': v:true,
+    \ },
 \ }
 colorscheme onedark
 let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -197,6 +197,12 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 " ==============================================================================
 
 noremap <F1> :make<CR>
+noremap <F2> :Neomake!<CR>
+" Full config: when writing or reading a buffer, and on changes in insert and
+" normal mode (after 500ms; no delay when writing).
+call neomake#configure#automake('nrwi', 500)
+let g:neomake_open_list = 2
+
 " ==============================================================================
 "                              File System 
 " ==============================================================================
@@ -217,7 +223,15 @@ let g:auto_save_events = [
         \ "InsertLeave", 
         \"TextChanged"
         \]
-let g:auto_save_write_all_buffers = 1  
+let g:auto_save_write_all_buffers = 1
+" Open the existing NERDTree on each new tab. (do not duplicate trees)
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " ==============================================================================
 "                                  Status Line
 " ==============================================================================
