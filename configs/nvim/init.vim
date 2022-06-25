@@ -11,11 +11,11 @@ endif
 "                                  VIM Plugins
 " ==============================================================================
 call plug#begin('~/.vim/plugins')
-	Plug 'sheerun/vim-polyglot'				" Syntax highlighting
-	Plug 'cohama/lexima.vim'				" Auto close parentheses
-	Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons'
-	Plug 'vim-airline/vim-airline'			" Status line
-	Plug 'vim-airline/vim-airline-themes'	" Status line themes
+    Plug 'sheerun/vim-polyglot'				" Syntax highlighting
+    Plug 'cohama/lexima.vim'				" Auto close parentheses
+    Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons'
+    Plug 'vim-airline/vim-airline'			" Status line
+    Plug 'vim-airline/vim-airline-themes'	" Status line themes
     Plug 'airblade/vim-gitgutter'			" Vim diff 
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -77,7 +77,7 @@ set encoding=utf-8
 set nobackup
 set nowritebackup
 									" Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 set updatetime=300
 								" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
