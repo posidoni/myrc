@@ -116,6 +116,8 @@ nmap <silent> gr <Plug>(coc-references)
                                                     " Clear search highlighting
 map <silent> <esc> :noh <CR>
 nmap <silent><nowait> <leader>t :vsplit term://zsh<CR>
+nmap <silent><nowait> <leader>q :q<CR>
+nmap <silent><nowait> <leader>y :CalendarH<CR>
 " nmap <F3> :TagbarToggle<CR>
 " ==============================================================================
 "                             CoC Mapping & Config
