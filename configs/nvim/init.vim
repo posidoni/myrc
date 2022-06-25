@@ -103,7 +103,10 @@ map <C-L>		<C-W><C-L>
 
 nmap <silent><nowait> ss <C-W>s
 nmap <silent><nowait> vv <C-W>v
-
+nmap <silent><nowait> -- <C-W>-
+nmap <silent><nowait> ++ <C-W>+
+nmap <silent><nowait> >> <C-W>>
+nmap <silent><nowait> << <C-W><
                             " Open NERDTree
 map <leader>o		:NERDTreeToggle<CR>
                                     " Open Fuzzy Finder
