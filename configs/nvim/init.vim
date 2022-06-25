@@ -16,13 +16,15 @@ call plug#begin('~/.vim/plugins')
     Plug 'cohama/lexima.vim'				" Auto close parentheses
     " Fira-code font with ligatures is recommended for icons to work
     Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug '907th/vim-auto-save'
     Plug 'vim-airline/vim-airline'			" Status line
     Plug 'vim-airline/vim-airline-themes'	" Status line themes
     Plug 'airblade/vim-gitgutter'			" Vim diff 
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'neoclide/coc.nvim', { 'branch':'release', 'for': ['c', 'cpp', 'cmake', 'sh', 'json'] }
+    Plug 'neoclide/coc.nvim', { 'branch':'release', 
+                \ 'for': ['c', 'cpp', 'cmake', 'sh', 'json', 'vim'] }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
     " [e - Killer feature of VsCode (line changing)
@@ -44,11 +46,12 @@ call plug#begin('~/.vim/plugins')
     " :source %
     " :call mkdp#util#install()
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-    Plug 'ferrine/md-img-paste.vim' " <leader>ip -> image paste
+    Plug 'ferrine/md-img-paste.vim', {'for':'markdown'} " <leader>ip -> img past
 call plug#end()
 " ==============================================================================
 "                             General Configuration
 " ==============================================================================
+
 set colorcolumn=81							" Highlight 81 column
 set list									" Show hidden characters
 set listchars+=extends:›					" Set extends character
@@ -87,6 +90,7 @@ autocmd FileType c,cpp,bash,md autocmd BufWritePre <buffer> %s/\s\+$//e
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
+
 											" ⭐️ Leader key
 nnoremap <Space> <nop> 
 let mapleader=" "
@@ -101,7 +105,6 @@ map <leader>o		:NERDTreeToggle<CR>
 map <leader>g	:FZF --preview cat\ {}<CR>
                                         " Edit vimrc quickly
 map <leader>v :sp ~/.config/nvim/init.vim<CR>
-
 noremap <TAB> %
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -113,6 +116,17 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
                                                     " Clear search highlighting
 map <silent> <esc> :noh <CR>
 nmap <silent><nowait> <leader>t :vsplit term://zsh<CR>
@@ -144,8 +158,9 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 " ==============================================================================
-"                                  Color Scheme
+"                                  Color Scheme & General Appearance
 " ==============================================================================
+
 let g:onedark_config = {
   \ 'style': 'deep',
   \ 'term_colors': v:true,
@@ -164,13 +179,19 @@ let g:onedark_config = {
   \ },
 \ }
 colorscheme onedark
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+" let g:NERDTreeLimitedSyntax = 1 " May be turned on in case of lags
 " ==============================================================================
 "                                 C/C++ Development 
 " ==============================================================================
+
 noremap <F1> :make<CR>
 " ==============================================================================
 "                              File System 
 " ==============================================================================
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
 	\ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene |
@@ -186,12 +207,14 @@ let g:auto_save_write_all_buffers = 1
 " ==============================================================================
 "                                  Status Line
 " ==============================================================================
+
 let g:airline#extensions#tabline#enabled=1	" Enable tab line
 let g:airline#extensions#coc#enabled=1
 let g:airline_theme='onedark'					" Setup Status line theme
 " ==============================================================================
 "                                  Git Gutter
 " ==============================================================================
+
 let g:gitgutter_max_signs=-1				" Removed limit of count signs
 let g:gitgutter_sign_added='+'				" Changed sign_added
 let g:gitgutter_sign_modified='>'			" Changed sign_modified
@@ -210,7 +233,6 @@ function! GitStatus()						" Git status to status line
   return printf('+%d ~%d -%d', a, m, r)
 endfunction
 set statusline+=%{GitStatus()}
-
 " ==============================================================================
 "                               CoC
 " ==============================================================================
@@ -259,24 +281,13 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+autocmd!
+" Setup formatexpr specified filetype(s).
+autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+" Update signature help on jump placeholder.
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-" Run the Code Lens action on the current line.
-nmap <leader>cl  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -291,12 +302,12 @@ omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
 " Use CTRL-S for selections ranges.
@@ -320,11 +331,11 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "                               Scripts Executable
 " ==============================================================================
 function ChangeMode()						" Auto change of script permissions
-	if getline(1) =~ "^#!"
-		if getline(1) =~ "bin/"
-			silent !chmod a+x <afile>
-		endif
-	endif
+if getline(1) =~ "^#!"
+    if getline(1) =~ "bin/"
+        silent !chmod a+x <afile>
+    endif
+endif
 endfunction
 autocmd BufWritePost * call ChangeMode()
 
@@ -357,14 +368,14 @@ vnoremap <Up> <Nop>
 " ==============================================================================
 
 let g:vim_git_sync_dirs = [
-  \"$HOME/Obsidian/",
-  \"$HOME/myrc/",
-  \]
+\"$HOME/Obsidian/",
+\"$HOME/myrc/",
+\]
 let g:vim_git_sync_branch = "main"
 " Disables TemporaryWiki feature (every .md file considered as wiki)
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Obsidian/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                  \ 'syntax': 'markdown', 'ext': '.md'}]
 " Image paste (Below are default variables)
 autocmd FileType markdown nmap <buffer><silent> <leader>ip :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir = 'assets'
@@ -403,20 +414,20 @@ let g:mkdp_theme = 'dark'
 "                                  Fuzzy Finder
 " ==============================================================================
 let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
-					\'bg':      ['bg', 'Normal'],
-					\'hl':      ['fg', 'Comment'],
-					\'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-					\'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-					\'hl+':     ['fg', 'Statement'],
-					\'info':    ['fg', 'PreProc'],
-					\'border':  ['fg', 'Ignore'],
-					\'prompt':  ['fg', 'Conditional'],
-					\'pointer': ['fg', 'Exception'],
-					\'marker':  ['fg', 'Keyword'],
-					\'spinner': ['fg', 'Label'],
-					\'header':  ['fg', 'Comment'] }
+                \'bg':      ['bg', 'Normal'],
+                \'hl':      ['fg', 'Comment'],
+                \'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+                \'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+                \'hl+':     ['fg', 'Statement'],
+                \'info':    ['fg', 'PreProc'],
+                \'border':  ['fg', 'Ignore'],
+                \'prompt':  ['fg', 'Conditional'],
+                \'pointer': ['fg', 'Exception'],
+                \'marker':  ['fg', 'Keyword'],
+                \'spinner': ['fg', 'Label'],
+                \'header':  ['fg', 'Comment'] }
 
-let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf|\.bak$|\.swp$|\.class|\.png$'
+let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf$|\.bak$|\.swp$|\.class|\.png$'
 
 " Search & explore current buffers
 map <silent> <leader>b :Buffers<CR>
