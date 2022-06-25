@@ -39,4 +39,4 @@
 [gitflow "prefix"]
 	versiontag = v
 [sequence]
-	editor = code --wait
+	editor = nvim
