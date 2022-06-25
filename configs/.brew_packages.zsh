@@ -1,6 +1,14 @@
 # Brew packages list
+# 
+# Xclip is needed for yanking into clipboard & analyzing content of cliboard
+# for insert IMG plugin
+#
+# Bear is needed to create compile_commands.json from make (bear -- make)
+#
+# LLVM package is needed just because it is nice to have it :)
+#
 brew_packages=(
-    nvim                    tmux
+    nvim                    tmux                    xclip
     autoconf                gmp                     libksba                 luv                     python@3.10
     automake                gnu-sed                 libnghttp2              m4                      readline
     bdw-gc                  gnupg                   libtasn1                mpdecimal               sqlite

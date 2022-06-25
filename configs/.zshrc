@@ -2,9 +2,6 @@
 # Author: Mikhail Kuznetsov https://github.com/MikhailKuzntsov1
 # upd: 16/06/2022
 
-# Including dependencies
-source $HOME/myrc/configs/.vscode_ext.zsh
-source $HOME/myrc/configs/.brew_packages.zsh
 
 # Set colors to match iTerm2 Terminal Colors
 
@@ -24,7 +21,7 @@ ZSH_THEME="af-magic"
 
 # ENV config
     export ZSH="$HOME/.oh-my-zsh"
-    export EDITOR="vim"
+    export EDITOR="nvim"
     
 # ZSH config
     plugins=(
@@ -37,7 +34,6 @@ ZSH_THEME="af-magic"
 
 # Load Homebrew config script
     source $HOME/.brewconfig.zsh
-    export PATH=$PATH:$HOME/goinfre/mybrew/bin
 
 # Aliases
     alias flash="cd /Volumes/MISHA"
@@ -48,10 +44,22 @@ ZSH_THEME="af-magic"
 	alias tmux="TERM=screen-256color-bce tmux -2"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
-install_code() {
-    for plugin in ${code_plugins[@]}; do
-        ( code --install-extension $plugin > /dev/null & )
-    done
+# install_code() {
+#     for plugin in ${code_plugins[@]}; do
+#         ( code --install-extension $plugin > /dev/null & )
+#     done
+# }
+
+vimwiki () {
+    if [[ $# == 0 ]]
+    then
+        nvim +'VimwikiIndex'
+    elif [[ $1 == 'git' ]]
+    then
+        git -C ~/vimwiki/ ${@:2}
+    else
+        echo 'Usage: vimwiki [git] [args ...]'
+    fi
 }
 
 # Installs brew packages
@@ -74,6 +82,7 @@ install_brew() {
         ( brew install $package )
     done
 
+    echo "Installing valgrind for OS X..."
     brew tap LouisBrunner/valgrind
     brew install --HEAD LouisBrunner/valgrind/valgrind
 

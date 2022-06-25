@@ -12,30 +12,38 @@ endif
 " ==============================================================================
 call plug#begin('~/.vim/plugins')
 	Plug 'sheerun/vim-polyglot'				" Syntax highlighting
-	Plug 'jceb/vim-orgmode'					" Org mode for Vim
 	Plug 'cohama/lexima.vim'				" Auto close parentheses
-	Plug 'preservim/nerdtree'				" File system explorer
+	Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons'
 	Plug 'vim-airline/vim-airline'			" Status line
 	Plug 'vim-airline/vim-airline-themes'	" Status line themes
     Plug 'airblade/vim-gitgutter'			" Vim diff 
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'neoclide/coc.nvim', { 'branch':'release' }
+    Plug 'neoclide/coc.nvim', { 'branch':'release', 'for': ['c', 'cpp', 'cmake', 'sh', 'json'] }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
+    " [e - Killer feature of VsCode (line changing)
+    " [<Space> , [x , [y & other
+    Plug 'tpope/vim-unimpaired'
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-repeat'
-	Plug 'chaoren/vim-wordmotion' " Camel, snake case & etc. handling
 "	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
 	" Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
 	Plug 'tpope/vim-surround'
 	" Knowledge management plugin. Fully compatible with Obsidian app links
 	Plug 'vimwiki/vimwiki'
     " Fira-code font with ligatures is recommended for icons to work
-	Plug 'ryanoasis/vim-devicons'
-"    Plug 'preservim/tagbar'
-"    Plug 'xolox/vim-easytags'
-"    Plug 'universal-ctags/ctags'
+	
+    " New (25/06/2022)
+    Plug 'MikhailKuzntsov1/vim_git_sync'
+    Plug 'mattn/calendar-vim' 
+    Plug '907th/vim-auto-save'
+    Plug 'godlygeek/tabular'
+    Plug 'preservim/vim-markdown'
+    " :source %
+    " :call mkdp#util#install()
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    Plug 'ferrine/md-img-paste.vim' " <leader>ip -> image paste
 call plug#end()
 
 " ==============================================================================
@@ -129,14 +137,11 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 											" Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
-
 " ==============================================================================
 "                                  Color Scheme
 " ==============================================================================
@@ -158,21 +163,25 @@ let g:onedark_config = {
   \ },
 \ }
 colorscheme onedark
-
 " ==============================================================================
 "                                 C/C++ Development 
 " ==============================================================================
-
 noremap <F1> :make<CR>
-
 " ==============================================================================
-"                              File System Explorer
+"                              File System 
 " ==============================================================================
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
 	\ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene |
 	\ exe 'cd '.argv()[0] | endif
-
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_silent = 1  " do not display the auto-save notification
+" This config is optimal to prevent save of 'utility buffers (e.g. nerdtree)'
+let g:auto_save_events = [
+            \ "InsertLeave", 
+            \"TextChanged"
+            \]
+let g:auto_save_write_all_buffers = 1  
 " ==============================================================================
 "                                  Status Line
 " ==============================================================================
@@ -345,8 +354,50 @@ vnoremap <Up> <Nop>
 "                             Vim Wiki
 "                  https://github.com/vimwiki/vimwiki
 " ==============================================================================
+
+let g:vim_git_sync_dirs = [
+  \"$HOME/Obsidian/",
+  \"$HOME/myrc/",
+  \]
+let g:vim_git_sync_branch = "main"
+" Disables TemporaryWiki feature (every .md file considered as wiki)
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Obsidian/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+" Image paste (Below are default variables)
+autocmd FileType markdown nmap <buffer><silent> <leader>ip :call mdip#MarkdownClipboardImage()<CR>
+let g:mdip_imgdir = 'assets'
+" let g:mdip_imgname = 'image'
+" MD preview (https://github.com/iamcco/markdown-preview.nvim)
+nmap <C-p> <Plug>MarkdownPreview
+nmap <C-m> <Plug>MarkdownPreviewStop
+"" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 0
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+let g:mkdp_auto_close = 1
+
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+" use a custom markdown style must be absolute path
+" like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+
+" use a custom highlight style must absolute path
+" like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '?${name}?'
+
+" recognized filetypes
+" these filetypes will have MarkdownPreview... commands
+let g:mkdp_filetypes = ['markdown']
+let g:mkdp_theme = 'dark' 
 " ==============================================================================
 "                                  Fuzzy Finder
 " ==============================================================================
