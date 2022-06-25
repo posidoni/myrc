@@ -43,6 +43,7 @@ call plug#begin('~/.vim/plugins')
     " :source %
     " :call mkdp#util#install()
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    Plug 'ferrine/md-img-paste.vim' " <leader>ip -> image paste
 call plug#end()
 
 " ==============================================================================
@@ -358,14 +359,15 @@ let g:vim_git_sync_dirs = [
   \"$HOME/Obsidian/",
   \"$HOME/myrc/",
   \]
-
 let g:vim_git_sync_branch = "main"
-
 " Disables TemporaryWiki feature (every .md file considered as wiki)
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Obsidian/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
-
+" Image paste (Below are default variables)
+autocmd FileType markdown nmap <buffer><silent> <leader>ip :call mdip#MarkdownClipboardImage()<CR>
+let g:mdip_imgdir = 'assets'
+" let g:mdip_imgname = 'image'
 " MD preview (https://github.com/iamcco/markdown-preview.nvim)
 nmap <C-p> <Plug>MarkdownPreview
 nmap <C-m> <Plug>MarkdownPreviewStop
