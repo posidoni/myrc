@@ -100,6 +100,10 @@ map <C-H>		<C-W><C-H>
 map <C-J>		<C-W><C-J>
 map <C-K>		<C-W><C-K>
 map <C-L>		<C-W><C-L>
+
+nmap <silent><nowait> ss <C-W>s
+nmap <silent><nowait> vv <C-W>v
+
                             " Open NERDTree
 map <leader>o		:NERDTreeToggle<CR>
                                     " Open Fuzzy Finder
@@ -197,11 +201,9 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
 \ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene |
 \ exe 'cd '.argv()[0] | endif
-
-
+" Makes tree a bit prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-
 " If I delete file in tree, the buffer gets closed & deleted as well
 let NERDTreeAutoDeleteBuffer = 1
 let g:auto_save = 1  " enable AutoSave on Vim startup
