@@ -7,6 +7,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))	" Install plugin manager if needed
 		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" Install nvim plugin manager for linux 
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim')) && has('unix')
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs 
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
 " ==============================================================================
 "                                  VIM Plugins
 " ==============================================================================
