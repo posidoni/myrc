@@ -96,13 +96,13 @@ filetype plugin on
                                         " Remove trailing spaces
 
 let g:trimFiles = [
-    \"c",
-    \"cpp",
-    \"md",
-    \"bash"
-    \"wiki",
-    \"vim",
-    \"vimwiki",
+    \ "c",
+    \ "cpp",
+    \ "md",
+    \ "bash"
+    \ "wiki",
+    \ "vim",
+    \ "vimwiki"
             \]
 
 execute "autocmd FileType " . join(g:trimFiles, ",") .
