@@ -35,7 +35,6 @@ call plug#begin('~/.vim/plugins')
                 \ 'for': ['c', 'cpp', 'cmake', 'sh', 'json', 'vim'] }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
-    Plug 'neomake/neomake'
     " [e - Killer feature of VsCode (line changing)
     " [<Space> , [x , [y & other
     Plug 'tpope/vim-unimpaired'
@@ -104,9 +103,7 @@ let g:trimFiles = [
     \"vim",
     \"vimwiki",
             \]
-
-execute "FileType " . join(g:trimFiles, ",") . 
-            \" autocmd BufWritePre <buffer> %s/\s\+$//e"
+execute "FileType " . join(g:trimFiles, ",") . " autocmd BufWritePre %s/\s\+$//e"
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
