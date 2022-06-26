@@ -103,7 +103,8 @@ let g:trimFiles = [
     \"vim",
     \"vimwiki",
             \]
-execute "FileType " . join(g:trimFiles, ",") . " autocmd BufWritePre %s/\s\+$//e"
+execute "FileType " . join(g:trimFiles, ",") .
+            \ " autocmd BufWritePre * %s/\s\+$//e"
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
