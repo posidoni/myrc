@@ -60,7 +60,6 @@ call plug#end()
 " ==============================================================================
 "                             General Configuration
 " ==============================================================================
-
 set colorcolumn=81							" Highlight 81 column
 set list									" Show hidden characters
 set listchars+=extends:›					" Set extends character
@@ -95,7 +94,20 @@ set updatetime=300
 set shortmess+=c
 filetype plugin on
                                         " Remove trailing spaces
-autocmd FileType c,cpp,bash,md autocmd BufWritePre <buffer> %s/\s\+$//e
+
+let g:trimFiles = [
+    \"c",
+    \"cpp",
+    \"md",
+    \"bash"
+    \"wiki",
+    \"vim",
+    \"vimwiki",
+            \]
+
+execute "FileType " . join(g:trimFiles, ",") . 
+            \"autocmd BufWritePre <buffer> %s/\s\+$//e"
+
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
