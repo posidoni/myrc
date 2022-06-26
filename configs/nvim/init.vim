@@ -1,7 +1,7 @@
 " ==============================================================================
 "                           Plugin Manager (vim-plug)
 " ==============================================================================
-
+            
 if empty(glob('~/.vim/autoload/plug.vim'))	" Install plugin manager if needed
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -103,6 +103,7 @@ let g:trimFiles = [
     \"vim",
     \"vimwiki",
             \]
+
 execute "FileType " . join(g:trimFiles, ",") .
             \ " autocmd BufWritePre * %s/\s\+$//e"
 " ==============================================================================
@@ -225,8 +226,8 @@ let g:neomake_open_list = 2
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
-\ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene |
-\ exe 'cd '.argv()[0] | endif
+    \ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene |
+    \ exe 'cd '.argv()[0] | endif
 " Makes tree a bit prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -242,12 +243,6 @@ let g:auto_save_events = [
 let g:auto_save_write_all_buffers = 1
 " Open the existing NERDTree on each new tab. (do not duplicate trees)
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " ==============================================================================
 "                                  Status Line
 " ==============================================================================
