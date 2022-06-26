@@ -54,8 +54,9 @@ call plug#begin('~/.vim/plugins')
     " :source %
     " :call mkdp#util#install()
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-    Plug 'ferrine/md-img-paste.vim', {'for':'markdown'} " <leader>ip -> img past
+    Plug 'feruine/md-img-paste.vim', {'for':'markdown'} " <leader>ip -> img past
 call plug#end()
+
 " ==============================================================================
 "                             General Configuration
 " ==============================================================================
