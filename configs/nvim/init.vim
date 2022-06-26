@@ -22,7 +22,8 @@ call plug#begin('~/.vim/plugins')
     Plug 'sheerun/vim-polyglot'				" Syntax highlighting
     Plug 'cohama/lexima.vim'				" Auto close parentheses
     " Fira-code font with ligatures is recommended for icons to work
-    Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons'
+    Plug 'preservim/nerdtree'
+    " Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug '907th/vim-auto-save'
     Plug 'vim-airline/vim-airline'			" Status line
@@ -310,7 +311,7 @@ call feedkeys('K', 'in')
 endif
 endfunction
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup mygroup
 autocmd!
 " Setup formatexpr specified filetype(s).
