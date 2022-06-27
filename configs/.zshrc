@@ -42,6 +42,8 @@ export BREW=/Volumes/MISHA/mybrew
 	alias tks="tmux kill-session -t"
 	alias vimdiff="nvim -d"
  	alias vim="nvim"
+	alias vi="nvim"
+	alias vimz="/usr/bin/vi"
 	alias tmux="TERM=screen-256color-bce tmux -2"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
