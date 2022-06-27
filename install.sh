@@ -6,6 +6,7 @@ configs=(
     # Editor configs
     .vimrc
 	.tmux.conf
+	.clang-format
 
     # Git configs
     .gitmessage
@@ -44,7 +45,8 @@ install_configs() {
     done
 
     # Install NeoVim config
-    mv $HOME/.config/nvim $OLD_CONFIGS_DIR
+	unlink $HOME/.config/nvim
+    mv -r $HOME/.config/nvim $OLD_CONFIGS_DIR
     mkdir $HOME/.config
     mkdir $HOME/.config/nvim
     ln -s $HOME/myrc/configs/nvim $HOME/.config/nvim/

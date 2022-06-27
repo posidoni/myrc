@@ -49,11 +49,19 @@ call plug#begin('~/.vim/plugins')
     " :call mkdp#util#install()
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
     Plug 'feruine/md-img-paste.vim', {'for':'markdown'} " <leader>ip -> img past
+
+	Plug 'ludovicchabant/vim-gutentags'
+	Plug 'kkoomen/vim-doge'
+	Plug 'christoomey/vim-tmux-navigator'
+	Plug 'google/vim-maktaba'
+	Plug 'google/vim-codefmt'
+	Plug 'google/vim-glaive'
 call plug#end()
 
 " ==============================================================================
 "                             General Configuration
 " ==============================================================================
+
 set colorcolumn=81							" Highlight 81 column
 set list									" Show hidden characters
 set listchars+=extends:›					" Set extends character
@@ -87,6 +95,8 @@ set updatetime=300
                             " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 filetype plugin on
+
+set signcolumn=auto:2 " untested (potentially more space for left signs) 
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
@@ -195,12 +205,21 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 " ==============================================================================
 
 noremap <F1> :make<CR>
-noremap <F2> :Neomake!<CR>
-" Full config: when writing or reading a buffer, and on changes in insert and
-" normal mode (after 500ms; no delay when writing).
-call neomake#configure#automake('nrwi', 500)
-let g:neomake_open_list = 2
 
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType vue AutoFormatBuffer prettier
+  autocmd FileType swift AutoFormatBuffer swift-format
+augroup END
 " ==============================================================================
 "                              File System
 " ==============================================================================
