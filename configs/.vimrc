@@ -19,7 +19,6 @@ call plug#begin('~/.vim/plugins')
 	Plug 'airblade/vim-gitgutter'			" Vim diff
 	Plug 'junegunn/fzf.vim'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'neoclide/coc.nvim', { 'branch' = 'release' }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-fugitive'
@@ -28,8 +27,6 @@ call plug#begin('~/.vim/plugins')
 	Plug 'tpope/vim-rhubarb' 	" GitHub extension for fugitive.vim
 	Plug 'tpope/vim-speeddating'
 	Plug 'tpope/vim-surround' " Adding parenthesis
-	Plug 'lldb-tools/vim-lldb' " Debugger 
-	Plug 'vim-scripts/DoxygenToolkit.vim'
 call plug#end()
 
 " ==============================================================================
