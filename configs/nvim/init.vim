@@ -56,6 +56,7 @@ call plug#begin('~/.vim/plugins')
 	Plug 'google/vim-maktaba'
 	Plug 'google/vim-codefmt'
 	Plug 'google/vim-glaive'
+	Plug 'tpope/vim-obsession'
 call plug#end()
 
 " ==============================================================================
