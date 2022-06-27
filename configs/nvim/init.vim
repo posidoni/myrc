@@ -1,12 +1,6 @@
 " ==============================================================================
 "                           Plugin Manager (vim-plug)
 " ==============================================================================
-            
-if empty(glob('~/.vim/autoload/plug.vim'))	" Install plugin manager if needed
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 
 " Install nvim plugin manager for linux
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim')) && has('unix')
@@ -93,20 +87,6 @@ set updatetime=300
                             " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 filetype plugin on
-                                        " Remove trailing spaces
-
-let g:trimFiles = [
-    \ "c",
-    \ "cpp",
-    \ "md",
-    \ "bash"
-    \ "wiki",
-    \ "vim",
-    \ "vimwiki"
-            \]
-
-execute "autocmd FileType " . join(g:trimFiles, ",") .
-            \ " %s/\s\+$//e"
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
