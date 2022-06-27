@@ -5,21 +5,21 @@ local term_opts = { silent = true, nowait = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+keymap("n", "<Space>", "<Nop>", {nowait = true})
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
 --   visual_mode = "v",
+
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
 
 -- Normal --
 keymap("n", "<ESC>", ":noh<CR>", opts)
-keymap("n", "<leader>q", ":q!<CR>", {noremap = true})
+keymap("n", "<leader>q", ":q!<CR>", {noremap = true, nowait = true})
 keymap("n", "ff", "zf", opts)
 keymap("n", "fo", "zo", opts)
 
@@ -31,6 +31,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Easier splits
 keymap("n", "<C-s>", "<C-w>s", term_opts)
+keymap("n", "ss", "<C-w>s", term_opts)
+keymap("n", "vv", "<C-w>v", term_opts)
 keymap("n", "<C-v>", "<C-w>v", term_opts)
 keymap("n", "--", "<C-w>-", term_opts)
 keymap("n", "++", "<C-w>+", term_opts)

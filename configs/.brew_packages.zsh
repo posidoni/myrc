@@ -28,7 +28,8 @@ brew_packages=(
     gdbm                    libgcrypt               lua                     pcre                    
     gettext                 libgpg-error            luajit-openresty        pinentry                xz
     gh                      libidn2                 luarocks                pkg-config              zstd
-    pkg-config              llvm                    gpg
+    pkg-config              llvm                    
     qt                       
+    gnupg
 )
 
