@@ -16,16 +16,11 @@ configs=(
     .zshrc
         .bashrc
         .brewconfig.zsh
-        .vscode_ext.zsh
         .brew_packages.zsh
 )
 
 install_configs() {
-    cd configs
-
-    if [[ -d "$OLD_CONFIGS_DIR" ]]; then
-        rm -rf $OLD_CONFIGS_DIR
-    fi
+    cd $HOME/myrc/configs
 
     mkdir $OLD_CONFIGS_DIR
 
@@ -44,15 +39,16 @@ install_configs() {
 
         # Make soft links for every config-file
         ln -s $PWD/$file $HOME/$file 2>&1
-		# Install tmux plugin manager
-		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+        # Install tmux plugin manager
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    done
 
     # Install NeoVim config
-    mv $HOME/.config/nvim $OLD_CONFIGS_DIR 
-    ln -s $HOME/myrc/configs/nvim $HOME/.configs/nvim/
+    mv $HOME/.config/nvim $OLD_CONFIGS_DIR
+    mkdir $HOME/.config
+    mkdir $HOME/.config/nvim
+    ln -s $HOME/myrc/configs/nvim $HOME/.config/nvim/
     echo "Nvim is installed!"
-
-    done
 }
 
 install_configs

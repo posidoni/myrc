@@ -1,11 +1,18 @@
 " ==============================================================================
 "                           Plugin Manager (vim-plug)
 " ==============================================================================
-
+            
 if empty(glob('~/.vim/autoload/plug.vim'))	" Install plugin manager if needed
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Install nvim plugin manager for linux
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim')) && has('unix')
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
 endif
 " ==============================================================================
 "                                  VIM Plugins
@@ -15,15 +22,16 @@ call plug#begin('~/.vim/plugins')
     Plug 'sheerun/vim-polyglot'				" Syntax highlighting
     Plug 'cohama/lexima.vim'				" Auto close parentheses
     " Fira-code font with ligatures is recommended for icons to work
-    Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons'
+    Plug 'preservim/nerdtree'
+    " Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug '907th/vim-auto-save'
     Plug 'vim-airline/vim-airline'			" Status line
     Plug 'vim-airline/vim-airline-themes'	" Status line themes
-    Plug 'airblade/vim-gitgutter'			" Vim diff 
+    Plug 'airblade/vim-gitgutter'			" Vim diff
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'neoclide/coc.nvim', { 'branch':'release', 
+    Plug 'neoclide/coc.nvim', { 'branch':'release',
                 \ 'for': ['c', 'cpp', 'cmake', 'sh', 'json', 'vim'] }
 	Plug 'navarasu/onedark.nvim'
 	Plug 'tpope/vim-commentary'
@@ -35,31 +43,30 @@ call plug#begin('~/.vim/plugins')
     " Adding parenthesis. Mnemonic: cs (change surround) from (a) to (b)
 	Plug 'tpope/vim-surround'
     Plug 'kshenoy/vim-signature'
-
     " Knowledge management plugin. Fully compatible with Obsidian app links
     Plug 'vimwiki/vimwiki'
 
     " Note-taking & productivity plugins
     Plug 'MikhailKuzntsov1/vim_git_sync'
-    Plug 'mattn/calendar-vim' 
+    Plug 'mattn/calendar-vim'
     Plug 'godlygeek/tabular', {'for':'markdown'}
     Plug 'preservim/vim-markdown', {'for':'markdown'}
     " :source %
     " :call mkdp#util#install()
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-    Plug 'ferrine/md-img-paste.vim', {'for':'markdown'} " <leader>ip -> img past
+    Plug 'feruine/md-img-paste.vim', {'for':'markdown'} " <leader>ip -> img past
 call plug#end()
+
 " ==============================================================================
 "                             General Configuration
 " ==============================================================================
-
 set colorcolumn=81							" Highlight 81 column
 set list									" Show hidden characters
 set listchars+=extends:›					" Set extends character
 set listchars+=nbsp:·						" Set non-breakable space character
 set listchars+=precedes:‹					" Set precedes character
 set listchars+=trail:·						" Set trailing space character
-set listchars=tab:»\ |						" Set tab character
+set listchars+=tab:»\ |						" Set tab character
 set mouse=a									" Enable mouse use in all modes
 set noswapfile								" Turn off .swp file
 set number									" Display line numbering
@@ -87,13 +94,25 @@ set updatetime=300
 set shortmess+=c
 filetype plugin on
                                         " Remove trailing spaces
-autocmd FileType c,cpp,bash,md autocmd BufWritePre <buffer> %s/\s\+$//e
+
+let g:trimFiles = [
+    \ "c",
+    \ "cpp",
+    \ "md",
+    \ "bash"
+    \ "wiki",
+    \ "vim",
+    \ "vimwiki"
+            \]
+
+execute "autocmd FileType " . join(g:trimFiles, ",") .
+            \ " %s/\s\+$//e"
 " ==============================================================================
 "                                  VIM Mapping
 " ==============================================================================
 
                                         " ⭐️ Leader key
-nnoremap <Space> <nop> 
+nnoremap <Space> <nop>
 let mapleader=" "
                                         " Navigation between panes
 map <C-H>		<C-W><C-H>
@@ -136,7 +155,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
                                                 " Clear search highlighting
-map <silent> <esc> :noh <CR>
+nmap <silent><esc> :noh <CR>
 nmap <silent><nowait> <leader>t :vsplit term://zsh<CR>
 nmap <silent><nowait> <leader>q :q<CR>
 nmap <silent><nowait> <leader>y :CalendarH<CR>
@@ -192,7 +211,7 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 " let g:NERDTreeLimitedSyntax = 1 " May be turned on in case of lags
 " ==============================================================================
-"                                 C/C++ Development 
+"                                 C/C++ Development
 " ==============================================================================
 
 noremap <F1> :make<CR>
@@ -203,13 +222,13 @@ call neomake#configure#automake('nrwi', 500)
 let g:neomake_open_list = 2
 
 " ==============================================================================
-"                              File System 
+"                              File System
 " ==============================================================================
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
-\ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene |
-\ exe 'cd '.argv()[0] | endif
+    \ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene |
+    \ exe 'cd '.argv()[0] | endif
 " Makes tree a bit prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -219,18 +238,12 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_silent = 1  " do not display the auto-save notification
 " This config is optimal to prevent save of 'utility buffers (e.g. nerdtree)'
 let g:auto_save_events = [
-        \ "InsertLeave", 
+        \ "InsertLeave",
         \"TextChanged"
         \]
 let g:auto_save_write_all_buffers = 1
 " Open the existing NERDTree on each new tab. (do not duplicate trees)
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " ==============================================================================
 "                                  Status Line
 " ==============================================================================
@@ -302,7 +315,7 @@ call feedkeys('K', 'in')
 endif
 endfunction
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup mygroup
 autocmd!
 " Setup formatexpr specified filetype(s).
@@ -381,8 +394,8 @@ vnoremap <Up> <Nop>
 " ==============================================================================
 
 let g:vim_git_sync_dirs = [
-\"$HOME/Obsidian/",
-\"$HOME/myrc/",
+    \"$HOME/Obsidian/",
+    \"$HOME/myrc/",
 \]
 let g:vim_git_sync_branch = "main"
 " Disables TemporaryWiki feature (every .md file considered as wiki)
@@ -419,7 +432,7 @@ let g:mkdp_page_title = '?${name}?'
 " recognized filetypes
 " these filetypes will have MarkdownPreview... commands
 let g:mkdp_filetypes = ['markdown']
-let g:mkdp_theme = 'dark' 
+let g:mkdp_theme = 'dark'
 " ==============================================================================
 "                                  Fuzzy Finder
 " ==============================================================================
@@ -437,15 +450,13 @@ let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
                 \'spinner': ['fg', 'Label'],
                 \'header':  ['fg', 'Comment'] }
 
-let g:fuf_file_exclude = '\v\~$|\.o$|\.pdf$|\.bak$|\.swp$|\.class|\.png$'
-
+let g:fuf_file_exclude = '\v\~$|*.o$|*.pdf$|*.bak$|*.swp$|*.class|*.png$'
 " Search & explore current buffers
 map <silent> <leader>b :Buffers<CR>
 " Search & explore lines in current buffer
 map <silent> <leader>l :BLines<CR>
-
 " ==============================================================================
-"                                 Git Fugitive 
+"                                 Git Fugitive
 " ==============================================================================
 
 nmap <silent> <F12> :Git split HEAD~1:%<CR>
@@ -454,11 +465,14 @@ nmap <silent> <F6>  :Git blame<CR>
 " Commits fuzzy finder
 map <silent> <leader>c :Commits<CR>
 " ==============================================================================
-"                                NVim Terminal Mode 
+"                          Vim Terminal Mode (not compatible with Vim)
 " ==============================================================================
 
 " Make terminal mode usable: map ESC -> return to normal mode
 tnoremap <ESC> <C-\><C-n>
+
+" Notes for future self: about configuring LLDB:
+
 " You can define your own shortcuts (mappings) to control gdb, that can work in
 " any window, using the TermDebugSendCommand() function.  Example: >
 " 	map ,w :call TermDebugSendCommand('where')<CR>
