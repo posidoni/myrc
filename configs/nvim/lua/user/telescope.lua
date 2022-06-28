@@ -5,13 +5,23 @@ end
 
 local actions = require "telescope.actions"
 
+-- @Mikhail:
+-- :h telescope.setup for reference
+-- I duplicated some default features to have a place where I can easily
+-- tweak these settings & try out new layouts
+
 telescope.setup {
   defaults = {
+    -- Patterns use Lua regex syntax
     file_ignore_patterns = {".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
-		"%.pdf", "%.mkv", "%.mp4", "%.zip"},
+        "%.pdf", "%.mkv", "%.mp4", "%.zip", "%.exe", "%.png"},
+
+    selection_caret = "> ",
     prompt_prefix = " ",
-    selection_caret = " ",
     path_display = { "smart" },
+    windblend = 10,
+    intitial_mode = "insert",
+    border = "true",
 
     mappings = {
       i = {
@@ -70,7 +80,7 @@ telescope.setup {
       theme = "dropdown",
       preview = false,
       hidden = true
-    }
+    },
   },
   extensions = {
     -- Your extension configuration goes here:
