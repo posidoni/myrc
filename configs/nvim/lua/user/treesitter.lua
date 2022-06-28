@@ -11,7 +11,7 @@ configs.setup {
     enable = true,
   },
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = disable, -- false will disable the whole extension
     disable = { "markdown" }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
