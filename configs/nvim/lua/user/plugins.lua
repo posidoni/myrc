@@ -56,6 +56,7 @@ let g:auto_save_write_all_buffers = 1
 let g:vim_git_sync_dirs = [
     \"$HOME/Obsidian/",
     \"$HOME/myrc/",
+    \"$HOME/Codespace/",
 \]
 let g:vim_git_sync_branch = "main"
 " Disables TemporaryWiki feature (every .md file considered as wiki)
