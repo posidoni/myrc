@@ -40,6 +40,8 @@ local options = {
   -- This setting must be set for Neovide
   -- Syntax: "fontname:h<size>"
   guifont = "FiraCode Nerd Font:h15",
+
+  neovide_silent = true,
 }
 
 local g = vim.g
@@ -63,7 +65,10 @@ end
 -- @Mikhail:
 -- let g:neovide_silent = v:true disables all neovide fancy cursor things
 if g.neovide_silent == true then
-    
+    g.neovide_cursor_animation_length = 0
+    g.neovide_cursor_trail_length = 0.0
+    g.neovide_cursor_antialiasing = true
+    g.neovide_cursor_unfocused_outline_width = 0.125
 end
 
 vim.opt.wildignore = { '*.o', '*.a', '__pycache__' }
@@ -73,143 +78,17 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd [[
-    function! AdjustFontSize(amount)
-    if !has("gui_running")
-        return
-    endif
+Fontsize = 15
 
-    let l:min_font_size = 5
-    let l:max_font_size = 23
+function IncreaseFontSize()
+  Fontsize = Fontsize + 1 -- Lua doesn't have increment lol
+  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", Fontsize)
+end
 
-    let l:font_info = GetFontInfo()
-    if l:font_info.name == '' || l:font_info.size == ''
-        return
-    endif
-
-    let l:font_name = l:font_info.name
-    let l:font_size = l:font_info.size
-
-    " Decrease font size.
-    if a:amount == '-'
-        let l:font_size = l:font_size - 1
-
-    " Increase font size.
-    elseif a:amount == '+'
-        let l:font_size = l:font_size + 1
-
-    " Use a specific font size.
-    elseif str2nr(a:amount)
-        let l:font_size = str2nr(a:amount)
-    endif
-
-    " Clamp font size.
-    let l:font_size = max([l:min_font_size, min([l:max_font_size, l:font_size])])
-
-    if matchstr(&guifont, ':') == '' " Linux guifont style.
-        " \v           Very magical.
-        " (\d+$)       Capture group:       Match [0-9] one-or-more times, at the end of the string.
-        let l:font_size_pattern = '\v(\d+$)'
-    else " Windows and macOS guifont style.
-        " \v           Very magical.
-        " (:h)@<=      Positive lookbehind: Match ':h'.
-        " (\d+)        Capture group:       Match [0-9] one-or-more times.
-        let l:font_size_pattern = '\v(:h)@<=(\d+)'
-    endif
-
-    " Update vim font size.
-    let &guifont = substitute(&guifont, l:font_size_pattern, l:font_size, '')
-
-    call DisplayFontInfo()
-    endfunction
-
-    function! DisplayFontSelector()
-    if !has("gui_running")
-        return
-    endif
-
-    " Display font selector.
-    " NOTE: This only changes &guifont to '*' in terminal vim.
-    set guifont=*
-
-    call DisplayFontInfo()
-    endfunction
-
-    function! DisplayFontInfo()
-    let l:font_info = GetFontInfo()
-    if l:font_info.name == '' || l:font_info.size == ''
-        return
-    endif
-
-    " Display font name and size.
-    redraw | echomsg l:font_info.name . ' ' . l:font_info.size . '%'
-    endfunction
-
-    function! GetFontInfo()
-    " Windows and macOS &guifont: Hack NF:h11:cANSI
-    "                             3270Medium_NF:h10:W500:cANSI:qDRAFT
-    " Linux &guifont: Hack Nerd Font Mono Regular 10
-
-    if matchstr(&guifont, ':') == '' " Linux guifont style.
-        " \v           Very magical.
-        " (^.{-1,})    Capture group:       Anchored at the start of the string, match any character one-or-more times non-greedy.
-        " ( \d+$)@=    Positive lookahead:  Match ' ' followed by [0-9] one-or-more times, at the end of the string.
-        let l:font_name_pattern = '\v(^.{-1,})( \d+$)@='
-
-        " \v           Very magical.
-        " (\d+$)       Capture group:       Match [0-9] one-or-more times, at the end of the string.
-        let l:font_size_pattern = '\v(\d+$)'
-    else " Windows and macOS guifont style.
-        " \v           Very magical.
-        " (^.{-1,})    Capture group:       Anchored at the start of the string, match any character one-or-more times non-greedy.
-        " (:)@=        Positive lookahead:  Match ':'.
-        let l:font_name_pattern = '\v(^.{-1,})(:)@='
-
-        " \v           Very magical.
-        " (:h)@<=      Positive lookbehind: Match ':h'.
-        " (\d+)        Capture group:       Match [0-9] one-or-more times.
-        let l:font_size_pattern = '\v(:h)@<=(\d+)'
-    endif
-
-    let l:font_name = matchstr(&guifont, l:font_name_pattern)
-    let l:font_size = matchstr(&guifont, l:font_size_pattern)
-
-    return { 'name' : l:font_name, 'size' : l:font_size }
-    endfunction
-
-    " Bind Control + Mouse-wheel to zoom text.
-    " NOTE: This event only works in Linux and macOS. SEE: :h scroll-mouse-wheel
-    map <silent> <C-ScrollWheelDown> :call AdjustFontSize('-')<CR>
-    map <silent> <C-ScrollWheelUp> :call AdjustFontSize('+')<CR>
-
-    " Decrease font size.
-    nnoremap <silent> <F11> :call AdjustFontSize('-')<CR>
-    inoremap <silent> <F11> <Esc>:call AdjustFontSize('-')<CR>
-    vnoremap <silent> <F11> <Esc>:call AdjustFontSize('-')<CR>
-    cnoremap <silent> <F11> <Esc>:call AdjustFontSize('-')<CR>
-    onoremap <silent> <F11> <Esc>:call AdjustFontSize('-')<CR>
-
-    " Increase font size.
-    nnoremap <silent> <F12> :call AdjustFontSize('+')<CR>
-    inoremap <silent> <F12> <Esc>:call AdjustFontSize('+')<CR>
-    vnoremap <silent> <F12> <Esc>:call AdjustFontSize('+')<CR>
-    cnoremap <silent> <F12> <Esc>:call AdjustFontSize('+')<CR>
-    onoremap <silent> <F12> <Esc>:call AdjustFontSize('+')<CR>
-
-    " Set font size to my preferred size.
-    nnoremap <silent> <S-F11> :call AdjustFontSize(10)<CR>
-    inoremap <silent> <S-F11> <Esc>:call AdjustFontSize(10)<CR>
-    vnoremap <silent> <S-F11> <Esc>:call AdjustFontSize(10)<CR>
-    cnoremap <silent> <S-F11> <Esc>:call AdjustFontSize(10)<CR>
-    onoremap <silent> <S-F11> <Esc>:call AdjustFontSize(10)<CR>
-
-    " Display font selector.
-    nnoremap <silent> <S-F12> :call DisplayFontSelector()<CR>
-    inoremap <silent> <S-F12> <Esc>:call DisplayFontSelector()<CR>
-    vnoremap <silent> <S-F12> <Esc>:call DisplayFontSelector()<CR>
-    cnoremap <silent> <S-F12> <Esc>:call DisplayFontSelector()<CR>
-    onoremap <silent> <S-F12> <Esc>:call DisplayFontSelector()<CR>
-]]
+function DecreaseFontSize()
+  Fontsize = Fontsize - 1
+  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", Fontsize)
+end
 
 -- vim.cmd "set whichwrap+=<,>,[,],h,l" -- when cursor reaches end of line, it goes to the next
 -- vim.cmd [[set iskeyword+=-]]
