@@ -45,9 +45,10 @@ local options = {
 
 local g = vim.g
 
+-- See @docs for reference on @Neovide configuration:
 -- https://github.com/neovide/neovide/wiki/Configuration#multigrid
 g.neovide_refresh_rate = 140
-g.neovide_fullscreen = true
+g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullscreen mode of NeoVide. Not recommended.
 
 --- Input settings
 g.neovide_input_use_logo = true -- Redirects [S]uper key to Nvim (Win / Opt)

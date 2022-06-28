@@ -64,7 +64,7 @@ packer.init {
   },
 }
 
-vim.g.auto_save = 1
+vim.g.auto_save = 0
 vim.g.auto_save_silent = 1
 vim.g.auto_save_write_all_buffers = 1
 vim.g.auto_save_events = {
@@ -89,31 +89,6 @@ vim.g.vim_git_sync_dirs = {
 
 vim.g.vim_git_sync_branch = 'main'
 
-vim.cmd [[
-" let g:vimwiki_list = [{'path': '~/Obsidian',
-"                       \ 'syntax': 'markdown', 'ext': '.md'}]
-
-" let g:auto_save = 0  " enable AutoSave on Vim startup
-" let g:auto_save_silent = 1  " do not display the auto-save notification
-" " This config is optimal to prevent save of 'utility buffers (e.g. nerdtree)'
-" " let g:auto_save_events = [
-"         \ "InsertLeave",
-"         \"TextChanged"
-"         \]
-" let g:auto_save_write_all_buffers = 1
-
-" let g:vim_git_sync_dirs = [
-"     \"$HOME/Obsidian/",
-"     \"$HOME/myrc/",
-"     \"$HOME/Codespace/",
-" \]
-
-" let g:vim_git_sync_branch = "main"
-" " Disables TemporaryWiki feature (every .md file considered as wiki)
-" let g:vimwiki_global_ext = 0
-" let g:vimwiki_list = [{'path': '~/Obsidian/',
-"                   \ 'syntax': 'markdown', 'ext': '.md'}]
-]]
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
