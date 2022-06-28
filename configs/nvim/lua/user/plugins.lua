@@ -45,7 +45,7 @@ let g:vimwiki_list = [{'path': '~/Obsidian',
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_silent = 1  " do not display the auto-save notification
 " This config is optimal to prevent save of 'utility buffers (e.g. nerdtree)'
-let g:auto_save_events = [
+" let g:auto_save_events = [
         \ "InsertLeave",
         \"TextChanged"
         \]
@@ -72,7 +72,7 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-    --  use "numToStr/Comment.nvim" -- Easily comment stuff
+     use "numToStr/Comment.nvim" -- Easily comment stuff
     --  use "kyazdani42/nvim-web-devicons"
     --  use "kyazdani42/nvim-tree.lua"
     --  use "akinsho/bufferline.nvim"
