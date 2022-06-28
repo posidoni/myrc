@@ -52,7 +52,7 @@ keymap("n", "<S-Tab>", "<C-i>", opts)
 -- Workaround for mapping CTRL + BS in terminal vim
 -- https://vim.fandom.com/wiki/Map_Ctrl-Backspace_to_delete_previous_word
 
-vim.cmd [[ 
+vim.cmd [[
     noremap! <C-BS> <C-w>
     noremap! <C-h> <C-w>
 ]]
