@@ -7,7 +7,8 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-
+    file_ignore_patterns = {".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
+		"%.pdf", "%.mkv", "%.mp4", "%.zip"},
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
