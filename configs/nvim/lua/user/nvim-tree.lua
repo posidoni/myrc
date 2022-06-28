@@ -69,7 +69,7 @@ nvim_tree.setup {
     ignore_list = {},
   },
   system_open = {
-    cmd = nil,
+    cmd = "open",
     args = {},
   },
   filters = {
@@ -82,7 +82,7 @@ nvim_tree.setup {
     timeout = 500,
   },
   view = {
-    width = 30,
+    width = 25,
     height = 30,
     hide_root_folder = false,
     side = "left",
@@ -128,8 +128,10 @@ nvim_tree.setup {
     full_name = false,
     highlight_opened_files = "none",
     root_folder_modifier = ":~",
+
+    -- @Mikhail:
     indent_markers = {
-      enable = false,
+      enable = true,
       icons = {
         corner = "└ ",
         edge = "│ ",
