@@ -20,7 +20,6 @@ keymap("n", "<ESC>", ":noh<CR>", opts)
 keymap("n", "<leader>q", ":q!<CR>", opts)
 keymap("n", "ff", "zf", opts)
 keymap("n", "fo", "zo", opts)
-keymap("n", "<leader>bp", ":BufferLineTogglePin<cr>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -116,6 +115,7 @@ keymap("i", "<Del>", "<Nop>", opts)
 keymap("n", "<leader>y", ":Telescope <CR>", opts)
 keymap("n", "<leader>g", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>", opts)
 keymap("n", "<leader>d", "<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_dropdown({ previewer = false}))<cr>", opts)
+keymap("n", "<leader>b", "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>", opts)
 keymap("n", "<leader>r", ":Telescope live_grep<CR>", opts)
 
 -- @NvimTree --

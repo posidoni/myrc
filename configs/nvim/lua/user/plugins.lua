@@ -109,7 +109,6 @@ return packer.startup(function(use)
   use '907th/vim-auto-save'
   use 'MikhailKuzntsov1/vim_git_sync'
 
-  use "akinsho/bufferline.nvim"
  --  use "moll/vim-bbye"
  --  use "nvim-lualine/lualine.nvim"
  --  use "akinsho/toggleterm.nvim"
@@ -127,6 +126,7 @@ return packer.startup(function(use)
   use 'kshenoy/vim-signature'
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
+  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- @Colorschemes
   use "navarasu/onedark.nvim"
@@ -160,8 +160,6 @@ return packer.startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-
-  -- "JoosepAlviste/nvim-ts-context-commentstring"
   -- @Note: this is great plugin for plugin development.
   -- Provides access to raw tresitter AST.
   -- use "nvim-treesitter/playground"
