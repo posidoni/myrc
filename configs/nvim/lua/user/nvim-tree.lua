@@ -5,7 +5,7 @@ vim.g.nvim_tree_icons = {
   symlink = "",
   git = {
     unstaged = "",
-    staged = "S",
+    staged = "",
     unmerged = "",
     renamed = "➜",
     deleted = "",
@@ -32,20 +32,20 @@ if not config_status_ok then
 end
 
 -- Replaces auto_close
-local tree_cb = nvim_tree_config.nvim_tree_callback
-vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      vim.cmd "quit"
-    end
-  end
-})
+-- local tree_cb = nvim_tree_config.nvim_tree_callback
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   nested = true,
+--   callback = function()
+--     if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+--       vim.cmd "quit"
+--     end
+--   end
+-- })
 
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
+  open_on_setup = true,
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
@@ -73,7 +73,7 @@ nvim_tree.setup {
     args = {},
   },
   filters = {
-    dotfiles = false,
+    dotfiles = true,
     custom = {},
   },
   git = {
@@ -102,22 +102,86 @@ nvim_tree.setup {
     require_confirm = true,
   },
   actions = {
+    use_system_clipboard = true,
+    change_dir = {
+      enable = true,
+      global = false,
+      restrict_above_cwd = false,
+    },
+    expand_all = {
+      max_folder_discovery = 300,
+    },
     open_file = {
-      quit_on_open = true,
+      quit_on_open = false, -- @Mikhail: 'true' behaviour feels annoying
       window_picker = {
             enable = false,
       },
     },
+    remove_file = {
+      close_window = true,
+    },
   },
-
---  unknown options as of 22.05
---
---  update_to_buf_dir = {
---    enable = true,
---    auto_open = true,
---  },
---  auto_resize = true,
---  git_hl = 1,
---  root_folder_modifier = ":t",
-
+  renderer = {
+    add_trailing = false,
+    group_empty = false,
+    highlight_git = false,
+    full_name = false,
+    highlight_opened_files = "none",
+    root_folder_modifier = ":~",
+    indent_markers = {
+      enable = false,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        item = "│ ",
+        none = "  ",
+      },
+    },
+    icons = {
+      webdev_colors = true,
+      git_placement = "before",
+      padding = " ",
+      symlink_arrow = " ➛ ",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+      },
+      glyphs = {
+        default = "",
+        symlink = "",
+        folder = {
+          arrow_closed = "",
+          arrow_open = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        },
+      },
+    },
+    -- @Mikhail: special files are underlined
+    -- This feature looks absolutely great!
+    special_files = {
+            "Cargo.toml",
+            "Makefile",
+            "Dockerfile",
+            "README.md",
+            "readme.md",
+            "CMakeLists.txt",
+            "CMakeLists",
+        },
+  },
 }

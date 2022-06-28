@@ -117,3 +117,6 @@ keymap("n", "<leader>g", "<cmd>lua require'telescope.builtin'.find_files(require
 keymap("n", "<leader>d", "<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_dropdown({ previewer = false}))<cr>", opts)
 keymap("n", "<leader>r", ":Telescope live_grep<CR>", opts)
 
+-- @NvimTree --
+keymap("n", "<leader>o", ":NvimTreeToggle<cr>", opts)
+
