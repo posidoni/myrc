@@ -109,7 +109,7 @@ return packer.startup(function(use)
   use '907th/vim-auto-save'
   use 'MikhailKuzntsov1/vim_git_sync'
 
- --  use "akinsho/bufferline.nvim"
+  use "akinsho/bufferline.nvim"
  --  use "moll/vim-bbye"
  --  use "nvim-lualine/lualine.nvim"
  --  use "akinsho/toggleterm.nvim"
@@ -135,6 +135,8 @@ return packer.startup(function(use)
   use {
       "hrsh7th/nvim-cmp",       -- The completion plugin
       "L3MON4D3/LuaSnip",       -- snippet engine, required for completition
+
+      -- @SourcesOfCompletition
       "hrsh7th/cmp-buffer",     -- buffer completions
       "hrsh7th/cmp-path",       -- path completions
       "hrsh7th/cmp-cmdline",    -- cmdline completions
@@ -158,11 +160,12 @@ return packer.startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-  }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+
+  -- "JoosepAlviste/nvim-ts-context-commentstring"
   -- @Note: this is great plugin for plugin development.
   -- Provides access to raw tresitter AST.
   -- use "nvim-treesitter/playground"
+  }
 
   -- @Git
   use "lewis6991/gitsigns.nvim"
@@ -177,8 +180,6 @@ return packer.startup(function(use)
   -- use 'godlygeek/tabular'
   -- use 'preservim/vim-markdown'
   use 'christoomey/vim-tmux-navigator'
-
-  -- use 'ryanoasis/vim-devicons'
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()
