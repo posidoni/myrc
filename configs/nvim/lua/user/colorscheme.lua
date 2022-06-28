@@ -16,7 +16,15 @@ require('onedark').setup  {
         strings = 'italic',
         variables = 'none'
     },
-
+    colors = {
+      bright_orange = "#ff8800",    -- define a new color
+      green = '#00ffaa',            -- redefine an existing color
+    },
+    highlights = {
+      TSKeyword = {fg = '$green'},
+      TSString = {fg = '$bright_orange', bg = '#00ff00', fmt = 'bold'},
+      TSFunction = {fg = '#0000ff', sp = '$cyan', fmt = 'underline,italic'},
+    },
     -- Plugins Config --
     diagnostics = {
         darker = true, -- darker colors for diagnostic
