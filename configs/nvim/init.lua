@@ -24,11 +24,10 @@ Fontsize = 15
 
 function IncreaseFontSize()
   Fontsize = Fontsize + 1 -- Lua doesn't have increment lol
-  local new_size = Fontsize
-  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", new_size)
+  vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
 end
 
 function DecreaseFontSize()
   Fontsize = Fontsize - 1
-  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", Fontsize)
+  vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
 end
