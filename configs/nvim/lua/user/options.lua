@@ -39,7 +39,7 @@ local options = {
 
   -- This setting must be set for Neovide
   -- Syntax: "fontname:h<size>"
-  guifont = "FiraCode Nerd Font:h15",
+  guifont = "FiraCode Nerd Font:h16"
 }
 
 local g = vim.g
@@ -77,19 +77,28 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-Fontsize = 15
+
+--[[
+    @MikhailKuzntsov1
+        these are very simple global lua functions for
+        changing GUI font
+--]]
+
+Fontsize = 16
 
 function IncreaseFontSize()
-  Fontsize = Fontsize + 1 -- Lua doesn't have increment lol
-  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", Fontsize)
+  Fontsize = Fontsize + 1
+  vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
 end
 
 function DecreaseFontSize()
   Fontsize = Fontsize - 1
-  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", Fontsize)
+  vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
 end
 
--- vim.cmd "set whichwrap+=<,>,[,],h,l" -- when cursor reaches end of line, it goes to the next
--- vim.cmd [[set iskeyword+=-]]
+function SetFontSize(size)
+    FontSize = size
+    vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
+end
 
 -- For reference see this PR: https://github.com/neovim/neovim/pull/13479
