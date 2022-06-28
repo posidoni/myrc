@@ -39,7 +39,6 @@ packer.init {
   },
 }
 vim.cmd [[
-
 let g:vimwiki_list = [{'path': '~/Obsidian',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
@@ -106,57 +105,54 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
---  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
 --  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
 
   -- Treesitter
-     use {
-       "nvim-treesitter/nvim-treesitter",
-       run = ":TSUpdate",
-     }
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
   use "JoosepAlviste/nvim-ts-context-commentstring"
+  -- use "nvim-treesitter/playground" -- very useful thing for developing plugins, allows easily inspect AST
 
   -- Git
 --  use "lewis6991/gitsigns.nvim"
 
   -- Wiki
-     use "vimwiki/vimwiki"
+   use "vimwiki/vimwiki"
 
-	-- use 'ludovicchabant/vim-gutentags'
-	-- use 'kkoomen/vim-doge'
-	-- use 'google/vim-maktaba'
-	-- use 'google/vim-codefmt'
-	-- use 'google/vim-glaive'
-	-- use 'tpope/vim-obsession'
-    -- use 'cohama/lexima.vim'
-    -- use 'preservim/nerdtree'
-    --  use 'ryanoasis/vim-devicons'
-    -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
-     use '907th/vim-auto-save'
-    -- use 'vim-airline/vim-airline'
-    -- use 'vim-airline/vim-airline-themes'
-     use 'airblade/vim-gitgutter'
-	 use 'tpope/vim-commentary'
-     use 'tpope/vim-unimpaired'
-	 use 'tpope/vim-fugitive'
-	 use 'tpope/vim-repeat'
-	 use 'tpope/vim-surround'
-    -- use 'kshenoy/vim-signature'
-
-     use 'MikhailKuzntsov1/vim_git_sync'
-    -- use 'mattn/calendar-vim'
-    -- use 'godlygeek/tabular'
-    -- use 'preservim/vim-markdown'
-	-- use 'ludovicchabant/vim-gutentags'
-	-- use 'kkoomen/vim-doge'
-	use 'christoomey/vim-tmux-navigator'
-	-- use 'google/vim-maktaba'
-	-- use 'google/vim-codefmt'
-	-- use 'google/vim-glaive'
-	-- use 'tpope/vim-obsession'
+  -- use 'ludovicchabant/vim-gutentags'
+  -- use 'kkoomen/vim-doge'
+  -- use 'google/vim-maktaba'
+  -- use 'google/vim-codefmt'
+  -- use 'google/vim-glaive'
+  -- use 'tpope/vim-obsession'
+  -- use 'cohama/lexima.vim'
+   use '907th/vim-auto-save'
+  -- use 'vim-airline/vim-airline'
+  -- use 'vim-airline/vim-airline-themes'
+   use 'airblade/vim-gitgutter'
+   use 'tpope/vim-commentary'
+   use 'tpope/vim-unimpaired'
+   use 'tpope/vim-fugitive'
+   use 'tpope/vim-repeat'
+   use 'tpope/vim-surround'
+  -- use 'kshenoy/vim-signature'
+   use 'MikhailKuzntsov1/vim_git_sync'
+  -- use 'mattn/calendar-vim'
+  -- use 'godlygeek/tabular'
+  -- use 'preservim/vim-markdown'
+  -- use 'ludovicchabant/vim-gutentags'
+  -- use 'kkoomen/vim-doge'
+  use 'christoomey/vim-tmux-navigator'
+  -- use 'google/vim-maktaba'
+  -- use 'google/vim-codefmt'
+  -- use 'google/vim-glaive'
+  -- use 'tpope/vim-obsession'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
