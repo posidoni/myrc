@@ -14,13 +14,10 @@ telescope.setup {
 
     mappings = {
       i = {
-        -- ["<C-n>"] = actions.cycle_history_next,
-        -- ["<C-p>"] = actions.cycle_history_prev,
-
         ["<C-n>"] = actions.move_selection_next,
         ["<C-p>"] = actions.move_selection_previous,
 
---        ["<ESC>"] = actions.close,
+        ["<leader>q"] = actions.close,
 
         ["<CR>"] = actions.select_default,
         ["<C-s>"] = actions.select_horizontal,
@@ -32,14 +29,19 @@ telescope.setup {
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<C-l>"] = actions.complete_tag,
-        ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
       },
+
+    -- @Mikhail:
+    -- few remarks on my telescope workflow
+    -- the only option to quit telescope easily is from normal mode with esc
+    -- this is done deliberately to motivate me use normal mode in telescope more often,
+    -- since N-Telescope is extremely powerful
 
       n = {
         ["<esc>"] = actions.close,
         ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
+        ["ss"] = actions.select_horizontal,
+        ["vv"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
 
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
@@ -57,12 +59,6 @@ telescope.setup {
         ["<Up>"] = actions.move_selection_previous,
         ["gg"] = actions.move_to_top,
         ["G"] = actions.move_to_bottom,
-
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
 
         ["?"] = actions.which_key,
       },
