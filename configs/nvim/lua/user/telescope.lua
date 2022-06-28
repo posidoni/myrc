@@ -17,7 +17,7 @@ telescope.setup {
         "%.pdf", "%.mkv", "%.mp4", "%.zip", "%.exe", "%.png"},
 
     selection_caret = "> ",
-    prompt_prefix = " ",
+    prompt_prefix = "🔎",
     path_display = { "smart" },
     windblend = 10,
     intitial_mode = "insert",
@@ -57,7 +57,9 @@ telescope.setup {
 
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
---        ["<leader>l"] = actions.send_to_qflist + actions.open_qflist,
+
+        -- @Mikhail:
+        -- This keybinding essentially saves selected files to the list to work with them later.
         ["<leader>l"] = actions.send_selected_to_qflist + actions.open_qflist,
 
         ["j"] = actions.move_selection_next,
@@ -71,6 +73,7 @@ telescope.setup {
         ["gg"] = actions.move_to_top,
         ["G"] = actions.move_to_bottom,
 
+        -- Telescope has great help menu. This thing is really worth using.
         ["?"] = actions.which_key,
       },
     },
