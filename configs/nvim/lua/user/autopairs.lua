@@ -12,6 +12,7 @@ npairs.setup {
     java = false,
   },
   disable_filetype = { "TelescopePrompt", "spectre_panel" },
+  -- @Mikhail: this binding works only in insert mode
   fast_wrap = {
     map = "<C-e>",
     chars = { "{", "[", "(", '"', "'" },
