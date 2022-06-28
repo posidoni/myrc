@@ -13,7 +13,7 @@ npairs.setup {
   },
   disable_filetype = { "TelescopePrompt", "spectre_panel" },
   fast_wrap = {
-    map = "<M-e>",
+    map = "<C-e>",
     chars = { "{", "[", "(", '"', "'" },
     pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
     offset = 0, -- Offset from pattern match
@@ -23,6 +23,8 @@ npairs.setup {
     highlight = "PmenuSel",
     highlight_grey = "LineNr",
   },
+  disable_in_macro = true,
+  enable_moveright = true,
 }
 
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
