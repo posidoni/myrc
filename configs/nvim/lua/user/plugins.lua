@@ -1,5 +1,7 @@
 local fn = vim.fn
 
+-- @brief: disables built-in plugins to boost performance
+
 local disabled_built_ins = {
   "2html_plugin",
   "getscript",
@@ -91,103 +93,95 @@ vim.g.vim_git_sync_branch = 'main'
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
-  use { "nathom/filetype.nvim" }
+
+  -- @Performance --
+  use "nathom/filetype.nvim"
   use "lewis6991/impatient.nvim"
+
+  -- @PluginManagement 
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/popup.nvim"    -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim"  -- Useful lua functions used ny lots of plugins
 
+
+  -- @FileSystem
+  use "kyazdani42/nvim-web-devicons"
+  use "kyazdani42/nvim-tree.lua"
+  use '907th/vim-auto-save'
+  use 'MikhailKuzntsov1/vim_git_sync'
+
+ --  use "akinsho/bufferline.nvim"
+ --  use "moll/vim-bbye"
+ --  use "nvim-lualine/lualine.nvim"
+ --  use "akinsho/toggleterm.nvim"
+ --  use "ahmedkhalf/project.nvim"
+ --  use "lukas-reineke/indent-blankline.nvim"
+ --  use "goolord/alpha-nvim"
+ --  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
+ --  use "folke/which-key.nvim"
+
+  -- @VanillaLike_Helpers
+  use 'tpope/vim-obsession'
+  use 'tpope/vim-unimpaired'
+  use 'tpope/vim-repeat'
+  use 'tpope/vim-surround'
+  use 'kshenoy/vim-signature'
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-     use "numToStr/Comment.nvim" -- Easily comment stuff
-    --  use "kyazdani42/nvim-web-devicons"
-    --  use "kyazdani42/nvim-tree.lua"
-    --  use "akinsho/bufferline.nvim"
-    --  use "moll/vim-bbye"
-    --  use "nvim-lualine/lualine.nvim"
-    --  use "akinsho/toggleterm.nvim"
-    --  use "ahmedkhalf/project.nvim"
-    --  use "lukas-reineke/indent-blankline.nvim"
-    --  use "goolord/alpha-nvim"
-    --  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-    --  use "folke/which-key.nvim"
+  use "numToStr/Comment.nvim" -- Easily comment stuff
 
-  -- Colorschemes
+  -- @Colorschemes
   use "navarasu/onedark.nvim"
-  use "olimorris/onedarkpro.nvim"
+
+  -- @Completition
+  use {
+      "hrsh7th/nvim-cmp", -- The completion plugin
+      "hrsh7th/cmp-buffer", -- buffer completions
+      "hrsh7th/cmp-path", -- path completions
+      "hrsh7th/cmp-cmdline", -- cmdline completions
+      "hrsh7th/cmp-nvim-lsp", -- LSP completitions
+    }
+
+  -- @Snippets
+  -- use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  -- use "L3MON4D3/LuaSnip" --snippet engine
+  -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
 
-  -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
-  -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-
-  -- LSP
+  -- @LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
 --  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
-  -- Telescope
+  -- @Telescope
   use "nvim-telescope/telescope.nvim"
 
-  -- Treesitter
+  -- @Treesitter @TS
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "JoosepAlviste/nvim-ts-context-commentstring" 
   -- use "nvim-treesitter/playground" -- very useful thing for developing plugins, allows easily inspect AST
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use 'tpope/vim-fugitive'
 
-  -- Wiki
-   use "vimwiki/vimwiki"
+  -- @Wiki, @NoteTaking
+  use "vimwiki/vimwiki"
 
-  -- use 'ludovicchabant/vim-gutentags'
-  -- use 'kkoomen/vim-doge'
-  -- use 'google/vim-maktaba'
-  -- use 'google/vim-codefmt'
-  -- use 'google/vim-glaive'
-  -- use 'tpope/vim-obsession'
-  -- use 'cohama/lexima.vim'
-   use '907th/vim-auto-save'
+  -- @Navigation
   -- use 'vim-airline/vim-airline'
   -- use 'vim-airline/vim-airline-themes'
-   use 'tpope/vim-commentary'
-   use 'tpope/vim-unimpaired'
-   use 'tpope/vim-fugitive'
-   use 'tpope/vim-repeat'
-   use 'tpope/vim-surround'
-  -- use 'kshenoy/vim-signature'
-   use 'MikhailKuzntsov1/vim_git_sync'
-  -- use 'mattn/calendar-vim'
   -- use 'godlygeek/tabular'
   -- use 'preservim/vim-markdown'
-  -- use 'ludovicchabant/vim-gutentags'
-  -- use 'kkoomen/vim-doge'
   use 'christoomey/vim-tmux-navigator'
-  -- use 'google/vim-maktaba'
-  -- use 'google/vim-codefmt'
-  -- use 'google/vim-glaive'
-  -- use 'tpope/vim-obsession'
 
-  use 'kyazdani42/nvim-web-devicons'
-  use 'ryanoasis/vim-devicons'
+  -- use 'ryanoasis/vim-devicons'
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
 end)
-
-
 
