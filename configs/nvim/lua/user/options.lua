@@ -35,7 +35,6 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   timeoutlen = 300,			               -- Very important setting. Experiment with it. 300 feels comfortable & usable
-  guifont = "monospace:h17",               -- the font used in graphical neovim applications
   listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
 }
 
