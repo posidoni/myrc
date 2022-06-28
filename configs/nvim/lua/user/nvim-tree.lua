@@ -26,22 +26,6 @@ if not status_ok then
   return
 end
 
--- local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
--- if not config_status_ok then
---   return
--- end
-
--- Replaces auto_close
--- local tree_cb = nvim_tree_config.nvim_tree_callback
--- vim.api.nvim_create_autocmd("BufEnter", {
---   nested = true,
---   callback = function()
---     if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
---       vim.cmd "quit"
---     end
---   end
--- })
-
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
@@ -124,12 +108,12 @@ nvim_tree.setup {
   renderer = {
     add_trailing = false,
     group_empty = false,
-    highlight_git = false,
+    highlight_git = true,
     full_name = false,
-    highlight_opened_files = "none",
+    highlight_opened_files = "all",
     root_folder_modifier = ":~",
 
-    -- @Mikhail:
+    -- @Mikhail: this setting draws lines
     indent_markers = {
       enable = true,
       icons = {
