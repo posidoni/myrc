@@ -5,10 +5,12 @@ end
 
 local actions = require "telescope.actions"
 
--- @Mikhail:
--- :h telescope.setup for reference
--- I duplicated some default features to have a place where I can easily
--- tweak these settings & try out new layouts
+--[[
+    @Mikhail:
+    :h telescope.setup for reference
+    I duplicated some default features to have a place where I can easily
+    tweak these settings & try out new layouts
+--]]
 
 telescope.setup {
   defaults = {
@@ -19,7 +21,7 @@ telescope.setup {
     selection_caret = "> ",
     prompt_prefix = "🔎 ",
     path_display = { "smart" },
-    windblend = 10,
+    windblend = 0,
     intitial_mode = "insert",
     border = true,
 
@@ -42,12 +44,13 @@ telescope.setup {
         ["<C-l>"] = actions.complete_tag,
       },
 
-    -- @Mikhail:
-    -- few remarks on my telescope workflow
-    -- the only option to quit telescope easily is from normal mode with esc
-    -- this is done deliberately to motivate me use normal mode in telescope more often,
-    -- since N-Telescope is extremely powerful
-
+--[[
+     @Mikhail:
+     few remarks on my telescope workflow
+     the only option to quit telescope easily is from normal mode with esc
+     this is done deliberately to motivate me use normal mode in telescope more often,
+     since N-Telescope is extremely powerful
+--]]
       n = {
         ["<esc>"] = actions.close,
         ["<CR>"] = actions.select_default,
@@ -86,10 +89,16 @@ telescope.setup {
     },
   },
   extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
+--[[
+     @Mikhail:
+     I might try out the following extensions in the future:
+     (1) symbol picker, (2) media preview, (3) project finder
+
+     Your extension configuration goes here:
+     extension_name = {
+       extension_config_key = value,
+     }
+     please take a look at the readme of the extension you want to configure
+--]]
   },
 }
