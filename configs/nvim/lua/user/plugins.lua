@@ -39,30 +39,56 @@ packer.init {
   },
 }
 
+vim.cmd [[
+
+let g:vimwiki_list = [{'path': '~/Obsidian',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_silent = 1  " do not display the auto-save notification
+" This config is optimal to prevent save of 'utility buffers (e.g. nerdtree)'
+let g:auto_save_events = [
+        \ "InsertLeave",
+        \"TextChanged"
+        \]
+let g:auto_save_write_all_buffers = 1
+
+let g:vim_git_sync_dirs = [
+    \"$HOME/Obsidian/",
+    \"$HOME/myrc/",
+\]
+let g:vim_git_sync_branch = "main"
+" Disables TemporaryWiki feature (every .md file considered as wiki)
+let g:vimwiki_global_ext = 0
+let g:vimwiki_list = [{'path': '~/Obsidian/',
+                  \ 'syntax': 'markdown', 'ext': '.md'}]
+]]
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
+  use "lewis6991/impatient.nvim"
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
---  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
---  use "numToStr/Comment.nvim" -- Easily comment stuff
---  use "kyazdani42/nvim-web-devicons"
---  use "kyazdani42/nvim-tree.lua"
---  use "akinsho/bufferline.nvim"
---  use "moll/vim-bbye"
---  use "nvim-lualine/lualine.nvim"
---  use "akinsho/toggleterm.nvim"
---  use "ahmedkhalf/project.nvim"
---  use "lewis6991/impatient.nvim"
---  use "lukas-reineke/indent-blankline.nvim"
---  use "goolord/alpha-nvim"
---  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
---  use "folke/which-key.nvim"
+    --  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+    --  use "numToStr/Comment.nvim" -- Easily comment stuff
+    --  use "kyazdani42/nvim-web-devicons"
+    --  use "kyazdani42/nvim-tree.lua"
+    --  use "akinsho/bufferline.nvim"
+    --  use "moll/vim-bbye"
+    --  use "nvim-lualine/lualine.nvim"
+    --  use "akinsho/toggleterm.nvim"
+    --  use "ahmedkhalf/project.nvim"
+    --  use "lukas-reineke/indent-blankline.nvim"
+    --  use "goolord/alpha-nvim"
+    --  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
+    --  use "folke/which-key.nvim"
 
   -- Colorschemes
   use "navarasu/onedark.nvim"
+  use 'kyazdani42/nvim-web-devicons'
+
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -95,31 +121,30 @@ return packer.startup(function(use)
 --  use "lewis6991/gitsigns.nvim"
 
   -- Wiki
---  use "vimwiki/vimwiki"
+     use "vimwiki/vimwiki"
 
 	-- use 'ludovicchabant/vim-gutentags'
 	-- use 'kkoomen/vim-doge'
-	-- use 'christoomey/vim-tmux-navigator'
 	-- use 'google/vim-maktaba'
 	-- use 'google/vim-codefmt'
 	-- use 'google/vim-glaive'
 	-- use 'tpope/vim-obsession'
     -- use 'cohama/lexima.vim'
     -- use 'preservim/nerdtree'
-    -- use 'ryanoasis/vim-devicons'
+    --  use 'ryanoasis/vim-devicons'
     -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
-    -- use '907th/vim-auto-save'
+     use '907th/vim-auto-save'
     -- use 'vim-airline/vim-airline'
     -- use 'vim-airline/vim-airline-themes'
-    -- use 'airblade/vim-gitgutter'
-	-- use 'tpope/vim-commentary'
-    -- use 'tpope/vim-unimpaired'
-	-- use 'tpope/vim-fugitive'
-	-- use 'tpope/vim-repeat'
-	-- use 'tpope/vim-surround'
+     use 'airblade/vim-gitgutter'
+	 use 'tpope/vim-commentary'
+     use 'tpope/vim-unimpaired'
+	 use 'tpope/vim-fugitive'
+	 use 'tpope/vim-repeat'
+	 use 'tpope/vim-surround'
     -- use 'kshenoy/vim-signature'
 
-    -- use 'MikhailKuzntsov1/vim_git_sync'
+     use 'MikhailKuzntsov1/vim_git_sync'
     -- use 'mattn/calendar-vim'
     -- use 'godlygeek/tabular'
     -- use 'preservim/vim-markdown'
@@ -137,3 +162,6 @@ return packer.startup(function(use)
     require("packer").sync()
   end
 end)
+
+
+

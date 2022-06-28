@@ -1,6 +1,5 @@
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true, nowait = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -16,10 +15,9 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
-
 -- Normal --
 keymap("n", "<ESC>", ":noh<CR>", opts)
-keymap("n", "<leader>q", ":q!<CR>", {noremap = true, nowait = true})
+keymap("n", "<leader>q", ":q!<CR>", opts)
 keymap("n", "ff", "zf", opts)
 keymap("n", "fo", "zo", opts)
 
@@ -30,10 +28,8 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Easier splits
-keymap("n", "<C-s>", "<C-w>s", term_opts)
 keymap("n", "ss", "<C-w>s", term_opts)
 keymap("n", "vv", "<C-w>v", term_opts)
-keymap("n", "<C-v>", "<C-w>v", term_opts)
 keymap("n", "--", "<C-w>-", term_opts)
 keymap("n", "++", "<C-w>+", term_opts)
 keymap("n", ">>", "<C-w>>", term_opts)
@@ -43,10 +39,23 @@ keymap("n", "<<", "<C-w><", term_opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Navigate places
+keymap("n", "<Tab>", "<C-o>", opts)
+keymap("n", "<S-Tab>", "<C-i>", opts)
+
 -- Insert --
 -- Switching CTRL + W and <BS>
 -- keymap("i", "<BS>", "<C-w>", opts)
 -- keymap("i", "<C-w>", "<BS>", opts)
+-- keymap("i", "<C-w>", "<C-BS>", opts)
+
+-- Workaround for mapping CTRL + BS in terminal vim
+-- https://vim.fandom.com/wiki/Map_Ctrl-Backspace_to_delete_previous_word
+
+vim.cmd [[ 
+    noremap! <C-BS> <C-w>
+    noremap! <C-h> <C-w>
+]]
 
 -- Visual --
 -- Stay in indent mode
@@ -95,7 +104,6 @@ keymap("i", "<Del>", "<Nop>", opts)
 
 -- Wiki, Note-taking, Education
 
-
 -- Telescope --
-keymap("n", "<leader>y", "Telescope <CR>", opts)
+keymap("n", "<leader>y", ":Telescope <CR>", opts)
 keymap("n", "<leader>g", ":Telescope find_files<CR>", opts)
