@@ -16,7 +16,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
+ vim.cmd [[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
@@ -38,7 +38,6 @@ packer.init {
     end,
   },
 }
-
 vim.cmd [[
 
 let g:vimwiki_list = [{'path': '~/Obsidian',
@@ -113,10 +112,10 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
 
   -- Treesitter
---  use {
- --   "nvim-treesitter/nvim-treesitter",
---    run = ":TSUpdate",
- -- }
+     use {
+       "nvim-treesitter/nvim-treesitter",
+       run = ":TSUpdate",
+     }
  -- use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git
