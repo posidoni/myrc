@@ -20,7 +20,7 @@ telescope.setup {
         ["<C-n>"] = actions.move_selection_next,
         ["<C-p>"] = actions.move_selection_previous,
 
-        ["<ESC>"] = actions.close,
+--        ["<ESC>"] = actions.close,
 
         ["<CR>"] = actions.select_default,
         ["<C-s>"] = actions.select_horizontal,
