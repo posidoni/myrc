@@ -120,7 +120,7 @@ return packer.startup(function(use)
   -- use "nvim-treesitter/playground" -- very useful thing for developing plugins, allows easily inspect AST
 
   -- Git
---  use "lewis6991/gitsigns.nvim"
+  use "lewis6991/gitsigns.nvim"
 
   -- Wiki
    use "vimwiki/vimwiki"
@@ -135,7 +135,6 @@ return packer.startup(function(use)
    use '907th/vim-auto-save'
   -- use 'vim-airline/vim-airline'
   -- use 'vim-airline/vim-airline-themes'
-   use 'airblade/vim-gitgutter'
    use 'tpope/vim-commentary'
    use 'tpope/vim-unimpaired'
    use 'tpope/vim-fugitive'
