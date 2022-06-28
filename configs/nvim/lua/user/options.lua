@@ -29,13 +29,17 @@ local options = {
   tabstop = 4,                             -- insert 2 spaces for a tab
   number = true,                           -- set numbered lines
   relativenumber = true,                   -- set relative numbered lines
-  numberwidth = 4,                         -- set number column width to 2 {default 4}
+  numberwidth = 2,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   timeoutlen = 300,                        -- Very important setting. Experiment with it. 300 feels comfortable & usable
   colorcolumn = "81",
+  spell = false,
+  cursorline = true,
+  foldmethod = "expr",                     -- Folding is based on treesitter
+  foldexpr = "nvim_trisitter#foldexpr()",
   listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
 
   -- This setting must be set for Neovide
@@ -81,8 +85,7 @@ end
 
 --[[
     @MikhailKuzntsov1
-        these are very simple global lua functions for
-        changing GUI font
+    @brief: these are very simple global lua functions for changing GUI font
 --]]
 
 Fontsize = 16
