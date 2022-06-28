@@ -40,8 +40,6 @@ local options = {
   -- This setting must be set for Neovide
   -- Syntax: "fontname:h<size>"
   guifont = "FiraCode Nerd Font:h15",
-
-  neovide_silent = true,
 }
 
 local g = vim.g
@@ -61,6 +59,7 @@ if g.neovide == true then
     g.neovide_cursor_unfocused_outline_width = 0.125
 end
 
+g.neovide_silent = true
 
 -- @Mikhail:
 -- let g:neovide_silent = v:true disables all neovide fancy cursor things

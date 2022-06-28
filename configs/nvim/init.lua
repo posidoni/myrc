@@ -19,3 +19,17 @@ require "user.indentline"
 require "user.alpha"
 require "user.whichkey"
 require "user.autocommands"
+
+Fontsize = 15
+
+function IncreaseFontSize()
+  Fontsize = Fontsize + 1 -- Lua doesn't have increment lol
+  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", Fontsize)
+end
+
+function DecreaseFontSize()
+  Fontsize = Fontsize - 1
+  vim.opt.guifont = string.format("FiraCode Nerd Font:%d", Fontsize)
+end
+
+
