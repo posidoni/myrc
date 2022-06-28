@@ -88,6 +88,7 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use "navarasu/onedark.nvim"
+  use "olimorris/onedarkpro.nvim"
   use 'kyazdani42/nvim-web-devicons'
 
 
@@ -116,7 +117,7 @@ return packer.startup(function(use)
        "nvim-treesitter/nvim-treesitter",
        run = ":TSUpdate",
      }
- -- use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git
 --  use "lewis6991/gitsigns.nvim"
