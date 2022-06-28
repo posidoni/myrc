@@ -34,14 +34,13 @@ local options = {
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
-  guifont = "monospace:h17",               -- the font used in graphical neovim applications
   timeoutlen = 300,			               -- Very important setting. Experiment with it. 300 feels comfortable & usable
+  guifont = "monospace:h17",               -- the font used in graphical neovim applications
   listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
 }
 
 vim.opt.wildignore = { '*.o', '*.a', '__pycache__' }
 vim.opt.shortmess:append "c"
-
 
 for k, v in pairs(options) do
   vim.opt[k] = v

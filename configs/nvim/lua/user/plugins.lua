@@ -58,6 +58,7 @@ let g:vim_git_sync_dirs = [
     \"$HOME/myrc/",
     \"$HOME/Codespace/",
 \]
+
 let g:vim_git_sync_branch = "main"
 " Disables TemporaryWiki feature (every .md file considered as wiki)
 let g:vimwiki_global_ext = 0
