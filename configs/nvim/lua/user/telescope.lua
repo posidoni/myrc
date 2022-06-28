@@ -21,7 +21,7 @@ telescope.setup {
     path_display = { "smart" },
     windblend = 10,
     intitial_mode = "insert",
-    border = "true",
+    border = true,
 
     mappings = {
       i = {
