@@ -1,5 +1,30 @@
 local fn = vim.fn
 
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "matchit",
+  "matchparen",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end
+
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -38,34 +63,61 @@ packer.init {
     end,
   },
 }
+
+vim.g.auto_save = 1
+vim.g.auto_save_silent = 1
+vim.g.auto_save_write_all_buffers = 1
+vim.g.auto_save_events = {
+    "InsertLeave",
+    "TextChanged",
+}
+
+vim.g.vimwiki_global_ext = 0
+vim.g.vimwiki_list = {
+    {
+        ['path'] = '~/Obsidian',
+        ['syntax'] = 'markdown',
+        ['ext'] = '.md'
+    }
+}
+
+vim.g.vim_git_sync_dirs = {
+    '$HOME/Obsidian/',
+    '$HOME/myrc',
+    '$HOME/Codespace/',
+}
+
+vim.g.vim_git_sync_branch = 'main'
+
 vim.cmd [[
-let g:vimwiki_list = [{'path': '~/Obsidian',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_list = [{'path': '~/Obsidian',
+"                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-let g:auto_save = 1  " enable AutoSave on Vim startup
-let g:auto_save_silent = 1  " do not display the auto-save notification
-" This config is optimal to prevent save of 'utility buffers (e.g. nerdtree)'
-" let g:auto_save_events = [
-        \ "InsertLeave",
-        \"TextChanged"
-        \]
-let g:auto_save_write_all_buffers = 1
+" let g:auto_save = 0  " enable AutoSave on Vim startup
+" let g:auto_save_silent = 1  " do not display the auto-save notification
+" " This config is optimal to prevent save of 'utility buffers (e.g. nerdtree)'
+" " let g:auto_save_events = [
+"         \ "InsertLeave",
+"         \"TextChanged"
+"         \]
+" let g:auto_save_write_all_buffers = 1
 
-let g:vim_git_sync_dirs = [
-    \"$HOME/Obsidian/",
-    \"$HOME/myrc/",
-    \"$HOME/Codespace/",
-\]
+" let g:vim_git_sync_dirs = [
+"     \"$HOME/Obsidian/",
+"     \"$HOME/myrc/",
+"     \"$HOME/Codespace/",
+" \]
 
-let g:vim_git_sync_branch = "main"
-" Disables TemporaryWiki feature (every .md file considered as wiki)
-let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{'path': '~/Obsidian/',
-                  \ 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vim_git_sync_branch = "main"
+" " Disables TemporaryWiki feature (every .md file considered as wiki)
+" let g:vimwiki_global_ext = 0
+" let g:vimwiki_list = [{'path': '~/Obsidian/',
+"                   \ 'syntax': 'markdown', 'ext': '.md'}]
 ]]
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
+  use { "nathom/filetype.nvim" }
   use "lewis6991/impatient.nvim"
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim

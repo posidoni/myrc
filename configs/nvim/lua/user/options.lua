@@ -46,7 +46,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
--- vim.cmd "set whichwrap+=<,>,[,],h,l"
+-- vim.cmd "set whichwrap+=<,>,[,],h,l" -- when cursor reaches end of line, it goes to the next
 -- vim.cmd [[set iskeyword+=-]]
 
 -- For reference see this PR: https://github.com/neovim/neovim/pull/13479
