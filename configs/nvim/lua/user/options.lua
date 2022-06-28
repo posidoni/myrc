@@ -36,7 +36,35 @@ local options = {
   sidescrolloff = 8,
   timeoutlen = 300,			               -- Very important setting. Experiment with it. 300 feels comfortable & usable
   listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
+
+  -- This setting must be set for Neovide
+  -- Syntax: "fontname:h<size>"
+  guifont = "FiraCode Nerd Font:h15",
 }
+
+local g = vim.g
+
+-- https://github.com/neovide/neovide/wiki/Configuration#multigrid
+g.neovide_refresh_rate = 140
+g.neovide_fullscree = true
+
+--- Input settings
+g.neovide_input_use_logo = true -- Redirects [S]uper key to Nvim (Win / Opt)
+
+-- Cursor settings. Applicable only in Neovide
+if g.neovide == true then
+    g.neovide_cursor_animation_length = 0.13
+    g.neovide_cursor_trail_length = 0.8
+    g.neovide_cursor_antialiasing = true
+    g.neovide_cursor_unfocused_outline_width = 0.125
+end
+
+
+-- @Mikhail:
+-- let g:neovide_silent = v:true disables all neovide fancy cursor things
+if g.neovide_silent == true then
+    
+end
 
 vim.opt.wildignore = { '*.o', '*.a', '__pycache__' }
 vim.opt.shortmess:append "c"
@@ -44,6 +72,35 @@ vim.opt.shortmess:append "c"
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.cmd [[
+    let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
+    let s:minfontsize = 6
+    let s:maxfontsize = 16
+    function! AdjustFontSize(amount)
+      if has("gui_gtk2") && has("gui_running")
+        let fontname = substitute(&guifont, s:pattern, '\1', '')
+        let cursize = substitute(&guifont, s:pattern, '\2', '')
+        let newsize = cursize + a:amount
+        if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
+          let newfont = fontname . newsize
+          let &guifont = newfont
+        endif
+      else
+        echoerr "You need to run the GTK2 version of Vim to use this function."
+      endif
+    endfunction
+
+    function! LargerFont()
+      call AdjustFontSize(1)
+    endfunction
+    command! LargerFont call LargerFont()
+
+    function! SmallerFont()
+      call AdjustFontSize(-1)
+    endfunction
+    command! SmallerFont call SmallerFont()
+]]
 
 -- vim.cmd "set whichwrap+=<,>,[,],h,l" -- when cursor reaches end of line, it goes to the next
 -- vim.cmd [[set iskeyword+=-]]

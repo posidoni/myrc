@@ -140,7 +140,6 @@ return packer.startup(function(use)
   -- Colorschemes
   use "navarasu/onedark.nvim"
   use "olimorris/onedarkpro.nvim"
-  use 'kyazdani42/nvim-web-devicons'
 
 
   -- cmp plugins
@@ -204,6 +203,9 @@ return packer.startup(function(use)
   -- use 'google/vim-codefmt'
   -- use 'google/vim-glaive'
   -- use 'tpope/vim-obsession'
+
+  use 'kyazdani42/nvim-web-devicons'
+  use 'ryanoasis/vim-devicons'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
