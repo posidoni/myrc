@@ -47,26 +47,25 @@ local g = vim.g
 
 -- https://github.com/neovide/neovide/wiki/Configuration#multigrid
 g.neovide_refresh_rate = 140
-g.neovide_fullscree = true
+g.neovide_fullscreen = true
 
 --- Input settings
 g.neovide_input_use_logo = true -- Redirects [S]uper key to Nvim (Win / Opt)
 g.neovide_silent = true
 
 -- Cursor settings. Applicable only in Neovide
-if g.neovide == true and g.neovide_silent == false then
+if g.neovide_silent == false then
     g.neovide_cursor_animation_length = 0.13
     g.neovide_cursor_trail_length = 0.8
     g.neovide_cursor_antialiasing = true
     g.neovide_cursor_unfocused_outline_width = 0.125
 end
 
-
 -- @Mikhail:
 -- let g:neovide_silent = v:true disables all neovide fancy cursor things
 if g.neovide_silent == true then
-    g.neovide_cursor_animation_length = 0.05
-    g.neovide_cursor_trail_length = 0.15
+    g.neovide_cursor_animation_length = 0
+    g.neovide_cursor_trail_length = 0
     g.neovide_cursor_antialiasing = true
     g.neovide_cursor_unfocused_outline_width = 0.125
 end
