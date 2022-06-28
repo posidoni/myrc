@@ -20,7 +20,9 @@ brew_packages=(
 	clang-format 
 	tldr
 	check
+    fd
     cargo
+    rust
     autoconf                gmp                     libksba                 luv                     python@3.10
     automake                gnu-sed                 libnghttp2              m4                      readline
     bdw-gc                  libtasn1                mpdecimal               sqlite
