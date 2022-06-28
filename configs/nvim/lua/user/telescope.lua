@@ -17,7 +17,7 @@ telescope.setup {
         "%.pdf", "%.mkv", "%.mp4", "%.zip", "%.exe", "%.png"},
 
     selection_caret = "> ",
-    prompt_prefix = "🔎",
+    prompt_prefix = "🔎 ",
     path_display = { "smart" },
     windblend = 10,
     intitial_mode = "insert",
