@@ -1,4 +1,5 @@
 local M = {}
+local util = require 'vim.lsp.util'
 
 -- TODO: backfill this to template
 M.setup = function()
@@ -91,6 +92,12 @@ end
 -- see: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+local formatting_callback = function(client, bufnr)
+    vim.keymap.set('n', '<leader>f', function()
+        local params = util.make_formatting_params({})
+        client.request('textDocument/formatting', params, nil, bufnr)
+    end, { buffer = bufnr })
+end
 -- Docs:
 -- ues this function to configure on configure on attach events for language serevers:
 M.on_attach = function(client, bufnr)
@@ -101,7 +108,7 @@ M.on_attach = function(client, bufnr)
     end
 
     if client.name == "clangd" then
-        vim.notify("Clangd is starting!")
+        formatting_callback(client, bufnr)
     end
 
     -- @FormattingOnSave

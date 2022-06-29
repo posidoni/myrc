@@ -7,7 +7,7 @@
 #
 # LLVM package is needed just because it is nice to have it :)
 #
-brew_packages=(
+export BREW_PACKAGES=(
     neovim # Neovim                   
 	node # Node
 	bear

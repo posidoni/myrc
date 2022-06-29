@@ -1,5 +1,5 @@
 # List currect extensions: `code --list-extensions`
-code_plugins=(
+export CODE_PLUGINS=(
     # Markdown
     "bierner.github-markdown-preview"
     "bierner.markdown-checkbox"
