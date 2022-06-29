@@ -65,7 +65,7 @@ packer.init {
     },
 }
 
-vim.g.auto_save = 0
+vim.g.auto_save = 1
 vim.g.auto_save_silent = 1
 vim.g.auto_save_write_all_buffers = 1
 vim.g.auto_save_events = {
@@ -84,7 +84,7 @@ vim.g.vimwiki_list = {
 
 vim.g.vim_git_sync_dirs = {
     '$HOME/Obsidian/',
-    '$HOME/myrc',
+    '$HOME/myrc/',
     '$HOME/Codespace/',
 }
 
@@ -110,12 +110,23 @@ return packer.startup(function(use)
 
     -- @Lualine
     use "nvim-lualine/lualine.nvim"
-    use "akinsho/toggleterm.nvim"
-    use "ahmedkhalf/project.nvim"
     use "lukas-reineke/indent-blankline.nvim" -- @Mikhail: feels quite heavy on performance. Maybe delete.
-    use "goolord/alpha-nvim"
     use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
     use "folke/which-key.nvim"
+
+    -- @Tags
+    use 'ludovicchabant/vim-gutentags'
+    use 'preservim/tagbar'
+
+    -- @GuiVim
+    use {
+        -- @Mikhail: these two plugins work great together for GUI vim
+        -- on some systems (especially OS X) it's impossible to launch vim
+        -- with CLI arguments (i.e. give certain file), thus it's great to be
+        -- able to quicly jump to Git Projects
+        "ahmedkhalf/project.nvim",
+        "goolord/alpha-nvim"
+    }
 
     -- @VanillaLike_Helpers
     use 'tpope/vim-obsession'
@@ -148,7 +159,7 @@ return packer.startup(function(use)
 
     -- @LSP
     use "neovim/nvim-lspconfig" -- enable LSP
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+    -- use "williamboman/nvim-lsp-installer" -- LSP installer. RequirLSP installer. Required only while configuring nvim 1st time
     use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 

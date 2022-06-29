@@ -154,11 +154,6 @@ _G.packer_plugins = {
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-lsp-installer"] = {
-    loaded = true,
-    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
-    url = "https://github.com/williamboman/nvim-lsp-installer"
-  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -209,15 +204,15 @@ _G.packer_plugins = {
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
   },
+  tagbar = {
+    loaded = true,
+    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/tagbar",
+    url = "https://github.com/preservim/tagbar"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["toggleterm.nvim"] = {
-    loaded = true,
-    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
-    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["vim-auto-save"] = {
     loaded = true,
@@ -228,6 +223,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-gutentags"] = {
+    loaded = true,
+    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vim-gutentags",
+    url = "https://github.com/ludovicchabant/vim-gutentags"
   },
   ["vim-obsession"] = {
     loaded = true,
