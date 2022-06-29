@@ -1,6 +1,14 @@
 # My .rc files
 
-![nvim_sample_screen](assets/nvim_sample_screen.png)
+## Nvim config
+
+- My neovim config is written in mostly lua
+- This config is compatible with both console Nvim & GUI versions 
+- My preferred GUI is [Neovide](https://github.com/neovide/neovide)
+
+![C workflow](./assets/nvim_c.png)
+![Lua workflow](./assets/nvim_lua_2.png)
+![Lua plugins](./assets/nvim_lua_plugins.png)
 
 ## Usage
 

@@ -1,7 +1,9 @@
 # vim
 .vscode
 compile_commands.json
-
+.cache/
+.cache/*
+.cache
 *.swp
 *.o
 a.out
@@ -14,7 +16,12 @@ tags
 *.orig
 .env.chico
 *@neomake*
-
+gcov_obj/*
+gcov_obj/
+*.gcda
+*.gcno
+coverage/
+coverage/*
 test
 .vsc
 .vs
