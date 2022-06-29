@@ -108,6 +108,8 @@ vim.g.gutentags_ctags_extra_args = {
     '--fields=+ailmnS'
 }
 
+vim.g.gutentags_ctags_executable_c = '/Volumes/MISHA/mybrew/bin/ctags'
+
 -- Install your plugins here
 return packer.startup(function(use)
 
