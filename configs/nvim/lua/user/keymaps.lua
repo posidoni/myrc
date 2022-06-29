@@ -128,3 +128,5 @@ keymap("n", "<leader>r", ":Telescope live_grep<CR>", opts)
 -- @NvimTree --
 keymap("n", "<leader>o", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
+
+
