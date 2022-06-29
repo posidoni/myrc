@@ -99,8 +99,12 @@ local formatting_callback = function(client, bufnr)
     end, { buffer = bufnr })
 end
 
-local set_contains = require('config_helper.set_contains').set_contains
-
+ M.set_contains = function (set, val)
+   for key, value in pairs(set) do
+     if value == val then return true end
+   end
+   return false
+ end
 
 function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
     if not set_contains(filetypes, vim.bo.filetype) then
