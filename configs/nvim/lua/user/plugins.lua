@@ -127,7 +127,7 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-web-devicons"
     use "kyazdani42/nvim-tree.lua"
     use '907th/vim-auto-save'
-    use 'MikhailKuzntsov1/vim_git_sync'
+    -- use 'MikhailKuzntsov1/vim_git_sync'
 
     -- @Lualine
     use "nvim-lualine/lualine.nvim"

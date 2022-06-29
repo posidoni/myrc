@@ -264,11 +264,6 @@ _G.packer_plugins = {
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
     url = "https://github.com/tpope/vim-unimpaired"
   },
-  vim_git_sync = {
-    loaded = true,
-    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vim_git_sync",
-    url = "https://github.com/MikhailKuzntsov1/vim_git_sync"
-  },
   vimwiki = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vimwiki",
