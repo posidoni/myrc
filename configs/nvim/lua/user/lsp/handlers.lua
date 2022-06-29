@@ -131,8 +131,8 @@ M.on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
     end
 
-    M.set_default_formatter_for_filetypes('sumneko_lua', { 'lua' })
-    M.set_default_formatter_for_filetypes('clangd', { 'c' })
+    -- M.set_default_formatter_for_filetypes('sumneko_lua', { 'lua' })
+    -- M.set_default_formatter_for_filetypes('clangd', { 'c' })
 
     -- @FormattingOnSave
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
