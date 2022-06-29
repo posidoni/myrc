@@ -11,8 +11,15 @@ local diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
     sections = { "error", "warn" },
+    diagnostics_color = {
+        -- Same values as the general color option can be used here.
+        error = 'DiagnosticError', -- Changes diagnostics' error color.
+        warn  = 'DiagnosticWarn', -- Changes diagnostics' warn color.
+        info  = 'DiagnosticInfo', -- Changes diagnostics' info color.
+        hint  = 'DiagnosticHint', -- Changes diagnostics' hint color.
+    },
     symbols = { error = " ", warn = " " },
-    colored = false,
+    colored = true,
     update_in_insert = false,
     always_visible = true,
 }
@@ -48,18 +55,8 @@ local location = {
     padding = 0,
 }
 
--- cool function for progress
-local progress = function()
-    local current_line = vim.fn.line(".")
-    local total_lines = vim.fn.line("$")
-    local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-    local line_ratio = current_line / total_lines
-    local index = math.ceil(line_ratio * #chars)
-    return chars[index]
-end
-
 local spaces = function()
-    return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+    return "Ident: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
 lualine.setup({
@@ -78,7 +75,7 @@ lualine.setup({
         -- lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_x = { diff, spaces, "encoding", filetype },
         lualine_y = { location },
-        lualine_z = { progress },
+        lualine_z = {},
     },
     inactive_sections = {
         lualine_a = {},
