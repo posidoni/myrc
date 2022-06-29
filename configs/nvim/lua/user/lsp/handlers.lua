@@ -59,7 +59,7 @@ local function lsp_keymaps(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 
     -- TODO: try this out with different keybinding (C-K) doesn't work as expected
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
@@ -67,7 +67,7 @@ local function lsp_keymaps(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>da", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "dp", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 
@@ -122,7 +122,6 @@ function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
     end)
 end
 
--- Docs:
 -- ues this function to configure on configure on attach events for language serevers:
 M.on_attach = function(client, bufnr)
 
@@ -131,8 +130,11 @@ M.on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
     end
 
+    -- @Formatting avoid language server / formatters conflicts
+    -- @cSpecific: for C/C++ formatting clangd works great, so null-ls
+    -- solutions are turned off
     M.set_default_formatter_for_filetypes('sumneko_lua', { 'lua' })
-    M.set_default_formatter_for_filetypes('clangd', { 'c' })
+    M.set_default_formatter_for_filetypes('clangd', { 'c', 'cpp', 'header' })
 
     -- @FormattingOnSave
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save

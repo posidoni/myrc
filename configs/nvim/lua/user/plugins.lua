@@ -79,7 +79,7 @@ vim.g.vimwiki_list = {
         ['path'] = '~/Obsidian',
         ['syntax'] = 'markdown',
         ['ext'] = '.md'
-    }
+    },
 }
 
 vim.g.vim_git_sync_dirs = {
@@ -108,8 +108,8 @@ return packer.startup(function(use)
     use '907th/vim-auto-save'
     use 'MikhailKuzntsov1/vim_git_sync'
 
-    --  use "moll/vim-bbye"
-    --  use "nvim-lualine/lualine.nvim"
+    -- @Lualine
+    use "nvim-lualine/lualine.nvim"
     --  use "akinsho/toggleterm.nvim"
     --  use "ahmedkhalf/project.nvim"
     --  use "lukas-reineke/indent-blankline.nvim"
