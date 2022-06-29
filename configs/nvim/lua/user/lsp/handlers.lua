@@ -98,6 +98,33 @@ local formatting_callback = function(client, bufnr)
         client.request('textDocument/formatting', params, nil, bufnr)
     end, { buffer = bufnr })
 end
+
+local set_contains = require('config_helper.set_contains').set_contains
+
+
+function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
+    if not set_contains(filetypes, vim.bo.filetype) then
+        return
+    end
+
+    local active_servers = {}
+
+    vim.lsp.for_each_buffer_client(0, function(client)
+        table.insert(active_servers, client.config.name)
+    end)
+
+    if not set_contains(active_servers, language_server_name) then
+        return
+    end
+
+    vim.lsp.for_each_buffer_client(0, function(client)
+        if client.name ~= language_server_name then
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
+        end
+    end)
+end
+
 -- Docs:
 -- ues this function to configure on configure on attach events for language serevers:
 M.on_attach = function(client, bufnr)
@@ -107,17 +134,8 @@ M.on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
     end
 
-    if client.name == "null-ls" then
-        client.server.server_capabilities.document_formatting = false
-    end
-
-    if client.name == "sumneko-lua" then
-        formatting_callback(client, bufnr)
-    end
-
-    if client.name == "clangd" then
-        formatting_callback(client, bufnr)
-    end
+    M.set_default_formatter_for_filetypes('sumneko_lua', { 'lua' })
+    M.set_default_formatter_for_filetypes('clangd', { 'c' })
 
     -- @FormattingOnSave
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
