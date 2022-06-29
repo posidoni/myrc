@@ -7,6 +7,7 @@ local keymap = vim.api.nvim_set_keymap
 keymap("n", "<Space>", "<Nop>", { nowait = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
