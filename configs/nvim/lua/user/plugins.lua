@@ -180,7 +180,7 @@ return packer.startup(function(use)
 
     -- @LSP
     use "neovim/nvim-lspconfig" -- enable LSP
-    -- use "williamboman/nvim-lsp-installer" -- LSP installer. RequirLSP installer. Required only while configuring nvim 1st time
+    use "williamboman/nvim-lsp-installer" -- LSP installer. RequirLSP installer. Required only while configuring nvim 1st time
     use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
