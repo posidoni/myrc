@@ -7,7 +7,7 @@
 export TERM=xterm-256color
 ZSH_THEME="af-magic"
 export BREW=/Volumes/MISHA/mybrew
-export BREW_BIN=/Volumes/MISHA/mybrew
+export BREW_BIN=$BREW/bin
 
 # MacOS Specific config
     # Turns 'press & hold OS X' false for VSCode
