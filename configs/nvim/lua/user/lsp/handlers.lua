@@ -1,5 +1,4 @@
 local M = {}
-local util = require 'vim.lsp.util'
 
 -- TODO: backfill this to template
 M.setup = function()
@@ -92,12 +91,13 @@ end
 -- see: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
- M.set_contains = function (set, val)
-   for key, value in pairs(set) do
-     if value == val then return true end
-   end
-   return false
- end
+M.set_contains = function(set, val)
+    -- slightly modified pair here, _ is not used
+    for _, value in pairs(set) do
+        if value == val then return true end
+    end
+    return false
+end
 
 function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
     if not M.set_contains(filetypes, vim.bo.filetype) then
