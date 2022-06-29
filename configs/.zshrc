@@ -7,6 +7,7 @@
 export TERM=xterm-256color
 ZSH_THEME="af-magic"
 export BREW=/Volumes/MISHA/mybrew
+export BREW_BIN=$BREW/bin
 
 # MacOS Specific config
     # Turns 'press & hold OS X' false for VSCode
@@ -18,7 +19,7 @@ export BREW=/Volumes/MISHA/mybrew
         df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
         export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
         export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-		export PATH=$PATH:$BREW:$BREW/bin
+		export PATH=$PATH:$BREW:$BREW_BIN
     fi;
 
 # ENV config
@@ -41,7 +42,10 @@ export BREW=/Volumes/MISHA/mybrew
     alias flash="cd /Volumes/MISHA"
 	alias tks="tmux kill-session -t"
 	alias vimdiff="nvim -d"
- 	alias vim="nvim"
+    alias vim="nvim"
+	alias vi="nvim"
+    alias gvim="/Volumes/MISHA/neovide_binary"
+	alias vimz="/usr/bin/vi"
 	alias tmux="TERM=screen-256color-bce tmux -2"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
@@ -81,6 +85,10 @@ install_brew() {
         echo -e "Installing \t $package \n"
         ( brew install $package )
     done
+
+    echo "Installing ctags for OS X"
+
+    alias ctags="$BREW_BIN/ctags"
 
     echo "Installing valgrind for OS X..."
     brew tap LouisBrunner/valgrind
