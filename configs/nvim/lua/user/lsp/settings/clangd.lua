@@ -8,6 +8,7 @@ return {
             "--suggest-missing-includes",
             "--cross-file-rename",
             "--completion-style=detailed",
+            "--offset-encoding=utf-16",
         },
         init_options = {
             clangdFileStatus = true,
@@ -27,5 +28,6 @@ return {
             '.git'
         },
         single_file_support = true,
+        offsetEncoding = "utf-16",
     },
 }
