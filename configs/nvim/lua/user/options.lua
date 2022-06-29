@@ -56,7 +56,7 @@ g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullsc
 
 --- Input settings
 g.neovide_input_use_logo = true -- Redirects [S]uper key to Nvim (Win / Opt)
-g.neovide_silent = false
+g.neovide_silent = true
 
 -- Cursor settings. Applicable only in Neovide
 if g.neovide_silent == false then
@@ -69,8 +69,8 @@ end
 -- @Mikhail:
 -- let g:neovide_silent = v:true disables all neovide fancy cursor things
 if g.neovide_silent == true then
-    g.neovide_cursor_animation_length = 0
-    g.neovide_cursor_trail_length = 0
+    g.neovide_cursor_animation_length = 0.05
+    g.neovide_cursor_trail_length = 0.5
     g.neovide_cursor_antialiasing = true
     g.neovide_cursor_unfocused_outline_width = 0.125
 end
