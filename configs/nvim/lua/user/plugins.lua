@@ -108,6 +108,7 @@ vim.g.gutentags_ctags_extra_args = {
     '--fields=+ailmnS'
 }
 
+vim.g.tagbar_ctags_bin = '/Volumes/MISHA/mybrew/bin/ctags'
 vim.g.gutentags_ctags_executable = '/Volumes/MISHA/mybrew/bin/ctags'
 
 -- Install your plugins here
