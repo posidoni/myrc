@@ -21,7 +21,7 @@ configs=(
 )
 
 install_configs() {
-    cd $HOME/myrc/configs
+    cd $HOME/myrc/configs || exit
 
     mkdir $OLD_CONFIGS_DIR
 
