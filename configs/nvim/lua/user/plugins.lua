@@ -65,7 +65,7 @@ packer.init {
     },
 }
 
-vim.g.auto_save = 1
+vim.g.auto_save = 0
 vim.g.auto_save_silent = 1
 vim.g.auto_save_write_all_buffers = 1
 vim.g.auto_save_events = {
@@ -89,6 +89,13 @@ vim.g.vim_git_sync_dirs = {
 }
 
 vim.g.vim_git_sync_branch = 'main'
+
+vim.g.gutentags_add_default_project_roots = 0
+vim.g.gutentags_project_root = {
+   'package.json',
+    'Makefile',
+    '.git'
+}
 
 -- Install your plugins here
 return packer.startup(function(use)
