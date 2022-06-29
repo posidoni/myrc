@@ -92,13 +92,6 @@ end
 -- see: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local formatting_callback = function(client, bufnr)
-    vim.keymap.set('n', '<leader>f', function()
-        local params = util.make_formatting_params({})
-        client.request('textDocument/formatting', params, nil, bufnr)
-    end, { buffer = bufnr })
-end
-
  M.set_contains = function (set, val)
    for key, value in pairs(set) do
      if value == val then return true end
@@ -107,7 +100,7 @@ end
  end
 
 function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
-    if not set_contains(filetypes, vim.bo.filetype) then
+    if not M.set_contains(filetypes, vim.bo.filetype) then
         return
     end
 
@@ -117,7 +110,7 @@ function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
         table.insert(active_servers, client.config.name)
     end)
 
-    if not set_contains(active_servers, language_server_name) then
+    if not M.set_contains(active_servers, language_server_name) then
         return
     end
 
