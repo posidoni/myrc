@@ -27,7 +27,7 @@ local diff = {
 local mode = {
     "mode",
     fmt = function(str)
-        return "-- " .. str .. " --"
+        return " " .. str .. " "
     end,
 }
 
@@ -48,6 +48,13 @@ local location = {
     padding = 0,
 }
 
+local ips = {
+    "ips",
+    fmt = function()
+        return os.execute("curl ifconfig.me.")
+    end,
+}
+
 local spaces = function()
     return "Ident: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
@@ -66,9 +73,9 @@ lualine.setup({
         lualine_b = { branch },
         lualine_c = { "filename", diagnostics },
         -- lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_x = { diff, spaces, "encoding", filetype },
-        lualine_y = { location },
-        lualine_z = {},
+        lualine_y = { diff, filetype },
+        lualine_z = { location },
+        lualine_x = { ips },
     },
     inactive_sections = {
         lualine_a = {},
