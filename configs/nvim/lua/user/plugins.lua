@@ -150,6 +150,7 @@ return packer.startup(function(use)
     }
 
     -- @VanillaLike_Helpers
+    -- @Colorschemes
     use 'tpope/vim-obsession'
     use 'tpope/vim-unimpaired'
     use 'tpope/vim-repeat'
@@ -159,7 +160,6 @@ return packer.startup(function(use)
     use "numToStr/Comment.nvim" -- Easily comment stuff
     use "JoosepAlviste/nvim-ts-context-commentstring" -- smart comments (aware of nested languages)
 
-    -- @Colorschemes
     use "navarasu/onedark.nvim"
 
     -- @Completition

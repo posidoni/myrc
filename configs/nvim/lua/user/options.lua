@@ -37,7 +37,6 @@ local options = {
     timeoutlen = 300, -- Very important setting. Experiment with it. 300 feels comfortable & usable
     colorcolumn = "81",
     spell = false,
-    nospell = true,
     cursorline = true,
     foldmethod = "expr", -- Folding is based on treesitter
     foldexpr = "nvim_trisitter#foldexpr()",
