@@ -4,7 +4,7 @@ local term_opts = { silent = true, nowait = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
-keymap("n", "<Space>", "<Nop>", {nowait = true})
+keymap("n", "<Space>", "<Nop>", { nowait = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 -- Modes
@@ -113,11 +113,16 @@ keymap("i", "<Del>", "<Nop>", opts)
 
 -- Telescope --
 keymap("n", "<leader>y", ":Telescope <CR>", opts)
-keymap("n", "<leader>g", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>", opts)
-keymap("n", "<leader>d", "<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_dropdown({ previewer = false}))<cr>", opts)
-keymap("n", "<leader>b", "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>", opts)
+keymap("n", "<leader>g",
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
+    , opts)
+keymap("n", "<leader>d",
+    "<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
+    , opts)
+keymap("n", "<leader>b",
+    "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>",
+    opts)
 keymap("n", "<leader>r", ":Telescope live_grep<CR>", opts)
 
 -- @NvimTree --
 keymap("n", "<leader>o", ":NvimTreeToggle<cr>", opts)
-

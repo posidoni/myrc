@@ -1,7 +1,6 @@
 local fn = vim.fn
 
 -- @brief: disables built-in plugins to boost performance
-
 local disabled_built_ins = {
   "2html_plugin",
   "getscript",
@@ -126,7 +125,7 @@ return packer.startup(function(use)
   use 'kshenoy/vim-signature'
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "JoosepAlviste/nvim-ts-context-commentstring" -- smart comments (aware of nested languages)
 
   -- @Colorschemes
   use "navarasu/onedark.nvim"
@@ -151,7 +150,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  --  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- @Telescope
   use "nvim-telescope/telescope.nvim"
