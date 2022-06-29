@@ -11,15 +11,8 @@ local diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
     sections = { "error", "warn" },
-    diagnostics_color = {
-        -- Same values as the general color option can be used here.
-        error = 'DiagnosticError', -- Changes diagnostics' error color.
-        warn  = 'DiagnosticWarn', -- Changes diagnostics' warn color.
-        info  = 'DiagnosticInfo', -- Changes diagnostics' info color.
-        hint  = 'DiagnosticHint', -- Changes diagnostics' hint color.
-    },
     symbols = { error = " ", warn = " " },
-    colored = true,
+    colored = false,
     update_in_insert = false,
     always_visible = true,
 }
@@ -69,9 +62,9 @@ lualine.setup({
         always_divide_middle = true,
     },
     sections = {
-        lualine_a = { branch, diagnostics },
-        lualine_b = { mode },
-        lualine_c = {},
+        lualine_a = { mode },
+        lualine_b = { branch },
+        lualine_c = { "filename", diagnostics },
         -- lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_x = { diff, spaces, "encoding", filetype },
         lualine_y = { location },
