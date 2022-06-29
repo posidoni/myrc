@@ -34,7 +34,7 @@ local mode = {
 local filename = {
     'filename',
     file_status = false, -- Displays file status (readonly status, modified status)
-    path = 1, -- 0: Just the filename
+    path = 0, -- 0: Just the filename
     -- 1: Relative path
     -- 2: Absolute path
     -- 3: Absolute path, with tilde as the home directory
@@ -72,7 +72,7 @@ local branch = {
 
 local location = {
     "location",
-    padding = 5,
+    padding = 1,
 }
 
 local spaces = function()
@@ -93,7 +93,7 @@ lualine.setup({
         lualine_b = { branch },
         lualine_c = { filename, diagnostics },
         -- lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_y = { diff, filetype, fileformat },
+        lualine_y = { diff, filetype },
         lualine_z = { location },
         lualine_x = {},
     },
