@@ -65,7 +65,7 @@ packer.init {
     },
 }
 
-vim.g.auto_save = 0
+vim.g.auto_save = 1
 vim.g.auto_save_silent = 1
 vim.g.auto_save_write_all_buffers = 1
 vim.g.auto_save_events = {
@@ -92,9 +92,20 @@ vim.g.vim_git_sync_branch = 'main'
 
 vim.g.gutentags_add_default_project_roots = 0
 vim.g.gutentags_project_root = {
-   'package.json',
+    'package.json',
     'Makefile',
-    '.git'
+    '.git',
+}
+
+vim.g.gutentags_cache_dir = "/Users/posidoni/.cache/vim/ctags/"
+vim.g.gutentags_generate_on_new = 1
+vim.g.gutentags_generate_on_missing = 1
+vim.g.gutentags_generate_on_write = 1
+vim.g.gutentags_generate_on_empty_buffer = 0
+
+vim.g.gutentags_ctags_extra_args = {
+    '--tag-relative=yes',
+    '--fields=+ailmnS'
 }
 
 -- Install your plugins here
