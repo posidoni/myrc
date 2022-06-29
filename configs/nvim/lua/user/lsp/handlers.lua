@@ -107,6 +107,14 @@ M.on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
     end
 
+    if client.name == "null-ls" then
+        client.server.server_capabilities.document_formatting = false
+    end
+
+    if client.name == "sumneko-lua" then
+        formatting_callback(client, bufnr)
+    end
+
     if client.name == "clangd" then
         formatting_callback(client, bufnr)
     end
