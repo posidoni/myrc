@@ -112,7 +112,7 @@ return packer.startup(function(use)
     use "nvim-lualine/lualine.nvim"
     --  use "akinsho/toggleterm.nvim"
     --  use "ahmedkhalf/project.nvim"
-    --  use "lukas-reineke/indent-blankline.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
     --  use "goolord/alpha-nvim"
     --  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
     --  use "folke/which-key.nvim"
