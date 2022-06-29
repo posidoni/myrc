@@ -23,6 +23,7 @@ null_ls.setup({
         diagnostics.flake8,
         code_actions.shellcheck,
         diagnostics.shellcheck,
+        diagnostics.cppcheck,
 
         -- @Mikhail: other viable options
         -- formatting.cmake_format
