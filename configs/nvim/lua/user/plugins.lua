@@ -172,10 +172,6 @@ return packer.startup(function(use)
     use "vimwiki/vimwiki"
 
     -- @Navigation
-    -- use 'vim-airline/vim-airline'
-    -- use 'vim-airline/vim-airline-themes'
-    -- use 'godlygeek/tabular'
-    -- use 'preservim/vim-markdown'
     use 'christoomey/vim-tmux-navigator'
 
     if PACKER_BOOTSTRAP then
