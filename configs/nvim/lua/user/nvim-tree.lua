@@ -6,6 +6,7 @@ if not status_ok then
     return
 end
 
+local tree_cb = require 'nvim-tree.config'.nvim_tree_callback
 nvim_tree.setup {
     disable_netrw = true,
     hijack_netrw = true,
@@ -20,6 +21,7 @@ nvim_tree.setup {
     update_cwd = true,
     diagnostics = {
         enable = true,
+        show_on_dirs = true,
         icons = {
             hint = "",
             info = "",
@@ -37,8 +39,10 @@ nvim_tree.setup {
         args = {},
     },
     filters = {
-        dotfiles = true,
-        custom = {},
+        dotfiles = false, -- false means DO NOT filter dot files (show them)
+        custom = {
+            '^\\.git'
+        },
     },
     git = {
         enable = true,
@@ -46,16 +50,19 @@ nvim_tree.setup {
         timeout = 500,
     },
     view = {
-        width = 25,
+        width = 30,
         height = 30,
         hide_root_folder = false,
         side = "left",
         mappings = {
             custom_only = false,
             list = {
-                -- { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-                -- { key = "h", cb = tree_cb "close_node" },
-                -- { key = "v", cb = tree_cb "vsplit" },
+                { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
+                { key = "v", cb = tree_cb "vsplit" },
+                { key = "s", cb = tree_cb "split" },
+                { key = "t", cb = tree_cb "tabnew" },
+                { key = "ca", cb = tree_cb "copy_absolute_path" },
+                { key = "ca", cb = tree_cb "copy_absolute_path" },
             },
         },
         number = false,
@@ -68,7 +75,9 @@ nvim_tree.setup {
     actions = {
         use_system_clipboard = true,
         change_dir = {
-            enable = true,
+            -- @Mikhail: based on my workflow changing dirs feels better off
+            -- If the buffer is not inside current tree, DO NOT change tree to this buffer's
+            enable = false,
             global = false,
             restrict_above_cwd = false,
         },
