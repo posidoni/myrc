@@ -160,7 +160,7 @@ keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
 -- >
 --                         let g:copilot_node_command =
 --                               \ "~/.nodenv/versions/16.15.0/bin/node"
-keymap("i", "<leader>3", ":call copilot#Accept(\"<CR>\")", opts)
+keymap("i", "<leader>3", ":call copilot#Accept(\"<TAB>\")<CR>", opts)
 vim.g.copilot_no_tab_map = true
 --
 -- MAPS                                            *copilot-maps*
