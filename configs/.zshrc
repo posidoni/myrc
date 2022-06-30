@@ -3,50 +3,47 @@
 # upd: 16/06/2022
 
 # Set colors to match iTerm2 Terminal Colors
-
 export TERM=xterm-256color
 ZSH_THEME="af-magic"
-export BREW=/Volumes/MISHA/mybrew
-export BREW_BIN=$BREW/bin
 
 # MacOS Specific config
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export BREW=/Volumes/MISHA/mybrew
+    export BREW_BIN=$BREW/bin
+    source $HOME/.brew_packages.zsh
+    source $HOME/.brewconfig.zsh
     # Turns 'press & hold OS X' false for VSCode
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-		source $HOME/.brew_packages.zsh
-    	source $HOME/.brewconfig.zsh
-        defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-        # Prints available space
-        df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
-        export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
-        export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-		export PATH=$PATH:$BREW:$BREW_BIN
-    fi;
+    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+    # Prints available space
+    df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
+    export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
+    export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+    export PATH=$PATH:$BREW:$BREW_BIN
+fi;
 
 # ENV config
-    export ZSH="$HOME/.oh-my-zsh"
-    export EDITOR="nvim"
+export ZSH="$HOME/.oh-my-zsh"
+export EDITOR="nvim"
     
 # ZSH config
-    plugins=(
-		git 
-		docker 
-		docker-compose 
-		tmux
-	)
+plugins=(
+    git 
+    docker 
+    docker-compose 
+    tmux
+)
 
-    source $ZSH/oh-my-zsh.sh
-
-# Load Homebrew config script
+source $ZSH/oh-my-zsh.sh
 
 # Aliases
-    alias flash="cd /Volumes/MISHA"
-	alias tks="tmux kill-session -t"
-	alias vimdiff="nvim -d"
-    alias vim="nvim"
-	alias vi="nvim"
-    alias gvim="/Volumes/MISHA/neovide_binary"
-	alias vimz="/usr/bin/vi"
-	alias tmux="TERM=screen-256color-bce tmux -2"
+alias flash="cd /Volumes/MISHA"
+alias tks="tmux kill-session -t"
+alias vimdiff="nvim -d"
+alias vim="nvim"
+alias vi="nvim"
+alias gvim="/Volumes/MISHA/neovide_binary"
+alias vimz="/usr/bin/vi"
+alias tmux="TERM=screen-256color-bce tmux -2"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
@@ -78,10 +75,10 @@ install_brew() {
         curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $BREW
     fi
 
-    echo -e "Installing the following brew packages ... \n$brew_packages"
+    echo -e "Installing the following brew packages ... \n$BREW_PACKAGES"
 
     # installing of packages
-    for package in ${brew_packages[@]}; do
+    for package in ${BREW_PACKAGES[@]}; do
         echo -e "Installing \t $package \n"
         ( brew install $package )
     done
@@ -138,4 +135,3 @@ ccleaner() {
     rm -rf ~/.Trash/  2>&1 > /dev/null &
 }
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
