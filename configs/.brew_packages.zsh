@@ -13,7 +13,7 @@ BREW_PACKAGES=(
 	bear
 	ctags
 	tmux # Tmux
-	rip-grep
+	ripgrep
 	pkg-config
 	shellcheck # Static analysis for bash
 	xclip # integrates system clipboard with Vim (for pasting imgs into MD)
