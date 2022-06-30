@@ -28,8 +28,7 @@ export EDITOR="nvim"
 # ZSH config
 plugins=(
     git 
-    docker 
-    docker-compose 
+    dockerjj 
     tmux
 )
 
@@ -82,8 +81,6 @@ install_brew() {
         echo -e "Installing \t $package \n"
         ( brew install $package )
     done
-
-    echo "Installing ctags for OS X"
 
     alias ctags="$BREW_BIN/ctags"
 
