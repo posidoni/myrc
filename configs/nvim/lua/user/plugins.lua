@@ -163,7 +163,7 @@ return packer.startup(function(use)
     use "navarasu/onedark.nvim"
 
     -- @Completition
-    use 'github/copilot.vim'
+    -- use 'github/copilot.vim'
     use {
         "hrsh7th/nvim-cmp", -- The completion plugin
         "L3MON4D3/LuaSnip", -- snippet engine, required for completition
