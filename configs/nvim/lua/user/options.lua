@@ -69,8 +69,8 @@ end
 -- @Mikhail:
 -- let g:neovide_silent = v:true disables all neovide fancy cursor things
 if g.neovide_silent == true then
-    g.neovide_cursor_animation_length = 0.05
-    g.neovide_cursor_trail_length = 0.5
+    g.neovide_cursor_animation_length = 0
+    g.neovide_cursor_trail_length = 0
     g.neovide_cursor_antialiasing = true
     g.neovide_cursor_unfocused_outline_width = 0.125
 end
