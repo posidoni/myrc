@@ -6,8 +6,6 @@
 export TERM=xterm-256color
 ZSH_THEME="af-magic"
 
-export PATH=/Volumes/MISHA/mybrew/Cellar/node@16/16.15.1:$PATH
-
 # MacOS Specific config
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export BREW=/Volumes/MISHA/mybrew
