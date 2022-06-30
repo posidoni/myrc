@@ -24,15 +24,14 @@ fi;
 # ENV config
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
-    
+
 # ZSH config
+source $ZSH/oh-my-zsh.sh
 plugins=(
     git 
-    dockerjj 
+    docker
     tmux
 )
-
-source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias flash="cd /Volumes/MISHA"
@@ -40,7 +39,7 @@ alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
 alias vi="nvim"
-alias gvim="/Volumes/MISHA/neovide_binary"
+alias gvim="/Volumes/MISHA/Neovide"
 alias vimz="/usr/bin/vi"
 alias tmux="TERM=screen-256color-bce tmux -2"
 
@@ -82,7 +81,18 @@ install_brew() {
         ( brew install $package )
     done
 
+    echo "Configuring ctags ..."
     alias ctags="$BREW_BIN/ctags"
+
+    echo "Installing essential casks ..."
+    brew install task
+    brew install --cask telegram
+    brew install --cask fvim
+    brew install --cask obs
+    brew install --cask notion
+    brew install --cask notion-enhanced
+    brew install --cask neovide
+    # brew install --cask qt-design-studio
 
     echo "Installing valgrind for OS X..."
     brew tap LouisBrunner/valgrind
