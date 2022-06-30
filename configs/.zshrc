@@ -43,6 +43,7 @@ alias gvim="/Volumes/MISHA/Neovide"
 alias vimz="/usr/bin/vi"
 alias tmux="TERM=screen-256color-bce tmux -2"
 
+export PATH=/Volumes/MISHA/mybrew/Cellar/node@16/16.15.1:$PATH
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
     for plugin in ${code_plugins[@]}; do
