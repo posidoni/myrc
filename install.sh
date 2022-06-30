@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Generate a list of strings
+
 OLD_CONFIGS_DIR=$HOME/old_configs
 
 configs=(
