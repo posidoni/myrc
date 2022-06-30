@@ -12,8 +12,10 @@ BREW_PACKAGES=(
 	node # Node
 	bear
 	ctags
-	tmux # Tmux
 	ripgrep
+    task
+    taskwarrior-tui
+	tmux # Tmux
 	pkg-config
 	shellcheck # Static analysis for bash
 	xclip # integrates system clipboard with Vim (for pasting imgs into MD)
