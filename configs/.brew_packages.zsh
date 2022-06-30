@@ -18,6 +18,7 @@ BREW_PACKAGES=(
 	tmux # Tmux
 	pkg-config
 	shellcheck # Static analysis for bash
+    node@16
 	xclip # integrates system clipboard with Vim (for pasting imgs into MD)
 	clang-format 
 	tldr
