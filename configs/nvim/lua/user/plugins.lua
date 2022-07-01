@@ -65,14 +65,6 @@ packer.init {
     },
 }
 
-vim.g.auto_save = 1
-vim.g.auto_save_silent = 1
-vim.g.auto_save_write_all_buffers = 1
-vim.g.auto_save_events = {
-    "InsertLeave",
-    "TextChanged",
-}
-
 vim.g.vimwiki_global_ext = 0
 vim.g.vimwiki_list = {
     {
@@ -95,9 +87,10 @@ vim.g.gutentags_project_root = {
     'package.json',
     'Makefile',
     '.git',
+    'CMakeLists.txt'
 }
 
-vim.g.gutentags_cache_dir = "/Users/posidoni/.cache/vim/ctags/"
+vim.g.gutentags_cache_dir = "$HOME/.cache/vim/ctags/"
 vim.g.gutentags_generate_on_new = 1
 vim.g.gutentags_generate_on_missing = 1
 vim.g.gutentags_generate_on_write = 1
@@ -148,7 +141,6 @@ return packer.startup(function(use)
     }
 
     -- @VanillaLike_Helpers
-    -- @Colorschemes
     use 'tpope/vim-obsession'
     use 'tpope/vim-unimpaired'
     use 'tpope/vim-repeat'
@@ -158,7 +150,9 @@ return packer.startup(function(use)
     use "numToStr/Comment.nvim" -- Easily comment stuff
     use "JoosepAlviste/nvim-ts-context-commentstring" -- smart comments (aware of nested languages)
 
+    -- @Colorschemes
     use "navarasu/onedark.nvim"
+    use "folke/tokyonight.nvim"
 
     -- @Completition
     -- use 'github/copilot.vim'
