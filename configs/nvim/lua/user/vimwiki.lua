@@ -12,7 +12,6 @@ vim.g.vim_git_sync_dirs = {
     '$HOME/myrc/',
     '$HOME/Codespace/',
 }
-vim.g.vimwiki_folding = 'custom'
 
 vim.cmd [[
     autocmd FileType vimwiki setlocal syntax=markdown

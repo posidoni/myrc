@@ -39,7 +39,7 @@ local options = {
     spell = false,
     cursorline = true,
     foldmethod = "expr", -- Folding is based on treesitter
-    foldexpr = "nvim_trisitter#foldexpr()",
+    foldexpr = "nvim_treesitter#foldexpr()",
     listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
 
     -- This setting must be set for Neovide
