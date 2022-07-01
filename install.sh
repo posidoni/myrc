@@ -7,8 +7,8 @@ OLD_CONFIGS_DIR=$HOME/old_configs
 configs=(
     # Editor configs
     .vimrc
-	.tmux.conf
-	.clang-format
+.tmux.conf
+    .clang-format
 
     # Git configs
     .gitmessage
