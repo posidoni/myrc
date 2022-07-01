@@ -78,14 +78,14 @@ local function lsp_keymaps(bufnr)
         '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>',
         opts
     )
-
     vim.api.nvim_buf_set_keymap(bufnr, "n", "dn", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 
     -- Opening of diagnostics list is handled by telescope
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>d", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
     -- Disables formatting while errors exist. This is especially comfortable for editing C/C++ code.
-    if not vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) then
+    -- (#) before table returns it length
+    if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) == 0 then
         vim.lsp.buf.formatting()
     else
         vim.notify("Can't save current buffer! Error exists. Please, fix them first.")
