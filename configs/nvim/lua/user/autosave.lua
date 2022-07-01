@@ -21,6 +21,6 @@ autosave.setup {
     on_off_commands = false,
     clean_command_line_interval = 0,
     -- experiment with this setting
-    -- debounce delay is in (ms)
-    debounce_delay = 200
+    -- debounce delay is provided in (ms)
+    debounce_delay = 500,
 }
