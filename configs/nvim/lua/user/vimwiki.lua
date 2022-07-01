@@ -15,4 +15,5 @@ vim.g.vim_git_sync_dirs = {
 
 vim.cmd [[
     autocmd FileType vimwiki setlocal syntax=markdown
+    autocmd BufReadPost,FileReadPost * normal zR
 ]]
