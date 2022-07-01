@@ -15,7 +15,6 @@ a.out
 tags
 *.orig
 .env.chico
-*@neomake*
 gcov_obj/*
 gcov_obj/
 *.gcda
@@ -34,7 +33,6 @@ dump.rdb
 *.log.*
 laixintao_fixtures/*
 .ccls
-
 .envrc
 pip-wheel-metadata/*
 .python-version

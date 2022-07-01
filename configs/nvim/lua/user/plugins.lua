@@ -186,8 +186,9 @@ return packer.startup(function(use)
     use 'christoomey/vim-tmux-navigator'
     use 'akinsho/bufferline.nvim'
 
-    -- C/C++ Development
+    -- @C_CXX_Development
     use 'cdelledonne/vim-cmake'
+    -- use 'jamestthompson3/nvim-remote-containers'
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

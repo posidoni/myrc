@@ -28,7 +28,10 @@ return {
             '.git',
             'build/',
             'Build',
-            'CMakeLists.txt'
+            'CMakeLists.txt',
+            '.',
+            '../',
+            '../../',
         },
         single_file_support = true,
         offsetEncoding = "utf-16",
