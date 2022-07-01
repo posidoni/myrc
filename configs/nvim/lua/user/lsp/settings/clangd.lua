@@ -25,7 +25,10 @@ return {
             'src/compile_commands.json',
             'compile_flags.txt',
             'configure.ac',
-            '.git'
+            '.git',
+            'build/',
+            'Build',
+            'CMakeLists.txt'
         },
         single_file_support = true,
         offsetEncoding = "utf-16",

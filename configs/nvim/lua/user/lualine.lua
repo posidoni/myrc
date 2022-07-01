@@ -55,14 +55,14 @@ local filetype = {
     icon = { align = 'right' }, -- Display filetype icon on the right hand side
 }
 
-local fileformat = {
-    'fileformat',
-    symbols = {
-        unix = '',
-        dos = '',
-        mac = '',
-    }
-}
+-- local fileformat = {
+--     'fileformat',
+--     symbols = {
+--         unix = '',
+--         dos = '',
+--         mac = '',
+--     }
+-- }
 
 local branch = {
     "branch",
@@ -75,9 +75,9 @@ local location = {
     padding = 1,
 }
 
-local spaces = function()
-    return "Ident: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-end
+-- local spaces = function()
+--     return "Ident: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+-- end
 
 lualine.setup({
     options = {
