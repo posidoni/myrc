@@ -187,7 +187,7 @@ return packer.startup(function(use)
 
     -- @Telescope
     use "nvim-telescope/telescope.nvim"
-
+    q
     -- @Treesitter @TS
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -207,6 +207,8 @@ return packer.startup(function(use)
     -- @Navigation
     use 'christoomey/vim-tmux-navigator'
 
+    -- C/C++ Development
+    use 'cdelledonne/vim-cmake'
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
