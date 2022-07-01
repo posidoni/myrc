@@ -38,8 +38,7 @@ local options = {
     colorcolumn = "81",
     spell = false,
     cursorline = true,
-    foldmethod = "expr", -- Folding is based on treesitter
-    foldexpr = "nvim_treesitter#foldexpr()",
+    foldmethod = "manual", -- Folding is based on treesitter
     listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
 
     -- This setting must be set for Neovide
