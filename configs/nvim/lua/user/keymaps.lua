@@ -19,8 +19,7 @@ vim.g.maplocalleader = " "
 -- Normal --
 keymap("n", "<ESC>", ":noh<CR>", opts)
 keymap("n", "<leader>q", ":q!<CR>", opts)
-keymap("n", "ff", "zf", opts)
-keymap("n", "fo", "zo", opts)
+keymap("n", "ff", "za", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
