@@ -132,7 +132,6 @@ return packer.startup(function(use)
     -- @Lualine
     use "nvim-lualine/lualine.nvim"
     use "lukas-reineke/indent-blankline.nvim" -- @Mikhail: feels quite heavy on performance. Maybe delete.
-    use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
     use "folke/which-key.nvim"
 
     -- @Tags
@@ -184,10 +183,11 @@ return packer.startup(function(use)
     use "williamboman/nvim-lsp-installer" -- LSP installer. RequirLSP installer. Required only while configuring nvim 1st time
     use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+    use 'antoinemadec/FixCursorHold.nvim'
 
     -- @Telescope
     use "nvim-telescope/telescope.nvim"
-    q
+
     -- @Treesitter @TS
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -206,9 +206,11 @@ return packer.startup(function(use)
 
     -- @Navigation
     use 'christoomey/vim-tmux-navigator'
+    use 'akinsho/bufferline.nvim'
 
     -- C/C++ Development
     use 'cdelledonne/vim-cmake'
+
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
