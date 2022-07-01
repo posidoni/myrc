@@ -65,29 +65,16 @@ packer.init {
     },
 }
 
-vim.g.vimwiki_global_ext = 0
-vim.g.vimwiki_list = {
-    {
-        ['path'] = '~/Obsidian',
-        ['syntax'] = 'markdown',
-        ['ext'] = '.md'
-    },
-}
-
-vim.g.vim_git_sync_dirs = {
-    '$HOME/Obsidian/',
-    '$HOME/myrc/',
-    '$HOME/Codespace/',
-}
 
 vim.g.vim_git_sync_branch = 'main'
 
-vim.g.gutentags_add_default_project_roots = 0
+vim.g.gutentags_add_default_project_roots = 1
 vim.g.gutentags_project_root = {
     'package.json',
     'Makefile',
     '.git',
-    'CMakeLists.txt'
+    'CMakeLists.txt',
+    'README.md'
 }
 
 vim.g.gutentags_cache_dir = "$HOME/.cache/vim/ctags/"
@@ -104,7 +91,6 @@ vim.g.gutentags_ctags_extra_args = {
 vim.g.tagbar_ctags_bin = '/Volumes/MISHA/mybrew/bin/ctags'
 vim.g.gutentags_ctags_executable = '/Volumes/MISHA/mybrew/bin/ctags'
 
--- Install your plugins here
 return packer.startup(function(use)
 
     -- @Performance --
@@ -123,7 +109,6 @@ return packer.startup(function(use)
     use "Pocco81/AutoSave.nvim"
     -- @Lualine
     use "nvim-lualine/lualine.nvim"
-    use "lukas-reineke/indent-blankline.nvim" -- @Mikhail: feels quite heavy on performance. Maybe delete.
     use "folke/which-key.nvim"
 
     -- @Tags

@@ -110,7 +110,7 @@ keymap("n", "<leader>-", ":lua DecreaseFontSize()<cr>", opts)
 keymap("i", "<Del>", "<Nop>", opts)
 
 -- Wiki, Note-taking, Education
-
+keymap("n", "<leader>tc", ":VimwikiTOC<CR>", opts)
 
 -- Telescope --
 keymap("n", "<leader>y", ":Telescope <CR>", opts)
@@ -128,3 +128,12 @@ keymap("n", "<leader>r", ":Telescope live_grep<CR>", opts)
 -- @NvimTree --
 keymap("n", "<leader>o", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
+
+vim.cmd [[
+  :hi VimwikiHeader1 guifg=#FF0000<CR>
+  :hi VimwikiHeader2 guifg=#00FF00<CR>
+  :hi VimwikiHeader3 guifg=#0000FF<CR>
+  :hi VimwikiHeader4 guifg=#FF00FF<CR>
+  :hi VimwikiHeader5 guifg=#00FFFF<CR>
+  :hi VimwikiHeader6 guifg=#FFFF00<CR>
+]]
