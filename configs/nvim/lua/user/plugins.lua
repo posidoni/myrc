@@ -126,9 +126,8 @@ return packer.startup(function(use)
     -- @FileSystem
     use "kyazdani42/nvim-web-devicons"
     use "kyazdani42/nvim-tree.lua"
-    use '907th/vim-auto-save'
     use 'MikhailKuzntsov1/vim_git_sync'
-
+    use "Pocco81/AutoSave.nvim"
     -- @Lualine
     use "nvim-lualine/lualine.nvim"
     use "lukas-reineke/indent-blankline.nvim" -- @Mikhail: feels quite heavy on performance. Maybe delete.

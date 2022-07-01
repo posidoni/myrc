@@ -13,7 +13,8 @@ dashboard.section.header.val = {
     [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
 }
 dashboard.section.buttons.val = {
-    dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
+    dashboard.button("f", "  Find file", ":Telescope find_files  <CR>"),
+    dashboard.button("w", "  Open Wiki", ":VimwikiIndex <CR>"),
     dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
     dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
     dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
