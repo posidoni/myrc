@@ -1,7 +1,9 @@
 # vim
 .vscode
 compile_commands.json
-
+.cache/
+.cache/*
+.cache
 *.swp
 *.o
 a.out
@@ -13,8 +15,12 @@ a.out
 tags
 *.orig
 .env.chico
-*@neomake*
-
+gcov_obj/*
+gcov_obj/
+*.gcda
+*.gcno
+coverage/
+coverage/*
 test
 .vsc
 .vs
@@ -27,7 +33,6 @@ dump.rdb
 *.log.*
 laixintao_fixtures/*
 .ccls
-
 .envrc
 pip-wheel-metadata/*
 .python-version

@@ -7,21 +7,40 @@
 #
 # LLVM package is needed just because it is nice to have it :)
 #
-brew_packages=(
-    nvim                    tmux                    xclip
+BREW_PACKAGES=(
+    neovim # Neovim                   
+	node # Node
+	bear
+	ctags
+	ripgrep
+    task
+    taskwarrior-tui
+	tmux # Tmux
+	pkg-config
+	shellcheck # Static analysis for bash
+    newsboat
+    node@16
+	xclip # integrates system clipboard with Vim (for pasting imgs into MD)
+	clang-format 
+	tldr
+	check
+    fd
+    cargo
+    rust
     autoconf                gmp                     libksba                 luv                     python@3.10
     automake                gnu-sed                 libnghttp2              m4                      readline
-    bdw-gc                  gnupg                   libtasn1                mpdecimal               sqlite
-    ca-certificates          gnutls                   libtermkey              msgpack                 tinyxml2
-    check                   guile                   libtool                 ncurses                 tldr
-    clang-format            lcov                    libunistring            nettle                  tree-sitter
+    bdw-gc                  libtasn1                mpdecimal               sqlite
+    ca-certificates         gnutls                  libtermkey            	msgpack               tinyxml2
+    guile                   libtool                 ncurses                 
+    lcov                    libunistring            nettle                  
     cmake                   libassuan               libusb                  npth                    unbound
     cppcheck                libevent                libuv                   openssl@1.1             unibilium
-    gcovr                   libffi                   libzip                  p11-kit                 utf8proc
-    gdbm                    libgcrypt               lua                     pcre                    valgrind
+    gcovr                   libffi                  libzip                  p11-kit                utf8proc
+    gdbm                    libgcrypt               lua                     pcre                    
     gettext                 libgpg-error            luajit-openresty        pinentry                xz
-    gh                      libidn2                 luarocks                pkg-config              zstd
-    pkg-config              node                    llvm                    bear                    gpg
+    gh                      libidn2                 luarocks                zstd
+    llvm                    
     qt                       
+    gnupg
 )
 
