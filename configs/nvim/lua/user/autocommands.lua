@@ -102,7 +102,7 @@ end
 PushAll = function(buff)
     print('I am going to push all changes!')
 
-    CommitAll(buff)
+    --    CommitAll(buff)
 
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         jobstart("git -C " .. dir .. " push origin " .. vim.g.vim_git_sync_branch .. " ",
