@@ -35,7 +35,8 @@ vim.cmd [[
 --]]
 
 vim.g.vim_git_sync_branch = 'main'
-vim.g.vim_sync_commit_msg = '[Sync]' .. os.date()
+-- vim.g.vim_sync_commit_msg = ' [Sync] ' .. os.date()
+vim.g.vim_sync_commit_msg = 'Test'
 
 vim.g.pull_events = {
     -- 'BufReadPre', -- before starting to edit a new buffer, before reading file into memory
@@ -64,7 +65,7 @@ local jobstart = vim.fn.jobstart
 vim.g.vim_git_sync_dirs = {
     '$HOME/Obsidian/',
     '$HOME/myrc/',
-    '$HOME/Codespace/',
+    --'$HOME/Codespace/',
 }
 
 -- Lua functions
@@ -74,8 +75,8 @@ PullAll = function(buff)
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         jobstart("git -C " .. dir .. " pull origin " .. vim.g.vim_git_sync_branch .. " ",
             {
-                detach = true,
-                on_exit = function() vim.notify("Succesfully commited all changes!") end,
+                detach = false,
+                -- on_exit = function() vim.notify("Succesfully commited all changes!") end,
                 on_stderr = function() vim.notify("ERROR! Commit failed") end,
                 on_stdout = function() vim.notify("Commited changes") end,
             }
@@ -89,8 +90,8 @@ CommitAll = function(buff)
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         jobstart("git -C" .. dir .. " commit -am " .. vim.g.vim_sync_commit_msg .. " ",
             {
-                detach = true,
-                on_exit = function() vim.notify("Succesfully commited all changes!") end,
+                detach = false,
+                -- on_exit = function() vim.notify("Succesfully commited all changes!") end,
                 on_stderr = function() vim.notify("ERROR! Commit failed") end,
                 on_stdout = function() vim.notify("Commited changes") end,
             }
@@ -106,8 +107,8 @@ PushAll = function(buff)
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         jobstart("git -C " .. dir .. " push origin " .. vim.g.vim_git_sync_branch .. " ",
             {
-                detach = true,
-                on_exit = function() vim.notify("Succesfully commited all changes!") end,
+                detach = false,
+                -- on_exit = function() vim.notify("Succesfully commited all changes!") end,
                 on_stderr = function() vim.notify("ERROR! Commit failed") end,
                 on_stdout = function() vim.notify("Commited changes") end,
             }
