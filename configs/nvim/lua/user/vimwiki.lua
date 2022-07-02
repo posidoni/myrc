@@ -12,3 +12,6 @@ vim.g.vim_git_sync_dirs = {
     '$HOME/myrc/',
     '$HOME/Codespace/',
 }
+
+-- TODO: add autocommands for configuring MD edit on these wiki files
+-- in particular: remove spelling, remove column, wrap lines, set filetype
