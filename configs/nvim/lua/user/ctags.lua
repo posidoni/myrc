@@ -5,7 +5,7 @@ vim.g.gutentags_project_root = {
     'CMakeLists.txt',
 }
 
-vim.g.gutentags_cache_dir = os.getenv('HOME') .. '.cache/vim/ctags'
+vim.g.gutentags_cache_dir = os.getenv('HOME') .. '/.cache/vim/ctags'
 vim.g.gutentags_generate_on_new = 1
 vim.g.gutentags_generate_on_missing = 1
 vim.g.gutentags_generate_on_write = 1
