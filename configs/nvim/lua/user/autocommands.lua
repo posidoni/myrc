@@ -35,8 +35,7 @@ vim.cmd [[
 --]]
 
 vim.g.vim_git_sync_branch = 'main'
--- vim.g.vim_sync_commit_msg = ' [Sync] ' .. os.date()
-vim.g.vim_sync_commit_msg = 'Test'
+vim.g.vim_sync_commit_msg = ' [Sync] ' .. os.date()
 
 vim.g.pull_events = {
     -- 'BufReadPre', -- before starting to edit a new buffer, before reading file into memory
@@ -64,7 +63,7 @@ local jobstart = vim.fn.jobstart
 
 vim.g.vim_git_sync_dirs = {
     -- '$HOME/Obsidian/',
-    '$HOME/myrc/',
+    '/home/posidoni/myrc/',
     --'$HOME/Codespace/',
 }
 
@@ -75,41 +74,42 @@ PullAll = function(buff)
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         jobstart("git -C " .. dir .. " pull origin " .. vim.g.vim_git_sync_branch .. " ",
             {
-                detach = false,
-                -- on_exit = function() vim.notify("Succesfully commited all changes!") end,
+                detach = true,
+                on_exit = function() vim.notify("Succesfully pulled all changes!") end,
                 on_stderr = function() vim.notify("ERROR! PULL failed") end,
                 on_stdout = function() vim.notify("PULLING changes") end,
             }
         )
     end
 end
----- --- -adsf
------ adsf
+
 CommitAll = function(buff)
     print('I am goint to commit all changes!')
 
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
-        jobstart("git -C " .. dir .. " commit -am '" .. vim.g.vim_sync_commit_msg .. "' ",
+        print("git -C " .. dir .. " add . && git -C " .. dir .. " commit -am \'" .. vim.g.vim_sync_commit_msg .. "\' ")
+        jobstart("git -C " .. dir .. "add . && git -C " .. dir .. " commit -am \'" .. vim.g.vim_sync_commit_msg .. "\' "
+            ,
             {
-                detach = false,
-                -- on_exit = function() vim.notify("Succesfully commited all changes!") end,
-                on_stderr = function() vim.notify("ERROR! Commit failed") end,
-                on_stdout = function() vim.notify("Commited changes") end,
+                detach = true,
+                --                on_exit = function() vim.notify("Succesfully commited all changes!") end,
+                -- on_stderr = function() vim.notify("ERROR! Commit failed") end,
+                -- on_stdout = function() vim.notify("Commited changes") end,
             }
         )
     end
 end
-
+--
 PushAll = function(buff)
     print('I am going to push all changes!')
 
-    --    CommitAll(buff)
+    CommitAll(buff)
 
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         jobstart("git -C " .. dir .. " push origin " .. vim.g.vim_git_sync_branch .. " ",
             {
-                detach = false,
-                -- on_exit = function() vim.notify("Succesfully commited all changes!") end,
+                detach = true,
+                on_exit = function() vim.notify("Succesfully pushed all changes!") end,
                 on_stderr = function() vim.notify("ERROR! PUSHING failed") end,
                 on_stdout = function() vim.notify("PUSHING changes") end,
             }
@@ -129,18 +129,18 @@ vim.api.nvim_create_autocmd(vim.g.pull_events, {
     callback = PullAll,
 })
 
-vim.api.nvim_create_autocmd(vim.g.commit_events, {
-    group = GitSyncGroupID,
-    desc = 'Commits changes in all git repositories for specified dirs \
-    at the end of the development session (exiting Vim)',
-    pattern = syncBuffers,
-    callback = CommitAll,
-})
+-- vim.api.nvim_create_autocmd(vim.g.commit_events, {
+--     group = GitSyncGroupID,
+--     desc = 'Commits changes in all git repositories for specified dirs \
+--     at the end of the development session (exiting Vim)',
+--     pattern = syncBuffers,
+--     callback = CommitAll,
+-- })
 
 vim.api.nvim_create_autocmd(vim.g.push_events, {
     group = GitSyncGroupID,
     desc = 'Pushes changed in all git repositories for specified dirs \
     at the end of the development sessios (exiting Vim)',
     pattern = syncBuffers,
-    callback = PushAll,
+    command = "lua PushAll()"
 })
