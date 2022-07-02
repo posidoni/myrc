@@ -39,7 +39,8 @@ vim.g.vim_sync_commit_msg = ' [Sync] ' .. os.date()
 
 vim.g.pull_events = {
     -- 'BufReadPre', -- before starting to edit a new buffer, before reading file into memory
-    'VimEnter',
+    -- 'VimEnter',
+    'BufReadPre'
 }
 
 vim.g.commit_events = {
@@ -55,42 +56,34 @@ local syncBuffers = {
     'vimwiki',
     'txt',
     'html',
-    '*',
     'lua'
 }
 
-local jobstart = vim.fn.jobstart
-
 vim.g.vim_git_sync_dirs = {
-    -- '$HOME/Obsidian/',
+    '$HOME/Obsidian/',
     '/home/posidoni/myrc/',
-    --'$HOME/Codespace/',
+    '$HOME/Codespace/',
 }
 
-local luajob = require('luajob')
-
 -- Lua functions
-PullAll = function(buff)
-    print('I am going to pull all changes!')
-
+PullAll = function()
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         vim.fn.system("git -C " .. dir .. " pull origin " .. vim.g.vim_git_sync_branch .. " ")
     end
 end
 
-CommitAll = function(buff)
+CommitAll = function()
     print('I am goint to commit all changes!')
 
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
-        print("git -C " .. dir .. " add -A && git -C " .. dir .. " commit -am " .. vim.g.vim_sync_commit_msg .. " ")
         vim.fn.system("git -C " .. dir .. " commit -am \'" .. vim.g.vim_sync_commit_msg .. "\' ")
     end
 end
 -- asdfasd
-PushAll = function(buff)
+PushAll = function()
     print('I am going to push all changes!')
 
-    CommitAll(buff)
+    CommitAll()
 
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         vim.fn.system("git -C " .. dir .. " push origin " .. vim.g.vim_git_sync_branch .. " ")
