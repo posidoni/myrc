@@ -83,12 +83,12 @@ PullAll = function(buff)
         )
     end
 end
-
+----
 CommitAll = function(buff)
     print('I am goint to commit all changes!')
 
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
-        jobstart("git -C " .. dir .. " commit -am " .. vim.g.vim_sync_commit_msg .. " ",
+        jobstart("git -C " .. dir .. " commit -am \"" .. vim.g.vim_sync_commit_msg .. "\" ",
             {
                 detach = false,
                 -- on_exit = function() vim.notify("Succesfully commited all changes!") end,
