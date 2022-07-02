@@ -1,5 +1,9 @@
 # My .rc files
 
+## Terminal
+
+- Recommended terminal emulators: [Alacrity for GNU/Linux](https://github.com/alacritty/alacritty), [iTerm2 for OS X](https://github.com/gnachman/iTerm2)
+
 ## Nvim config
 
 - My neovim config is written in mostly lua
