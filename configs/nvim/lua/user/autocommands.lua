@@ -39,8 +39,7 @@ vim.g.vim_sync_commit_msg = ' [Sync] ' .. os.date()
 
 vim.g.pull_events = {
     -- 'BufReadPre', -- before starting to edit a new buffer, before reading file into memory
-    -- 'VimEnter',
-    'BufReadPre'
+    'VimEnter',
 }
 
 vim.g.commit_events = {
@@ -52,11 +51,11 @@ vim.g.push_events = {
 }
 
 local syncBuffers = {
-    'md',
-    'vimwiki',
-    'txt',
-    'html',
-    'lua'
+    '*.vimwiki',
+    '*.md',
+    '*.txt',
+    '*.html',
+    '*.lua'
 }
 
 vim.g.vim_git_sync_dirs = {
@@ -108,7 +107,7 @@ vim.api.nvim_create_autocmd(vim.g.pull_events, {
 --     at the end of the development session (exiting Vim)',
 --     pattern = syncBuffers,
 --     callback = CommitAll,
--- })
+-- }) -
 
 vim.api.nvim_create_autocmd(vim.g.push_events, {
     group = GitSyncGroupID,
