@@ -1,5 +1,10 @@
 # My .rc files
 
+## Terminal
+
+- Recommended terminal emulators: [Alacrity for GNU/Linux](https://github.com/alacritty/alacritty), [iTerm2 for OS X](https://github.com/gnachman/iTerm2)
+- For better experience with my Nvim config I recommend using [FiraCode Nerd Font with ligatures & default icons](https://github.com/ryanoasis/nerd-fonts)
+
 ## Nvim config
 
 - My neovim config is written in mostly lua
