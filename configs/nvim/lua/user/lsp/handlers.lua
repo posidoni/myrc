@@ -1,4 +1,14 @@
-local M = {} -- TODO: backfill this to template
+local M = {}
+
+local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_ok then
+    return
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
 M.setup = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
@@ -12,7 +22,7 @@ M.setup = function()
     end
 
     local config = {
-        -- disable virtual text
+        -- disable virtual text / enable
         virtual_text = true, -- virtual text is colored text that is displayed on the right
         -- show signs
         signs = {
@@ -109,25 +119,24 @@ function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
 
     vim.lsp.for_each_buffer_client(0, function(client)
         if client.name ~= language_server_name then
-            client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
+            -- TODO FIX THIS
+            client.resolved_capabilities = {
+                document_formatting = false,
+                document_range_formatting = false
+            }
+            -- client.resolved_capabilities.document_formatting = false
+            -- client.resolved_capabilities.document_range_formatting = false
         end
     end)
 end
 
 -- ues this function to configure on configure on attach events for language serevers:
 M.on_attach = function(client, bufnr)
-
-    -- TODO: refactor this into a method that checks if string in list
-    if client.name == "tsserver" then
-        client.resolved_capabilities.document_formatting = false
-    end
-
     -- @Formatting avoid language server / formatters conflicts
     -- @cSpecific: for C/C++ formatting clangd works great, so null-ls
     -- solutions are turned off
     M.set_default_formatter_for_filetypes('sumneko_lua', { 'lua' })
-    M.set_default_formatter_for_filetypes('clangd', { 'c', 'cpp', 'header' })
+    M.set_default_formatter_for_filetypes('clangd', { 'c', 'cpp' })
 
     -- @FormattingOnSave
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
@@ -139,7 +148,8 @@ M.on_attach = function(client, bufnr)
             callback = function()
                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
                 if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) == 0 then
-                    vim.lsp.buf.formatting_sync()
+                    -- vim.lsp.buf.formatting_sync()
+                    vim.lsp.buf.format({ bufnr = bufnr })
                 else
                     vim.notify("Can't save current buffer! Error exists. Please, fix them first.")
                 end
@@ -151,12 +161,4 @@ M.on_attach = function(client, bufnr)
     lsp_highlight_document(client)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-    return
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 return M

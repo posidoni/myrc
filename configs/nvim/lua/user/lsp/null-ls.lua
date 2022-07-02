@@ -26,7 +26,7 @@ null_ls.setup({
         diagnostics.cppcheck,
 
         -- @Mikhail: other viable options
-        -- formatting.cmake_format
+        formatting.cmake_format
         -- formatting.markdownlint
         -- diagnostics.eslint
         -- diagnostics.markdownlint

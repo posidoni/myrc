@@ -35,7 +35,7 @@ local options = {
     scrolloff = 8, -- is one of my fav
     sidescrolloff = 8,
     timeoutlen = 300, -- Very important setting. Experiment with it. 300 feels comfortable & usable
-    colorcolumn = "81",
+    -- colorcolumn = "81",
     spell = false,
     cursorline = true,
     foldmethod = "manual", -- Folding is based on treesitter
@@ -43,7 +43,9 @@ local options = {
 
     -- This setting must be set for Neovide
     -- Syntax: "fontname:h<size>"
-    guifont = "FiraCode Nerd Font:h16"
+    guifont = "FiraCode Nerd Font:h16",
+    belloff = "all",
+    langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz",
 }
 
 local g = vim.g
@@ -102,5 +104,3 @@ function SetFontSize(size)
     FontSize = size
     vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
 end
-
--- For reference see this PR: https://github.com/neovim/neovim/pull/13479

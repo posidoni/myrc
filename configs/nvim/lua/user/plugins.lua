@@ -99,7 +99,8 @@ return packer.startup(function(use)
         -- with CLI arguments (i.e. give certain file), thus it's great to be
         -- able to quicly jump to Git Projects
         "ahmedkhalf/project.nvim",
-        "goolord/alpha-nvim"
+        "goolord/alpha-nvim",
+        "j-hui/fidget.nvim",
     }
 
     -- @VanillaLike_Helpers
@@ -115,6 +116,7 @@ return packer.startup(function(use)
     -- @Colorschemes
     use "navarasu/onedark.nvim"
     use "folke/tokyonight.nvim"
+    use 'lukas-reineke/indent-blankline.nvim'
 
     -- @Completition
     -- use 'github/copilot.vim'
@@ -139,6 +141,7 @@ return packer.startup(function(use)
     use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
     use 'antoinemadec/FixCursorHold.nvim'
+    use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
 
     -- @Telescope
     use "nvim-telescope/telescope.nvim"
@@ -163,10 +166,46 @@ return packer.startup(function(use)
     use 'christoomey/vim-tmux-navigator'
     use 'akinsho/bufferline.nvim'
 
+    -- @Debugging
+    use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
+    use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
+    use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+
     -- @C_CXX_Development
     use 'cdelledonne/vim-cmake'
     -- use 'jamestthompson3/nvim-remote-containers'
-
+    use({
+        'NTBBloodbath/doom-one.nvim',
+        config = function()
+            require('doom-one').setup({
+                cursor_coloring = true,
+                terminal_colors = true,
+                italic_comments = true,
+                enable_treesitter = true,
+                transparent_background = false,
+                pumblend = {
+                    enable = true,
+                    transparency_amount = 20,
+                },
+                plugins_integrations = {
+                    neorg = true,
+                    barbar = true,
+                    bufferline = true,
+                    gitgutter = false,
+                    gitsigns = true,
+                    telescope = true,
+                    neogit = true,
+                    nvim_tree = true,
+                    dashboard = true,
+                    startify = true,
+                    whichkey = true,
+                    indent_blankline = true,
+                    vim_illuminate = true,
+                    lspsaga = false,
+                },
+            })
+        end,
+    })
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end

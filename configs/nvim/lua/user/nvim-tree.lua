@@ -153,8 +153,6 @@ nvim_tree.setup {
             "Cargo.toml",
             "Makefile",
             "Dockerfile",
-            "README.md",
-            "readme.md",
             "CMakeLists.txt",
             "CMakeLists",
         },

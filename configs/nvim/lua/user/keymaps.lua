@@ -19,6 +19,7 @@ vim.g.maplocalleader = " "
 -- Normal --
 keymap("n", "<ESC>", ":noh<CR>", opts)
 keymap("n", "<leader>q", ":q!<CR>", opts)
+keymap("n", ";", ":", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -125,6 +126,8 @@ keymap("n", "<leader>r", ":Telescope live_grep<CR>", opts)
 
 -- @NvimTree --
 keymap("n", "<leader>o", ":NvimTreeToggle<cr>", opts)
+
+-- @Tagbar --
 keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
 
 vim.cmd [[

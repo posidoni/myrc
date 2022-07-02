@@ -30,8 +30,6 @@ return {
             'Build',
             'CMakeLists.txt',
             '.',
-            '../',
-            '../../',
         },
         single_file_support = true,
         offsetEncoding = "utf-16",
