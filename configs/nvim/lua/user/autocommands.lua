@@ -72,16 +72,12 @@ PullAll = function()
 end
 
 CommitAll = function()
-    print('I am goint to commit all changes!')
-
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         vim.fn.system("git -C " .. dir .. " commit -am \'" .. vim.g.vim_sync_commit_msg .. "\' ")
     end
 end
 -- asdfasd
 PushAll = function()
-    print('I am going to push all changes!')
-
     CommitAll()
 
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
