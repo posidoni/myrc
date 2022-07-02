@@ -63,7 +63,7 @@ local syncBuffers = {
 local jobstart = vim.fn.jobstart
 
 vim.g.vim_git_sync_dirs = {
-    '$HOME/Obsidian/',
+    -- '$HOME/Obsidian/',
     '$HOME/myrc/',
     --'$HOME/Codespace/',
 }
@@ -84,6 +84,7 @@ PullAll = function(buff)
     end
 end
 ---- --- -adsf
+----- adsf
 CommitAll = function(buff)
     print('I am goint to commit all changes!')
 
