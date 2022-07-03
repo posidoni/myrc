@@ -1,3 +1,4 @@
+#!/bin/bash
 # Brew packages list
 # 
 # Xclip is needed for yanking into clipboard & analyzing content of cliboard
@@ -7,13 +8,17 @@
 #
 # LLVM package is needed just because it is nice to have it :)
 
-BREW_PACKAGES=(
+export BREW_PACKAGES=(
     neovim # Neovim                   
 	node # Node
 	bear
 	ctags
 	ripgrep
     task
+    markdownlint
+    stylua
+    black
+    flake8
     taskwarrior-tui
 	tmux # Tmux
 	pkg-config

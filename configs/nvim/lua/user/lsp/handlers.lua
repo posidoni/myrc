@@ -93,7 +93,7 @@ local function lsp_keymaps(bufnr)
     -- for reference see:
     --      :h vim.diagnostic.setqflist()
     --      https://github.com/neovim/neovim/pull/14736
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.setqflist()<CR>", opts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
 -- @Mikhail: this variable is needed by @formattingOnSave
@@ -144,6 +144,7 @@ M.on_attach = function(client, bufnr)
     -- solutions are turned off
     M.set_default_formatter_for_filetypes('sumneko_lua', { 'lua' })
     M.set_default_formatter_for_filetypes('clangd', { 'c', 'cpp' })
+    M.set_default_formatter_for_filetypes('null-ls', { 'md', 'cmake', 'markdown', 'vimwiki' })
 
     -- @FormattingOnSave
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save

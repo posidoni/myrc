@@ -116,6 +116,11 @@ telescope.setup {
                 }
             }
         },
+        diagnostic = {
+            root_dir = true,
+            theme = "dropdown",
+            previewer = false,
+        }
     },
     extensions = {
         --[[

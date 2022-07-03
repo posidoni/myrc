@@ -39,9 +39,15 @@ alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
 alias vi="nvim"
-alias gvim="/Volumes/MISHA/Neovide --multigrid -- "
+alias gvim="/Volumes/MISHA/Neovide --multigrid --nofork -- "
 alias vimz="/usr/bin/vi"
 alias tmux="TERM=screen-256color-bce tmux -2"
+alias python="/Volumes/MISHA/brew/bin/python3"  
+alias python3="/Volumes/MISHA/brew/bin/python3"  
+alias python3.9="/Volumes/MISHA/brew/bin/python3"  
+alias python@3.9="/Volumes/MISHA/brew/bin/python3"  
+alias python@3="/Volumes/MISHA/brew/bin/python3"
+export PATH=$PATH:'/Users/posidoni/Library/Python/3.8/bin'
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {

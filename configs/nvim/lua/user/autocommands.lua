@@ -17,6 +17,17 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
+    augroup _zsh
+      autocmd!
+      autocmd FileType zsh set filetype=sh
+    augroup end
+
+    augroup _wiki
+      autocmd!
+      autocmd FileType vimwiki set filetype=md
+    augroup end
+
+
   " This autocmd is for CMake util. It changes CWD to be near currently editing tab.
     function! OnTabEnter(path)
       if isdirectory(a:path)
