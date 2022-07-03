@@ -8,6 +8,7 @@ end
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+M.capabilities.offsetEncoding = { "utf-16 " }
 
 M.setup = function()
     local signs = {
@@ -120,12 +121,13 @@ function M.set_default_formatter_for_filetypes(language_server_name, filetypes)
     vim.lsp.for_each_buffer_client(0, function(client)
         if client.name ~= language_server_name then
             -- TODO FIX THIS
-            client.resolved_capabilities = {
-                document_formatting = false,
-                document_range_formatting = false
-            }
-            -- client.resolved_capabilities.document_formatting = false
-            -- client.resolved_capabilities.document_range_formatting = false
+            -- client.resolved_capabilities = {
+            --     document_formatting = false,
+            --     document_range_formatting = false
+            -- }
+
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
         end
     end)
 end
