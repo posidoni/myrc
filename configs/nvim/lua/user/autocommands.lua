@@ -17,10 +17,17 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
-  augroup _comp_prog
-    autocmd!
-    " autocmd BufRead,BufNewFile */Codespace/** <Plug>(toggle-lsp-diag-off)
-  augroup end
+  " This autocmd is for CMake util. It changes CWD to be near currently editing tab.
+    function! OnTabEnter(path)
+      if isdirectory(a:path)
+        let dirname = a:path
+      else
+        let dirname = fnamemodify(a:path, ":h")
+      endif
+      execute "tcd ". dirname
+    endfunction()
+
+    autocmd TabNewEntered * call OnTabEnter(expand("<amatch>"))
 ]]
 --
 ---------k-------------------------------------------------------------------------------------------

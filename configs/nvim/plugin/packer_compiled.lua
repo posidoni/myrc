@@ -99,11 +99,6 @@ _G.packer_plugins = {
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
-  ["bufferline.nvim"] = {
-    loaded = true,
-    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
-    url = "https://github.com/akinsho/bufferline.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -125,7 +120,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/cmp-path"
   },
   ["doom-one.nvim"] = {
-    config = { "\27LJ\2\n…\3\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\25plugins_integrations\1\0\14\21indent_blankline\2\rwhichkey\2\rstartify\2\14dashboard\2\14nvim_tree\2\vneogit\2\14telescope\2\rgitsigns\2\14gitgutter\1\15bufferline\2\vbarbar\2\nneorg\2\flspsaga\1\19vim_illuminate\2\rpumblend\1\0\2\venable\2\24transparency_amount\3\20\1\0\5\22enable_treesitter\2\20italic_comments\2\20terminal_colors\2\20cursor_coloring\2\27transparent_background\1\nsetup\rdoom-one\frequire\0" },
+    config = { "\27LJ\2\n…\3\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\25plugins_integrations\1\0\14\14dashboard\2\14nvim_tree\2\vneogit\2\14telescope\2\rgitsigns\2\14gitgutter\1\15bufferline\2\vbarbar\2\nneorg\2\flspsaga\1\19vim_illuminate\2\21indent_blankline\2\rwhichkey\2\rstartify\2\rpumblend\1\0\2\24transparency_amount\3\20\venable\2\1\0\5\20cursor_coloring\2\27transparent_background\1\22enable_treesitter\2\20italic_comments\2\20terminal_colors\2\nsetup\rdoom-one\frequire\0" },
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
     url = "https://github.com/NTBBloodbath/doom-one.nvim"
@@ -260,6 +255,11 @@ _G.packer_plugins = {
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/toggle-lsp-diagnostics.nvim",
     url = "https://github.com/WhoIsSethDaniel/toggle-lsp-diagnostics.nvim"
   },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
+  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
@@ -319,18 +319,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vimwiki",
     url = "https://github.com/vimwiki/vimwiki"
-  },
-  ["which-key.nvim"] = {
-    loaded = true,
-    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/which-key.nvim",
-    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
 -- Config for: doom-one.nvim
 time([[Config for doom-one.nvim]], true)
-try_loadstring("\27LJ\2\n…\3\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\25plugins_integrations\1\0\14\21indent_blankline\2\rwhichkey\2\rstartify\2\14dashboard\2\14nvim_tree\2\vneogit\2\14telescope\2\rgitsigns\2\14gitgutter\1\15bufferline\2\vbarbar\2\nneorg\2\flspsaga\1\19vim_illuminate\2\rpumblend\1\0\2\venable\2\24transparency_amount\3\20\1\0\5\22enable_treesitter\2\20italic_comments\2\20terminal_colors\2\20cursor_coloring\2\27transparent_background\1\nsetup\rdoom-one\frequire\0", "config", "doom-one.nvim")
+try_loadstring("\27LJ\2\n…\3\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\25plugins_integrations\1\0\14\14dashboard\2\14nvim_tree\2\vneogit\2\14telescope\2\rgitsigns\2\14gitgutter\1\15bufferline\2\vbarbar\2\nneorg\2\flspsaga\1\19vim_illuminate\2\21indent_blankline\2\rwhichkey\2\rstartify\2\rpumblend\1\0\2\24transparency_amount\3\20\venable\2\1\0\5\20cursor_coloring\2\27transparent_background\1\22enable_treesitter\2\20italic_comments\2\20terminal_colors\2\nsetup\rdoom-one\frequire\0", "config", "doom-one.nvim")
 time([[Config for doom-one.nvim]], false)
 if should_profile then save_profiles() end
 

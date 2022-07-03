@@ -6,7 +6,7 @@
 # Bear is needed to create compile_commands.json from make (bear -- make)
 #
 # LLVM package is needed just because it is nice to have it :)
-#
+
 BREW_PACKAGES=(
     neovim # Neovim                   
 	node # Node
@@ -39,8 +39,8 @@ BREW_PACKAGES=(
     gdbm                    libgcrypt               lua                     pcre                    
     gettext                 libgpg-error            luajit-openresty        pinentry                xz
     gh                      libidn2                 luarocks                zstd
-    llvm                    
-    qt                       
+    llvm
+    qt
     gnupg
 )
 

@@ -151,6 +151,7 @@ nvim_tree.setup {
         -- This feature looks absolutely great!
         special_files = {
             "Cargo.toml",
+            'build/',
             "Makefile",
             "Dockerfile",
             "CMakeLists.txt",

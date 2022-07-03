@@ -86,7 +86,7 @@ return packer.startup(function(use)
     use "Pocco81/AutoSave.nvim"
     -- @Lualine
     use "nvim-lualine/lualine.nvim"
-    use "folke/which-key.nvim"
+    -- use "folke/which-key.nvim"
 
     -- @Tags
     use 'ludovicchabant/vim-gutentags'
@@ -144,6 +144,7 @@ return packer.startup(function(use)
     use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
     use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
     require 'toggle_lsp_diagnostics'.init()
+
     -- @Telescope
     use "nvim-telescope/telescope.nvim"
 
@@ -166,7 +167,7 @@ return packer.startup(function(use)
 
     -- @Navigation
     use 'christoomey/vim-tmux-navigator'
-    use 'akinsho/bufferline.nvim'
+    -- use 'akinsho/bufferline.nvim'
 
     -- @Debugging
     use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
@@ -175,6 +176,8 @@ return packer.startup(function(use)
 
     -- @C_CXX_Development
     use 'cdelledonne/vim-cmake'
+    use({ "akinsho/toggleterm.nvim", commit = "aaeed9e02167c5e8f00f25156895a6fd95403af8" })
+
     -- use 'jamestthompson3/nvim-remote-containers'
     use({
         'NTBBloodbath/doom-one.nvim',

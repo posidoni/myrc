@@ -39,10 +39,9 @@ alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
 alias vi="nvim"
-alias gvim="/Volumes/MISHA/Neovide"
+alias gvim="/Volumes/MISHA/Neovide --multigrid -- "
 alias vimz="/usr/bin/vi"
 alias tmux="TERM=screen-256color-bce tmux -2"
-alias ctags="/Volumes/MISHA/mybrew/bin/ctags"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {

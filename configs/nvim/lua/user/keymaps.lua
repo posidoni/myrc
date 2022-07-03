@@ -19,7 +19,6 @@ vim.g.maplocalleader = " "
 -- Normal --
 keymap("n", "<ESC>", ":noh<CR>", opts)
 keymap("n", "<leader>q", ":q!<CR>", opts)
-keymap("n", ";", ":", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -129,6 +128,47 @@ keymap("n", "<leader>o", ":NvimTreeToggle<cr>", opts)
 
 -- @Tagbar --
 keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
+
+-- @CMake --
+
+--
+-- 							*cmake-plug-mappings*
+-- Global <Plug> mappings~
+--
+-- <Plug>(CMakeGenerate)	Equivalent to `:CMakeGenerate`.
+--
+-- <Plug>(CMakeClean)	Equivalent to `:CMakeClean`.
+--
+-- <Plug>(CMakeBuild)	Equivalent to `:CMakeBuild`.
+--
+-- <Plug>(CMakeBuildTarget)
+-- 			Inserts `:CMakeBuild` in the command line, and leaves
+-- 			the cursor there.
+--
+-- <Plug>(CMakeInstall)	Equivalent to `:CMakeInstall`.
+--
+-- <Plug>(CMakeSwitch)	Inserts `:CMakeSwitch` in the command line, and leaves
+-- 			the cursor there.
+--
+-- <Plug>(CMakeOpen)	Equivalent to `:CMakeOpen`.
+--
+-- <Plug>(CMakeClose)	Equivalent to `:CMakeClose`.
+--
+-- <Plug>(CMakeStop)	Equivalent to `:CMakeStop`.
+--
+-- Example usage of the <Plug> mappings:
+-- >
+-- 	nmap <leader>cg <Plug>(CMakeGenerate)
+-- 	nmap <leader>cb <Plug>(CMakeBuild)
+-- 	nmap <leader>ci <Plug>(CMakeInstall)
+-- 	nmap <leader>cs <Plug>(CMakeSwitch)
+-- 	nmap <leader>cq <Plug>(CMakeClose)
+-- CMake console window key mappings (enabled by default)
+-- cg			Run `:CMakeGenerate`.
+-- cb			Run `:CMakeBuild`.
+-- ci			Run `:CMakeInstall`.
+-- cq			Close the CMake console window.
+-- <C-C>			Stop the running command.
 
 vim.cmd [[
   :hi VimwikiHeader1 guifg=#FF0000<CR>
