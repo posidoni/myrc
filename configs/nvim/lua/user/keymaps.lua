@@ -8,17 +8,10 @@ keymap("n", "<Space>", "<Nop>", { nowait = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
-
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
 -- Normal --
 keymap("n", "<ESC>", ":noh<CR>", opts)
 keymap("n", "<leader>q", ":q!<CR>", opts)
+keymap("n", "<leader>a", ":Alpha<CR>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -42,15 +35,6 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<Tab>", "<C-o>", opts)
 keymap("n", "<S-Tab>", "<C-i>", opts)
 
--- Insert --
--- Switching CTRL + W and <BS>
--- keymap("i", "<BS>", "<C-w>", opts)
--- keymap("i", "<C-w>", "<BS>", opts)
--- keymap("i", "<C-w>", "<C-BS>", opts)
-
--- Workaround for mapping CTRL + BS in terminal vim
--- https://vim.fandom.com/wiki/Map_Ctrl-Backspace_to_delete_previous_word
-
 vim.cmd [[
     noremap! <C-BS> <C-w>
     noremap! <C-h> <C-w>
@@ -62,13 +46,11 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Visual Block --
--- Move text up and down (J, K), insert space (P)
-keymap("v", "p", '"_dP', opts)
+-- Move text up and down (J, K)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
-
 -- Open terminal from N mode
 keymap("n", "<leader>t", ":vsplit term://zsh<CR>", opts)
 
@@ -111,7 +93,9 @@ keymap("i", "<Del>", "<Nop>", opts)
 keymap("n", "<leader>tc", ":VimwikiTOC<CR>", opts)
 
 -- Telescope --
-keymap("n", "<leader>y", ":Telescope <CR>", opts)
+keymap("n", "<leader>y",
+    "<cmd>lua require'telescope.builtin'.builtin(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+    opts)
 keymap("n", "<leader>g",
     "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
     , opts)
@@ -130,54 +114,16 @@ keymap("n", "<leader>o", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
 
 -- @CMake --
+keymap("n", "<F1>", ":make<cr>", opts)
+keymap("n", "<F2>", "<Plug>(CMakeGenerate)", opts)
+keymap("n", "<F3>", "<Plug>(CMakeBuild)", opts)
+keymap("n", "<F4>", ":copen<cr>", opts)
+keymap("n", "co", "<Plug>(CMakeOpen)", opts)
+keymap("n", "cc", "<Plug>(CMakeClose)", opts)
 
---
--- 							*cmake-plug-mappings*
--- Global <Plug> mappings~
---
--- <Plug>(CMakeGenerate)	Equivalent to `:CMakeGenerate`.
---
--- <Plug>(CMakeClean)	Equivalent to `:CMakeClean`.
---
--- <Plug>(CMakeBuild)	Equivalent to `:CMakeBuild`.
---
--- <Plug>(CMakeBuildTarget)
--- 			Inserts `:CMakeBuild` in the command line, and leaves
--- 			the cursor there.
---
--- <Plug>(CMakeInstall)	Equivalent to `:CMakeInstall`.
---
--- <Plug>(CMakeSwitch)	Inserts `:CMakeSwitch` in the command line, and leaves
--- 			the cursor there.
---
--- <Plug>(CMakeOpen)	Equivalent to `:CMakeOpen`.
---
--- <Plug>(CMakeClose)	Equivalent to `:CMakeClose`.
---
--- <Plug>(CMakeStop)	Equivalent to `:CMakeStop`.
---
--- Example usage of the <Plug> mappings:
--- >
--- 	nmap <leader>cg <Plug>(CMakeGenerate)
--- 	nmap <leader>cb <Plug>(CMakeBuild)
--- 	nmap <leader>ci <Plug>(CMakeInstall)
--- 	nmap <leader>cs <Plug>(CMakeSwitch)
--- 	nmap <leader>cq <Plug>(CMakeClose)
--- CMake console window key mappings (enabled by default)
--- cg			Run `:CMakeGenerate`.
--- cb			Run `:CMakeBuild`.
--- ci			Run `:CMakeInstall`.
--- cq			Close the CMake console window.
--- <C-C>			Stop the running command.
+-- @LSP_Diagnostics
 
 vim.cmd [[
-  :hi VimwikiHeader1 guifg=#FF0000<CR>
-  :hi VimwikiHeader2 guifg=#00FF00<CR>
-  :hi VimwikiHeader3 guifg=#0000FF<CR>
-  :hi VimwikiHeader4 guifg=#FF00FF<CR>
-  :hi VimwikiHeader5 guifg=#00FFFF<CR>
-  :hi VimwikiHeader6 guifg=#FFFF00<CR>
-
     nmap <leader>tlu <Plug>(toggle-lsp-diag-underline)
     nmap <leader>tls <Plug>(toggle-lsp-diag-signs)
     nmap <leader>tlv <Plug>(toggle-lsp-diag-vtext)

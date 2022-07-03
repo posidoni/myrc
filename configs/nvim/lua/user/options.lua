@@ -4,7 +4,7 @@ local options = {
     cmdheight = 2, -- more space in the neovim command line for displaying messages
     completeopt = { "menuone", "noselect" }, -- mostly just for cmp
     conceallevel = 0, -- so that `` is visible in markdown files
-    fileencoding = "utf-8", -- the encoding written to a file
+    fileencoding = "utf-16", -- the encoding written to a file
     hlsearch = true, -- highlight all matches on previous search pattern
     ignorecase = true, -- ignore case in search patterns
     mouse = "a", -- allow the mouse to be used in neovim
@@ -35,17 +35,18 @@ local options = {
     scrolloff = 10, -- is one of my fav
     sidescrolloff = 8,
     timeoutlen = 300, -- Very important setting. Experiment with it. 300 feels comfortable & usable
-    -- colorcolumn = "81",
+    colorcolumn = "81",
+    belloff = "all",
     spell = false,
     cursorline = true,
-    foldmethod = "manual", -- Folding is based on treesitter
+    foldmethod = "indent",
+    foldnestmax = 2,
+    foldenable = false,
     listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
 
     -- This setting must be set for Neovide
     -- Syntax: "fontname:h<size>"
     guifont = "FiraCode Nerd Font:h16",
-    belloff = "all",
-    langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz",
 }
 
 local g = vim.g

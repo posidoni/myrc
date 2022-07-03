@@ -55,8 +55,8 @@ end
 
 local function lsp_highlight_document(client)
     -- Set autocommands conditional on server_capabilities
-    local status_ok, illuminate = pcall(require, "illuminate")
-    if not status_ok then
+    local status_ok2, illuminate = pcall(require, "illuminate")
+    if not status_ok2 then
         return
     end
     illuminate.on_attach(client)
@@ -88,7 +88,12 @@ local function lsp_keymaps(bufnr)
         opts
     )
     vim.api.nvim_buf_set_keymap(bufnr, "n", "dn", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>da", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+    -- @Mikhail: this line is very important. By default LSP diagnostics (for some reason?) appear in location list
+    -- but it would be really clever to populate quickfix list with diagnotic.
+    -- for reference see:
+    --      :h vim.diagnostic.setqflist()
+    --      https://github.com/neovim/neovim/pull/14736
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.setqflist()<CR>", opts)
 end
 
 -- @Mikhail: this variable is needed by @formattingOnSave

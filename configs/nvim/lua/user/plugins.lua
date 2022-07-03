@@ -167,7 +167,7 @@ return packer.startup(function(use)
 
     -- @Navigation
     use 'christoomey/vim-tmux-navigator'
-    -- use 'akinsho/bufferline.nvim'
+    use 'akinsho/bufferline.nvim'
 
     -- @Debugging
     use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }

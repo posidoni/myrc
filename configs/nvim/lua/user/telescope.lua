@@ -16,14 +16,23 @@ telescope.setup {
     defaults = {
         -- Patterns use Lua regex syntax
         file_ignore_patterns = { ".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
-            "%.pdf", "%.mkv", "%.mp4", "%.zip", "%.exe", "%.png" },
-
+            "%.pdf", "%.mkv", "%.mp4", "%.zip", "%.exe", "%.png", "*/build/**" },
         selection_caret = "> ",
         prompt_prefix = "🔎 ",
         path_display = { "smart" },
         windblend = 0,
         intitial_mode = "insert",
         border = true,
+        vimgrep_arguments = {
+            "rg",
+            -- "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--trim" -- add this value
+        },
 
         mappings = {
             i = {
@@ -45,14 +54,15 @@ telescope.setup {
             },
 
             --[[
-     @Mikhail:
-     few remarks on my telescope workflow
-     the only option to quit telescope easily is from normal mode with esc
-     this is done deliberately to motivate me use normal mode in telescope more often,
-     since N-Telescope is extremely powerful
---]]
+             @Mikhail:
+             few remarks on my telescope workflow
+             the only option to quit telescope easily is from normal mode with esc
+             this is done deliberately to motivate me use normal mode in telescope more often,
+             since N-Telescope is extremely powerful
+            --]]
             n = {
                 ["<esc>"] = actions.close,
+                ['<C-d>'] = actions.delete_buffer,
                 ["<CR>"] = actions.select_default,
                 ["ss"] = actions.select_horizontal,
                 ["vv"] = actions.select_vertical,
@@ -63,7 +73,7 @@ telescope.setup {
 
                 -- @Mikhail:
                 -- This keybinding essentially saves selected files to the list to work with them later.
-                ["<leader>l"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["l"] = actions.send_selected_to_qflist + actions.open_qflist,
 
                 ["j"] = actions.move_selection_next,
                 ["k"] = actions.move_selection_previous,
@@ -85,7 +95,26 @@ telescope.setup {
         find_files = {
             theme = "dropdown",
             preview = false,
-            hidden = true
+            hidden = true,
+            sort_lastused = true,
+        },
+        builtin = {
+            theme = "dropdown",
+            preview = false,
+            hidden = true,
+            sort_lastused = true,
+            include_extensions = true,
+        },
+        buffers = {
+            show_all_buffers = true,
+            sort_lastused = true,
+            theme = "dropdown",
+            previewer = false,
+            mappings = {
+                n = {
+                    ["<BS>"] = actions.delete_buffer + actions.move_to_top
+                }
+            }
         },
     },
     extensions = {

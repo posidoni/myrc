@@ -77,7 +77,7 @@ nvim_tree.setup {
         change_dir = {
             -- @Mikhail: based on my workflow changing dirs feels better off
             -- If the buffer is not inside current tree, DO NOT change tree to this buffer's
-            enable = false,
+            enable = true,
             global = false,
             restrict_above_cwd = false,
         },

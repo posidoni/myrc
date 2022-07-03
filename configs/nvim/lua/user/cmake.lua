@@ -12,7 +12,7 @@ g.cmake_jump_on_completion = 0 -- Whether to jump to CMake console on completiti
 g.cmake_jump_on_error = 1 -- Jump to CMake console on error
 -- This makes CMAKE_EXPORT_COMPILE_COMMANDS = ON by default
 g.cmake_link_compile_commands = 1
-g.cmake_log_file = ''
+-- g.cmake_log_file = ''
 
 -- Defauilt build configuration on startup (CMAKE_BUILD_TYPE)
 -- Typical values: Debug, Release, RelWithDebInfo, MinSizeRel
@@ -33,6 +33,6 @@ g.cmake_root_markers = {
 -- this prevents total mess that is usually created by default CMake
 g.cmake_build_dir_location = "../build/"
 
-g.cmake_generate_options = '' -- :CMakeGenerate
-g.cmake_build_options = '' -- :CMakeBuild
-g.cmake_native_build_options = '' -- :CMakeBuild (to the native tool)
+-- g.cmake_generate_options = { '' } -- :CMakeGenerate
+-- g.cmake_build_options = { '' } -- :CMakeBuild
+-- g.cmake_native_build_options = { '' } -- :CMakeBuild (to the native tool)
