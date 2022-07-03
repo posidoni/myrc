@@ -148,8 +148,8 @@ M.on_attach = function(client, bufnr)
             callback = function()
                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
                 if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) == 0 then
-                    -- vim.lsp.buf.formatting_sync()
-                    vim.lsp.buf.format({ bufnr = bufnr })
+                    vim.lsp.buf.formatting_sync()
+                    -- vim.lsp.buf.format({ bufnr = bufnr })
                 else
                     vim.notify("Can't save current buffer! Error exists. Please, fix them first.")
                 end

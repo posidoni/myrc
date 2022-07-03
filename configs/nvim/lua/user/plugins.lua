@@ -142,9 +142,11 @@ return packer.startup(function(use)
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
     use 'antoinemadec/FixCursorHold.nvim'
     use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
-
+    use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+    require 'toggle_lsp_diagnostics'.init()
     -- @Telescope
     use "nvim-telescope/telescope.nvim"
+
 
     -- @Treesitter @TS
     use {

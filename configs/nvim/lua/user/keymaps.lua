@@ -137,4 +137,14 @@ vim.cmd [[
   :hi VimwikiHeader4 guifg=#FF00FF<CR>
   :hi VimwikiHeader5 guifg=#00FFFF<CR>
   :hi VimwikiHeader6 guifg=#FFFF00<CR>
+
+    nmap <leader>tlu <Plug>(toggle-lsp-diag-underline)
+    nmap <leader>tls <Plug>(toggle-lsp-diag-signs)
+    nmap <leader>tlv <Plug>(toggle-lsp-diag-vtext)
+    nmap <leader>tlp <Plug>(toggle-lsp-diag-update_in_insert)
+
+    nmap <leader>7  <Plug>(toggle-lsp-diag)
+    nmap <leader>tldd <Plug>(toggle-lsp-diag-default)
+    nmap <leader>tldo <Plug>(toggle-lsp-diag-off)
+    nmap <leader>tldf <Plug>(toggle-lsp-diag-on)
 ]]

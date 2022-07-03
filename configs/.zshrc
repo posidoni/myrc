@@ -42,6 +42,7 @@ alias vi="nvim"
 alias gvim="/Volumes/MISHA/Neovide"
 alias vimz="/usr/bin/vi"
 alias tmux="TERM=screen-256color-bce tmux -2"
+alias ctags="/Volumes/MISHA/mybrew/bin/ctags"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
@@ -97,6 +98,16 @@ install_brew() {
     echo "Installing valgrind for OS X..."
     brew tap LouisBrunner/valgrind
     brew install --HEAD LouisBrunner/valgrind/valgrind
+}
+
+install_brew_casks() {
+    echo "Installing brew casks ..."
+    brew install --cask telegram
+    brew install --cask fvim
+    brew install --cask obs
+    brew install --cask notion
+    brew install --cask notion-enhanced
+    brew install --cask neovide
 }
 
 # Asyncronous cleaner script
