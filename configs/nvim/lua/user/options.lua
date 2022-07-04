@@ -101,13 +101,16 @@ function DecreaseFontSize()
     vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
 end
 
-function ToggleFullScreen()
-    if vim.g.neovide_fullscreen == true then
-        vim.g.neovide_fullscreen = false
-    else
-        vim.g.neovide_fullscreen = true
-    end
-end
+vim.cmd [[
+    function Neovide_fullscreen()
+        if g:neovide_fullscreen == v:true
+            let g:neovide_fullscreen=v:false
+        else
+            let g:neovide_fullscreen=v:true
+        endif
+    endfunction
+    map <F11> :call Neovide_fullscreen()<cr>
+]]
 
 function SetFontSize(size)
     FontSize = size
