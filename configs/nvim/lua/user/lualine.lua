@@ -34,7 +34,7 @@ local mode = {
 local filename = {
     'filename',
     file_status = false, -- Displays file status (readonly status, modified status)
-    path = 0, -- 0: Just the filename
+    path = 3, -- 0: Just the filename
     -- 1: Relative path
     -- 2: Absolute path
     -- 3: Absolute path, with tilde as the home directory
@@ -82,10 +82,10 @@ local location = {
 lualine.setup({
     options = {
         icons_enabled = true,
-        theme = "auto",
+        theme = "palenight",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+        disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", 'qf' },
         always_divide_middle = true,
     },
     sections = {
