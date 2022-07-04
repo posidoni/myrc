@@ -82,7 +82,7 @@ keymap("v", "<Right>", "<Nop>", opts)
 -- Change font size
 -- @Mikhail: these bindings use custom lua
 -- functions that I've defined in @file options.lua
-keymap("n", "<leader>+", ":lua IncreaseFontSize()<cr>", opts)
+keymap("n", "<leader>=", ":lua IncreaseFontSize()<cr>", opts)
 keymap("n", "<leader>-", ":lua DecreaseFontSize()<cr>", opts)
 
 

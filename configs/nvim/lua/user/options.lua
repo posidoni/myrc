@@ -45,8 +45,26 @@ local options = {
 
     -- This setting must be set for Neovide
     -- Syntax: "fontname:h<size>"
-    guifont = "FiraCode Nerd Font:h14",
+}
 
+local get_os_type = function()
+    local tmp = os.execute('uname')
+    return tmp
+end
+
+vim.g.ostype = get_os_type()
+
+local fontSize = 15
+
+if vim.g.ostype == 'Linux' then
+    fontSize = 9
+end
+
+vim.opt.guifont = "Go Mono Nerd Font:h" .. fontSize
+
+vim.g.myfonts = {
+    'FiraCode Nerd Font',
+    'Go Mono Nerd Font'
 }
 
 local g = vim.g
@@ -59,21 +77,18 @@ g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullsc
 --- Input settings
 g.neovide_input_use_logo = true -- Redirects [S]uper key to Nvim (Win / Opt)
 g.neovide_silent = true
--- Cursor settings. Applicable only in Neovide
+g.neovide_cursor_antialiasing = true
+g.neovide_cursor_unfocused_outline_width = 0.125
+g.neovide_cursor_animation_length = 0.0
+g.neovide_cursor_trail_length = 0
+g.neovide_transparency = 0.80
+
 if g.neovide_silent == false then
     g.neovide_cursor_animation_length = 0.13
     g.neovide_cursor_trail_length = 0.8
-    g.neovide_cursor_antialiasing = true
-    g.neovide_cursor_unfocused_outline_width = 0.125
-end
-
--- @Mikhail:
--- let g:neovide_silent = v:true disables all neovide fancy cursor things
-if g.neovide_silent == true then
+else
     g.neovide_cursor_animation_length = 0.0
     g.neovide_cursor_trail_length = 0
-    g.neovide_cursor_antialiasing = true
-    g.neovide_cursor_unfocused_outline_width = 0.125
 end
 
 vim.opt.wildignore = { '*.o', '*.a', '__pycache__' }
@@ -100,17 +115,6 @@ function DecreaseFontSize()
     Fontsize = Fontsize - 1
     vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
 end
-
-vim.cmd [[
-    function Neovide_fullscreen()
-        if g:neovide_fullscreen == v:true
-            let g:neovide_fullscreen=v:false
-        else
-            let g:neovide_fullscreen=v:true
-        endif
-    endfunction
-    map <F11> :call Neovide_fullscreen()<cr>
-]]
 
 function SetFontSize(size)
     FontSize = size

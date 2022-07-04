@@ -82,10 +82,10 @@ import XMonad.Util.SpawnOnce
 import Colors.DoomOne
 
 myFont :: String
-myFont = "xft:FiraCode Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
+myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
 
 myModMask :: KeyMask
-myModMask = mod1Mask        -- Sets modkey to left <Alt>
+myModMask = mod1Mask        -- Sets modkey to super/windows key
 
 myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
@@ -93,12 +93,12 @@ myTerminal = "alacritty"    -- Sets default terminal
 myBrowser :: String
 myBrowser = "qutebrowser "  -- Sets qutebrowser as browser
 
--- myEmacs :: String
--- myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
+myEmacs :: String
+myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
 
 myEditor :: String
--- myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
-myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
+myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
+-- myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
@@ -125,15 +125,15 @@ myStartupHook = do
   spawnOnce "picom"
   spawnOnce "nm-applet"
   spawnOnce "volumeicon"
-  -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+  spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
 
   spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
   spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
 
-  -- spawnOnce "xargs xwallpaper --stretch < ~/myrc/wallpaper/"
+  spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
   -- spawnOnce "feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*"  -- feh set random wallpaper
-  spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
+  -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
   setWMName "LG3D"
 
 myNavigation :: TwoD a (Maybe a)
@@ -638,33 +638,34 @@ myKeys c =
   , ("M-u h", addName "mocp prev"                $ spawn "mocp --previous")
   , ("M-u <Space>", addName "mocp toggle pause"  $ spawn "mocp --toggle-pause")]
 
-  ^++^ subKeys "GridSelect"
-  -- , ("C-g g", addName "Select favorite apps"     $ runSelectedAction' defaultGSConfig gsCategories)
-  [ ("M-M1-<Return>", addName "Select favorite apps" $ spawnSelected'
-       $ gsGames ++ gsEducation ++ gsInternet ++ gsMultimedia ++ gsOffice ++ gsSettings ++ gsSystem ++ gsUtilities)
-  , ("M-M1-c", addName "Select favorite apps"    $ spawnSelected' gsCategories)
-  , ("M-M1-t", addName "Goto selected window"    $ goToSelected $ mygridConfig myColorizer)
-  , ("M-M1-b", addName "Bring selected window"   $ bringSelected $ mygridConfig myColorizer)
-  , ("M-M1-1", addName "Menu of games"           $ spawnSelected' gsGames)
-  , ("M-M1-2", addName "Menu of education apps"  $ spawnSelected' gsEducation)
-  , ("M-M1-3", addName "Menu of Internet apps"   $ spawnSelected' gsInternet)
-  , ("M-M1-4", addName "Menu of multimedia apps" $ spawnSelected' gsMultimedia)
-  , ("M-M1-5", addName "Menu of office apps"     $ spawnSelected' gsOffice)
-  , ("M-M1-6", addName "Menu of settings apps"   $ spawnSelected' gsSettings)
-  , ("M-M1-7", addName "Menu of system apps"     $ spawnSelected' gsSystem)
-  , ("M-M1-8", addName "Menu of utilities apps"  $ spawnSelected' gsUtilities)]
+  -- ^++^ subKeys "GridSelect"
+  -- -- , ("C-g g", addName "Select favorite apps"     $ runSelectedAction' defaultGSConfig gsCategories)
+  -- [ 
+  -- ("M-M1-<Return>", addName "Select favorite apps" $ spawnSelected'
+  --      $ gsGames ++ gsEducation ++ gsInternet ++ gsMultimedia ++ gsOffice ++ gsSettings ++ gsSystem ++ gsUtilities)
+  -- , ("M-M1-c", addName "Select favorite apps"    $ spawnSelected' gsCategories)
+  -- , ("M-M1-t", addName "Goto selected window"    $ goToSelected $ mygridConfig myColorizer)
+  -- , ("M-M1-b", addName "Bring selected window"   $ bringSelected $ mygridConfig myColorizer)
+  -- , ("M-M1-1", addName "Menu of games"           $ spawnSelected' gsGames)
+  -- , ("M-M1-2", addName "Menu of education apps"  $ spawnSelected' gsEducation)
+  -- , ("M-M1-3", addName "Menu of Internet apps"   $ spawnSelected' gsInternet)
+  -- , ("M-M1-4", addName "Menu of multimedia apps" $ spawnSelected' gsMultimedia)
+  -- , ("M-M1-5", addName "Menu of office apps"     $ spawnSelected' gsOffice)
+  -- , ("M-M1-6", addName "Menu of settings apps"   $ spawnSelected' gsSettings)
+  -- , ("M-M1-7", addName "Menu of system apps"     $ spawnSelected' gsSystem)
+  -- , ("M-M1-8", addName "Menu of utilities apps"  $ spawnSelected' gsUtilities)]
 
   -- Emacs (SUPER-e followed by a key)
-  -- ^++^ subKeys "Emacs"
-  -- [ ("M-e e", addName "Emacsclient Dashboard"    $ spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))
-  -- , ("M-e a", addName "Emacsclient EMMS (music)" $ spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")))
-  -- , ("M-e b", addName "Emacsclient Ibuffer"      $ spawn (myEmacs ++ ("--eval '(ibuffer)'")))
-  -- , ("M-e d", addName "Emacsclient Dired"        $ spawn (myEmacs ++ ("--eval '(dired nil)'")))
-  -- , ("M-e i", addName "Emacsclient ERC (IRC)"    $ spawn (myEmacs ++ ("--eval '(erc)'")))
-  -- , ("M-e n", addName "Emacsclient Elfeed (RSS)" $ spawn (myEmacs ++ ("--eval '(elfeed)'")))
-  -- , ("M-e s", addName "Emacsclient Eshell"       $ spawn (myEmacs ++ ("--eval '(eshell)'")))
-  -- , ("M-e v", addName "Emacsclient Vterm"        $ spawn (myEmacs ++ ("--eval '(+vterm/here nil)'")))
-  -- , ("M-e w", addName "Emacsclient EWW Browser"  $ spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")))]
+  ^++^ subKeys "Emacs"
+  [ ("M-e e", addName "Emacsclient Dashboard"    $ spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))
+  , ("M-e a", addName "Emacsclient EMMS (music)" $ spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")))
+  , ("M-e b", addName "Emacsclient Ibuffer"      $ spawn (myEmacs ++ ("--eval '(ibuffer)'")))
+  , ("M-e d", addName "Emacsclient Dired"        $ spawn (myEmacs ++ ("--eval '(dired nil)'")))
+  , ("M-e i", addName "Emacsclient ERC (IRC)"    $ spawn (myEmacs ++ ("--eval '(erc)'")))
+  , ("M-e n", addName "Emacsclient Elfeed (RSS)" $ spawn (myEmacs ++ ("--eval '(elfeed)'")))
+  , ("M-e s", addName "Emacsclient Eshell"       $ spawn (myEmacs ++ ("--eval '(eshell)'")))
+  , ("M-e v", addName "Emacsclient Vterm"        $ spawn (myEmacs ++ ("--eval '(+vterm/here nil)'")))
+  , ("M-e w", addName "Emacsclient EWW Browser"  $ spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")))]
 
   -- Multimedia Keys
   ^++^ subKeys "Multimedia keys"
