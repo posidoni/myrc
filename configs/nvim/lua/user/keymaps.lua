@@ -84,6 +84,8 @@ keymap("v", "<Right>", "<Nop>", opts)
 -- functions that I've defined in @file options.lua
 keymap("n", "<leader>+", ":lua IncreaseFontSize()<cr>", opts)
 keymap("n", "<leader>-", ":lua DecreaseFontSize()<cr>", opts)
+keymap("n", "<F11>", ":lua ToggleFullScreen()<cr>", opts)
+
 
 -- Disable <Backspace> & <Del>
 -- keymap("i", "<BS>", "<Nop>", opts)
