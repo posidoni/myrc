@@ -47,18 +47,18 @@ local options = {
     -- Syntax: "fontname:h<size>"
 }
 
-local get_os_type = function()
-    local tmp = os.execute('uname')
-    return tmp
-end
+-- local get_os_type = function()
+--     local tmp = os.execute('uname')
+--     return tmp
+-- end
+--
+-- vim.g.ostype = get_os_type()
 
-vim.g.ostype = get_os_type()
+local fontSize = 9
 
-local fontSize = 15
-
-if vim.g.ostype == 'Linux' then
-    fontSize = 9
-end
+-- if vim.g.ostype == 'Linux' then
+--     fontSize = 9
+-- end
 
 vim.opt.guifont = "Go Mono Nerd Font:h" .. fontSize
 
