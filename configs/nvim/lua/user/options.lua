@@ -45,7 +45,7 @@ local options = {
 
     -- This setting must be set for Neovide
     -- Syntax: "fontname:h<size>"
-    guifont = "FiraCode Nerd Font:h16",
+    guifont = "FiraCode Nerd Font:h14",
 
 }
 
