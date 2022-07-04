@@ -1,10 +1,11 @@
+#!/bin/bash
 # File: ZSH Config
 # Author: Mikhail Kuznetsov https://github.com/MikhailKuzntsov1
 # upd: 16/06/2022
 
 # Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color
-ZSH_THEME="af-magic"
+export ZSH_THEME="af-magic"
 
 # MacOS Specific config
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -22,16 +23,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi;
 
 # ENV config
-export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
-
 # ZSH config
-source $ZSH/oh-my-zsh.sh
 plugins=(
     git 
     docker
     tmux
+    zsh-vi-mode
 )
+# @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Aliases
 alias flash="cd /Volumes/MISHA"
@@ -39,7 +41,10 @@ alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
 alias vi="nvim"
+
 alias gvim="/Volumes/MISHA/Neovide --multigrid --nofork -- "
+alias neovide='neovide --multigrid --nofork -- '
+
 alias vimz="/usr/bin/vi"
 alias tmux="TERM=screen-256color-bce tmux -2"
 alias python="/Volumes/MISHA/brew/bin/python3"  
@@ -48,6 +53,8 @@ alias python3.9="/Volumes/MISHA/brew/bin/python3"
 alias python@3.9="/Volumes/MISHA/brew/bin/python3"  
 alias python@3="/Volumes/MISHA/brew/bin/python3"
 export PATH=$PATH:'/Users/posidoni/Library/Python/3.8/bin'
+export PATH=$PATH:"$HOME/.local/bin"
+export PATH="$PATH:$HOME/bin/"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
