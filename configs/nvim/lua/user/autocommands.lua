@@ -27,7 +27,6 @@ vim.cmd [[
       autocmd FileType vimwiki set filetype=md
     augroup end
 
-
   " This autocmd is for CMake util. It changes CWD to be near currently editing tab.
     function! OnTabEnter(path)
       if isdirectory(a:path)
@@ -78,7 +77,13 @@ local syncBuffers = {
     '*.md',
     '*.txt',
     '*.html',
-    '*.lua'
+    '*.lua',
+    'lua',
+    'md',
+    'markdown',
+    'vimwiki',
+    'html',
+    'txt'
 }
 
 vim.g.vim_git_sync_dirs = {
@@ -134,4 +139,22 @@ vim.api.nvim_create_autocmd(vim.g.push_events, {
     at the end of the development sessios (exiting Vim)',
     pattern = syncBuffers,
     callback = PushAll,
+})
+
+local CmakeGroupId = vim.api.nvim_create_augroup("CmakeGroup", {
+    clear = true
+})
+
+local syncPWDwithVim = function()
+    local currentPath = vim.fn.getcwd()
+    os.execute('export PWD=' .. currentPath)
+end
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    group = GitSyncGroupID,
+    desc = 'Changes $PWD each time cmake file is opened \
+    useful for CMake development to always be in the same \
+    dir as Cmake',
+    pattern = { "cmake" },
+    callback = syncPWDwithVim,
 })
