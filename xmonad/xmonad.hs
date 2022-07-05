@@ -1,4 +1,12 @@
-  -- Base
+-- @ImportantNotes_on_floating_windows
+-- floating windows always stay on top of tiled windows
+-- <M> + right mouse -> resize floating window
+-- floating windows respect <M>j <M>k workflow
+-- floating windows are non-resizable with <hjkl>,
+-- because they were resized by a mouse
+-- floating windows may be converted with <M>f <--> <M>t
+
+    -- Base
 import XMonad
 import System.Directory
 import System.IO (hClose, hPutStr, hPutStrLn)
@@ -321,7 +329,7 @@ myLayoutHook = avoidStruts
                       ||| wideAccordion
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-myWorkspaces = [" [1] main ", " [2] code ", " [3] notes ", " [4] web ", " [5] chat "," [6] etc "]
+myWorkspaces = [" [1] main ", " [2] code ", " [3] notes ", " [4] web ", " [5] chat "," [6] video ", " [7] etc "]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -345,10 +353,16 @@ myManageHook = composeAll
   , className =? "toolbar"         --> doFloat
   , className =? "Yad"             --> doCenterFloat
   , title =? "Oracle VM VirtualBox Manager"  --> doFloat
-  , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 4 )
-  , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 4 )
-  , className =? "Slack"   --> doShift ( myWorkspaces !! 5 )
-  , className =? "Telegram"   --> doShift ( myWorkspaces !! 5 )
+
+  -- @NOTE: arrays are indexed from [0], thus, workspace[4] is actually workspace number 5
+  -- usually @title should be used. It may be inspected initially from the xmobar
+  -- @className is used for 'class' of windows (i.e. all toolbars, etc.)
+  , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 3 )
+  , className =? "mpv"             --> doShift ( myWorkspaces !! 5 )
+  , title =? "Brave-browser"   --> doShift ( myWorkspaces !! 3 )
+  , title =? "qutebrowser"   --> doShift ( myWorkspaces !! 3 )
+  , title =? "Slack"   --> doShift ( myWorkspaces !! 4 )
+  , title =? "Telegram"   --> doShift ( myWorkspaces !! 4 )
   , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
   , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
   , isFullscreen -->  doFullFloat
@@ -533,24 +547,25 @@ myKeys c =
 
   -- Emacs (SUPER-e followed by a key)
   ^++^ subKeys "MyVim"
-  [ ("M-e e", addName "Vim Dashboard"    $ spawn (myVim ++ ("test.txt")))
-  , ("M-e a", addName "Vim EMMS (music)" $ spawn (myVim ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")))
-  , ("M-e b", addName "Vim Ibuffer"      $ spawn (myVim ++ ("--eval '(ibuffer)'")))
-  , ("M-e d", addName "Vim Dired"        $ spawn (myVim ++ ("--eval '(dired nil)'")))
-  , ("M-e i", addName "Vim ERC (IRC)"    $ spawn (myVim ++ ("--eval '(erc)'")))
-  , ("M-e n", addName "Vim Elfeed (RSS)" $ spawn (myVim ++ ("--eval '(elfeed)'")))
-  , ("M-e s", addName "Vim Eshell"       $ spawn (myVim ++ ("--eval '(eshell)'")))
-  , ("M-e v", addName "Vim Vterm"        $ spawn (myVim ++ ("--eval '(+vterm/here nil)'")))
-  , ("M-e w", addName "Vim EWW Browser"  $ spawn (myVim ++ ("--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")))]
+  [ ("M-e e", addName "Vim Dashboard"    $ spawn myVim)
+  , ("M-e w", addName "Vim Wiki"  $ spawn (myVim ++ ("~/Obsidian/index.md")))
+  -- , ("M-e a", addName "Vim EMMS (music)" $ spawn (myVim ++ ("")))
+  -- , ("M-e b", addName "Vim Ibuffer"      $ spawn (myVim ++ ("")))
+  -- , ("M-e d", addName "Vim Dired"        $ spawn (myVim ++ ("")))
+  -- , ("M-e i", addName "Vim ERC (IRC)"    $ spawn (myVim ++ ("")))
+  -- , ("M-e n", addName "Vim Elfeed (RSS)" $ spawn (myVim ++ ("")))
+  -- , ("M-e s", addName "Vim Eshell"       $ spawn (myVim ++ ("")))
+  -- , ("M-e v", addName "Vim Vterm"        $ spawn (myVim ++ ("")))
+  ]
 
   -- Multimedia Keys
   ^++^ subKeys "Multimedia keys"
   [ ("<XF86AudioPlay>", addName "mocp play"           $ spawn "mocp --play")
   , ("<XF86AudioPrev>", addName "mocp next"           $ spawn "mocp --previous")
   , ("<XF86AudioNext>", addName "mocp prev"           $ spawn "mocp --next")
-  , ("<XF86AudioMute>", addName "Toggle audio mute"   $ spawn "amixer set Master toggle")
-  , ("<XF86AudioLowerVolume>", addName "Lower vol"    $ spawn "amixer set Master 5%- unmute")
-  , ("<XF86AudioRaiseVolume>", addName "Raise vol"    $ spawn "amixer set Master 5%+ unmute")
+  , ("<XF86AudioMute>", addName "Toggle audio mute"   $ spawn "pamixer set Master toggle")
+  , ("<XF86AudioLowerVolume>", addName "Lower vol"    $ spawn "pamixer set Master 5%- unmute")
+  , ("<XF86AudioRaiseVolume>", addName "Raise vol"    $ spawn "pamixer set Master 5%+ unmute")
   , ("<XF86HomePage>", addName "Open home page"       $ spawn (myBrowser ++ " https://www.youtube.com/c/DistroTube"))
   , ("<XF86Search>", addName "Web search (dmscripts)" $ spawn "dm-websearch")
   , ("<XF86Mail>", addName "Email client"             $ runOrRaise "thunderbird" (resource =? "thunderbird"))
