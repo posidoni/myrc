@@ -100,6 +100,11 @@ keymap("n", "<leader>y",
 keymap("n", "<leader>g",
     "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
     , opts)
+
+
+keymap("n", "<leader><leader>",
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
+    , opts)
 keymap("n", "<leader>d",
     "<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
     , opts)

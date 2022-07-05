@@ -33,9 +33,9 @@ logout_locker='slock'
 
 # include -p in standard dmenu as we use prompts by default
 case "${0##*-}" in
-#  "colpick") DMENU="dmenu -i -p";;
-#  "confedit") DMENU="dmenu -i -l 30 -p";;
-#  "youtube") DMBROWSER="firefox";;
+ "colpick") DMENU="dmenu -i -p";;
+ "confedit") DMENU="dmenu -i -l 30 -p";;
+ "youtube") DMBROWSER="firefox";;
   *);;
 esac
 
@@ -136,7 +136,6 @@ declare -A websearch
 # Search Engines
 websearch[duckduckgo]="https://duckduckgo.com/?q="
 websearch[google]="https://www.google.com/search?q="
-websearch[yandex]="https://yandex.com/search/?text="
 # Information/News
 websearch[wikipedia]="https://en.wikipedia.org/w/index.php?search="
 websearch[youtube]="https://www.youtube.com/results?search_query="
@@ -158,6 +157,7 @@ websearch[stackoverflow]="https://stackoverflow.com/search?q="
 
 declare -A youtube_channels
 youtube_channels[distrotube]="https://www.youtube.com/c/DistroTube/featured"
+youtube_channels[Andrey_Arbenin]="https://www.youtube.com/c/ANDREYARBENIN666/featured"
 
 # dm-radio config
 # Your list of online radio stations for the dm-radio script.
@@ -180,7 +180,6 @@ colpick_list[cyan]="#8be9fd"
 colpick_list[white]="#f1f1f0"
 colpick_list[orange]="#ffb86c"
 colpick_list[purple]="#bd9cf9"
-
 
 
 # dm-translate currently supports two translation services, LibreTranslate and Lingva Translate.
