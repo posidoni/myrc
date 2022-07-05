@@ -72,7 +72,7 @@ note_dir="${HOME}/.config/dmscripts/dmnote"
 
 # dm-confedit
 declare -A confedit_list
-confedit_list[confedit]="$HOME/.config/dmscripts/config"
+confedit_list[dmscripts]="$HOME/.config/dmscripts/config"
 confedit_list[alacritty]="$HOME/.config/alacritty/alacritty.yml"
 confedit_list[awesome]="$HOME/.config/awesome/rc.lua"
 confedit_list[bash]="$HOME/.bashrc"
@@ -113,19 +113,19 @@ confedit_list[zsh]="$HOME/.zshrc"
 
 # dm-reddit config
 declare -a reddit_list=(
-"r/archlinux"
-"r/bash"
-"r/commandline"
-"r/emacs"
-"r/freesoftware"
-"r/linux"
-"r/linux4noobs"
-"r/linuxmasterrace"
-"r/linuxquestions"
-"r/suckless"
-"r/Ubuntu"
-"r/unixporn"
-"r/vim"
+    "r/archlinux"
+    "r/bash"
+    "r/commandline"
+    "r/emacs"
+    "r/freesoftware"
+    "r/linux"
+    "r/linux4noobs"
+    "r/linuxmasterrace"
+    "r/linuxquestions"
+    "r/suckless"
+    "r/Ubuntu"
+    "r/unixporn"
+    "r/vim"
 )
 
 # Search engine config 

@@ -320,14 +320,14 @@ myLayoutHook = avoidStruts
     myDefaultLayout = withBorder myBorderWidth tall
                       ||| magnify
                       ||| noBorders monocle
-                      ||| floats
+                      -- ||| floats
                       ||| noBorders tabs
                       ||| grid
                       ||| spirals
                       ||| threeCol
                       ||| threeRow
                       ||| tallAccordion
-                      ||| wideAccordion
+                     ||| wideAccordion
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces = [" [1] main ", " [2] code ", " [3] notes ", " [4] web ", " [5] chat "," [6] video ", " [7] etc "]
@@ -447,13 +447,12 @@ myKeys c =
   -- see yay -S dmscripts-git
   ^++^ subKeys "Dmenu scripts"
   [ ("M-y", addName "Launcher"     $ spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" ") 
-  -- , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds") 
-  -- , ("M-p b", addName "Set background"         $ spawn "dm-setbg") 
-  -- , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme")
-  -- , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
-  -- , ("M-p n", addName "Store and copy notes"   $ spawn "dm-note")
-  -- , ("M-p p", addName "Passmenu"               $ spawn "passmenu -p \"Pass: \"")
   , ("M-p e", addName "Edit config files"      $ spawn "dm-confedit")
+  -- Duplication of binding is intentional. DM-Hub must be
+  -- as easily accessible as possible
+  , ("M-p p", addName "Hub"                    $ spawn "dm-hub")
+  , ("M-p M-p", addName "Hub"                  $ spawn "dm-hub")
+  , ("M-p y", addName "Youtube"                $ spawn "dm-youtube")
   , ("M-p i", addName "Take a screenshot"      $ spawn "dm-maim")
   , ("M-p k", addName "Kill processes"         $ spawn "dm-kill")
   , ("M-p m", addName "View manpages"          $ spawn "dm-man")
@@ -461,6 +460,12 @@ myKeys c =
   , ("M-p q", addName "Logout Menu"            $ spawn "dm-logout")
   , ("M-p r", addName "Listen to online radio" $ spawn "dm-radio")
   , ("M-p s", addName "Search various engines" $ spawn "dm-websearch")
+  -- , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds") 
+  -- , ("M-p b", addName "Set background"         $ spawn "dm-setbg") 
+  -- , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme")
+  -- , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
+  -- , ("M-p n", addName "Store and copy notes"   $ spawn "dm-note")
+  -- , ("M-p p", addName "Passmenu"               $ spawn "passmenu -p \"Pass: \"")
   -- , ("M-p t", addName "Translate text"         $ spawn "dm-translate")
   ]
 
