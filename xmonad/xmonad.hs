@@ -446,9 +446,9 @@ myKeys c =
   -- see yay -S dmscripts-git
   ^++^ subKeys "Dmenu scripts"
   [ ("M-y", addName "Launcher"     $ spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" ") 
-  , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds") 
-  , ("M-p b", addName "Set background"         $ spawn "dm-setbg") 
-  , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme") 
+  -- , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds") 
+  -- , ("M-p b", addName "Set background"         $ spawn "dm-setbg") 
+  , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme")
   , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
   , ("M-p e", addName "Edit config files"      $ spawn "dm-confedit")
   , ("M-p i", addName "Take a screenshot"      $ spawn "dm-maim")
