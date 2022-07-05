@@ -430,7 +430,8 @@ myKeys c =
   , ("M-S-<Page_Down>", addName "Move window to prev WS" $ shiftTo Prev nonNSP >> moveTo Prev nonNSP)]
 
   ^++^ subKeys "Window navigation"
-  [ ("M-j", addName "Move focus to next window"                $ windows W.focusDown)
+  [ ("M-<Tab>", addName "Move focus to next window"                $ windows W.focusDown)
+  , ("M-j", addName "Move focus to next window"                $ windows W.focusDown)
   , ("M-k", addName "Move focus to prev window"                $ windows W.focusUp)
   , ("M-m", addName "Move focus to master window"              $ windows W.focusMaster)
   , ("M-S-j", addName "Swap focused window with next window"   $ windows W.swapDown)
@@ -448,29 +449,32 @@ myKeys c =
   [ ("M-y", addName "Launcher"     $ spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" ") 
   -- , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds") 
   -- , ("M-p b", addName "Set background"         $ spawn "dm-setbg") 
-  , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme")
-  , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
+  -- , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme")
+  -- , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
+  -- , ("M-p n", addName "Store and copy notes"   $ spawn "dm-note")
+  -- , ("M-p p", addName "Passmenu"               $ spawn "passmenu -p \"Pass: \"")
   , ("M-p e", addName "Edit config files"      $ spawn "dm-confedit")
   , ("M-p i", addName "Take a screenshot"      $ spawn "dm-maim")
   , ("M-p k", addName "Kill processes"         $ spawn "dm-kill")
   , ("M-p m", addName "View manpages"          $ spawn "dm-man")
-  , ("M-p n", addName "Store and copy notes"   $ spawn "dm-note")
   , ("M-p o", addName "Browser bookmarks"      $ spawn "dm-bookman")
-  , ("M-p p", addName "Passmenu"               $ spawn "passmenu -p \"Pass: \"")
   , ("M-p q", addName "Logout Menu"            $ spawn "dm-logout")
   , ("M-p r", addName "Listen to online radio" $ spawn "dm-radio")
   , ("M-p s", addName "Search various engines" $ spawn "dm-websearch")
-  , ("M-p t", addName "Translate text"         $ spawn "dm-translate")]
+  -- , ("M-p t", addName "Translate text"         $ spawn "dm-translate")
+  ]
 
   ^++^ subKeys "Favorite programs"
   [ ("M-<Return>", addName "Launch terminal"   $ spawn (myTerminal))
   , ("M-b", addName "Launch web browser"       $ spawn (myBrowser))
-  , ("M-M1-h", addName "Launch htop"           $ spawn (myTerminal ++ " -e htop"))]
+  -- , ("M-M1-h", addName "Launch htop"           $ spawn (myTerminal ++ " -e htop"))
+  ]
 
 
   -- Switch layouts
   ^++^ subKeys "Switch layouts"
-  [ ("M-<Tab>", addName "Switch to next layout"   $ sendMessage NextLayout)
+  [ 
+  ("M4-<Tab>", addName "Switch to next layout"   $ sendMessage NextLayout)
   , ("M-<Space>", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)]
 
   -- Window resizing
