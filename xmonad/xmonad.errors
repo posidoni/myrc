@@ -1,0 +1,22 @@
+
+xmonad.hs:553:5: error:
+    • Couldn't match expected type: (String, NamedAction)
+                  with actual type: (String, NamedAction, X ())
+    • In the expression:
+        ("M-e e", addName "Vim Dashboard" $ spawn myVim, 
+         shiftTo Prev nonNSP >> moveTo Prev nonNSP)
+      In the second argument of ‘subKeys’, namely
+        ‘[("M-e e", addName "Vim Dashboard" $ spawn myVim, 
+           shiftTo Prev nonNSP >> moveTo Prev nonNSP),
+          ("M-e w", 
+           addName "Vim Wiki" $ spawn (myVim ++ ("~/Obsidian/index.md")))]’
+      In the second argument of ‘(^++^)’, namely
+        ‘subKeys
+           "MyVim"
+           [("M-e e", addName "Vim Dashboard" $ spawn myVim, 
+             shiftTo Prev nonNSP >> moveTo Prev nonNSP),
+            ("M-e w", 
+             addName "Vim Wiki" $ spawn (myVim ++ ("~/Obsidian/index.md")))]’
+    |
+553 |   [ ("M-e e", addName "Vim Dashboard"    $ spawn myVim, shiftTo Prev nonNSP >> moveTo Prev nonNSP)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

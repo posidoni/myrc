@@ -103,7 +103,8 @@ myBrowser = "qutebrowser "  -- Sets qutebrowser as browser
 
 myVim :: String
 -- myVim = "macsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
-myVim = "neovide "
+-- myVim = "neovide "
+myVim = myTerminal ++ " -e nvim "
 
 myEditor :: String
 -- myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
@@ -544,6 +545,8 @@ myKeys c =
   -- , ("M-M1-6", addName "Menu of settings apps"   $ spawnSelected' gsSettings)
   -- , ("M-M1-7", addName "Menu of system apps"     $ spawnSelected' gsSystem)
   -- , ("M-M1-8", addName "Menu of utilities apps"  $ spawnSelected' gsUtilities)]
+
+  -- , ("M-S-9", addName "Send to workspace 9"    $ (windows $ W.shift $ myWorkspaces !! 8))]
 
   -- Emacs (SUPER-e followed by a key)
   ^++^ subKeys "MyVim"
