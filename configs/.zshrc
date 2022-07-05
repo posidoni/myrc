@@ -1,47 +1,66 @@
 #!/bin/bash
 # File: ZSH Config
 # Author: Mikhail Kuznetsov https://github.com/MikhailKuzntsov1
-# upd: 16/06/2022
+# upd: 05 July 2022
 
-# Set colors to match iTerm2 Terminal Colors
+
+## ENV Configuration
 export TERM=xterm-256color
 export ZSH_THEME="af-magic"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/Applications" ] ;
+  then PATH="$HOME/Applications:$PATH"
+fi
+main_editor="Vim"
+
+if [[ "$main_editor" == "Vim" ]]; then
+    export EDITOR="nvim"
+    export VISUAL="neovide"
+    bindkey -v
+else
+    export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
+    export VISUAL="emacsclient -c -a emacs"           # $VISUAL use Emacs in GUI mode
+fi;
 
 # MacOS Specific config
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    export BREW=/Volumes/MISHA/mybrew
-    export BREW_BIN=$BREW/bin
-    source $HOME/.brew_packages.zsh
-    source $HOME/.brewconfig.zsh
+    BREW=/Volumes/MISHA/mybrew
+    BREW_BIN=$BREW/bin
+    source "$HOME"/.brew_packages.zsh
+    source "$HOME"/.brewconfig.zsh
     # Turns 'press & hold OS X' false for VSCode
     defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
     # Prints available space
-    df -H | grep $HOME | awk '{printf("\t\t\t\t\tAvailable %s\t\n"), $4}'
-    export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
-    export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-    export PATH=$PATH:$BREW:$BREW_BIN
+    df -H | grep "$HOME" | awk "{printf('\t\t\t\t\tAvailable %s\t\n\'), $4}"
+    PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
+    PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+    PATH=$PATH:$BREW:$BREW_BIN
 
     # Os X specific aliases
     alias flash="cd /Volumes/MISHA"
     alias gvim="/Volumes/MISHA/Neovide --multigrid --nofork -- "
-    alias python="/Volumes/MISHA/brew/bin/python3"  
-    alias python3="/Volumes/MISHA/brew/bin/python3"  
-    alias python3.9="/Volumes/MISHA/brew/bin/python3"  
-    alias python@3.9="/Volumes/MISHA/brew/bin/python3"  
-    alias python@3="/Volumes/MISHA/brew/bin/python3"
-    export PATH=$PATH:'/Users/posidoni/Library/Python/3.8/bin'
+    PATH=$PATH:'/Users/posidoni/Library/Python/3.8/bin'
 fi;
 
-# ENV config
-export EDITOR="nvim"
 # ZSH config
-plugins=(
-    git 
+export plugins=(
+    git
     docker
     tmux
+    gpg-agent # enables GPG agent 
 )
+
 # @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
+source "$HOME"/.oh-my-zsh/oh-my-zsh.sh
 export ZSH="$HOME/.oh-my-zsh"
 
 # Aliases
@@ -51,18 +70,83 @@ alias vim="nvim"
 alias vi="nvim"
 alias neovide='neovide --multigrid --nofork -- '
 alias vimz="/usr/bin/vi"
-alias tmux="TERM=screen-256color-bce tmux -2"
-export PATH=$PATH:"$HOME/.local/bin"
-export PATH="$PATH:$HOME/bin/"
+alias tmux="tmux -2"
+
 
 # CLI file manager alias
 alias rr="ranger"
 alias rrr="ranger"
 
+alias em="/usr/bin/emacs -nw"
+alias emacs="emacsclient -c -a 'emacs'"
+alias doomsync="~/.emacs.d/bin/doom sync"
+alias doomdoctor="~/.emacs.d/bin/doom doctor"
+alias doomupgrade="~/.emacs.d/bin/doom upgrade"
+alias doompurge="~/.emacs.d/bin/doom purge"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+
+# adding flags
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
+alias vifm='./.config/vifm/scripts/vifmrun'
+alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
+alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
+
+# ps
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psmem='ps auxf | sort -nr -k 4'
+alias pscpu='ps auxf | sort -nr -k 3'
+
+# Merge Xresources
+alias merge='xrdb -merge ~/.Xresources'
+
+# git
+alias addup='git add -u'
+alias addall='git add .'
+alias branch='git branch'
+alias checkout='git checkout'
+alias clone='git clone'
+alias commit='git commit -m'
+alias fetch='git fetch'
+alias pull='git pull origin'
+alias push='git push origin'
+alias tag='git tag'
+alias newtag='git tag -a'
+
+# get error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+# gpg encryption
+# verify signature for isos
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+# receive the key of a developer
+alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+
+# youtube-dl
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
     for plugin in ${code_plugins[@]}; do
-        ( code --install-extension $plugin > /dev/null & )
+        ( code --install-extension "$plugin" > /dev/null & )
     done
 }
 
@@ -125,6 +209,48 @@ install_brew_casks() {
     brew install --cask neovide
 }
 
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+
+### Function extract for common file formats ###
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+ else
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "extract: '$n' - unknown archive method"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - file does not exist"
+          return 1
+      fi
+    done
+fi
+}
+
+IFS=$SAVEIFS
 # Asyncronous cleaner script
 ccleaner() {
     find ~/ -name ".DS_Store" -print -delete 2>&1 > /dev/null  2>&1 > /dev/null &

@@ -1,7 +1,7 @@
 #Alacritty:
 
 env:
-  TERM: alacritty
+  TERM: xterm
 
 window:
   opacity: 0.8
@@ -25,7 +25,7 @@ font:
   bold_italic:
     family: FiraCode Nerd Font Mono
 
-  size: 9
+  size: 15
   offset:
     x: 0
     y: 1
@@ -86,9 +86,7 @@ key_bindings:
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
-  - { key: V, mods: Control, action: Paste }
   - { key: F11, mods: None, action: ToggleFullscreen }
-
 url:
   launcher:
     program: xdg-open

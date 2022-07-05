@@ -97,12 +97,14 @@ PullAll = function()
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         vim.fn.system("git -C " .. dir .. " pull origin " .. vim.g.vim_git_sync_branch .. " ")
     end
+    vim.fn.system('notify-send "Pulled from all repositories ..."')
 end
 
 CommitAll = function()
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         vim.fn.system("git -C " .. dir .. " commit -am \'" .. vim.g.vim_sync_commit_msg .. "\' ")
     end
+    vim.fn.system('notify-send "Comitted changes to repositories ..."')
 end
 -- asdfasd
 PushAll = function()
@@ -111,6 +113,8 @@ PushAll = function()
     for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
         vim.fn.system("git -C " .. dir .. " push origin " .. vim.g.vim_git_sync_branch .. " ")
     end
+
+    vim.fn.system('notify-send "Pushed changes to repositories"')
 end
 
 local GitSyncGroupID = vim.api.nvim_create_augroup("VimGitSync", {
@@ -143,18 +147,4 @@ vim.api.nvim_create_autocmd(vim.g.push_events, {
 
 local CmakeGroupId = vim.api.nvim_create_augroup("CmakeGroup", {
     clear = true
-})
-
-local syncPWDwithVim = function()
-    local currentPath = vim.fn.getcwd()
-    os.execute('export PWD=' .. currentPath)
-end
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    group = GitSyncGroupID,
-    desc = 'Changes $PWD each time cmake file is opened \
-    useful for CMake development to always be in the same \
-    dir as Cmake',
-    pattern = { "cmake" },
-    callback = syncPWDwithVim,
 })
