@@ -185,12 +185,12 @@ c.downloads.location.directory = '~/Downloads'
 #   - never: Always hide the tab bar.
 #   - multiple: Hide the tab bar if only one tab is open.
 #   - switching: Show the tab bar when switching tabs.
-c.tabs.show = 'always'
+c.tabs.show = 'multiple'
 
 # Setting default page for when opening new tabs or new windows with
 # commands like :open -t and :open -w .
-c.url.default_page = 'https://distro.tube/'
-c.url.start_pages = 'https://distro.tube/'
+c.url.default_page = 'https://github.com/MikhailKuzntsov1'
+c.url.start_pages = 'https://github.com/MikhailKuzntsov1'
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -345,7 +345,7 @@ c.colors.tabs.pinned.selected.even.bg = '#282c34'
 # font setting, it's replaced with the fonts listed here. If set to an
 # empty value, a system-specific monospace default is used.
 # Type: List of Font, or Font
-c.fonts.default_family = '"Source Code Pro"'
+c.fonts.default_family = '"Go Mono Nerd Font"'
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are
@@ -356,11 +356,11 @@ c.fonts.default_size = '11pt'
 
 # Font used in the completion widget.
 # Type: Font
-c.fonts.completion.entry = '11pt "Source Code Pro"'
+c.fonts.completion.entry = '11pt "Go Mono Nerd Font"'
 
 # Font used for the debugging console.
 # Type: Font
-c.fonts.debug_console = '11pt "Source Code Pro"'
+c.fonts.debug_console = '11pt "Go Mono Nerd Font"'
 
 # Font used for prompts.
 # Type: Font
@@ -368,7 +368,7 @@ c.fonts.prompts = 'default_size sans-serif'
 
 # Font used in the statusbar.
 # Type: Font
-c.fonts.statusbar = '11pt "Source Code Pro"'
+c.fonts.statusbar = '11pt "Go Mono Nerd Font"'
 
 # Bindings to use dmenu rather than qutebrowser's builtin search.
 #config.bind('o', 'spawn --userscript dmenu-open')
@@ -376,7 +376,7 @@ c.fonts.statusbar = '11pt "Source Code Pro"'
 
 # Bindings for normal mode
 config.bind('M', 'hint links spawn mpv {hint-url}')
-config.bind('Z', 'hint links spawn st -e youtube-dl {hint-url}')
+config.bind('Z', 'hint links spawn st -e yt-dlp {hint-url}')
 config.bind('t', 'set-cmd-text -s :open -t')
 config.bind('xb', 'config-cycle statusbar.show always never')
 config.bind('xt', 'config-cycle tabs.show always never')

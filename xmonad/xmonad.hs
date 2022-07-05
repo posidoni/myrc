@@ -127,13 +127,16 @@ myStartupHook = do
   spawnOnce "volumeicon"
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
 
-  spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
+  -- @Note: conky is a system monitoring instument. Look kind of fine, but for small monitors takes too much space
+  -- spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
   spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
 
+  -- @Wallpaper configuration
+  -- Only one program must be chosen. Below are some alternatives.
+  spawnOnce "nitrogen --restore &"
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
   -- spawnOnce "feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*"  -- feh set random wallpaper
-  spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
   setWMName "LG3D"
 
 myNavigation :: TwoD a (Maybe a)
@@ -372,14 +375,17 @@ showKeybindings x = addName "Show Keybindings" $ io $ do
 
 myKeys :: XConfig l0 -> [((KeyMask, KeySym), NamedAction)]
 myKeys c =
-  --(subtitle "Custom Keys":) $ mkNamedKeymap c $
+
+  -- @Essential:
+    -- <Meta> q: Close current window
+    -- <Meta><Shift> q: Close all windows on this workspace
   let subKeys str ks = subtitle' str : mkNamedKeymap c ks in
   subKeys "Xmonad Essentials"
-  [ ("M-C-r", addName "Recompile XMonad"       $ spawn "xmonad --recompile")
-  , ("M-S-r", addName "Restart XMonad"         $ spawn "xmonad --restart")
-  , ("M-S-q", addName "Quit XMonad"            $ sequence_ [spawn (mySoundPlayer ++ shutdownSound), io exitSuccess])
-  , ("M-S-c", addName "Kill focused window"    $ kill1)
-  , ("M-S-a", addName "Kill all windows on WS" $ killAll)]
+  [ ("M-C-r", addName "Recompile XMonad"       $ spawn "xmonad --recompile && xmonad --restart")
+  -- , ("M-S-r", addName "Restart XMonad"         $ spawn "xmonad --restart")
+  -- , ("", addName "Quit XMonad"            $ sequence_ [spawn (mySoundPlayer ++ shutdownSound), io exitSuccess])
+  , ("M-q", addName "Kill focused window"    $ kill1)
+  , ("M-S-q", addName "Kill all windows on WS" $ killAll)]
 
   ^++^ subKeys "Switch to workspace"
   [ ("M-1", addName "Switch to workspace 1"    $ (windows $ W.greedyView $ myWorkspaces !! 0))
@@ -406,7 +412,10 @@ myKeys c =
   ^++^ subKeys "Move window to WS and go there"
   [ ("M-S-<Page_Up>", addName "Move window to next WS"   $ shiftTo Next nonNSP >> moveTo Next nonNSP)
   , ("M-S-<Page_Down>", addName "Move window to prev WS" $ shiftTo Prev nonNSP >> moveTo Prev nonNSP)]
-^++^ subKeys "Window navigation" [ ("M-j", addName "Move focus to next window"                $ windows W.focusDown) , ("M-k", addName "Move focus to prev window"                $ windows W.focusUp)
+
+  ^++^ subKeys "Window navigation"
+  [ ("M-j", addName "Move focus to next window"                $ windows W.focusDown)
+  , ("M-k", addName "Move focus to prev window"                $ windows W.focusUp)
   , ("M-m", addName "Move focus to master window"              $ windows W.focusMaster)
   , ("M-S-j", addName "Swap focused window with next window"   $ windows W.swapDown)
   , ("M-S-k", addName "Swap focused window with prev window"   $ windows W.swapUp)
@@ -420,8 +429,12 @@ myKeys c =
   -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
   -- see yay -S dmscripts-git
   ^++^ subKeys "Dmenu scripts"
-  [ ("M-y", addName "LauncherEC    $ spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" ")
- , ("M-p e", addName "Edit config files"      $ spawn "dm-confedit")
+  [ ("M-y", addName "Launcher"     $ spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" ") 
+  , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds") 
+  , ("M-p b", addName "Set background"         $ spawn "dm-setbg") 
+  , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme") 
+  , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
+  , ("M-p e", addName "Edit config files"      $ spawn "dm-confedit")
   , ("M-p i", addName "Take a screenshot"      $ spawn "dm-maim")
   , ("M-p k", addName "Kill processes"         $ spawn "dm-kill")
   , ("M-p m", addName "View manpages"          $ spawn "dm-man")
@@ -434,7 +447,13 @@ myKeys c =
   , ("M-p t", addName "Translate text"         $ spawn "dm-translate")]
 
   ^++^ subKeys "Favorite programs"
-  [ ("M-<Return>", addName "Launch terminal"   $ spawn (myTerminal)) , ("M-b", addName "Launch web browser"       $ spawn (myBrowser))] -- Switch layouts ^++^ subKeys "Switch layouts"
+  [ ("M-<Return>", addName "Launch terminal"   $ spawn (myTerminal))
+  , ("M-b", addName "Launch web browser"       $ spawn (myBrowser))
+  , ("M-M1-h", addName "Launch htop"           $ spawn (myTerminal ++ " -e htop"))]
+
+
+  -- Switch layouts
+  ^++^ subKeys "Switch layouts"
   [ ("M-<Tab>", addName "Switch to next layout"   $ sendMessage NextLayout)
   , ("M-<Space>", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)]
 

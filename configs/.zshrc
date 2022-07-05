@@ -20,6 +20,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
     export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     export PATH=$PATH:$BREW:$BREW_BIN
+
+    # Os X specific aliases
+    alias flash="cd /Volumes/MISHA"
+    alias gvim="/Volumes/MISHA/Neovide --multigrid --nofork -- "
+    alias python="/Volumes/MISHA/brew/bin/python3"  
+    alias python3="/Volumes/MISHA/brew/bin/python3"  
+    alias python3.9="/Volumes/MISHA/brew/bin/python3"  
+    alias python@3.9="/Volumes/MISHA/brew/bin/python3"  
+    alias python@3="/Volumes/MISHA/brew/bin/python3"
+    export PATH=$PATH:'/Users/posidoni/Library/Python/3.8/bin'
 fi;
 
 # ENV config
@@ -35,25 +45,19 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 export ZSH="$HOME/.oh-my-zsh"
 
 # Aliases
-alias flash="cd /Volumes/MISHA"
 alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
 alias vi="nvim"
-
-alias gvim="/Volumes/MISHA/Neovide --multigrid --nofork -- "
 alias neovide='neovide --multigrid --nofork -- '
-
 alias vimz="/usr/bin/vi"
 alias tmux="TERM=screen-256color-bce tmux -2"
-alias python="/Volumes/MISHA/brew/bin/python3"  
-alias python3="/Volumes/MISHA/brew/bin/python3"  
-alias python3.9="/Volumes/MISHA/brew/bin/python3"  
-alias python@3.9="/Volumes/MISHA/brew/bin/python3"  
-alias python@3="/Volumes/MISHA/brew/bin/python3"
-export PATH=$PATH:'/Users/posidoni/Library/Python/3.8/bin'
 export PATH=$PATH:"$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin/"
+
+# CLI file manager alias
+alias rr="ranger"
+alias rrr="ranger"
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {
