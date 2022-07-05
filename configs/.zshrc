@@ -29,7 +29,6 @@ plugins=(
     git 
     docker
     tmux
-    zsh-vi-mode
 )
 # @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh
 source $HOME/.oh-my-zsh/oh-my-zsh.sh

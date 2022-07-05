@@ -1,0 +1,5 @@
+
+xmonad.hs:409:1: error: parse error on input ‘^++^’
+    |
+409 | ^++^ subKeys "Window navigation" [ ("M-j", addName "Move focus to next window"                $ windows W.focusDown) , ("M-k", addName "Move focus to prev window"                $ windows W.focusUp)
+    | ^^^^
