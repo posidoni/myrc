@@ -93,12 +93,13 @@ myTerminal = "alacritty"    -- Sets default terminal
 myBrowser :: String
 myBrowser = "qutebrowser "  -- Sets qutebrowser as browser
 
-myEmacs :: String
-myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
+myVim :: String
+-- myVim = "macsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
+myVim = "neovide "
 
 myEditor :: String
-myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
--- myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
+-- myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
+myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
@@ -461,8 +462,8 @@ myKeys c =
   ^++^ subKeys "Window resizing"
   [ ("M-h", addName "Shrink window"               $ sendMessage Shrink)
   , ("M-l", addName "Expand window"               $ sendMessage Expand)
-  , ("M-M1-j", addName "Shrink window vertically" $ sendMessage MirrorShrink)
-  , ("M-M1-k", addName "Expand window vertically" $ sendMessage MirrorExpand)]
+  , ("M-S-j", addName "Shrink window vertically" $ sendMessage MirrorShrink)
+  , ("M-S-k", addName "Expand window vertically" $ sendMessage MirrorExpand)]
 
   -- Floating windows
   ^++^ subKeys "Floating windows"
@@ -531,16 +532,16 @@ myKeys c =
   -- , ("M-M1-8", addName "Menu of utilities apps"  $ spawnSelected' gsUtilities)]
 
   -- Emacs (SUPER-e followed by a key)
-  ^++^ subKeys "Emacs"
-  [ ("M-e e", addName "Emacsclient Dashboard"    $ spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))
-  , ("M-e a", addName "Emacsclient EMMS (music)" $ spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")))
-  , ("M-e b", addName "Emacsclient Ibuffer"      $ spawn (myEmacs ++ ("--eval '(ibuffer)'")))
-  , ("M-e d", addName "Emacsclient Dired"        $ spawn (myEmacs ++ ("--eval '(dired nil)'")))
-  , ("M-e i", addName "Emacsclient ERC (IRC)"    $ spawn (myEmacs ++ ("--eval '(erc)'")))
-  , ("M-e n", addName "Emacsclient Elfeed (RSS)" $ spawn (myEmacs ++ ("--eval '(elfeed)'")))
-  , ("M-e s", addName "Emacsclient Eshell"       $ spawn (myEmacs ++ ("--eval '(eshell)'")))
-  , ("M-e v", addName "Emacsclient Vterm"        $ spawn (myEmacs ++ ("--eval '(+vterm/here nil)'")))
-  , ("M-e w", addName "Emacsclient EWW Browser"  $ spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")))]
+  ^++^ subKeys "MyVim"
+  [ ("M-e e", addName "Vim Dashboard"    $ spawn (myVim ++ ("test.txt")))
+  , ("M-e a", addName "Vim EMMS (music)" $ spawn (myVim ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")))
+  , ("M-e b", addName "Vim Ibuffer"      $ spawn (myVim ++ ("--eval '(ibuffer)'")))
+  , ("M-e d", addName "Vim Dired"        $ spawn (myVim ++ ("--eval '(dired nil)'")))
+  , ("M-e i", addName "Vim ERC (IRC)"    $ spawn (myVim ++ ("--eval '(erc)'")))
+  , ("M-e n", addName "Vim Elfeed (RSS)" $ spawn (myVim ++ ("--eval '(elfeed)'")))
+  , ("M-e s", addName "Vim Eshell"       $ spawn (myVim ++ ("--eval '(eshell)'")))
+  , ("M-e v", addName "Vim Vterm"        $ spawn (myVim ++ ("--eval '(+vterm/here nil)'")))
+  , ("M-e w", addName "Vim EWW Browser"  $ spawn (myVim ++ ("--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")))]
 
   -- Multimedia Keys
   ^++^ subKeys "Multimedia keys"
