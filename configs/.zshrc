@@ -60,7 +60,7 @@ export plugins=(
 )
 
 # @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh
-source "$HOME"/.oh-my-zsh/oh-my-zsh.sh
+source "$HOME"/.oh-my-zsh/oh-my-zsh.sh # it is okay to get warning here, as bashls can't correctly parse ZSH scripts
 export ZSH="$HOME/.oh-my-zsh"
 
 # Aliases
