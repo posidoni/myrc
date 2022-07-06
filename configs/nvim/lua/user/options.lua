@@ -55,18 +55,17 @@ local options = {
 --
 -- vim.g.ostype = get_os_type()
 
-local fontSize = 9
 
 -- if vim.g.ostype == 'Linux' then
 --     fontSize = 9
 -- end
 
-vim.opt.guifont = "Go Mono Nerd Font:h" .. fontSize
-
-vim.g.myfonts = {
-    'FiraCode Nerd Font',
-    'Go Mono Nerd Font'
-}
+-- vim.opt.guifont = "Go Mono Nerd Font:h" .. fontSize
+vim.opt.guifont = "FiraCode Nerd Font Mono:h9"
+-- vim.g.myfonts = {
+--     'FiraCode Nerd Font',
+--     'Go Mono Nerd Font'
+-- }
 
 local g = vim.g
 
