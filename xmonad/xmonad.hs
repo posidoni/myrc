@@ -559,7 +559,7 @@ myKeys c =
 
   -- Emacs (SUPER-e followed by a key)
   ^++^ subKeys "MyVim"
-  [ ("M-e e", addName "Vim Dashboard"    $ spawn "neovide --frameless")
+  [ ("M-e e", addName "Vim Dashboard"    $ spawn "neovide ")
   , ("M-e w", addName "Vim Wiki"  $ spawn (myVim ++ ("~/Obsidian/index.md")))
   -- , ("M-e a", addName "Vim EMMS (music)" $ spawn (myVim ++ ("")))
   -- , ("M-e b", addName "Vim Ibuffer"      $ spawn (myVim ++ ("")))

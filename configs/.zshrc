@@ -169,7 +169,7 @@ install_brew() {
     if [ ! -d "$BREW" ]; then
         echo "Brew dir in goinfre does not exist. Creating it & downloading brew."
         mkdir $BREW
-        cd $BREW
+        cd $BREW || exit
         curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $BREW
     fi
 
@@ -182,7 +182,7 @@ install_brew() {
     done
 
     echo "Configuring ctags ..."
-    alias ctags="$BREW_BIN/ctags"
+    alias ctags="/Volumes/MISHA/mybrew/bin/ctags"
 
     echo "Installing essential casks ..."
     brew install task
@@ -251,46 +251,54 @@ fi
 }
 
 IFS=$SAVEIFS
+
+# Increse / Decrease brightness
+set_brightness() {
+    if [[ $1 -gt 5 && $1 -lt 101 ]]; then
+        xbacklight -set "$1"
+    fi;
+}
+
 # Asyncronous cleaner script
 ccleaner() {
     find ~/ -name ".DS_Store" -print -delete 2>&1 > /dev/null  2>&1 > /dev/null &
     find ~/ -name "**.42_cache_bak**" -print -delete 2>&1 > /dev/null  2>&1 > /dev/null &
-    rm -rf ~/.zcompdump*  2>&1 > /dev/null &
-    rm -rf .Trash/*  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/  2>&1 > /dev/null &
-    rm -rf ~/Library/Caches/*  2>&1 > /dev/null &
-    rm -rf ~/Library/42_cache  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/Code\ Cache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/Cache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Caches/*  2>&1 > /dev/null &
-    rm -rf ~/Library/42_cache  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/Cache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/Code\ Cache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/Cache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Developer/CoreSimulator/Caches/  2>&1 > /dev/null &
-    rm -rf ~/Library/Developer/CoreSimulator/Devices/  2>&1 > /dev/null &
-    rm -rf ~/Library/Logs/  2>&1 > /dev/null &
-    rm -rf ~/Library/Google/GoogleSoftwareUpdate/  2>&1 > /dev/null &
-    rm -rf ~/Library/Containers/com.apple.Safari/Data/Library/Caches/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/CachedData/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Slack/logs  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/zoom.us/AutoUpdater  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Google/Chrome/BrowserMetrics/.  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Google/Chrome/BrowserMetrics-spare.pma  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Google/Chrome/GrShaderCache/GPUCache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Google/Chrome/Default/Local\ Extension Settings 2>&1 > /dev/null /cjpalhdlnbpafiamejdnhcphjbkeiagm/lost &
-    rm -rf ~/Library/Application\ Support/Code/Cache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/CachedExtensionVSIXs/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/Code\ Cache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/CacheStorage/  2>&1 > /dev/null &
-    rm -rf  ~/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/ScriptCache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Google/Chrome/ShaderCache/GPUCache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/CachedExtensions/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/logs/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/Service\ Worker/CacheStorage/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/Service\ Worker/ScriptCache/  2>&1 > /dev/null &
-    rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/  2>&1 > /dev/null &
-    rm -rf ~/.Trash/  2>&1 > /dev/null &
+    rm -rf ~/.zcompdump*   > /dev/null 2>&1 > /dev/null &1
+    rm -rf .Trash/*   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Caches/*   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/42_cache   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/Code\ Cache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/Cache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Caches/*   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/42_cache   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/Cache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/Code\ Cache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/Cache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Developer/CoreSimulator/Caches/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Developer/CoreSimulator/Devices/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Logs/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Google/GoogleSoftwareUpdate/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Containers/com.apple.Safari/Data/Library/Caches/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/CachedData/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Slack/logs   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/zoom.us/AutoUpdater   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Google/Chrome/BrowserMetrics/.   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Google/Chrome/BrowserMetrics-spare.pma   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Google/Chrome/GrShaderCache/GPUCache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Google/Chrome/Default/Local\ Extension Settings &1 > /dev/null /cjpalhdlnbpafiamejdnhcphjbkeiagm/lost &
+    rm -rf ~/Library/Application\ Support/Code/Cache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/CachedExtensionVSIXs/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/Code\ Cache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf  ~/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/ScriptCache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Google/Chrome/ShaderCache/GPUCache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/CachedExtensions/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/logs/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/Service\ Worker/ScriptCache/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/   > /dev/null 2>&1 > /dev/null &1
+    rm -rf ~/.Trash/   > /dev/null 2>&1 &
 }
 

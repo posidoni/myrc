@@ -109,15 +109,15 @@ Fontsize = 16
 
 function IncreaseFontSize()
     Fontsize = Fontsize + 1
-    vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
+    vim.opt.guifont = string.format("Go Mono Nerd Font:h%d", Fontsize)
 end
 
 function DecreaseFontSize()
     Fontsize = Fontsize - 1
-    vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
+    vim.opt.guifont = string.format("Go Mono Nerd Font:h%d", Fontsize)
 end
 
 function SetFontSize(size)
     FontSize = size
-    vim.opt.guifont = string.format("FiraCode Nerd Font:h%d", Fontsize)
+    vim.opt.guifont = string.format("Go Mono Nerd Font:h%d", Fontsize)
 end
