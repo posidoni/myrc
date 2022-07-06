@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = xmonad
+
+[Action]
+Description = Recompiling xmonad ...
+When = PostTransaction
+Exec = /usr/bin/sudo -u posidoni /usr/bin/xmonad --recompile
