@@ -8,6 +8,7 @@
 export TERM=xterm-256color
 export ZSH_THEME="af-magic"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
@@ -156,7 +157,7 @@ vimwiki () {
         nvim +'VimwikiIndex'
     elif [[ $1 == 'git' ]]
     then
-        git -C ~/vimwiki/ ${@:2}
+        git -C ~/vimwiki/ "@:2"
     else
         echo 'Usage: vimwiki [git] [args ...]'
     fi
@@ -256,6 +257,9 @@ IFS=$SAVEIFS
 set_brightness() {
     if [[ $1 -gt 5 && $1 -lt 101 ]]; then
         xbacklight -set "$1"
+        notify-send "Set brigthess to $1%"
+    else
+        notify-send "Error! Invalid usage of function. Please, provide brigthness in range 5, 100 as a \$1"
     fi;
 }
 
