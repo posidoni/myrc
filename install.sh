@@ -55,4 +55,9 @@ install_configs() {
     echo "Nvim is installed!"
 }
 
+install_xmonad_hooks() {
+    echo "Installing xmonad hooks!"
+    mv $HOME/myrc/xmonad/pacman-hooks/* /etc/pacman.d/hooks/
+}
+
 install_configs
