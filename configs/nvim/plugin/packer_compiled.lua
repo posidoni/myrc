@@ -130,11 +130,6 @@ _G.packer_plugins = {
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
     url = "https://github.com/NTBBloodbath/doom-one.nvim"
   },
-  ["fidget.nvim"] = {
-    loaded = true,
-    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/fidget.nvim",
-    url = "https://github.com/j-hui/fidget.nvim"
-  },
   ["filetype.nvim"] = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/filetype.nvim",
@@ -215,6 +210,11 @@ _G.packer_plugins = {
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
+  ["nvim-ufo"] = {
+    loaded = true,
+    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/nvim-ufo",
+    url = "https://github.com/kevinhwang91/nvim-ufo"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -244,6 +244,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
+  },
+  ["promise-async"] = {
+    loaded = true,
+    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/promise-async",
+    url = "https://github.com/kevinhwang91/promise-async"
   },
   tagbar = {
     loaded = true,
@@ -309,11 +314,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
-  },
-  ["vim-tmux-navigator"] = {
-    loaded = true,
-    path = "/Users/posidoni/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
-    url = "https://github.com/christoomey/vim-tmux-navigator"
   },
   ["vim-unimpaired"] = {
     loaded = true,

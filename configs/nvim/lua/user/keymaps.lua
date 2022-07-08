@@ -8,10 +8,17 @@ keymap("n", "<Space>", "<Nop>", { nowait = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Normal --
+-- @Normal --
 keymap("n", "<ESC>", ":noh<CR>", opts)
 keymap("n", "<leader>q", ":q!<CR>", opts)
 keymap("n", "<leader>a", ":Alpha<CR>", opts)
+
+-- Easier scrolling
+keymap('n', '^', '<C-d>', opts)
+keymap('n', '&', '<C-u>', opts)
+-- Easier paragraphs
+keymap('n', '<F8>', '}', opts)
+keymap('n', '<F9>', '{', opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -35,21 +42,37 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<Tab>", "<C-o>", opts)
 keymap("n", "<S-Tab>", "<C-i>", opts)
 
+-- @Folding
+keymap("n", "ff", "za", opts)
+keymap("n", "fg", "zA", opts)
+keymap("n", "fj", "zj", opts) -- next folding
+keymap("n", "fk", "zk", opts) -- prev folding
+keymap("v", "f", "zf", opts)
+
+-- these must be remapped like that
+vim.keymap.set('n', 'zO', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+keymap("n", "fo", "zR", opts) -- @Mnemonic: fold open
+keymap("n", "fc", "zM", opts) -- @Mnemonic: fold close
+
+-- @Insert mode
 vim.cmd [[
     noremap! <C-BS> <C-w>
     noremap! <C-h> <C-w>
 ]]
--- Visual --
+
+-- @Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
--- Visual Block --
+-- @VisualBlock --
 -- Move text up and down (J, K)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- Terminal --
+-- @Terminal --
+
 -- Open terminal from N mode
 keymap("n", "<leader>t", ":vsplit term://zsh<CR>", opts)
 

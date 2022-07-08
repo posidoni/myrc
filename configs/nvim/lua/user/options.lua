@@ -30,7 +30,6 @@ local options = {
     number = true, -- set numbered lines
     relativenumber = true, -- set relative numbered lines
     numberwidth = 2, -- set number column width to 2 {default 4}
-    signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
     wrap = true, -- display lines as one long line
     scrolloff = 10, -- is one of my fav
     sidescrolloff = 8,
@@ -39,13 +38,13 @@ local options = {
     belloff = "all",
     spell = false,
     cursorline = true,
-    foldmethod = "indent",
-    foldnestmax = 2,
+    foldmethod = "expr",
     foldenable = false,
     listchars = { trail = '·', tab = '» ', extends = '›', precedes = '‹', nbsp = '·' },
 
-    -- This setting must be set for Neovide
-    -- Syntax: "fontname:h<size>"
+    -- @Warning! This setting 'merges' all columns into one (i.e. folds, warnings, numbers, etc.)
+    -- alternative: 'yes' (always show, to prevent screen jumping)
+    signcolumn = 'number',
 }
 
 -- local get_os_type = function()
@@ -68,6 +67,8 @@ vim.opt.guifont = "FiraCode Nerd Font Mono:h16"
 -- }
 
 local g = vim.g
+
+vim.cmd [[set foldexpr=nvim_treesitter#foldexpr()]]
 
 -- See @docs for reference on @Neovide configuration:
 -- https://github.com/neovide/neovide/wiki/Configuration#multigrid

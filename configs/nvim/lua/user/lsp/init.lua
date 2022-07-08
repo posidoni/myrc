@@ -6,3 +6,6 @@ end
 require "user.lsp.configs"
 require("user.lsp.handlers").setup()
 require "user.lsp.null-ls"
+
+-- Init of  'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim' plugin
+require 'toggle_lsp_diagnostics'.init()

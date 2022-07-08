@@ -84,9 +84,9 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-web-devicons"
     use "kyazdani42/nvim-tree.lua"
     use "Pocco81/AutoSave.nvim"
+
     -- @Lualine
     use "nvim-lualine/lualine.nvim"
-    use "folke/which-key.nvim"
 
     -- @Tags
     use 'ludovicchabant/vim-gutentags'
@@ -100,7 +100,7 @@ return packer.startup(function(use)
         -- able to quicly jump to Git Projects
         "ahmedkhalf/project.nvim",
         "goolord/alpha-nvim",
-        "j-hui/fidget.nvim",
+        -- "j-hui/fidget.nvim",
     }
 
     -- @VanillaLike_Helpers
@@ -112,11 +112,16 @@ return packer.startup(function(use)
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use "numToStr/Comment.nvim" -- Easily comment stuff
     use "JoosepAlviste/nvim-ts-context-commentstring" -- smart comments (aware of nested languages)
+    use({ "akinsho/toggleterm.nvim", commit = "aaeed9e02167c5e8f00f25156895a6fd95403af8" })
 
     -- @Colorschemes
     use "navarasu/onedark.nvim"
     use "folke/tokyonight.nvim"
     use 'lukas-reineke/indent-blankline.nvim'
+    use 'NTBBloodbath/doom-one.nvim'
+
+    -- @Folding
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
     -- @Completition
     -- use 'github/copilot.vim'
@@ -143,11 +148,12 @@ return packer.startup(function(use)
     use 'antoinemadec/FixCursorHold.nvim'
     use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
     use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-    require 'toggle_lsp_diagnostics'.init()
 
     -- @Telescope
     use "nvim-telescope/telescope.nvim"
 
+    -- @Keybindings
+    use "folke/which-key.nvim"
 
     -- @Treesitter @TS
     use {
@@ -166,7 +172,7 @@ return packer.startup(function(use)
     use "vimwiki/vimwiki"
 
     -- @Navigation
-    use 'christoomey/vim-tmux-navigator'
+    -- use 'christoomey/vim-tmux-navigator'
     use 'akinsho/bufferline.nvim'
 
     -- @Debugging
@@ -176,41 +182,8 @@ return packer.startup(function(use)
 
     -- @C_CXX_Development
     use 'cdelledonne/vim-cmake'
-    use({ "akinsho/toggleterm.nvim", commit = "aaeed9e02167c5e8f00f25156895a6fd95403af8" })
-
     -- use 'jamestthompson3/nvim-remote-containers'
-    use({
-        'NTBBloodbath/doom-one.nvim',
-        config = function()
-            require('doom-one').setup({
-                cursor_coloring = true,
-                terminal_colors = true,
-                italic_comments = true,
-                enable_treesitter = true,
-                transparent_background = false,
-                pumblend = {
-                    enable = true,
-                    transparency_amount = 20,
-                },
-                plugins_integrations = {
-                    neorg = true,
-                    barbar = true,
-                    bufferline = true,
-                    gitgutter = false,
-                    gitsigns = true,
-                    telescope = true,
-                    neogit = true,
-                    nvim_tree = true,
-                    dashboard = true,
-                    startify = true,
-                    whichkey = true,
-                    indent_blankline = true,
-                    vim_illuminate = true,
-                    lspsaga = false,
-                },
-            })
-        end,
-    })
+
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
