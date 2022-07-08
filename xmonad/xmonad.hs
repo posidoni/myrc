@@ -135,11 +135,12 @@ myStartupHook = do
   spawnOnce "picom"
   spawnOnce "nm-applet"
   spawnOnce "volumeicon"
-  spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+  -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
 
   -- @Note: conky is a system monitoring instument. Look kind of fine, but for small monitors takes too much space
   -- spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
   spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
+
 
   -- @Wallpaper configuration
   -- Only one program must be chosen. Below are some alternatives.
