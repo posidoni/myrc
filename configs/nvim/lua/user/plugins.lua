@@ -86,7 +86,7 @@ return packer.startup(function(use)
     use "Pocco81/AutoSave.nvim"
     -- @Lualine
     use "nvim-lualine/lualine.nvim"
-    -- use "folke/which-key.nvim"
+    use "folke/which-key.nvim"
 
     -- @Tags
     use 'ludovicchabant/vim-gutentags'
