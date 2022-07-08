@@ -41,7 +41,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Turns 'press & hold OS X' false for VSCode
     defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
     # Prints available space
-    df -H | grep "$HOME" | awk "{printf('\t\t\t\t\tAvailable %s\t\n\'), $4}"
+    # df -H | grep "$HOME" | awk "{printf('\t\t\t\t\tAvailable %s\t\n\'), $4}"
     PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
     PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     PATH=$PATH:$BREW:$BREW_BIN
@@ -143,6 +143,21 @@ alias yta-opus="youtube-dl --extract-audio --audio-format opus "
 alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+# Opens new Terminal window
+function new() {
+    if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+        app_name="iTerm"
+    else
+        app_name="Terminal"
+    fi
+    
+    if [[ $# -eq 0 ]]; then
+        open -a "$app_name" "$PWD"
+    else
+        open -a "$app_name" "$@"
+    fi
+}
 
 # Asynchronously installs code plugins (spawns zsh instance for each extension)
 install_code() {

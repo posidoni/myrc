@@ -39,7 +39,6 @@ vim.cmd [[
     noremap! <C-BS> <C-w>
     noremap! <C-h> <C-w>
 ]]
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -123,7 +122,16 @@ keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
 keymap("n", "<F1>", ":make<cr>", opts)
 keymap("n", "<F2>", "<Plug>(CMakeGenerate)", opts)
 keymap("n", "<F3>", "<Plug>(CMakeBuild)", opts)
-keymap("n", "<F4>", ":copen<cr>", opts)
+
+
+Launch_executable = function()
+    -- CMAKECMD = 'chmod +x ~/s21_smart_calc/build/Debug/s21_smart_calc.app && open ~/s21_smart_calc/build/Debug/s21_smart_calc.app'
+    CMAKECMD = 'open -a \'Iterm.app\' ~/s21_smart_calc/build/Debug/s21_smart_calc.app/Contents/MacOS/s21_smart_calc'
+    local result = vim.fn.system(CMAKECMD)
+    vim.notify(result)
+end
+
+keymap("n", "<F4>", ":lua Launch_executable()<cr>", opts)
 keymap("n", "co", "<Plug>(CMakeOpen)", opts)
 keymap("n", "cc", "<Plug>(CMakeClose)", opts)
 
