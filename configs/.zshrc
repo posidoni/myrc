@@ -9,7 +9,7 @@ export TERM=xterm-256color
 export ZSH_THEME="af-magic"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
+export HOMEBREW_NO_AUTO_UPDATE=1
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
 fi
