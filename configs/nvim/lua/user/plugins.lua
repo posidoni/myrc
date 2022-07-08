@@ -117,7 +117,6 @@ return packer.startup(function(use)
     -- @Colorschemes
     use "navarasu/onedark.nvim"
     use "folke/tokyonight.nvim"
-    use 'lukas-reineke/indent-blankline.nvim'
     use 'NTBBloodbath/doom-one.nvim'
 
     -- @Folding
@@ -155,7 +154,9 @@ return packer.startup(function(use)
     -- @Keybindings
     use "folke/which-key.nvim"
 
-    -- @Treesitter @TS
+    -- @Treesitter @SyntaxHighlighting
+    use 'lukas-reineke/indent-blankline.nvim'
+
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",

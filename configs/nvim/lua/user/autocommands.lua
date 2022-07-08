@@ -26,8 +26,7 @@ vim.cmd [[
       autocmd!
       autocmd FileType vimwiki set filetype=md
     augroup end
-    autocmd BufWinLeave * if expand("%") != "" | mkview | endif
-    autocmd BufWinEnter * if expand("%") != "" | loadview | endif
+
   " This autocmd is for CMake util. It changes CWD to be near currently editing tab.
     function! OnTabEnter(path)
       if isdirectory(a:path)
