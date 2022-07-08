@@ -22,13 +22,14 @@ null_ls.setup({
         formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
         formatting.black.with({ extra_args = { "--fast" } }),
         formatting.stylua,
+        formatting.beautysh,
         diagnostics.flake8,
         code_actions.shellcheck,
         diagnostics.shellcheck,
         diagnostics.cppcheck,
 
         -- @Mikhail: other viable options
-        formatting.cmake_format,
+        -- formatting.cmake_format,
         -- diagnostics.markdownlint,
         -- diagnostics.eslint
     },

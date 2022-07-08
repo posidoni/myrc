@@ -144,7 +144,7 @@ M.on_attach = function(client, bufnr)
     -- solutions are turned off
     M.set_default_formatter_for_filetypes('sumneko_lua', { 'lua' })
     M.set_default_formatter_for_filetypes('clangd', { 'c', 'cpp' })
-    M.set_default_formatter_for_filetypes('null-ls', { 'md', 'cmake', 'markdown', 'vimwiki' })
+    M.set_default_formatter_for_filetypes('null-ls', { 'sh', 'zsh', 'md', 'cmake', 'markdown', 'vimwiki' })
 
     -- @FormattingOnSave
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save

@@ -5,12 +5,10 @@ vim.g.gutentags_project_root = {
     'CMakeLists.txt',
 }
 
--- vim.g.ostype = os.execute("uname")
---
--- if vim.g.ostype ~= "Linux" then
---     vim.g.tagbar_ctags_bin = '/Volumes/MISHA/mybrew/bin/ctags'
---     vim.g.gutentags_ctags_executable = '/Volumes/MISHA/mybrew/bin/ctags'
--- end
+vim.g.ostype = vim.fn.system('uname')
+
+vim.g.tagbar_ctags_bin = '/Volumes/MISHA/mybrew/bin/ctags'
+vim.g.gutentags_ctags_executable = '/Volumes/MISHA/mybrew/bin/ctags'
 
 vim.g.gutentags_cache_dir = os.getenv('HOME') .. '/.cache/vim/ctags'
 vim.g.gutentags_generate_on_new = 1

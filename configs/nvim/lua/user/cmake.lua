@@ -24,15 +24,14 @@ g.cmake_default_config = 'Debug'
 -- .git determines the root of the project
 -- this is searched relative to the cwd
 g.cmake_root_markers = {
-    '.git',
-    'src/'
+    '.git'
 }
 
 -- All build configs will be created inside build dir of the project
 -- @Mikhail: this creates all CMake build systems inside build folder
 -- highly recomment this setting, just add build/ dir to gitignore
 -- this prevents total mess that is usually created by default CMake
-g.cmake_build_dir_location = "../build/"
+g.cmake_build_dir_location = "build/"
 
 -- g.cmake_generate_options = { '' } -- :CMakeGenerate
 -- g.cmake_build_options = { '' } -- :CMakeBuild
