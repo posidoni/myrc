@@ -47,24 +47,7 @@ local options = {
     signcolumn = 'number',
 }
 
--- local get_os_type = function()
---     local tmp = os.execute('uname')
---     return tmp
--- end
---
--- vim.g.ostype = get_os_type()
-
-
--- if vim.g.ostype == 'Linux' then
---     fontSize = 9
--- end
-
--- vim.opt.guifont = "FiraCode Mono Nerd Font:h" .. fontSize
 vim.opt.guifont = "FiraCode Nerd Font Mono:h16"
--- vim.g.myfonts = {
---     'FiraCode Nerd Font',
---     'FiraCode Mono Nerd Font'
--- }
 
 local g = vim.g
 
@@ -82,7 +65,7 @@ g.neovide_cursor_antialiasing = true
 g.neovide_cursor_unfocused_outline_width = 0.125
 g.neovide_cursor_animation_length = 0.0
 g.neovide_cursor_trail_length = 0
--- g.neovide_transparency = 0.80
+g.neovide_transparency = 0.80
 
 if g.neovide_silent == false then
     g.neovide_cursor_animation_length = 0.13
@@ -109,15 +92,15 @@ Fontsize = 16
 
 function IncreaseFontSize()
     Fontsize = Fontsize + 1
-    vim.opt.guifont = string.format("FiraCode Mono Nerd Font:h%d", Fontsize)
+    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", Fontsize)
 end
 
 function DecreaseFontSize()
     Fontsize = Fontsize - 1
-    vim.opt.guifont = string.format("FiraCode Mono Nerd Font:h%d", Fontsize)
+    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", Fontsize)
 end
 
 function SetFontSize(size)
     FontSize = size
-    vim.opt.guifont = string.format("FiraCode Mono Nerd Font:h%d", Fontsize)
+    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", Fontsize)
 end

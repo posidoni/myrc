@@ -87,6 +87,7 @@ lualine.setup({
         section_separators = { left = "", right = "" },
         disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", 'qf' },
         always_divide_middle = true,
+        globalstatus = true,
     },
     sections = {
         lualine_a = { mode },
