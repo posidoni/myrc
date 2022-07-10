@@ -20,10 +20,9 @@ null_ls.setup({
     debug = false,
     sources = {
         formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-        formatting.black.with({ extra_args = { "--fast" } }),
-        formatting.stylua,
-        formatting.beautysh,
-        diagnostics.flake8,
+        -- formatting.black.with({ extra_args = { "--fast" } }),
+        formatting.stylua, -- lua
+        diagnostics.flake8, -- python
         code_actions.shellcheck,
         diagnostics.shellcheck,
         diagnostics.cppcheck,
@@ -31,7 +30,7 @@ null_ls.setup({
         -- @Mikhail: other viable options
         -- formatting.cmake_format,
         -- diagnostics.markdownlint,
-        -- diagnostics.eslint
+        -- diagnostics.eslint,
     },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
@@ -41,7 +40,8 @@ null_ls.setup({
                 buffer = bufnr,
                 callback = function()
                     -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                    vim.lsp.buf.formatting_sync()
+                    -- sequential formatting is crucial here
+                    vim.lsp.buf.formatting_seq_sync()
                 end,
             })
         end

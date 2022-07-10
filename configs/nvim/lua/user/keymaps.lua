@@ -12,13 +12,14 @@ vim.g.maplocalleader = " "
 keymap("n", "<ESC>", ":noh<CR>", opts)
 keymap("n", "<leader>q", ":q!<CR>", opts)
 keymap("n", "<leader>a", ":Alpha<CR>", opts)
+keymap("n", "<leader>n", "<C-W>n", opts)
 
 -- Easier scrolling
-keymap('n', '^', '<C-d>', opts)
-keymap('n', '&', '<C-u>', opts)
+keymap("n", "^", "<C-d>", opts)
+keymap("n", "&", "<C-u>", opts)
 -- Easier paragraphs
-keymap('n', '<F8>', '}', opts)
-keymap('n', '<F9>', '{', opts)
+keymap("n", "<F8>", "}", opts)
+keymap("n", "<F9>", "{", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -50,16 +51,16 @@ keymap("n", "fk", "zk", opts) -- prev folding
 keymap("v", "f", "zf", opts)
 
 -- these must be remapped like that
-vim.keymap.set('n', 'zO', require('ufo').openAllFolds)
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set("n", "zO", require("ufo").openAllFolds)
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 keymap("n", "fo", "zR", opts) -- @Mnemonic: fold open
 keymap("n", "fc", "zM", opts) -- @Mnemonic: fold close
 
 -- @Insert mode
-vim.cmd [[
+vim.cmd([[
     noremap! <C-BS> <C-w>
     noremap! <C-h> <C-w>
-]]
+]])
 
 -- @Visual --
 -- Stay in indent mode
@@ -70,13 +71,13 @@ keymap("v", ">", ">gv", opts)
 -- Move text up and down (J, K)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-
 -- @Terminal --
 
 -- Open terminal from N mode
 keymap("n", "<leader>t", ":vsplit term://zsh<CR>", opts)
 
 -- Easier switching to terminal normal mode
+keymap("n", "<leader>2", ":ToggleTerm<CR>", opts)
 keymap("t", "<ESC>", "<C-\\><C-N>", term_opts)
 
 -- Allows switching panes in terminal insert mode
@@ -107,7 +108,6 @@ keymap("v", "<Right>", "<Nop>", opts)
 keymap("n", "<leader>=", ":lua IncreaseFontSize()<cr>", opts)
 keymap("n", "<leader>-", ":lua DecreaseFontSize()<cr>", opts)
 
-
 -- Disable <Backspace> & <Del>
 -- keymap("i", "<BS>", "<Nop>", opts)
 keymap("i", "<Del>", "<Nop>", opts)
@@ -116,23 +116,30 @@ keymap("i", "<Del>", "<Nop>", opts)
 keymap("n", "<leader>tc", ":VimwikiTOC<CR>", opts)
 
 -- Telescope --
-keymap("n", "<leader>y",
-    "<cmd>lua require'telescope.builtin'.builtin(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
-    opts)
-keymap("n", "<leader>g",
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
-    , opts)
-
-
-keymap("n", "<leader><leader>",
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
-    , opts)
-keymap("n", "<leader>d",
-    "<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
-    , opts)
-keymap("n", "<leader>b",
-    "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>",
-    opts)
+keymap(
+	"n",
+	"<leader>y",
+	"<cmd>lua require'telescope.builtin'.builtin(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+	opts
+)
+keymap(
+	"n",
+	"<leader><leader>",
+	"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>",
+	opts
+)
+keymap(
+	"n",
+	"<leader>d",
+	"<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_dropdown({ previewer = false}))<cr>",
+	opts
+)
+keymap(
+	"n",
+	"<leader>b",
+	"<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>",
+	opts
+)
 keymap("n", "<leader>r", ":Telescope live_grep<CR>", opts)
 
 -- @NvimTree --
@@ -145,29 +152,12 @@ keymap("n", "<leader>1", ":TagbarToggle<cr>", opts)
 keymap("n", "<F1>", ":make<cr>", opts)
 keymap("n", "<F2>", "<Plug>(CMakeGenerate)", opts)
 keymap("n", "<F3>", "<Plug>(CMakeBuild)", opts)
-
-
+keymap("n", "<F4>", ":lua Launch_executable()<cr>", opts)
 Launch_executable = function()
-    -- CMAKECMD = 'chmod +x ~/s21_smart_calc/build/Debug/s21_smart_calc.app && open ~/s21_smart_calc/build/Debug/s21_smart_calc.app'
-    CMAKECMD = 'open -a \'Iterm.app\' ~/s21_smart_calc/build/Debug/s21_smart_calc.app/Contents/MacOS/s21_smart_calc'
-    local result = vim.fn.system(CMAKECMD)
-    vim.notify(result)
+	CMAKECMD = "open -a 'Iterm.app' ~/s21_smart_calc/build/Debug/Bin/SmartCalc.app/Contents/MacOS/s21_smart_calc"
+	local result = vim.fn.system(CMAKECMD)
+	vim.notify(result)
 end
 
-keymap("n", "<F4>", ":lua Launch_executable()<cr>", opts)
-keymap("n", "co", "<Plug>(CMakeOpen)", opts)
-keymap("n", "cc", "<Plug>(CMakeClose)", opts)
-
 -- @LSP_Diagnostics
-
-vim.cmd [[
-    nmap <leader>tlu <Plug>(toggle-lsp-diag-underline)
-    nmap <leader>tls <Plug>(toggle-lsp-diag-signs)
-    nmap <leader>tlv <Plug>(toggle-lsp-diag-vtext)
-    nmap <leader>tlp <Plug>(toggle-lsp-diag-update_in_insert)
-
-    nmap <leader>7  <Plug>(toggle-lsp-diag)
-    nmap <leader>tldd <Plug>(toggle-lsp-diag-default)
-    nmap <leader>tldo <Plug>(toggle-lsp-diag-off)
-    nmap <leader>tldf <Plug>(toggle-lsp-diag-on)
-]]
+keymap("n", "<leader>7", "<Plug>(toggle-lsp-diag)", opts)
