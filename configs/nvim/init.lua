@@ -1,29 +1,30 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.impatient"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.telescope"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.gitsigns"
-require "user.nvim-tree"
-require "user.lualine"
-require "user.project"
-require "user.alpha"
-require "user.whichkey"
-require "user.autocommands"
-require "user.bufferline"
-require "user.autosave"
-require "user.vimwiki"
+require("user.options")
+require("user.keymaps")
+require("user.plugins")
+require("user.impatient")
+require("user.colorscheme")
+require("user.cmp")
+require("user.lsp")
+require("user.telescope")
+require("user.treesitter")
+require("user.autopairs")
+require("user.comment")
+require("user.gitsigns")
+require("user.nvim-tree")
+require("user.lualine")
+require("user.project")
+require("user.alpha")
+require("user.whichkey")
+require("user.autocommands")
+require("user.bufferline")
+require("user.autosave")
+require("user.vimwiki")
+require("user.indentline")
+require("user.ctags")
+require("user.cmake")
+require("user.toggleterm")
+require("user.folding")
+require("user.webdev")
+require("user.illuminate")
 -- No longer used
--- require "user.fidget"
-require "user.indentline"
-require "user.ctags"
 -- require "user.dap"
-require "user.cmake"
-require "user.toggleterm"
-require "user.folding"

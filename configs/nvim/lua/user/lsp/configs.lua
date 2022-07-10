@@ -6,7 +6,7 @@ end
 local lspconfig = require("lspconfig")
 
 -- TODO: implement & configure all possible language servers
-local servers = { "sumneko_lua", "clangd", "pyright", "bashls", "eslint" }
+local servers = { "sumneko_lua", "clangd", "pyright", "bashls", "eslint", "tsserver" }
 
 lsp_installer.setup {
     ensure_installed = servers
@@ -21,7 +21,6 @@ for _, server in pairs(servers) do
 
     if has_custom_opts then
         opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
-
     end
 
     lspconfig[server].setup(opts)
