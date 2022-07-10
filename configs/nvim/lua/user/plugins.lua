@@ -136,17 +136,17 @@ return packer.startup(function(use)
 	})
 
 	-- @Snippets
-	-- use "saadparwaiz1/cmp_luasnip" -- snippet completions
-	-- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+	use("saadparwaiz1/cmp_luasnip") -- snippet completions
+	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
 	-- @LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
-	use("williamboman/nvim-lsp-installer") -- LSP installer. RequirLSP installer. Required only while configuring nvim 1st time
+	use("williamboman/nvim-lsp-installer") -- LSP installer. Installed servers ARE NOT used automatically. They must be included in lsp/configs.lua file
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("antoinemadec/FixCursorHold.nvim")
 	use({ "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" })
 	use("WhoIsSethDaniel/toggle-lsp-diagnostics.nvim")
-	-- use "tamago324/nlsp-settings.nvim" --
+	use("tamago324/nlsp-settings.nvim") --
 
 	-- @Telescope
 	use("nvim-telescope/telescope.nvim")

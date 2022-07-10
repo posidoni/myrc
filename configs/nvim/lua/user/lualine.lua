@@ -75,14 +75,11 @@ local location = {
 	padding = 1,
 }
 
--- local spaces = function()
---     return "Ident: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
--- end
-
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = "palenight",
+		theme = "onedark",
+		-- theme = "palenight", -- theme for doom-one
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "qf" },
@@ -107,5 +104,5 @@ lualine.setup({
 		lualine_z = {},
 	},
 	tabline = {},
-	extensions = {},
+	extensions = { "man", "nvim-tree", "symbols-outline", "toggleterm" },
 })

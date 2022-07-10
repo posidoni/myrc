@@ -27,16 +27,6 @@ vim.cmd([[
       autocmd FileType vimwiki set filetype=md
     augroup end
 
-  " This autocmd is for CMake util. It changes CWD to be near currently editing tab.
-    function! OnTabEnter(path)
-      if isdirectory(a:path)
-        let dirname = a:path
-      else
-        let dirname = fnamemodify(a:path, ":h")
-      endif
-      execute "tcd ". dirname
-    endfunction()
-
     autocmd TabNewEntered * call OnTabEnter(expand("<amatch>"))
 ]])
 --
@@ -60,8 +50,8 @@ vim.g.vim_git_sync_branch = "main"
 vim.g.vim_sync_commit_msg = " [Sync] " .. os.date()
 
 vim.g.pull_events = {
-	"BufReadPre", -- before starting to edit a new buffer, before reading file into memory
-	-- "VimEnter",
+	-- "BufReadPre", -- before starting to edit a new buffer, before reading file into memory
+	"VimEnter",
 }
 
 vim.g.commit_events = {
@@ -105,10 +95,9 @@ CommitAll = function()
 	end
 	vim.fn.system('notify-send "Comitted changes to repositories ..."')
 end
--- asdfasd
+
 PushAll = function()
 	CommitAll()
-
 	for _, dir in ipairs(vim.g.vim_git_sync_dirs) do
 		vim.fn.system("git -C " .. dir .. " push origin " .. vim.g.vim_git_sync_branch .. " ")
 	end
@@ -142,8 +131,4 @@ vim.api.nvim_create_autocmd(vim.g.push_events, {
     at the end of the development sessios (exiting Vim)",
 	pattern = syncBuffers,
 	callback = PushAll,
-})
-
-local CmakeGroupId = vim.api.nvim_create_augroup("CmakeGroup", {
-	clear = true,
 })
