@@ -1,0 +1,52 @@
+[core]
+	editor = nvim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    pager = less
+    hooksPath = /Users/posidoni/.githooks
+	excludesfile = /Users/posidoni/.gitignore_global
+[user]
+	name = "Mikhail Kuznetsov"
+	email = mikhail.n.kuznetsov@gmail.com
+	username = MikhailKuzntsov1
+	signingkey = EC56FBF894A2E4A6
+[github]
+    user = mikhail.n.kuznetsov@gmail.com
+    username = MikhailKuzntsov1
+    name = MikhailKuzntsov1
+[pull]
+    rebase = false
+[merge]
+  	tool = nvim -d
+[mergetool]
+    prompt = false
+[commit]
+  	template = ~/.gitmessage
+	# gigpgsign = true
+[init]
+	defaultBranch = main
+[web]
+	browser = google-chrome
+[alias]
+    log = log --graph
+    sign = rebase --exec 'git commit --amend --no-edit -n -S' -i --root
+    rr = rebase -i --root
+[web]
+	browser = google-chrome
+[color]
+	ui = auto
+[diff]
+	tool = nvim -d
+[gitflow "prefix"]
+	versiontag = v
+[sequence]
+	editor = nvim
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[safe]
+    directory = /home/posidoni/myrc
+	directory = /home/posidoni/myrc
+

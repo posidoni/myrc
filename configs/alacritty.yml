@@ -1,0 +1,92 @@
+#Alacritty:
+
+env:
+  TERM: xterm
+
+window:
+  opacity: 0.8
+  padding:
+    x: 5
+    y: 0
+
+    dynamic_padding: false
+    decoration: full
+
+font:
+  normal:
+    family: FiraCode Nerd Font Mono
+
+  bold:
+    family: FiraCode Nerd Font Mono
+
+  italic:
+    family: FiraCode Nerd Font Mono
+
+  bold_italic:
+    family: FiraCode Nerd Font Mono
+
+  size: 9
+  offset:
+    x: 0
+    y: 1
+
+draw_bold_text_with_bright_colors: true
+
+colors:
+  # Default colors
+  primary:
+    background: '0x181a20'
+    foreground: '0xeeffff'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x212121'
+    cursor: '0xeeffff'
+
+  # Normal colors
+  normal:
+    black: '0x212121'
+    red: '0xf07178'
+    green: '0xc3e88d'
+    yellow: '0xffcb6b'
+    blue: '0x82aaff'
+    magenta: '0xc792ea'
+    cyan: '0x89ddff'
+    white: '0xeeffff'
+
+  # Bright colors
+  bright:
+    black: '0x4a4a4a'
+    red: '0xf07178'
+    green: '0xc3e88d'
+    yellow: '0xffcb6b'
+    blue: '0x82aaff'
+    magenta: '0xc792ea'
+    cyan: '0x89ddff'
+    white: '0xffffff'
+
+  indexed_colors:
+    - { index: 16, color: '0xf78c6c' }
+    - { index: 17, color: '0xff5370' }
+    - { index: 18, color: '0x303030' }
+    - { index: 19, color: '0x353535' }
+    - { index: 20, color: '0xb2ccd6' }
+    - { index: 21, color: '0xeeffff' }
+
+cursor:
+  style:
+    shape: Beam
+  vi_mode_style:
+    shape: Beam
+  unfocused_hollow: true
+
+live_config_reload: true
+
+key_bindings:
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: F11, mods: None, action: ToggleFullscreen }
+url:
+  launcher:
+    program: xdg-open

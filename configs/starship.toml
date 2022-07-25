@@ -1,0 +1,213 @@
+format = """
+$username\
+$time\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$cmd_duration\
+$c\
+$lua\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$status\
+$line_break\
+$time\
+$jobs\
+$battery\
+$extip\
+$character"""
+
+# right_format = """$custom"""
+add_newline = true
+
+[fill]
+# style = "bold blue"
+symbol = " "
+
+[aws]
+symbol = "  "
+
+[cmd_duration]
+min_time = 1000
+
+[battery]
+format = "[$symbol$percentage]($style) "
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+
+[[battery.display]] # "bold red" style and discharging_symbol when capacity is between 0% and 10%
+threshold = 15
+style = "bold red"
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+
+[[battery.display]] # "bold yellow" style and 💦 symbol when capacity is between 10% and 30%
+threshold = 25
+style = "bold yellow"
+discharging_symbol = "💦"
+
+[buf]
+symbol = " "
+
+[character]
+success_symbol = "[❯](bold blue)"
+format = "$symbol "
+
+
+[c]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[cmake]
+symbol = "卑"
+format = '[ $symbol]($style)'
+
+[conda]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[dart]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[localip]
+format = "@[$localipv4](bold red)"
+disabled = false
+
+
+[custom.extip]
+command = "echo $MY_EXT_IP"
+when = """ test "$HOME" = "$PWD" """
+format = "[@](yellow bold)[$output](yellow)"
+
+[custom.locip]
+command = "echo $MY_PRIV_IP"
+when = """ test "$HOME" = "$PWD" """
+format = " [@](green bold)[$output](green)"
+
+[directory]
+read_only = " "
+truncate_to_repo = true
+truncation_length = 3 # parent directories to show; default is 3
+truncation_symbol = "…/"
+
+[docker_context]
+symbol = " "
+
+[elixir]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[elm]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[git_branch]
+# always_show_remote = true # sometimes might be helpful, when remote branch name doesnt match local name
+symbol = " "
+format = '[$symbol$branch (:$remote_branch)]($style) '
+
+[git_state]
+format = '[\[$state( $progress_current of $progress_total)\]]($style) '
+cherry_pick = "[🍒 PICKING](bold red)]"
+merge = "[理MERGING](bold red)"
+rebase = "[理REBASING](bold red)"
+bisect = '\[[ BISECTING]\](bold yellow)'
+
+[git_status]
+conflicted = "ﲅ"
+untracked = ""
+modified = ""
+behind = "🐢 × ${count} "
+diverged = "🔱×${ahead_count} 🐢×${behind_count}"
+stashed = "📦"
+deleted = "✘"
+format = '[$all_status$ahead_behind](purple bold) '
+
+[golang]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[haskell]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[julia]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[package]
+format = '[ $symbol]($style)'
+symbol = " "
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\))]($style)'
+symbol = " "
+
+[spack]
+format = '[ $symbol]($style)'
+symbol = "🅢 "
+
+[rust]
+format = '[ $symbol]($style)'
+symbol = " "
