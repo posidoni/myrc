@@ -72,10 +72,15 @@ end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+local version = vim.version().minor
+
 M.on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
-        -- client.resolved_capabilities.document_formatting = false
-        client.server_capabilities.document_formatting = false
+        if version == 7 then
+            client.resolved_capabilities.document_formatting = false
+        else
+            client.server_capabilities.document_formatting = false
+        end
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
@@ -83,8 +88,11 @@ M.on_attach = function(client, bufnr)
             callback = function()
                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
                 if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) == 0 then
-                    -- vim.lsp.buf.formatting_seq_sync(nil, 1000, nil)
-                    vim.lsp.buf.format({ bufnr = bufnr })
+                    if version == 7 then
+                        vim.lsp.buf.formatting_seq_sync(nil, 1000, nil)
+                    else
+                        vim.lsp.buf.format({ bufnr = bufnr })
+                    end
                 end
             end,
         })
