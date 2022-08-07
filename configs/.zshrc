@@ -51,7 +51,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
     # Os X specific aliases
     alias flash="cd /Volumes/MISHA"
-    # export PATH="/opt/goinfre/posidoni/mybrew/opt/llvm/bin:$PATH" # adds LLVM toolkit to PATH
+    export PATH="/opt/goinfre/posidoni/mybrew/opt/llvm/bin:$PATH" # adds LLVM toolkit to PATH
 fi;
 
 # ZSH config
