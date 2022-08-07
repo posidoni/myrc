@@ -36,7 +36,7 @@ fi;
 
 # MacOS Specific config
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    BREW=/Volumes/MISHA/mybrew
+    BREW=$HOME/goinfre/mybrew
     BREW_BIN=$BREW/bin
     # source "$HOME"/.brew_packages.zsh
     # source "$HOME"/.brewconfig.zsh
@@ -47,19 +47,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
     PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     PATH=$PATH:$BREW:$BREW_BIN
+    PATH=$PATH:"/opt/goinfre/posidoni/mybrew/opt/ccache/libexec"
 
     # Os X specific aliases
     alias flash="cd /Volumes/MISHA"
-    alias gvim="open /Volumes/MISHA/MacOS/Neovide"
-    alias neovide="open /Volumes/MISHA/MacOS/Neovide"
+    # export PATH="/opt/goinfre/posidoni/mybrew/opt/llvm/bin:$PATH" # adds LLVM toolkit to PATH
 fi;
 
 # ZSH config
 export plugins=(
     git
     docker
-    tmux
-    gpg-agent # enables GPG agent 
 )
 
 # @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh
@@ -214,13 +212,15 @@ install_brew() {
         echo -e "Installing \t $package \n"
         ( brew install $package )
     done
+}
 
-    echo "Configuring ctags ..."
-    alias ctags="/Volumes/MISHA/mybrew/bin/ctags"
-
-    echo "Installing valgrind for OS X..."
-    brew tap LouisBrunner/valgrind
-    brew install --HEAD LouisBrunner/valgrind/valgrind
+fix_symlinks() {
+	cd $HOME
+	ln -sf $HOME/myrc/.gitconfig .
+	ln -sf $HOME/myrc/.gitmessage .
+	ln -sf $HOME/myrc/.zshrc .
+	ln -sf $HOME/myrc/configs/nvim .config/nvim
+	cp -r  /Volumes/MISHA/MacOS/Neovide $HOME/goinfre/
 }
 
 SAVEIFS=$IFS

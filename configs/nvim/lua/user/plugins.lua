@@ -1,4 +1,4 @@
--- vim.fn.system({array}) is a nvim wrapper over lua os.system()
+    -- vim.fn.system({array}) is a nvim wrapper over lua os.system()
 local fn = vim.fn
 
 -- @brief: disables built-in plugins to boost performance
@@ -107,12 +107,6 @@ return packer.startup(function(use)
 	use("numToStr/Comment.nvim") -- Easily comment stuff
 	use("JoosepAlviste/nvim-ts-context-commentstring") -- smart comments (aware of nested languages)
 	use("akinsho/toggleterm.nvim")
-	use({
-		"kylechui/nvim-surround",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
-	})
 
 	-- @Colorschemes
 	use("navarasu/onedark.nvim")
@@ -153,10 +147,6 @@ return packer.startup(function(use)
 	-- @Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-symbols.nvim")
-
-	-- @Keybindings
-	use("folke/which-key.nvim")
-
 	-- @Treesitter @SyntaxHighlighting
 	use("lukas-reineke/indent-blankline.nvim")
 
@@ -171,40 +161,15 @@ return packer.startup(function(use)
 	-- @Git
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-fugitive")
-
-	-- @Wiki, @NoteTaking
-	use("nvim-neorg/neorg")
-	use("itchyny/calendar.vim")
-
-	-- use("vimwiki/vimwiki")
-
 	-- @Navigation
 	use("akinsho/bufferline.nvim")
 	use("christoomey/vim-tmux-navigator")
-
-	-- @Lua
-	use("git@github.com:folke/lua-dev.nvim.git")
-
-	-- @Debugging
-	use({ "mfussenegger/nvim-dap" })
-	use({
-		"rcarriga/nvim-dap-ui",
-		"theHamsta/nvim-dap-virtual-text",
-		"nvim-telescope/telescope-dap.nvim",
-	})
-
-	use({
-		"Pocco81/dap-buddy.nvim",
-		branch = "dev",
-		-- event = "BufWinEnter",
-		-- event = "BufRead",
-	})
 
 	-- @Tasks
 	use("jedrzejboczar/toggletasks.nvim")
 
 	-- @C_CXX_Development
-	use({ "cdelledonne/vim-cmake", ft = { "c", "cpp", "cmake", "makefile" } })
+	use({ "cdelledonne/vim-cmake"})
 
 	-- @Web
 	use({ "norcalli/nvim-colorizer.lua" })

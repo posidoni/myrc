@@ -28,7 +28,8 @@ null_ls.setup({
 		diagnostics.cppcheck,
 
 		-- @Mikhail: other viable options
-		-- formatting.cmake_format,
+		formatting.clang_format,
+		formatting.cmake_format,
 		-- diagnostics.markdownlint,
 		-- diagnostics.eslint,
 	},
@@ -40,7 +41,7 @@ null_ls.setup({
 				buffer = bufnr,
 				callback = function()
 					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-					-- sequential formatting is crucial here
+                        --  sequential formatting is crucial here
 					vim.lsp.buf.formatting_seq_sync()
 				end,
 			})

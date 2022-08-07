@@ -59,8 +59,8 @@ keymap("n", "fk", "zk", opts) -- prev folding
 keymap("v", "f", "zf", opts)
 
 -- these must be remapped like that
-vim.keymap.set("n", "zO", require("ufo").openAllFolds)
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+-- vim.keymap.set("n", "zO", require("ufo").openAllFolds)
+-- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 keymap("n", "fo", "zR", opts) -- @Mnemonic: fold open
 keymap("n", "fc", "zM", opts) -- @Mnemonic: fold close
 
