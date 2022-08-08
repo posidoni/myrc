@@ -75,9 +75,13 @@ alias neovide='neovide --multigrid --nofork -- '
 alias vimz="/usr/bin/vi"
 alias tmux="tmux -2"
 
-alias get-llvm="clang++ -emit-llvm -S"
-alias get-asm="clang++ -S"
-alias get-disasm="objdump -S --disassemble"
+alias getllvm="clang++ -emit-llvm -S"
+alias getasm="clang++ -S -fverbose-asm"
+alias getdisasm="objdump -S --disassemble"
+
+alias get_llvm="getllvm"
+alias get_asm="getasm"
+alias get_disasm="getdisasm"
 
 # LS Aliases
 alias ll="exa -l -g --icons"
