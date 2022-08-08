@@ -77,6 +77,7 @@ alias tmux="tmux -2"
 
 alias get-llvm="clang++ -emit-llvm -S"
 alias get-asm="clang++ -S"
+alias get-disasm="objdump -S --disassemble"
 
 # LS Aliases
 alias ll="exa -l -g --icons"
