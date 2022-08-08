@@ -102,7 +102,6 @@ return packer.startup(function(use)
 	})
 
 	-- @VanillaLike_Helpers
-	use("tpope/vim-obsession")
 	use("kshenoy/vim-signature")
 	use("numToStr/Comment.nvim") -- Easily comment stuff
 	use("JoosepAlviste/nvim-ts-context-commentstring") -- smart comments (aware of nested languages)
@@ -147,6 +146,7 @@ return packer.startup(function(use)
 	-- @Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-symbols.nvim")
+
 	-- @Treesitter @SyntaxHighlighting
 	use("lukas-reineke/indent-blankline.nvim")
 
@@ -176,16 +176,6 @@ return packer.startup(function(use)
 
 	-- @Docker
 	-- use 'jamestthompson3/nvim-remote-containers
-
-	use({
-		"rmagatti/auto-session",
-		config = function()
-			require("auto-session").setup({
-				log_level = "error",
-				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-			})
-		end,
-	})
 
 	use({
 		"lukas-reineke/virt-column.nvim",
