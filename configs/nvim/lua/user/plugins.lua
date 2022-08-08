@@ -1,4 +1,4 @@
-    -- vim.fn.system({array}) is a nvim wrapper over lua os.system()
+-- vim.fn.system({array}) is a nvim wrapper over lua os.system()
 local fn = vim.fn
 
 -- @brief: disables built-in plugins to boost performance
@@ -169,13 +169,34 @@ return packer.startup(function(use)
 	use("jedrzejboczar/toggletasks.nvim")
 
 	-- @C_CXX_Development
-	use({ "cdelledonne/vim-cmake"})
+	use({ "cdelledonne/vim-cmake" })
 
 	-- @Web
 	use({ "norcalli/nvim-colorizer.lua" })
 
 	-- @Docker
-	-- use 'jamestthompson3/nvim-remote-containers'
+	-- use 'jamestthompson3/nvim-remote-containers
+
+	use({
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "error",
+				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+			})
+		end,
+	})
+
+	use({
+		"lukas-reineke/virt-column.nvim",
+		config = function()
+			require("virt-column").setup()
+		end,
+	})
+
+	use({
+		"wakatime/vim-wakatime",
+	})
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
