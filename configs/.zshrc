@@ -75,6 +75,9 @@ alias neovide='neovide --multigrid --nofork -- '
 alias vimz="/usr/bin/vi"
 alias tmux="tmux -2"
 
+alias get-llvm="clang++ -emit-llvm -S"
+alias get-asm="clang++ -S"
+
 # LS Aliases
 alias ll="exa -l -g --icons"
 alias la="ll -a"
