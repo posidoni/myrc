@@ -1,35 +1,28 @@
-_G.__luacache_config = {
-	chunks = {
-		enable = true,
-		path = vim.fn.stdpath("cache") .. "/luacache_chunks",
-	},
-	modpaths = {
-		enable = true,
-		path = vim.fn.stdpath("cache") .. "/luacache_modpaths",
-	},
-}
-
-require("user.impatient")
-require("user.plugins")
-require("user.options")
-require("user.keymaps")
-require("user.colorscheme")
-require("user.cmp")
-require("user.lsp")
-require("user.telescope")
-require("user.treesitter")
-require("user.comment")
-require("user.gitsigns")
-require("user.nvim-tree")
-require("user.lualine")
-require("user.project")
-require("user.alpha")
-require("user.autocommands")
-require("user.bufferline")
-require("user.indentline")
-require("user.cmake")
-require("user.toggleterm")
-require("user.folding")
-require("user.webdev")
-require("user.symbols-outline")
-require("user.toggletasks")
+require("settings.impatient")
+require("settings.plugins")
+require("settings.options")
+require("settings.keymaps")
+require("settings.colorscheme")
+require("settings.cmp")
+require("settings.lsp")
+require("settings.telescope")
+-- require("settings.auto-save")
+require("settings.autopairs")
+require("settings.todo-comments")
+require("settings.treesitter")
+require("settings.comment")
+require("settings.gitsigns")
+require("settings.nvim-tree")
+require("settings.lualine")
+require("settings.project")
+require("settings.alpha")
+require("settings.autocommands")
+require("settings.bufferline")
+require("settings.indentline")
+require("settings.cmake")
+require("settings.toggleterm")
+require("settings.webdev")
+require("settings.symbols-outline")
+require("settings.toggletasks")
+require("settings.trouble")
+require("settings.dap")

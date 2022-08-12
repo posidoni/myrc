@@ -6,6 +6,8 @@
 export ZSH_DISABLE_COMPFIX=true
 ## ENV Configuration
 export TERM=xterm-256color
+export CC="/usr/sbin/clang"
+export CXX="/usr/sbin/clang++"
 # export ZSH_THEME="af-magic"
 export ZSH_THEME=""
 # export ZSH_THEME="spaceship"
@@ -23,6 +25,7 @@ fi
 if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
+
 main_editor="Vim"
 
 if [[ "$main_editor" == "Vim" ]]; then
@@ -64,8 +67,8 @@ export plugins=(
 source "$HOME"/.oh-my-zsh/oh-my-zsh.sh # it is okay to get warning here, as bashls can't correctly parse ZSH scripts
 export ZSH="$HOME/.oh-my-zsh"
 
-
-
+# Ctest
+alias ctest="ctest --test-dir $(find . -name "CTestTestfile.cmake" -printf '%h\n' -quit) --output-log test.log"
 # Aliases
 alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
@@ -98,8 +101,8 @@ alias mkdir="mkdir -p"
 alias rr="ranger"
 alias rrr="ranger"
 
-alias em="/usr/bin/emacs -nw"
-alias emacs="emacsclient -c -a 'emacs'"
+# alias em="/usr/bin/emacs -nw"
+# alias emacs="emacsclient -c -a 'emacs'"
 alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"
 alias doomupgrade="~/.emacs.d/bin/doom upgrade"
