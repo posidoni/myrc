@@ -23,18 +23,10 @@ end
 function M.clear_augroup(name)
     -- defer the function in case the autocommand is still in-use
     local exists, _ = pcall(vim.api.nvim_get_autocmds, { group = name })
-    if not exists then
-        Log:debug("ignoring request to clear autocmds from non-existent group " .. name)
-        return
-    end
     vim.schedule(function()
         local status_ok, _ = xpcall(function()
             vim.api.nvim_clear_autocmds { group = name }
         end, debug.traceback)
-        if not status_ok then
-            Log:warn("problems detected while clearing autocmds from " .. name)
-            Log:debug(debug.traceback())
-        end
     end)
 end
 
