@@ -1,6 +1,6 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
-	return
+    return
 end
 
 -- @Important:
@@ -14,20 +14,19 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-	debug = false,
-	sources = {
-		diagnostics.shellcheck,
-		diagnostics.cppcheck.with({
-			extra_args = {
-				-- "--enable=style,performance,portability,warning",
-				"--enable=all",
-				"--suppress=missingIncludeSystem",
-			},
-		}),
+    debug = false,
+    sources = {
+        diagnostics.shellcheck,
+        diagnostics.cppcheck.with({
+            extra_args = {
+                "--enable=style,performance,portability,warning",
+            },
+        }),
 
-		-- @Mikhail: other viable options
-		formatting.cmake_format,
-		-- diagnostics.markdownlint,
-		-- diagnostics.eslint,
-	},
+        -- @Mikhail: other viable options
+        formatting.cmake_format,
+        formatting.clang_format,
+        -- diagnostics.markdownlint,
+        -- diagnostics.eslint,
+    },
 })

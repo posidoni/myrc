@@ -20,6 +20,20 @@ keymap("n", "<F7>", ":%bd |e# | bd#<cr> |'\"", opts) -- close all buffers except
 keymap("n", "Y", "yg$", opts)
 keymap("n", "0", "^", opts)
 
+keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+keymap("n", "gr", "<cmd>Trouble lsp_references<cr>", opts)
+keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+keymap("n", "<leader>ll", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+keymap("n", "dn", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
+keymap("n", "dp", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
+keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+keymap("n", "<leader>f", "<cmd>Trouble<cr>", opts)
+keymap("n", "<leader>7", ":lua Toggle_diagnostic()<CR>", opts)
+
 -- Better wrap navigation
 keymap("n", "j", "gj", opts)
 keymap("n", "k", "gk", opts)
@@ -117,7 +131,7 @@ end
 keymap(
     "n",
     "<leader><leader>",
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy({ previewer = false}))<cr>",
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>",
     opts
 )
 keymap(

@@ -46,7 +46,6 @@ if not lsp_config_ok then
 end
 
 require("mason").setup()
-
 -- @Warning. This is used servers. Any other servers are unused (even if installed)
 
 lsp_installer.setup({
