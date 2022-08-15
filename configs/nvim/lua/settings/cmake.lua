@@ -10,7 +10,8 @@ g.cmake_jump_on_completion = 0 -- Whether to jump to CMake console on completiti
 g.cmake_jump_on_error = 0 -- Jump to CMake console on error
 -- This makes CMAKE_EXPORT_COMPILE_COMMANDS = ON by default
 g.cmake_link_compile_commands = 1
-g.cmake_log_file = 'build-log.log'
+g.cmake_log_file = ''
+--[[ g.cmake_log_file = 'build-log.log' ]]
 g.cmake_default_config = "Debug"
 g.cmake_root_markers = {
     ".git",
@@ -21,16 +22,6 @@ g.cmake_root_markers = {
 -- highly recomment this setting, just add build/ dir to gitignore
 -- this prevents total mess that is usually created by default CMake
 g.cmake_build_dir_location = "build/"
-
-vim.cmd [[
-	augroup vim-cmake-group
-	autocmd User CMakeBuildFailed :cfirst
-	augroup END
-
-	augroup vim-cmake-group
-	autocmd! User CMakeBuildSucceeded CMakeClose
-	augroup END
-]]
 
 g.cmake_generate_options = { "-G Ninja" } -- :CMakeGenerate
 g.cmake_build_options = { '--parallel 4' } -- :CMakeBuild

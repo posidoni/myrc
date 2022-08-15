@@ -6,8 +6,8 @@
 export ZSH_DISABLE_COMPFIX=true
 ## ENV Configuration
 export TERM=xterm-256color
-export CC="/usr/sbin/clang"
-export CXX="/usr/sbin/clang++"
+export CC=$(which clang)
+export CXX=$(which clang++)
 # export ZSH_THEME="af-magic"
 export ZSH_THEME=""
 # export ZSH_THEME="spaceship"

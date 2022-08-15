@@ -95,7 +95,7 @@ M.on_attach = function(client, bufnr)
             close_timeout = 4000, -- close floating window after ms when laster parameter is entered
             fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
             hint_enable = true, -- virtual hint enable
-            hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+            hint_prefix = "", -- Panda for parameter
             hint_scheme = "String",
             hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
             handler_opts = {
@@ -126,16 +126,18 @@ M.on_attach = function(client, bufnr)
             group = augroup,
             buffer = bufnr,
             callback = function()
-                vim.lsp.buf.format({
-                    async = true,
-                    filter = function(serv)
-                        return serv.name ~= "clangd"
-                    end,
-                })
+                local version = vim.version().minor
+                if version == 7 then
+                    vim.lsp.buf.format({})
+                else
+
+                    vim.lsp.buf.format({
+                        async = true,
+                    })
+                end
             end,
         })
     end
-    -- lsp_keymaps(bufnr)
 end
 
 return M
