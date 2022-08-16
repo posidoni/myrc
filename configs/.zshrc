@@ -14,6 +14,8 @@ export ZSH_THEME=""
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export HOMEBREW_NO_AUTO_UPDATE=1
+export NEOVIDE_MULTIGRID=1
+
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
 fi
@@ -50,9 +52,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
     PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     PATH=$PATH:$BREW:$BREW_BIN
-    PATH=$PATH:"/opt/goinfre/posidoni/mybrew/opt/ccache/libexec"
-PATH=$PATH:/Volumes/MISHA/nvim-macos/bin
-
+    PATH=$PATH:"/opt/goinfre/posidoni/mybrew/opt/ccache/libexec":"/Volumes/MISHA/nvim-macos/bin"
     # Os X specific aliases
     alias flash="cd /Volumes/MISHA"
     export PATH="/opt/goinfre/posidoni/mybrew/opt/llvm/bin:$PATH" # adds LLVM toolkit to PATH
@@ -73,7 +73,7 @@ alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
 alias vi="nvim"
-alias neovide='neovide --multigrid --nofork -- '
+alias neovide="$BREW_BIN/neovide --multigrid --"
 alias vimz="/usr/bin/vi"
 alias tmux="tmux -2"
 
@@ -226,11 +226,23 @@ install_brew() {
 
 fix_symlinks() {
 	cd $HOME
-	ln -sf $HOME/myrc/.gitconfig .
-	ln -sf $HOME/myrc/.gitmessage .
-	ln -sf $HOME/myrc/.zshrc .
+	ln -sf $HOME/myrc/configs/.gitconfig .
+	ln -sf $HOME/myrc/configs/.gitmessage .
+	ln -sf $HOME/myrc/configs/.zshrc .
 	ln -sf $HOME/myrc/configs/nvim .config/nvim
 	cp -r  /Volumes/MISHA/MacOS/Neovide $HOME/goinfre/
+    cd $HOME/goinfre
+    ln -sf $HOME/Library/Caches/ .
+    ln -sf $HOME/Library/42_cache/ .
+}
+
+restart_dock() {
+    defaults delete com.apple.dock; killall Dock
+}
+
+reset_dock() {
+    rm ~/Library/Preferences/com.apple.dock.plist
+    rm ~/Library/Caches/com.apple.finder/Cache.db
 }
 
 SAVEIFS=$IFS
@@ -326,7 +338,7 @@ ccleaner() {
     rm -rf ~/Library/Application\ Support/Code/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
     rm -rf ~/Library/Application\ Support/Code/Service\ Worker/ScriptCache/   > /dev/null 2>&1 > /dev/null &1
     rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/.Trash/   > /dev/null 2>&1 &
+    rm -rf ~.Trash/   > /dev/null 2>&1 &
 }
 
 # @TODO: Find better way to do this

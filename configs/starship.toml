@@ -154,13 +154,13 @@ rebase = "[理REBASING](bold red)"
 bisect = '\[[ BISECTING]\](bold yellow)'
 
 [git_status]
-conflicted = "ﲅ"
-untracked = ""
-modified = ""
+conflicted = " ﲅ "
+untracked = "  "
+modified = "  "
 behind = "🐢 × ${count} "
 diverged = "🔱×${ahead_count} 🐢×${behind_count}"
 stashed = "📦"
-deleted = "✘"
+deleted = " ✘ "
 format = '[$all_status$ahead_behind](purple bold) '
 
 [golang]
