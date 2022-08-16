@@ -52,9 +52,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
     PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     PATH=$PATH:$BREW:$BREW_BIN
-    PATH=$PATH:"/opt/goinfre/posidoni/mybrew/opt/ccache/libexec"
-PATH=$PATH:/Volumes/MISHA/nvim-macos/bin
-
+    PATH=$PATH:"/opt/goinfre/posidoni/mybrew/opt/ccache/libexec":"/Volumes/MISHA/nvim-macos/bin"
     # Os X specific aliases
     alias flash="cd /Volumes/MISHA"
     export PATH="/opt/goinfre/posidoni/mybrew/opt/llvm/bin:$PATH" # adds LLVM toolkit to PATH
@@ -75,7 +73,7 @@ alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
 alias vi="nvim"
-alias neovide='neovide --multigrid --nofork -- '
+alias neovide="$BREW_BIN/neovide --multigrid --"
 alias vimz="/usr/bin/vi"
 alias tmux="tmux -2"
 
@@ -228,18 +226,18 @@ install_brew() {
 
 fix_symlinks() {
 	cd $HOME
-	ln -sf $HOME/myrc/.gitconfig .
-	ln -sf $HOME/myrc/.gitmessage .
-	ln -sf $HOME/myrc/.zshrc .
+	ln -sf $HOME/myrc/configs/.gitconfig .
+	ln -sf $HOME/myrc/configs/.gitmessage .
+	ln -sf $HOME/myrc/configs/.zshrc .
 	ln -sf $HOME/myrc/configs/nvim .config/nvim
 	cp -r  /Volumes/MISHA/MacOS/Neovide $HOME/goinfre/
-    ln -sf $HOME/Library/Caches/ $HOME/goinfre/
-    ln -sf $HOME/Library/42_cache/ $HOME/goinfre/
+    cd $HOME/goinfre
+    ln -sf $HOME/Library/Caches/ .
+    ln -sf $HOME/Library/42_cache/ .
 }
 
 restart_dock() {
     defaults delete com.apple.dock; killall Dock
-    rm ~/Library/Caches/com.apple.finder/Cache.db
 }
 
 reset_dock() {
