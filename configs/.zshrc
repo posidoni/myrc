@@ -14,6 +14,8 @@ export ZSH_THEME=""
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export HOMEBREW_NO_AUTO_UPDATE=1
+export NEOVIDE_MULTIGRID=1
+
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
 fi
@@ -231,6 +233,18 @@ fix_symlinks() {
 	ln -sf $HOME/myrc/.zshrc .
 	ln -sf $HOME/myrc/configs/nvim .config/nvim
 	cp -r  /Volumes/MISHA/MacOS/Neovide $HOME/goinfre/
+    ln -sf $HOME/Library/Caches/ $HOME/goinfre/
+    ln -sf $HOME/Library/42_cache/ $HOME/goinfre/
+}
+
+restart_dock() {
+    defaults delete com.apple.dock; killall Dock
+    rm ~/Library/Caches/com.apple.finder/Cache.db
+}
+
+reset_dock() {
+    rm ~/Library/Preferences/com.apple.dock.plist
+    rm ~/Library/Caches/com.apple.finder/Cache.db
 }
 
 SAVEIFS=$IFS
@@ -326,7 +340,7 @@ ccleaner() {
     rm -rf ~/Library/Application\ Support/Code/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
     rm -rf ~/Library/Application\ Support/Code/Service\ Worker/ScriptCache/   > /dev/null 2>&1 > /dev/null &1
     rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/.Trash/   > /dev/null 2>&1 &
+    rm -rf ~.Trash/   > /dev/null 2>&1 &
 }
 
 # @TODO: Find better way to do this
