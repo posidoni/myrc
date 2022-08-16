@@ -127,14 +127,11 @@ M.on_attach = function(client, bufnr)
             buffer = bufnr,
             callback = function()
                 local version = vim.version().minor
-                if version == 7 then
-                    vim.lsp.buf.format({})
-                else
-
-                    vim.lsp.buf.format({
-                        async = true,
-                    })
-                end
+                    if version == 7 then
+                        vim.lsp.buf.formatting_seq_sync(nil, 1000, nil)
+                    else
+                        vim.lsp.buf.format({ bufnr = bufnr, async = true })
+                    end
             end,
         })
     end

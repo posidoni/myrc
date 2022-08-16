@@ -2,7 +2,7 @@
 # File: ZSH Config
 # Author: Mikhail Kuznetsov https://github.com/MikhailKuzntsov1
 # upd: 05 July 2022
-# 123
+
 export ZSH_DISABLE_COMPFIX=true
 ## ENV Configuration
 export TERM=xterm-256color
@@ -51,6 +51,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     PATH=$PATH:$BREW:$BREW_BIN
     PATH=$PATH:"/opt/goinfre/posidoni/mybrew/opt/ccache/libexec"
+PATH=$PATH:/Volumes/MISHA/nvim-macos/bin
 
     # Os X specific aliases
     alias flash="cd /Volumes/MISHA"
@@ -67,8 +68,6 @@ export plugins=(
 source "$HOME"/.oh-my-zsh/oh-my-zsh.sh # it is okay to get warning here, as bashls can't correctly parse ZSH scripts
 export ZSH="$HOME/.oh-my-zsh"
 
-# Ctest
-alias ctest="ctest --test-dir $(find . -name "CTestTestfile.cmake" -printf '%h\n' -quit) --output-log test.log"
 # Aliases
 alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
