@@ -172,6 +172,11 @@ return packer.startup(function(use)
     -- @Web
     use({ "norcalli/nvim-colorizer.lua" })
 
+    use 'neovim/nvim-lspconfig'
+    use 'simrat39/rust-tools.nvim'
+
+    use 'mfussenegger/nvim-dap'
+
     -- @Docker
     -- use 'jamestthompson3/nvim-remote-containers
 

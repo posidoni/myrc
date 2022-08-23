@@ -11,7 +11,7 @@ return {
             "--header-insertion=iwyu",
             "--header-insertion-decorators",
             "--completion-style=detailed",
-            "--offset-encoding=utf-16",
+            "--offset-encoding=utf-8",
             "-j=4",
         },
         init_options = {
@@ -32,7 +32,7 @@ return {
             "CMakeLists.txt",
         },
         single_file_support = true,
-        offsetEncoding = { "utf-16" },
+        offsetEncoding = { "utf-8" },
         flags = {
             debounce_text_change = 150,
         }
