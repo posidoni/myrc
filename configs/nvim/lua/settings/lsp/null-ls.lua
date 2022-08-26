@@ -23,7 +23,6 @@ null_ls.setup({
         }),
 
         -- @Mikhail: other viable options
-        formatting.cmake_format,
         -- diagnostics.markdownlint,
         -- diagnostics.eslint,
     },
