@@ -1,8 +1,3 @@
-local status_ok, map = pcall(require, "settings.util.utility")
-if not status_ok then
-    return
-end
-
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true, nowait = true }
@@ -121,17 +116,11 @@ keymap(
     opts
 )
 
-function find_project_files()
-    local ok = pcall(require("telescope.builtin.git_files"))
-    if not ok then
-        builtin.find_files()
-    end
-end
-
 keymap(
     "n",
     "<leader><leader>",
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>",
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false}))<cr>"
+    ,
     opts
 )
 keymap(
