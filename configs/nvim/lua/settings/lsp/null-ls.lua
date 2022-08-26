@@ -28,6 +28,6 @@ null_ls.setup({
         -- diagnostics.eslint,
     },
     on_init = function(new_client, _)
-        new_client.offset_encoding = 'utf-8'
+        new_client.offset_encoding = "utf-8"
     end,
 })
