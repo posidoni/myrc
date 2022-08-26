@@ -101,13 +101,6 @@ alias mkdir="mkdir -p"
 alias rr="ranger"
 alias rrr="ranger"
 
-# alias em="/usr/bin/emacs -nw"
-# alias emacs="emacsclient -c -a 'emacs'"
-alias doomsync="~/.emacs.d/bin/doom sync"
-alias doomdoctor="~/.emacs.d/bin/doom doctor"
-alias doomupgrade="~/.emacs.d/bin/doom upgrade"
-alias doompurge="~/.emacs.d/bin/doom purge"
-
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -117,38 +110,11 @@ alias fgrep='fgrep --color=auto'
 alias cp="cp -i"
 alias mv='mv -i'
 
-# adding flags
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
-alias vifm='./.config/vifm/scripts/vifmrun'
-alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
-alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
-
 # ps
 alias psa="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
-
-# Merge Xresources
-alias merge='xrdb -merge ~/.Xresources'
-
-# git
-alias addup='git add -u'
-alias addall='git add .'
-alias branch='git branch'
-alias checkout='git checkout'
-alias clone='git clone'
-alias commit='git commit -m'
-alias fetch='git fetch'
-alias pull='git pull origin'
-alias push='git push origin'
-alias tag='git tag'
-alias newtag='git tag -a'
-
-# get error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
 
 # gpg encryption
 # verify signature for isos
@@ -178,7 +144,6 @@ function new() {
     else
         app_name="Terminal"
     fi
-    
     if [[ $# -eq 0 ]]; then
         open -a "$app_name" "$PWD"
     else
@@ -191,18 +156,6 @@ install_code() {
     for plugin in ${code_plugins[@]}; do
         ( code --install-extension "$plugin" > /dev/null & )
     done
-}
-
-vimwiki () {
-    if [[ $# == 0 ]]
-    then
-        nvim +'VimwikiIndex'
-    elif [[ $1 == 'git' ]]
-    then
-        git -C ~/vimwiki/ "@:2"
-    else
-        echo 'Usage: vimwiki [git] [args ...]'
-    fi
 }
 
 # Installs brew packages
@@ -223,18 +176,6 @@ install_brew() {
         echo -e "Installing \t $package \n"
         ( brew install $package )
     done
-}
-
-fix_symlinks() {
-	cd $HOME
-	ln -sf $HOME/myrc/configs/.gitconfig .
-	ln -sf $HOME/myrc/configs/.gitmessage .
-	ln -sf $HOME/myrc/configs/.zshrc .
-	ln -sf $HOME/myrc/configs/nvim .config/nvim
-	cp -r  /Volumes/MISHA/MacOS/Neovide $HOME/goinfre/
-    cd $HOME/goinfre
-    ln -sf $HOME/Library/Caches/ .
-    ln -sf $HOME/Library/42_cache/ .
 }
 
 restart_dock() {
@@ -339,7 +280,7 @@ ccleaner() {
     rm -rf ~/Library/Application\ Support/Code/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
     rm -rf ~/Library/Application\ Support/Code/Service\ Worker/ScriptCache/   > /dev/null 2>&1 > /dev/null &1
     rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~.Trash/   > /dev/null 2>&1 &
+    rm -rf ~/.Trash/*   > /dev/null 2>&1 &
 }
 
 # @TODO: Find better way to do this
