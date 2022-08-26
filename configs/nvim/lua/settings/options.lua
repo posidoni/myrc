@@ -53,7 +53,7 @@ local options = {
     signcolumn = "yes",
 }
 
-vim.opt.guifont = "FiraCode Nerd Font Mono:h15"
+vim.opt.guifont = "FiraCode Nerd Font Mono:h16"
 
 local g = vim.g
 
@@ -98,19 +98,19 @@ end
     @brief: these are very simple global lua functions for changing GUI font
 --]]
 
-Fontsize = 16
+local fontsize = 16
 
 function IncreaseFontSize()
-    Fontsize = Fontsize + 1
-    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", Fontsize)
+    fontsize = fontsize + 1
+    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", fontsize)
 end
 
 function DecreaseFontSize()
-    Fontsize = Fontsize - 1
-    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", Fontsize)
+    fontsize = fontsize - 1
+    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", fontsize)
 end
 
 function SetFontSize(size)
-    FontSize = size
-    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", Fontsize)
+    fontsize = size
+    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", fontsize)
 end

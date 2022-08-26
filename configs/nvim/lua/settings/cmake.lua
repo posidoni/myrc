@@ -1,7 +1,7 @@
 local g = vim.g
 
 g.cmake_command = "cmake"
-g.cmake_console_size = 10
+g.cmake_console_size = 14
 g.cmake_test_command = "ctest"
 g.cmake_console_position = "botright"
 g.cmake_console_echo_cmd = 1
