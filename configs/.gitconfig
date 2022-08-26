@@ -7,7 +7,7 @@
 	name = "Mikhail Kuznetsov"
 	email = mikhail.n.kuznetsov@gmail.com
 	username = MikhailKuzntsov1
-	signingkey = EC56FBF894A2E4A6
+    signingkey = B455E902AAC1FCA3
 [github]
     user = mikhail.n.kuznetsov@gmail.com
     username = MikhailKuzntsov1
@@ -15,12 +15,12 @@
 [pull]
     rebase = false
 [merge]
-  	tool = nvim -d
+    tool = nvim -d
 [mergetool]
     prompt = false
 [commit]
-  	template = ~/.gitmessage
-	# gigpgsign = true
+    template = ~/.gitmessage
+	gigpgsign = true
 [init]
 	defaultBranch = main
 [web]
@@ -46,6 +46,5 @@
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [safe]
-    directory = /home/posidoni/myrc
 	directory = /home/posidoni/myrc
 
