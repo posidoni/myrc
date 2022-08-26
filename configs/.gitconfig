@@ -7,7 +7,7 @@
 	name = "Mikhail Kuznetsov"
 	email = mikhail.n.kuznetsov@gmail.com
 	username = MikhailKuzntsov1
-    signingkey = B455E902AAC1FCA3
+	signingkey = 7E0F211FD77E944B
 [github]
     user = mikhail.n.kuznetsov@gmail.com
     username = MikhailKuzntsov1
@@ -48,3 +48,5 @@
 [safe]
 	directory = /home/posidoni/myrc
 
+[gpg]
+	program = gpg
