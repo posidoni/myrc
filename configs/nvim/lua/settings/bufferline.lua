@@ -12,14 +12,16 @@ bufferline.setup({
         -- NOTE: this plugin is designed with this icon in mind,
         -- and so changing this is NOT recommended, this is intended
         -- as an escape hatch for people who cannot bear it for whatever reason
-        indicator_icon = "▎",
-        -- buffer_close_icon = "",
-        -- buffer_close_icon = '',
-        -- modified_icon = "●",
-        -- close_icon = "",
-        -- close_icon = '',
-        -- left_trunc_marker = "",
-        -- right_trunc_marker = "",
+        indicator = {
+            icon = '▎', -- this should be omitted if indicator style is not 'icon'
+            style = 'icon',
+        },
+        buffer_close_icon = "",
+        buffer_close_icon = '',
+        modified_icon = "",
+        close_icon = '',
+        left_trunc_marker = "",
+        right_trunc_marker = "",
         --- name_formatter can be used to change the buffer's label in the bufferline.
         --- Please note some names can/will break the
         --- bufferline so use this at your discretion knowing that it has
@@ -83,11 +85,12 @@ bufferline.setup({
             bg = { attribute = "bg", highlight = "TabLine" },
         },
 
-        -- buffer_selected = {
-        --   fg = {attribute='fg',highlight='#ff0000'},
-        --   bg = {attribute='bg',highlight='#0000ff'},
-        --   gui = 'none'
-        --   },
+        buffer_selected = {
+            fg = { attribute = 'fg', highlight = '#ff0000' },
+            bg = { attribute = 'bg', highlight = '#0000ff' },
+            italic = false,
+            bold = true,
+        },
         buffer_visible = {
             fg = { attribute = "fg", highlight = "TabLine" },
             bg = { attribute = "bg", highlight = "TabLine" },
@@ -109,6 +112,8 @@ bufferline.setup({
         tab_selected = {
             fg = { attribute = "fg", highlight = "Normal" },
             bg = { attribute = "bg", highlight = "Normal" },
+            bold = true,
+            italic = false,
         },
         tab = {
             fg = { attribute = "fg", highlight = "TabLine" },

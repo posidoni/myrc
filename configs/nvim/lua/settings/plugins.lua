@@ -172,7 +172,6 @@ return packer.startup(function(use)
     -- @Web
     use({ "norcalli/nvim-colorizer.lua" })
 
-    use 'neovim/nvim-lspconfig'
     use 'simrat39/rust-tools.nvim'
 
     use 'mfussenegger/nvim-dap'
@@ -181,18 +180,14 @@ return packer.startup(function(use)
     -- use 'jamestthompson3/nvim-remote-containers
 
     use({
-        "wakatime/vim-wakatime",
-    })
-    use({
         "ray-x/lsp_signature.nvim",
     })
     use({ "windwp/nvim-autopairs" })
 
     -- debugger
-    --[[ use({ "mfussenegger/nvim-dap" }) -- Debugger ]]
-    --[[ use({ "rcarriga/nvim-dap-ui" }) -- A simple UI out of the box ]]
-    --[[ use({ "theHamsta/nvim-dap-virtual-text" }) -- Virtual text for variables ]]
-    --[[ use({ "nvim-telescope/telescope-dap.nvim" }) ]]
+    use({ "rcarriga/nvim-dap-ui" }) -- A simple UI out of the box
+    use({ "theHamsta/nvim-dap-virtual-text" }) -- Virtual text for variables
+    use({ "nvim-telescope/telescope-dap.nvim" })
 
     use {
         "folke/trouble.nvim",

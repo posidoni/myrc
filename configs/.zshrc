@@ -69,6 +69,7 @@ source "$HOME"/.oh-my-zsh/oh-my-zsh.sh # it is okay to get warning here, as bash
 export ZSH="$HOME/.oh-my-zsh"
 
 # Aliases
+alias lg="lazygit"
 alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
