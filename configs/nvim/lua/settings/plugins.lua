@@ -161,6 +161,15 @@ return packer.startup(function(use)
         "folke/trouble.nvim",
         commit = "da61737d860ddc12f78e638152834487eabf0ee5",
     })
+
+    -- :TemplateInit <literal-name>
+    use({ "tibabit/vim-templates", commit = "0394471d6a3ace7618c443800ee8c1777ed8988b", config = function()
+        vim.g.tmpl_search_paths = { '~/myrc/configs/nvim/templates', './templates', '~/.config/nvim/templates' }
+        vim.g.tmpl_author_email = 'mikhail.n.kuznetsov@gmail.com'
+        vim.g.templates_no_autocmd = true
+        vim.g.templates_no_builtin_templates = true
+    end })
+
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end

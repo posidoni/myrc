@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define all(V) ((V.begin()), (V.end()))
+#define S_ALPHA "abcdefghijklmnopqrstuvwxyz"
+#define S_DIGITS "0123456789"
+#define debug(x) (cerr << __LINE__ << "Debug:\t" << x << endl;)
+#define debugFN(x) (cerr << __LINE__ << ":" << __FUNCTION__ << "Debug:\t" << x << endl;)
+using ll = long long int;
+using i64 = int64_t;
+using ui64 = uint64_t;
+const i64 MOD = 1e9 + 7;
+#define ff first
+#define ss second
+#pragma GCC optimize "-O2"
+
+void solve(i64 TC);
+
+int main() {
+    i64 N;
+    cin >> N;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cerr.tie(0);
+    cout.tie(0);
+
+#ifndef ONLINE_JUDGE
+    (void)freopen("input.txt", "r", stdin);
+    (void)freopen("output.txt", "w", stdout);
+    (void)freopen("errors.txt", "w", stderr);
+#endif
+
+    while (N--) {
+        solve(N);
+    }
+
+    return EXIT_SUCCESS;
+}
+
+void solve(i64 TC) {
+
+
+
+
+}
+

@@ -20,7 +20,7 @@
     prompt = false
 [commit]
     template = ~/.gitmessage
-	gpgsign = true
+	gpgsign = false
 [init]
 	defaultBranch = main
 [web]
