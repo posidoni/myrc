@@ -10,6 +10,13 @@ using ll = long long int;
 using i64 = int64_t;
 using ui64 = uint64_t;
 const i64 MOD = 1e9 + 7;
+// @Limits usage:
+// int a = intLim::max();, ::lowest, ::min;
+using intLim = numeric_limits<int>;
+using i64Lim = numeric_limits<i64>;
+using ui64Lim = numeric_limits<ui64>;
+using intLim = numeric_limits<int>;
+
 #define ff first
 #define ss second
 #pragma GCC optimize "-O2"
