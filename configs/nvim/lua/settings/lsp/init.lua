@@ -23,6 +23,8 @@ local servers = {
     "dockerls",
     "cssls",
     "marksman",
+    "ltex-ls", -- latex LSP
+    "closure-lsp" -- sometimes I write Closure for fun
 }
 mason.setup({
     ui = {
@@ -41,7 +43,6 @@ lsp_installer.setup({
 
 local lsp_config_ok, lspconfig = pcall(require, "lspconfig")
 if not lsp_config_ok then
-    vim.notify("can't load lspconfig plugin :(")
     return
 end
 

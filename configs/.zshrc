@@ -4,6 +4,7 @@
 # upd: 05 July 2022
 
 
+# /Users/posidoni/Library/Application Support/Google/Chrome
 # HOMEBREW CONFIG
 
 # Set Homebrew temporary folders
