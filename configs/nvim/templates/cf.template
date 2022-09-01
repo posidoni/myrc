@@ -1,35 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
+#pragma GCC optimize "-O2"
 
-#define all(V) ((V.begin()), (V.end()))
-#define S_ALPHA "abcdefghijklmnopqrstuvwxyz"
+/// Author: {{NAME}} ({{EMAIL}})
+/// Date: {{TODAY}}
+
+/****************** Aliases ******************/
+#define S_ALPHA  "abcdefghijklmnopqrstuvwxyz"
 #define S_DIGITS "0123456789"
+inline int charToInt(char ch) { return 48 - ch; }
 #define debug(x) (cerr << __LINE__ << "Debug:\t" << x << endl;)
-#define debugFN(x) (cerr << __LINE__ << ":" << __FUNCTION__ << "Debug:\t" << x << endl;)
+#define debugFN(x) \
+    (cerr << __LINE__ << ":" << __FUNCTION__ << "Debug:\t" << x << endl;)
 using ll = long long int;
 using i64 = int64_t;
 using ui64 = uint64_t;
-// (a % MOD +  b % MOD) == (a + b) % MOD
-const i64 MOD = 1e9 + 7;
-// @Limits usage:
-// int a = intLim::max();, ::lowest, ::min;
 using intLim = numeric_limits<int>;
 using i64Lim = numeric_limits<i64>;
 using ui64Lim = numeric_limits<ui64>;
 using intLim = numeric_limits<int>;
-
 #define ff first
 #define ss second
-#pragma GCC optimize "-O2"
+/*********************************************/
 
-void solve(i64 TC);
+/***************** Math **********************/
+// GCD, LCM: std::gcd(M, N), std::lcm(M, N);
+// PrefixSum: std::prefix_sum(vecIn, vecOut);
+// (a % MOD +  b % MOD) == (a + b) % MOD
+const i64 MOD = 1e9 + 7;
+// @Limits usage:
+// int a = intLim::max();, ::lowest, ::min;
+/*********************************************/
+
+void solve(i64 TC = 1);
+
+// comment out endl for interactive problems
+// #define INTERACTIVE_PROBLEM
+#define endl "\n"
 
 int main() {
-    i64 N;
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cerr.tie(0);
-    cout.tie(0);
+#ifndef INTERACTIVE_PROBLEM
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+#endif
 
 #ifndef ONLINE_JUDGE
     (void)freopen("input.txt", "r", stdin);
@@ -37,19 +50,28 @@ int main() {
     (void)freopen("errors.txt", "w", stderr);
 #endif
 
+#ifdef USES_TCS
+    i64 N;
     cin >> N;
-
     while (N--) {
         solve(N);
     }
+#else
+    solve();
+#endif
 
-    return EXIT_SUCCESS;
+    return (EXIT_SUCCESS);
 }
+
+#define USES_TCS
+// #define _GLIBCXX_DEBUG
+// -Wall -Wextra -Wshadow
+// -fsanitize=address -fsanitize=undefined
+/*
+
+
+*/
 
 void solve(i64 TC) {
-
-
-
-
+    //
 }
-
