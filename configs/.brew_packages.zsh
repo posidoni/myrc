@@ -4,10 +4,12 @@ automake
 bat
 bdw-gc
 bear
+boost
 brotli
 c-ares
 ca-certificates
 ccache
+cf-tool
 cmake
 cppcheck
 curl
@@ -16,6 +18,7 @@ emacs
 exa
 fd
 fmt
+gcc
 gdb
 gdbm
 gettext
@@ -29,8 +32,10 @@ guile
 hiredis
 icu4c
 include-what-you-use
+isl
 jansson
 jenkins-lts
+krb5
 lazygit
 lcov
 libassuan
@@ -40,6 +45,7 @@ libgcrypt
 libgpg-error
 libidn2
 libksba
+libmpc
 libnghttp2
 libssh2
 libtasn1
@@ -57,6 +63,7 @@ luv
 lz4
 m4
 mpdecimal
+mpfr
 msgpack
 ncurses
 neovim
@@ -74,6 +81,7 @@ pcre2
 pinentry
 pinentry-mac
 pkg-config
+postgresql
 protobuf
 python@3.10
 re2
@@ -94,4 +102,6 @@ wget
 xz
 yarn
 zstd
+basictex
 neovide
+rar

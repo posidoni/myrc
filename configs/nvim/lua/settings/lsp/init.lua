@@ -23,8 +23,6 @@ local servers = {
     "dockerls",
     "cssls",
     "marksman",
-    "ltex-ls", -- latex LSP
-    "closure-lsp" -- sometimes I write Closure for fun
 }
 mason.setup({
     ui = {
