@@ -10,8 +10,6 @@ using namespace std;
 #define S_DIGITS "0123456789"
 inline int charToInt(char ch) { return 48 - ch; }
 #define debug(x) (cerr << __LINE__ << "Debug:\t" << x << endl;)
-#define debugFN(x) \
-    (cerr << __LINE__ << ":" << __FUNCTION__ << "Debug:\t" << x << endl;)
 using ll = long long int;
 using i64 = int64_t;
 using ui64 = uint64_t;
@@ -19,6 +17,10 @@ using intLim = numeric_limits<int>;
 using i64Lim = numeric_limits<i64>;
 using ui64Lim = numeric_limits<ui64>;
 using intLim = numeric_limits<int>;
+using vi = vector<int>;
+using vvi = vector<vector<int>>;
+using vb = vector<vector<int>>;
+using pii = pair<int, int>;
 #define ff first
 #define ss second
 /*********************************************/
@@ -47,9 +49,10 @@ int main() {
 #ifndef ONLINE_JUDGE
     (void)freopen("input.txt", "r", stdin);
     (void)freopen("output.txt", "w", stdout);
-    (void)freopen("errors.txt", "w", stderr);
+    // (void)freopen("errors.txt", "w", stderr);
 #endif
 
+#define USES_TCS
 #ifdef USES_TCS
     i64 N;
     cin >> N;
@@ -62,8 +65,6 @@ int main() {
 
     return (EXIT_SUCCESS);
 }
-
-#define USES_TCS
 // #define _GLIBCXX_DEBUG
 // -Wall -Wextra -Wshadow
 // -fsanitize=address -fsanitize=undefined
