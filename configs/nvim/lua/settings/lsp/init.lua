@@ -11,7 +11,6 @@ end
 local servers = {
     "sumneko_lua",
     "clangd",
-    "pyright",
     "bashls",
     "eslint",
     "tsserver",
@@ -23,6 +22,7 @@ local servers = {
     "dockerls",
     "cssls",
     "marksman",
+    "pyright"
 }
 mason.setup({
     ui = {
