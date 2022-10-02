@@ -1,51 +1,107 @@
-#!/bin/bash
-# Brew packages list
-# 
-# Xclip is needed for yanking into clipboard & analyzing content of cliboard
-# for insert IMG plugin
-#
-# Bear is needed to create compile_commands.json from make (bear -- make)
-#
-# LLVM package is needed just because it is nice to have it :)
-
-export BREW_PACKAGES=(
-    neovim # Neovim                   
-	node # Node
-	bear
-	ctags
-	ripgrep
-    task
-    markdownlint
-    stylua
-    black
-    flake8
-    taskwarrior-tui
-	tmux # Tmux
-	pkg-config
-	shellcheck # Static analysis for bash
-    newsboat
-    node@16
-	xclip # integrates system clipboard with Vim (for pasting imgs into MD)
-	clang-format 
-	tldr
-	check
-    fd
-    cargo
-    rust
-    autoconf                gmp                     libksba                 luv                     python@3.10
-    automake                gnu-sed                 libnghttp2              m4                      readline
-    bdw-gc                  libtasn1                mpdecimal               sqlite
-    ca-certificates         gnutls                  libtermkey            	msgpack               tinyxml2
-    guile                   libtool                 ncurses                 
-    lcov                    libunistring            nettle                  
-    cmake                   libassuan               libusb                  npth                    unbound
-    cppcheck                libevent                libuv                   openssl@1.1             unibilium
-    gcovr                   libffi                  libzip                  p11-kit                utf8proc
-    gdbm                    libgcrypt               lua                     pcre                    
-    gettext                 libgpg-error            luajit-openresty        pinentry                xz
-    gh                      libidn2                 luarocks                zstd
-    llvm
-    qt
-    gnupg
-)
-
+abseil
+autoconf
+automake
+bat
+bdw-gc
+bear
+boost
+brotli
+c-ares
+ca-certificates
+ccache
+cf-tool
+cmake
+cppcheck
+curl
+doxygen
+emacs
+exa
+fd
+fmt
+gcc
+gdb
+gdbm
+gettext
+gmp
+gnu-sed
+gnupg
+gnutls
+googletest
+grpc
+guile
+hiredis
+icu4c
+include-what-you-use
+isl
+jansson
+jenkins-lts
+krb5
+lazygit
+lcov
+libassuan
+libevent
+libffi
+libgcrypt
+libgpg-error
+libidn2
+libksba
+libmpc
+libnghttp2
+libssh2
+libtasn1
+libtermkey
+libtool
+libunistring
+libusb
+libuv
+libzip
+llvm
+lua
+luajit
+luarocks
+luv
+lz4
+m4
+mpdecimal
+mpfr
+msgpack
+ncurses
+neovim
+nettle
+ninja
+nlohmann-json
+node
+npth
+openjdk@11
+openldap
+openssl@1.1
+p11-kit
+pcre
+pcre2
+pinentry
+pinentry-mac
+pkg-config
+postgresql
+protobuf
+python@3.10
+re2
+readline
+ripgrep
+rtmpdump
+spdlog
+sqlite
+starship
+tinyxml2
+tldr
+tmux
+tree-sitter
+unbound
+unibilium
+utf8proc
+wget
+xz
+yarn
+zstd
+basictex
+neovide
+rar

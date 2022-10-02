@@ -19,8 +19,8 @@
 [mergetool]
     prompt = false
 [commit]
-    template = ~/.gitmessage
-	gpgsign = true
+	template = ~/.gitmessage
+	gpgsign = false
 [init]
 	defaultBranch = main
 [web]

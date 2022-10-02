@@ -11,7 +11,6 @@ end
 local servers = {
     "sumneko_lua",
     "clangd",
-    "pyright",
     "bashls",
     "eslint",
     "tsserver",
@@ -23,7 +22,8 @@ local servers = {
     "dockerls",
     "cssls",
     "marksman",
-    "gopls"
+    "gopls",
+    "pyright"
 }
 
 mason.setup({
@@ -43,7 +43,6 @@ lsp_installer.setup({
 
 local lsp_config_ok, lspconfig = pcall(require, "lspconfig")
 if not lsp_config_ok then
-    vim.notify("can't load lspconfig plugin :(")
     return
 end
 

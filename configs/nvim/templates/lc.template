@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> kSumII(vector<int> A, int k, int target) {
+    }
+};
+
+
+int main() {
+    Solution S;
+
+    cout << "test" << endl;
+
+    return 0;
+}

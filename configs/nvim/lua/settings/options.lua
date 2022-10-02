@@ -11,7 +11,7 @@ local options = {
     pumheight = 10, -- pop up menu height
     wildoptions = "pum",
     lazyredraw = false,
-    conceallevel = 2,
+    conceallevel = 0,
     concealcursor = "n",
     -- these AW commands
     autowrite = true,
