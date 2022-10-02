@@ -23,7 +23,9 @@ local servers = {
     "dockerls",
     "cssls",
     "marksman",
+    "gopls"
 }
+
 mason.setup({
     ui = {
         icons = {
@@ -215,5 +217,6 @@ for _, server in pairs(servers) do
 
     lspconfig[server].setup(opts)
 end
+
 require("settings.lsp.handlers").setup()
 require("settings.lsp.null-ls")

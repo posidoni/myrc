@@ -6,8 +6,6 @@
 export ZSH_DISABLE_COMPFIX=true
 ## ENV Configuration
 export TERM=xterm-256color
-export CC=$(which clang)
-export CXX=$(which clang++)
 # export ZSH_THEME="af-magic"
 export ZSH_THEME=""
 # export ZSH_THEME="spaceship"
@@ -156,6 +154,10 @@ install_code() {
     for plugin in ${code_plugins[@]}; do
         ( code --install-extension "$plugin" > /dev/null & )
     done
+}
+
+dump_brew() {
+    brew list > "$HOME/myrc/configs/.brew_plugins_dump.txt"
 }
 
 # Installs brew packages
