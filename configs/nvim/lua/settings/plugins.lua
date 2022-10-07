@@ -141,8 +141,6 @@ return packer.startup(function(use)
 
     use({ "simrat39/rust-tools.nvim", commit = "b696e6dee1e79a53159f1c0472289f5486ac31bc" })
 
-    use({ "mfussenegger/nvim-dap", commit = "618c068e4265e8e1f428b93868141ac92c7dde8e" })
-
     -- @Docker
     -- use 'jamestthompson3/nvim-remote-containers
 
@@ -153,9 +151,12 @@ return packer.startup(function(use)
     use({ "windwp/nvim-autopairs", commit = "0a18e10a0c3fde190437567e40557dcdbbc89ea1" })
 
     -- debugger
+    use({ "mfussenegger/nvim-dap" })
+    use({ "leoluz/nvim-dap-go" })
     use({ "rcarriga/nvim-dap-ui", commit = "225115ae986b39fdaffaf715e571dd43b3ac9670" }) -- A simple UI out of the box
     use({ "theHamsta/nvim-dap-virtual-text", commit = "2971ce3e89b1711cc26e27f73d3f854b559a77d4" }) -- Virtual text for variables
     use({ "nvim-telescope/telescope-dap.nvim", commit = "b4134fff5cbaf3b876e6011212ed60646e56f060" })
+
 
     use({
         "folke/trouble.nvim",

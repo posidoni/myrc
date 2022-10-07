@@ -19,6 +19,11 @@ map("n", "<leader>co", "<cmd>lua require'dap'.continue()<cr>", opts)
 map("n", "<leader>cl", "<cmd>lua require'dap'.terminate()<cr>", opts)
 map("n", "<leader>\\", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 
+require('dap-go').setup({
+    on_attach = function()
+    end
+})
+
 dap.adapters.lldb = { type = "executable", command = 'lldb-vscode', name = "lldb" }
 -- Dap Setup
 

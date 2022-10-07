@@ -14,11 +14,11 @@ todo_comments.setup({
             alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
             -- signs = false, -- configure signs for some keywords individually
         },
-        TODO = { icon = " ", color = "info", alt = { "imp", "important", "see" } },
+        TODO = { icon = " ", color = "info", alt = { "imp", "important", "see", "DOC", "SEE", "INF" } },
+        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
         HACK = { icon = " ", color = "warning" },
         WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
         PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
     },
     merge_keywords = true, -- when true, custom keywords will be merged with the defaults
     -- highlighting of the line containing the todo comment

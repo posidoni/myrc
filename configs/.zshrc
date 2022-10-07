@@ -3,35 +3,7 @@
 # note for self (chrome dir):
 # /Users/posidoni/Library/Application Support/Google/Chrome
 
-# HOMEBREW CONFIG
-
-# Set Homebrew temporary folders
-export HOMEBREW_TEMP=$HOME/goinfre/Homebrew/Temp
-export HOMEBREW_CACHE=$HOME/goinfre/Homebrew/Temp/Caches
-
-mkdir -p $HOMEBREW_CACHE
-mkdir -p $HOMEBREW_TEMP
-
-# If NFS session
-# Symlink Locks folder in /tmp
-if df -T autofs,nfs $HOME 1>/dev/null
-then
-  HOMEBREW_LOCKS_TARGET=$HOME/goinfre/.Homebrew/Temp/Locks
-  HOMEBREW_LOCKS_FOLDER=$BREW/var/homebrew
-
-  mkdir -p $HOMEBREW_LOCKS_TARGET
-  mkdir -p $HOMEBREW_LOCKS_FOLDER
-
-  # Symlink to Locks target folders
-  # If not already a symlink
-  if ! [[ -L $HOMEBREW_LOCKS_FOLDER && -d $HOMEBREW_LOCKS_FOLDER ]]
-  then
-     echo "Creating symlink for Locks folder"
-     rm -rf $HOMEBREW_LOCKS_FOLDER
-     ln -s $HOMEBREW_LOCKS_TARGET $HOMEBREW_LOCKS_FOLDER
-  fi
-fi
-
+export GOPATH="$HOME/.local/go"
 export ZSH_DISABLE_COMPFIX=true
 ## ENV Configuration
 export TERM=xterm-256color
@@ -40,7 +12,6 @@ export ZSH_THEME=""
 # export ZSH_THEME="spaceship"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export HOMEBREW_NO_AUTO_UPDATE=1
 export NEOVIDE_MULTIGRID=1
 
 if [ -d "$HOME/.bin" ] ;
@@ -51,39 +22,9 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
-fi
-
-main_editor="Vim"
-
-if [[ "$main_editor" == "Vim" ]]; then
-    export EDITOR="nvim"
-    export VISUAL="neovide"
-    bindkey -v
-else
-    export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
-    export VISUAL="emacsclient -c -a emacs"           # $VISUAL use Emacs in GUI mode
-fi;
-
-# MacOS Specific config
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    BREW=$HOME/goinfre/mybrew
-    BREW_BIN=$BREW/bin
-    # source "$HOME"/.brew_packages.zsh
-    # source "$HOME"/.brewconfig.zsh
-    # Turns 'press & hold OS X' false for VSCode
-    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-    # Prints available space
-    # df -H | grep "$HOME" | awk "{printf('\t\t\t\t\tAvailable %s\t\n\'), $4}"
-    PATH=$PATH:/usr/local/munki:/Library/Apple/usr/bin
-    PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-    PATH=$PATH:$BREW:$BREW_BIN
-    PATH=$PATH:"/opt/goinfre/posidoni/mybrew/opt/ccache/libexec":"/Volumes/MISHA/nvim-macos/bin"
-    # Os X specific aliases
-    alias flash="cd /Volumes/MISHA"
-    export PATH="/opt/goinfre/posidoni/mybrew/opt/llvm/bin:$PATH" # adds LLVM toolkit to PATH
-fi;
+export EDITOR="nvim"
+export VISUAL="neovide"
+bindkey -v
 
 # ZSH config
 export plugins=(
@@ -161,7 +102,7 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 alias caps="setxkbmap -option caps:swapescape"
 
-# WSL
+# WSL things
 alias ~~='cd /mnt/c/Users/kuzne/Desktop'
 
 # Opens new Terminal window
