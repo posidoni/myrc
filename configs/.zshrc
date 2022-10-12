@@ -5,7 +5,6 @@
 
 export GOPATH="$HOME/.local/go"
 export ZSH_DISABLE_COMPFIX=true
-## ENV Configuration
 export TERM=xterm-256color
 # export ZSH_THEME="af-magic"
 export ZSH_THEME=""
@@ -105,63 +104,6 @@ alias caps="setxkbmap -option caps:swapescape"
 # WSL things
 alias ~~='cd /mnt/c/Users/kuzne/Desktop'
 
-# Opens new Terminal window
-function new() {
-    if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
-        app_name="iTerm"
-    else
-        app_name="Terminal"
-    fi
-    if [[ $# -eq 0 ]]; then
-        open -a "$app_name" "$PWD"
-    else
-        open -a "$app_name" "$@"
-    fi
-}
-
-# Asynchronously installs code plugins (spawns zsh instance for each extension)
-install_code() {
-    for plugin in ${code_plugins[@]}; do
-        ( code --install-extension "$plugin" > /dev/null & )
-    done
-}
-
-dump_brew() {
-    brew list > "$HOME/myrc/configs/.brew_plugins_dump.txt"
-}
-
-# Installs brew packages
-install_brew() {
-    echo "Launching brew installation. Please, wait."
-
-    if [ ! -d "$BREW" ]; then
-        echo "Brew dir in goinfre does not exist. Creating it & downloading brew."
-        mkdir $BREW
-        cd $BREW || exit
-        curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $BREW
-    fi
-
-    echo -e "Installing the following brew packages ... \n$BREW_PACKAGES"
-
-    # installing of packages
-    for package in ${BREW_PACKAGES[@]}; do
-        echo -e "Installing \t $package \n"
-        ( brew install $package )
-    done
-}
-
-restart_dock() {
-    defaults delete com.apple.dock; killall Dock
-}
-
-reset_dock() {
-    rm ~/Library/Preferences/com.apple.dock.plist
-    rm ~/Library/Caches/com.apple.finder/Cache.db
-}
-
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-
 ### Function extract for common file formats ###
 function extract {
  if [ -z "$1" ]; then
@@ -199,74 +141,6 @@ function extract {
     done
 fi
 }
-
-IFS=$SAVEIFS
-
-# Increse / Decrease brightness
-set_brightness() {
-    if [[ $1 -gt 5 && $1 -lt 101 ]]; then
-        xbacklight -set "$1"
-        notify-send "Set brigthess to $1%"
-    else
-        notify-send "Error! Invalid usage of function. Please, provide brigthness in range 5, 100 as a \$1"
-    fi;
-}
-
-# Asyncronous cleaner script
-ccleaner() {
-    find ~/ -name ".DS_Store" -print -delete 2>&1 > /dev/null  2>&1 > /dev/null &
-    find ~/ -name "**.42_cache_bak**" -print -delete 2>&1 > /dev/null  2>&1 > /dev/null &
-    rm -rf ~/.zcompdump*   > /dev/null 2>&1 > /dev/null &1
-    rm -rf .Trash/*   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Caches/*   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/42_cache   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/Code\ Cache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/Cache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Caches/*   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/42_cache   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/Cache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/Code\ Cache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/Cache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Developer/CoreSimulator/Caches/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Developer/CoreSimulator/Devices/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Logs/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Google/GoogleSoftwareUpdate/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Containers/com.apple.Safari/Data/Library/Caches/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/CachedData/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Slack/logs   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/zoom.us/AutoUpdater   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Google/Chrome/BrowserMetrics/.   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Google/Chrome/BrowserMetrics-spare.pma   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Google/Chrome/GrShaderCache/GPUCache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Google/Chrome/Default/Local\ Extension Settings &1 > /dev/null /cjpalhdlnbpafiamejdnhcphjbkeiagm/lost &
-    rm -rf ~/Library/Application\ Support/Code/Cache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/CachedExtensionVSIXs/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/Code\ Cache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf  ~/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/ScriptCache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Google/Chrome/ShaderCache/GPUCache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/CachedExtensions/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/logs/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/Service\ Worker/CacheStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/Service\ Worker/ScriptCache/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage/   > /dev/null 2>&1 > /dev/null &1
-    rm -rf ~/.Trash/*   > /dev/null 2>&1 &
-}
-
-# @TODO: Find better way to do this
-# if [ -z "$MY_EXT_IP" ]; then
-#     MY_EXT_IP=$(curl ifconfig.me.)
-# fi
-#
-# if [ -z "$MY_PRIV_IP" ]; then
-#     MY_PRIV_IP=$(ip addr show | grep -e 'inet ' | grep -v "127" | awk '{print $2}' | cut -f1 -d'/')
-# fi 
-
-# ~/ CleanUp
-# TODO: watch Luke Smith's vid
-# https://www.youtube.com/watch?v=yy8RoDSdhIQ
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"

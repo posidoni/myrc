@@ -21,12 +21,10 @@ null_ls.setup({
                 "--enable=style,performance,portability,warning",
             },
         }),
+        diagnostics.golangci_lint
 
         -- @Mikhail: other viable options
         -- diagnostics.markdownlint,
         -- diagnostics.eslint,
-    },
-    on_init = function(new_client, _)
-        new_client.offset_encoding = "utf-8"
-    end,
+    }
 })
