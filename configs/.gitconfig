@@ -29,6 +29,7 @@
     log = log --graph
     sign = rebase --exec 'git commit --amend --no-edit -n -S' -i --root
     rr = rebase -i --root
+    cli = restore --staged .
 [web]
 	browser = google-chrome
 [color]
