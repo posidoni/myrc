@@ -15,5 +15,8 @@
 # macos -> with brew
 # arch -> pacman
 
+### KNOWN QUIRCS:
+# .gitconfig -> git/config
+
 #### UNINSTALL
 # unlink all dirs

@@ -2,7 +2,7 @@
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = less
-	excludesfile = /Users/posidoni/.gitignore_global
+	excludesfile = ~/myrc/configs/.gitignore_global
 [user]
 	name = "Mikhail Kuznetsov"
 	email = mikhail.n.kuznetsov@gmail.com
@@ -19,7 +19,7 @@
 [mergetool]
     prompt = false
 [commit]
-	template = ~/.gitmessage
+	template = ~/myrc/configs/git/.gitmessage
 	gpgsign = false
 [init]
 	defaultBranch = main
@@ -27,9 +27,11 @@
 	browser = google-chrome
 [alias]
     log = log --graph
-    sign = rebase --exec 'git commit --amend --no-edit -n -S' -i --root
+    signAll = rebase --exec 'git commit --amend --no-edit -n -S' -i --root
     rr = rebase -i --root
     cli = restore --staged .
+    c = checkout
+    ck = checkout
 [web]
 	browser = google-chrome
 [color]
@@ -48,6 +50,5 @@
 	helper = !/usr/bin/gh auth git-credential
 [safe]
 	directory = /home/posidoni/myrc
-
 [gpg]
 	program = gpg
