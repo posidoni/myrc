@@ -37,7 +37,7 @@ local options = {
     numberwidth = 2, -- set number column width to 2 {default 4}
     wrap = true, -- display lines as one long line
     linebreak = true, -- doesn't break words when wraps lines. To move through breaked (not numbered) lines use: gj gk g$ ...
-    scrolloff = 10, -- is one of my fav
+    scrolloff = 8, -- There always be N lines belove/above cursor while scrolling
     sidescrolloff = 8,
     timeoutlen = 250, -- Very important setting. Experiment with it. 300 feels comfortable & usable
     ttimeoutlen = 30,
@@ -53,7 +53,7 @@ local options = {
     signcolumn = "yes",
 }
 
-vim.opt.guifont = "FiraCode Nerd Font Mono:h16"
+vim.opt.guifont = "FiraCode Nerd Font Mono:h13"
 
 local g = vim.g
 
@@ -98,7 +98,7 @@ end
     @brief: these are very simple global lua functions for changing GUI font
 --]]
 
-local fontsize = 16
+local fontsize = 13
 
 function IncreaseFontSize()
     fontsize = fontsize + 1

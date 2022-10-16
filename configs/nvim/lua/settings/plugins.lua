@@ -167,8 +167,7 @@ return packer.startup(function(use)
     use({ "tibabit/vim-templates", commit = "0394471d6a3ace7618c443800ee8c1777ed8988b", config = function()
         vim.g.tmpl_search_paths = { '~/myrc/configs/nvim/templates', './templates', '~/.config/nvim/templates' }
         vim.g.tmpl_author_email = 'mikhail.n.kuznetsov@gmail.com'
-        vim.g.templates_no_autocmd = true
-        vim.g.templates_no_builtin_templates = true
+        vim.g.tmpl_auto_initialize = false
     end })
 
     if PACKER_BOOTSTRAP then

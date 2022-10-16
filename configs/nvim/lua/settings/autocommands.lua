@@ -68,7 +68,15 @@ local autocmds = {
                 vim.fn.execute("cd " .. "path")
             end,
         }
-    }
+    },
+    { -- Tabs are forces for shell scripts. Spaces break heredoc.
+        "FileType",
+        {
+            group = "_filetype_settings",
+            pattern = "sh",
+            command = "set noexpandtab",
+        },
+    },
 }
 
 utils.define_autocmds(autocmds)
