@@ -62,3 +62,17 @@ function extract() {
 fi
 }
 
+# C/C++ convenience functions
+# prefer 'godbolt.org' for any non-trivial things
+function getllvm() {
+	clang++ -emit-llvm  -Wall -Wextra -S "$1"
+}
+
+function getasm() {
+	clang++ -S -fverbose-asm -Wall -Wextra "$1"
+}
+
+function getdisasm() {
+	objdump -S --disassemble "$1"
+}
+

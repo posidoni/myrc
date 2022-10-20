@@ -14,11 +14,10 @@ alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias getllvm="clang++ -emit-llvm -S"
 alias getasm="clang++ -S -fverbose-asm"
 alias getdisasm="objdump -S --disassemble"
-alias get_llvm="getllvm"
-alias get_asm="getasm"
-alias get_disasm="getdisasm"
 
 # LS Aliases
+# Order is important
+# These are tuned for my needs & may feel a bit strange c:
 alias ll="exa -l -g --icons"
 alias la="ll -a"
 alias ls="exa --icons -F --sort=size"
