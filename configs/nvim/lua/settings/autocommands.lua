@@ -23,7 +23,7 @@ local autocmds = {
             command = "set nobuflisted",
         },
     },
-    {
+    { --- Git commit messages
         "FileType",
         {
             group = "_filetype_settings",

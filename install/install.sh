@@ -18,5 +18,7 @@
 ### KNOWN QUIRCS:
 # .gitconfig -> git/config
 
+## MAKE BACKUP of existing files
+
 #### UNINSTALL
 # unlink all dirs

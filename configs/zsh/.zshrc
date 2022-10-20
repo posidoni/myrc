@@ -6,7 +6,7 @@ set colored-stats on
 export plugins=(
     git
     docker
-    golang # go subcommands completition
+    golang # go subcommands completion
 )
 
 # @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh

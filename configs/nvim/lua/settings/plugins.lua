@@ -130,9 +130,6 @@ return packer.startup(function(use)
     use({ "akinsho/bufferline.nvim", tag = "v2.*", commit = "fb7b17362eb6eedc57c37bdfd364f8e7d8149e31" })
     use({ "christoomey/vim-tmux-navigator", commit = "afb45a55b452b9238159047ce7c6e161bd4a9907" })
 
-    -- @Tasks
-    use({ "jedrzejboczar/toggletasks.nvim", commit = "4329ad580799f25c0a923a2d1e71a585ae0bbc48" })
-
     -- @C_CXX_Development
     use({ "cdelledonne/vim-cmake", commit = "621cfabc41e93ca3327d5081fc4c69d092135647" })
 
@@ -162,13 +159,6 @@ return packer.startup(function(use)
         "folke/trouble.nvim",
         commit = "da61737d860ddc12f78e638152834487eabf0ee5",
     })
-
-    -- :TemplateInit <literal-name>
-    use({ "tibabit/vim-templates", commit = "0394471d6a3ace7618c443800ee8c1777ed8988b", config = function()
-        vim.g.tmpl_search_paths = { '~/myrc/configs/nvim/templates', './templates', '~/.config/nvim/templates' }
-        vim.g.tmpl_author_email = 'mikhail.n.kuznetsov@gmail.com'
-        vim.g.tmpl_auto_initialize = false
-    end })
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

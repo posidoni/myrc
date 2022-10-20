@@ -1,9 +1,6 @@
 #!/bin/zsh
 
-
-
 # .zshenv → [.zprofile if login] → [.zshrc if interactive] → [.zlogin if login] → [.zlogout sometimes].
-
 # Update
 # exec zsh --login
 
@@ -14,19 +11,20 @@
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
-
 unsetopt PROMPT_SP
 
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="neovide"
-#export TERMINAL="st"
-#export BROWSER="librewolf"
+#export TERMINAL=""
+#export BROWSER=""
 
-# ~/ Clean-up:
+# (~) Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+
+# Programs that require special ENV
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export ATOM_HOME="$XDG_DATA_HOME"/atom
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc"

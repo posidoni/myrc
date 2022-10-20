@@ -87,6 +87,7 @@ keymap("n", "<leader>t", ":vsplit term://zsh<CR>", opts)
 
 -- Easier switching to terminal normal mode
 keymap("n", "<leader>2", ":ToggleTerm<CR>", opts)
+keymap("n", "<F6>", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("t", "<ESC>", "<C-\\><C-N>", term_opts)
 
 -- Allows switching panes in terminal insert mode

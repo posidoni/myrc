@@ -12,15 +12,11 @@ end
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
+
 null_ls.setup({
     debug = false,
     sources = {
         diagnostics.shellcheck,
-        diagnostics.cppcheck.with({
-            extra_args = {
-                "--enable=style,performance,portability,warning",
-            },
-        }),
         diagnostics.golangci_lint
 
         -- @Mikhail: other viable options
