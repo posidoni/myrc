@@ -63,11 +63,11 @@ set autoread
 aut FocusGained,BufEnter * checktime
 set foldexpr=nvim_treesitter#foldexpr()
 set sessionoptions-=buffers
+set autoread 
+set background=dark
+set t_Co=256
+au FocusGained,BufEnter * checktime
 ]])
-
--- Autoread buffer on an external change
-vim.cmd([[ set autoread ]])
-vim.cmd([[ au FocusGained,BufEnter * checktime ]])
 
 -- See @docs for reference on @Neovide configuration:
 -- https://github.com/neovide/neovide/wiki/Configuration#multigrid

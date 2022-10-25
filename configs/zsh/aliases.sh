@@ -10,11 +10,6 @@ alias tmux="tmux -2"
 alias code=code --extensions-dir "$XDG_DATA_HOME"/vscode
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
-# C/C++
-alias getllvm="clang++ -emit-llvm -S"
-alias getasm="clang++ -S -fverbose-asm"
-alias getdisasm="objdump -S --disassemble"
-
 # LS Aliases
 # Order is important
 # These are tuned for my needs & may feel a bit strange c:

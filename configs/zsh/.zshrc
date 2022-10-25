@@ -2,11 +2,13 @@
 
 bindkey -v
 set colored-stats on
+
 # ZSH config
 export plugins=(
     git
     docker
     golang # go subcommands completion
+    # zsh-vi-mode # better vi mode, see https://github.com/jeffreytse/zsh-vi-mode, may be quite slow
 )
 
 # @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh

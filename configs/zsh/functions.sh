@@ -19,6 +19,11 @@ function cloneCustomSSH() {
     fi
 }
 
+# Connects to machine & starts new tmux session
+function ssht() {
+	/usr/bin/ssh -t "$@" tmux new -A
+}
+
 # Finds and reports broken links in $1
 function findBrokenLinks() {
 	find "$1" -type l -exec sh -c 'file -b "$1" | grep -q "^broken"' sh {} \; -print
