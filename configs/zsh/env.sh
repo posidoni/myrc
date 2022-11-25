@@ -7,7 +7,7 @@ export win='/mnt/c/Users/kuzne/Desktop'
 export conf="$HOME/myrc"
 
 export ZSH_THEME="" # "af-magic" | "spaceship"
-export NEOVIDE_MULTIGRID=1
+export NEOVIDE_MULTIGRID=true
 
 export ZSH_DISABLE_COMPFIX=true
 export TERM=xterm-256color

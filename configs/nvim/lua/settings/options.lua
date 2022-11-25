@@ -98,7 +98,7 @@ end
     @brief: these are very simple global lua functions for changing GUI font
 --]]
 
-local fontsize = 13
+local fontsize = 11
 
 function IncreaseFontSize()
     fontsize = fontsize + 1

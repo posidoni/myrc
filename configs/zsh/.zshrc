@@ -8,6 +8,8 @@ export plugins=(
     git
     docker
     golang # go subcommands completion
+    git-auto-fetch
+    magic-enter
     # zsh-vi-mode # better vi mode, see https://github.com/jeffreytse/zsh-vi-mode, may be quite slow
 )
 

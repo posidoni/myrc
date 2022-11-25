@@ -16,8 +16,9 @@ unsetopt PROMPT_SP
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="neovide"
-#export TERMINAL=""
-#export BROWSER=""
+export TERMINAL="alacritty"
+export DISPLAY=1
+# export BROWSER=""
 
 # (~) Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -35,12 +36,12 @@ export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GDBHISTFILE="$XDG_DATA_HOME"/gdb/history
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
-#export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
-#export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-#export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
+# export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
 export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_PLATFORM_DIRS="1"
@@ -103,7 +104,7 @@ mkdir -p "$XDG_DATA_HOME"/xmonad
 # [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && setsid shortcuts >/dev/null 2>&1
 
 # Start graphical server on user's current tty if not already running.
-# [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
 
 # Switch escape and caps if tty and no passwd required:
 # sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
