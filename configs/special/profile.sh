@@ -9,7 +9,7 @@
 # to clean up.
 
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+
 
 unsetopt PROMPT_SP
 
@@ -24,6 +24,9 @@ export DISPLAY=1
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}:$GOPATH/bin"
 
 # Programs that require special ENV
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
@@ -68,7 +71,6 @@ export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"

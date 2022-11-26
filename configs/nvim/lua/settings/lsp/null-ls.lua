@@ -10,14 +10,17 @@ end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local formatting = null_ls.builtins.formatting
+local _ = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-    debug = false,
+    debug = true,
     sources = {
-        diagnostics.shellcheck,
-        diagnostics.golangci_lint
+        diagnostics.shellcheck.with({
+        }),
+        diagnostics.golangci_lint.with({
+            cmd = { "golangci-lint" },
+        }),
 
         -- @Mikhail: other viable options
         -- diagnostics.markdownlint,

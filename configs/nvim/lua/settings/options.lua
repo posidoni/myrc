@@ -75,12 +75,12 @@ g.neovide_refresh_rate = 140
 g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullscreen mode of NeoVide. Not recommended.
 
 --- Input settings
-g.neovide_input_use_logo = true -- Redirects [S]uper key to Nvim (Win / Opt)
+g.neovide_input_use_logo = true
 g.neovide_silent = true
 g.neovide_cursor_antialiasing = true
 g.neovide_cursor_unfocused_outline_width = 0.125
-g.neovide_cursor_animation_length = 0
-g.neovide_cursor_trail_length = 0
+g.neovide_cursor_animation_length = 0.1
+g.neovide_cursor_trail_length = 0.1
 g.scroll_animation_length = 0.3
 g.neovide_floating_blur_amount_x = 2.0
 g.neovide_floating_blur_amount_y = 2.0
@@ -107,10 +107,5 @@ end
 
 function DecreaseFontSize()
     fontsize = fontsize - 1
-    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", fontsize)
-end
-
-function SetFontSize(size)
-    fontsize = size
     vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", fontsize)
 end

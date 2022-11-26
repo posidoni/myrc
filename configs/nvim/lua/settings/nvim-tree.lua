@@ -32,7 +32,7 @@ nvim_tree.setup({
         ignore_list = {},
     },
     system_open = {
-        cmd = "nil",
+        cmd = "xdg-open",
         args = {},
     },
     filters = {

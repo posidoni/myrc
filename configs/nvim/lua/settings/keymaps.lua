@@ -27,7 +27,6 @@ keymap("n", "dn", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
 keymap("n", "dp", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 keymap("n", "<leader>f", "<cmd>Trouble<cr>", opts)
-keymap("n", "<leader>7", ":lua Toggle_diagnostic()<CR>", opts)
 
 -- Better wrap navigation
 keymap("n", "j", "gj", opts)

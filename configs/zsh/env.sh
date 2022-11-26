@@ -5,6 +5,7 @@ setopt cdable_vars
 
 export win='/mnt/c/Users/kuzne/Desktop'
 export conf="$HOME/myrc"
+export PATH="$PATH:$GOPATH/bin"
 
 export ZSH_THEME="" # "af-magic" | "spaceship"
 export NEOVIDE_MULTIGRID=true
