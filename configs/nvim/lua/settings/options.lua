@@ -41,7 +41,7 @@ local options = {
     sidescrolloff = 8,
     timeoutlen = 250, -- Very important setting. Experiment with it. 300 feels comfortable & usable
     ttimeoutlen = 30,
-    colorcolumn = "9999",
+    colorcolumn = "80",
     belloff = "all",
     spell = false,
     cursorline = true,
@@ -77,15 +77,16 @@ g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullsc
 --- Input settings
 g.neovide_input_use_logo = true
 g.neovide_silent = true
+g.neovide_scale_factor = 0.65
 g.neovide_cursor_antialiasing = true
 g.neovide_cursor_unfocused_outline_width = 0.125
-g.neovide_cursor_animation_length = 0.1
-g.neovide_cursor_trail_length = 0.1
-g.scroll_animation_length = 0.3
+g.neovide_cursor_animation_length = 0
+g.neovide_cursor_trail_length = 0
+g.scroll_animation_length = 0.05
 g.neovide_floating_blur_amount_x = 2.0
 g.neovide_floating_blur_amount_y = 2.0
--- g.neovide_transparency = 0.80
-
+-- g.neovide_transparency = 0.8
+g.neovide_hide_mouse_when_typing = true
 vim.opt.wildignore = { "*.o", "*.a", "__pycache__" }
 vim.opt.shortmess:append("c")
 

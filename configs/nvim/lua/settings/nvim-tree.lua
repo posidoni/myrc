@@ -47,7 +47,6 @@ nvim_tree.setup({
     },
     view = {
         width = 30,
-        height = 30,
         hide_root_folder = false,
         side = "left",
         mappings = {
@@ -62,7 +61,7 @@ nvim_tree.setup({
         },
         number = false,
         relativenumber = false,
-        adaptive_size = true, -- resizes window based on the longest line
+        adaptive_size = false, -- resizes window based on the longest file name
     },
     trash = {
         cmd = "trash",

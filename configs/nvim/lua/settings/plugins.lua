@@ -166,7 +166,27 @@ return packer.startup(function(use)
     use({
         "folke/trouble.nvim",
     })
-    use({ 'crispgm/nvim-go' })
+
+    -- @Go
+    use {
+        "olexsmir/gopher.nvim",
+        requires = { -- dependencies
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+    }
+    use {
+        'edolphin-ydf/goimpl.nvim',
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-lua/popup.nvim' },
+            { 'nvim-telescope/telescope.nvim' },
+            { 'nvim-treesitter/nvim-treesitter' },
+        },
+        config = function()
+            require 'telescope'.load_extension 'goimpl'
+        end,
+    }
 
     if packer_first_launch then
         require("packer").sync()
