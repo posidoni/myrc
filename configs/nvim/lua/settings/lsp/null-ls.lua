@@ -16,11 +16,8 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
     debug = true,
     sources = {
-        diagnostics.shellcheck.with({
-        }),
-        diagnostics.golangci_lint.with({
-            cmd = { "golangci-lint" },
-        }),
+        diagnostics.shellcheck.with({}),
+        diagnostics.golangci_lint.with({}),
 
         -- @Mikhail: other viable options
         -- diagnostics.markdownlint,
