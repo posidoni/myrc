@@ -23,9 +23,13 @@ alias l="la"
 # Better mkdir
 alias mkdir="mkdir -p"
 
-# CLI file manager alias
+# Often used utils aliases
 alias rr="ranger"
 alias rrr="ranger"
+alias zz="zathura"
+alias zzz="zathura"
+alias ff="fzf"
+alias fff="fzf"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -38,6 +42,3 @@ alias ip="ip -color=auto"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -vI"
-
-# Caps-lock remap to esc
-alias caps="setxkbmap -option caps:swapescape"
