@@ -27,7 +27,8 @@ keymap("n", "dn", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
 keymap("n", "dp", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 keymap("n", "<leader>f", "<cmd>Trouble<cr>", opts)
-
+keymap('n', '<leader>im', [[<cmd>lua require'telescope'.extensions.goimpl.goimpl{}<CR>]],
+    { noremap = true, silent = true })
 -- Better wrap navigation
 keymap("n", "j", "gj", opts)
 keymap("n", "k", "gk", opts)
@@ -60,6 +61,8 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Navigate places
 keymap("n", "<Tab>", "<C-o>", opts)
+-- fix annoying thing when I press indent earlier than enter insert
+keymap("n", "<Tab>i", "i<Tab>", opts)
 keymap("n", "<S-Tab>", "<C-i>", opts)
 
 -- @Insert mode
