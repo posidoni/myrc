@@ -1,6 +1,8 @@
 #!/bin/bash
 
 alias lg="lazygit"
+alias doc="lazydocker"
+alias dd="lazydocker"
 alias tks="tmux kill-session -t"
 alias vimdiff="nvim -d"
 alias vim="nvim"
