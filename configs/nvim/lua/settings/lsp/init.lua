@@ -19,7 +19,8 @@ local servers = {
     "cssls",
     "marksman",
     "gopls",
-    "pyright"
+    "pyright",
+    "rust_analyzer"
 }
 
 for _, server in pairs(servers) do

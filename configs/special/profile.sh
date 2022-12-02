@@ -26,7 +26,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}:$GOPATH/bin"
+export PATH="$PATH:$CARGO_HOME/bin"
 
 # Programs that require special ENV
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
