@@ -3,6 +3,15 @@
 # Allows cd into vars
 setopt cdable_vars
 
+load-local-conf() {
+     # check file exists, is regular file and is readable:
+     if [[ -f "$HOME/.env" && -r "$HOME/.env" ]]; then
+       source "$HOME/.env"
+     fi
+}
+
+load-local-conf
+
 export win='/mnt/c/Users/kuzne/Desktop'
 export conf="$HOME/myrc"
 export PATH="$PATH:$GOPATH/bin"

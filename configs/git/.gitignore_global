@@ -22,6 +22,9 @@ a.out
 .coverage
 tags
 *.orig
+*/.env
+**/.env
+.env
 .env.chico
 gcov_obj/*
 gcov_obj/
