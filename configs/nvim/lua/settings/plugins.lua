@@ -65,7 +65,8 @@ return packer.startup(function(use)
     use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
     -- @Colorschemes
     use({ "navarasu/onedark.nvim" })
-    use({ "NTBBloodbath/doom-one.nvim" })
+    use({ "sainnhe/sonokai" })
+    -- use({ "NTBBloodbath/doom-one.nvim" })
 
     -- @Completition
 

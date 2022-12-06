@@ -11,6 +11,7 @@ export EDITOR="nvim"
 export VISUAL="neovide"
 export TERMINAL="alacritty"
 export BROWSER="google-chrome-stable"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
 
 # (~) Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
