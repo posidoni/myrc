@@ -4,21 +4,14 @@
 # Update
 # exec zsh --login
 
-# profile file. Runs on login. Environmental variables are set here.
-# If you don't plan on reverting to bash, you can remove the link in ~/.profile
-# to clean up.
-
-# Adds `~/.local/bin` to $PATH
-
-
 unsetopt PROMPT_SP
 
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="neovide"
 export TERMINAL="alacritty"
-export DISPLAY=1
-# export BROWSER=""
+export BROWSER="google-chrome-stable"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
 
 # (~) Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -35,12 +28,16 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export ATOM_HOME="$XDG_DATA_HOME"/atom
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
+export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
+export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverr
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GDBHISTFILE="$XDG_DATA_HOME"/gdb/history
-#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
@@ -97,11 +94,6 @@ export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
-# Xmonad requires for these dirs to exist
-mkdir -p "$XDG_CACHE_HOME"/xmonad
-mkdir -p "$XDG_CONFIG_HOME"/xmonad
-mkdir -p "$XDG_DATA_HOME"/xmonad
-
 # [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && setsid shortcuts >/dev/null 2>&1
 
 # Start graphical server on user's current tty if not already running.
@@ -109,5 +101,3 @@ mkdir -p "$XDG_DATA_HOME"/xmonad
 
 # Switch escape and caps if tty and no passwd required:
 # sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
-
-

@@ -2,8 +2,9 @@ local status_ok, autopairs = pcall(require, "nvim-autopairs")
 if not status_ok then
     return
 end
-local status_ok, Rule = pcall(require, "nvim-autopairs.rule")
-if not status_ok then
+
+local _status_ok, Rule = pcall(require, "nvim-autopairs.rule")
+if not _status_ok then
     return
 end
 
@@ -39,7 +40,7 @@ autopairs.setup({
     disable_in_visualblock = false,
     ---@usage  change default fast_wrap
     fast_wrap = {
-        map = "<nop>",
+        map = "<C-f>",
         chars = { "{", "[", "(", '"', "'" },
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
         offset = 0, -- Offset from pattern match
