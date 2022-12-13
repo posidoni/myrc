@@ -2,15 +2,6 @@ return {
     settings = {
         gopls = {
             gofumpt = true,
-            hints = {
-                compositeLiteralFields = true,
-                assignVariableTypes = true,
-                compositeLiteralTypes = true,
-                constantValues = true,
-                functionTypeParameters = true,
-                parameterNames = true,
-                rangeVariableTypes = true,
-            },
             annotations = {
                 bounds = true,
                 escape = true,
@@ -41,5 +32,14 @@ return {
             }
         },
         staticcheck = true,
-    }
+    },
+    hints = {
+        compositeLiteralFields = true,
+        assignVariableTypes = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+    },
 }

@@ -53,14 +53,14 @@ M.setup = function()
     })
 end
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+LSPFormatAutocmdGroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 M.on_attach = function(client, bufnr)
     lsp_signature.on_attach(lsp_signature.config, bufnr)
     if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_clear_autocmds({ group = LSPFormatAutocmdGroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
-            group = augroup,
+            group = LSPFormatAutocmdGroup,
             buffer = bufnr,
             callback = function()
                 vim.lsp.buf.format({ bufnr = bufnr, async = true })

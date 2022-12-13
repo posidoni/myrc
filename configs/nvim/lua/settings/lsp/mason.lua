@@ -1,4 +1,4 @@
--- Mason LSP installer - `:Mason`
+-- Mason is a handy LSP installer - `:Mason`
 local mason_ok, mason = pcall(require, "mason")
 if not mason_ok then
     return
@@ -23,5 +23,3 @@ mason_installer.setup({
     automatic_installation = true,
     ensure_installed = {},
 })
-
-require("mason").setup()

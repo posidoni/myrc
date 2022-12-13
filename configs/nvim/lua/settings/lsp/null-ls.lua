@@ -13,16 +13,36 @@ end
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
+local nulllsCapabilities = vim.lsp.protocol.make_client_capabilities()
+
 null_ls.setup({
     debug = true,
     sources = {
         diagnostics.shellcheck.with({}),
         diagnostics.golangci_lint.with({}),
+        diagnostics.cppcheck.with({
+            extra_args = {
+                "--enable=style,performance,portability,warning",
+                "--std=c++",
+            },
+        }),
         formatting.rustfmt.with({}),
         formatting.goimports.with({}),
-
         -- @Mikhail: other viable options
         -- diagnostics.markdownlint,
         -- diagnostics.eslint,
-    }
+    },
+    capabilities = nulllsCapabilities,
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = LSPFormatAutocmdGroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = LSPFormatAutocmdGroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = bufnr, async = true })
+                end,
+            })
+        end
+    end,
 })
