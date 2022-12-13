@@ -102,6 +102,7 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- @Mikhail: these bindings use custom lua
 -- functions that I've defined in @file options.lua
 keymap("n", "<leader>=", ":lua IncreaseFontSize()<cr>", opts)
+keymap("n", "<leader>+", ":lua ToggleFullscreen()<cr>", opts)
 keymap("n", "<leader>-", ":lua DecreaseFontSize()<cr>", opts)
 
 -- Disable <Backspace> & <Del>

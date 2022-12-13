@@ -35,15 +35,12 @@ M.setup = function()
     })
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- Enable underline, use default values
         underline = false,
         signs = {
             active = signs,
         },
         severity_sort = true,
-        -- Enable virtual text, override spacing to 4
         virtual_text = true,
-        -- Disable a feature
         update_in_insert = true,
         float = {
             focusable = true,

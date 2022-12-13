@@ -13,7 +13,6 @@ local options = {
     lazyredraw = false,
     conceallevel = 0,
     concealcursor = "n",
-    -- these AW commands
     autowrite = true,
     autowriteall = true,
     list = true,
@@ -100,6 +99,10 @@ end
 --]]
 
 local fontsize = 11
+
+function ToggleFullscreen()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+end
 
 function IncreaseFontSize()
     fontsize = fontsize + 1
