@@ -35,7 +35,7 @@ local autocmds = {
         "FileType",
         {
             group = "_buffer_mappings",
-            pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lsp-installer", "null-ls-info" },
+            pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lsp-installer", "null-ls-info", "sqls_output" },
             command = "nnoremap <silent> <buffer> q :close<CR>",
         },
     },
