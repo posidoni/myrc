@@ -1,0 +1,10 @@
+lowercaseKeywords: false
+connections:
+  - alias: PostgresDefault
+    driver: postgresql
+    proto: tcp
+    user: postgres
+    passwd: postgres
+    host: 127.0.0.1
+    port: 5432
+    dbName: postgres
