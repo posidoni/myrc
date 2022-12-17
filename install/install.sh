@@ -1,24 +1,6 @@
 #!/bin/bash
 
-# 1. fix .zprofile
-# 2. create dirs (for ex. for xmonad)
-# mkdir -p "$XDG_CACHE_HOME"/xmonad
-# mkdir -p "$XDG_CONFIG_HOME"/xmonad
-# mkdir -p "$XDG_DATA_HOME"/xmonad
-
-# install CPP header if have sudo rights
-
-# PG
-# mkdir "$XDG_CONFIG_HOME/pg" && mkdir "$XDG_STATE_HOME"
-
-# install all needed programs
-# macos -> with brew
-# arch -> pacman
-
-### KNOWN QUIRCS:
-# .gitconfig -> git/config
-
-## MAKE BACKUP of existing files
-
-#### UNINSTALL
-# unlink all dirs
+# Install plugin managers
+[ ! -d "$HOME/.local/share/tmux/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/tpm
+[ ! -d "$HOME/.local/share/nvim/site/pack/packer" ] && git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
