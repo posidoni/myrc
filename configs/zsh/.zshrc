@@ -7,9 +7,10 @@ set colored-stats on
 export plugins=(
     git
     docker
-    golang # go subcommands completion
+    golang 
     git-auto-fetch
     magic-enter
+    tmux
 )
 
 # @Warning: plugins must be exported before oh-my-zsh is sources source $ZSH/oh-my-zsh.sh
