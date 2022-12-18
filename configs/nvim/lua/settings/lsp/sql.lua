@@ -1,4 +1,4 @@
-local lsp_config_ok, lspconfig = pcall(require, "lspconfig")
+local lsp_config_ok, lspconfig = pcall(require, 'lspconfig')
 if not lsp_config_ok then
     return
 end

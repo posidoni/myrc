@@ -1,80 +1,92 @@
-local status_ok, utils = pcall(require, "settings.util.utility")
+local status_ok, utils = pcall(require, 'settings.util.utility')
 if not status_ok then
     return
 end
 
 local autocmds = {
     {
-        "TextYankPost",
+        'TextYankPost',
         {
-            group = "_general_settings",
-            pattern = "*",
-            desc = "Highlight text on yank",
+            group = '_general_settings',
+            pattern = '*',
+            desc = 'Highlight text on yank',
             callback = function()
-                require("vim.highlight").on_yank { higroup = "Search", timeout = 250 }
+                require('vim.highlight').on_yank({
+                    higroup = 'Search',
+                    timeout = 250,
+                })
             end,
         },
     },
     {
-        "FileType",
+        'FileType',
         {
-            group = "_filetype_settings",
-            pattern = "qf",
-            command = "set nobuflisted",
-        },
-    },
-    { --- Git commit messages
-        "FileType",
-        {
-            group = "_filetype_settings",
-            pattern = { "gitcommit", "markdown" },
-            command = "setlocal wrap spell",
+            group = '_filetype_settings',
+            pattern = 'qf',
+            command = 'set nobuflisted',
         },
     },
     {
-        "FileType",
+        'FileType',
         {
-            group = "_buffer_mappings",
-            pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lsp-installer", "null-ls-info", "sqls_output" },
-            command = "nnoremap <silent> <buffer> q :close<CR>",
+            group = '_filetype_settings',
+            pattern = { 'gitcommit' },
+            command = 'setlocal wrap spell',
         },
     },
     {
-        { "BufWinEnter", "BufRead", "BufNewFile" },
+        'FileType',
         {
-            group = "_format_options",
-            pattern = "*",
-            command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+            group = '_buffer_mappings',
+            pattern = {
+                'qf',
+                'help',
+                'man',
+                'floaterm',
+                'lspinfo',
+                'lsp-installer',
+                'null-ls-info',
+                'sqls_output',
+            },
+            command = 'nnoremap <silent> <buffer> q :close<CR>',
         },
     },
     {
-        "VimResized",
+        { 'BufWinEnter', 'BufRead', 'BufNewFile' },
         {
-            group = "_auto_resize",
-            pattern = "*",
-            command = "tabdo wincmd =",
+            group = '_format_options',
+            pattern = '*',
+            command = 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o',
         },
     },
     {
-        "TabNewEntered",
+        'VimResized',
         {
-            group = "_change_cwd",
-            pattern = "*",
+            group = '_auto_resize',
+            pattern = '*',
+            command = 'tabdo wincmd =',
+        },
+    },
+    {
+        'TabNewEntered',
+        {
+            group = '_change_cwd',
+            pattern = '*',
             callback = function()
-                local path = vim.fn.expand("<amatch>")
+                local path = vim.fn.expand('<amatch>')
                 if not utils.is_directory(path) then
-                    path = vim.fn.fnamemodify(path, ":h")
+                    path = vim.fn.fnamemodify(path, ':h')
                 end
-                vim.fn.execute("cd " .. "path")
+                vim.fn.execute('cd ' .. 'path')
             end,
-        }
+        },
     },
     { -- Tabs are forces for shell scripts. Spaces break heredoc.
-        "FileType",
+        'FileType',
         {
-            group = "_filetype_settings",
-            pattern = "sh",
-            command = "set noexpandtab",
+            group = '_filetype_settings',
+            pattern = 'sh',
+            command = 'set noexpandtab',
         },
     },
 }

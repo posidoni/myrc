@@ -1,18 +1,20 @@
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
+local ts_ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+if not ts_ok then
     return
 end
 
-configs.setup({
-    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-    ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
+treesitter.setup({
+    ensure_installed = { 'bash', 'lua', 'go' }, -- :TSInstall all to install all
+    sync_install = false,
+    ignore_install = { 'phpdoc' },
     highlight = {
-        enable = "enable", -- false will disable the whole extension
-        disable = { "phpdoc" }, -- list of language that will be disabled
+        enable = 'enable',
         additional_vim_regex_highlighting = true,
     },
-    indent = { enable = true, disable = { "yaml" } },
+    indent = {
+        enable = true,
+        disable = { 'yaml' },
+    },
     context_commentstring = {
         enable = true,
         enable_autocmd = false,

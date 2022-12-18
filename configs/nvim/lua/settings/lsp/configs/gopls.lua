@@ -29,7 +29,7 @@ return {
                 unusedparams = true,
                 unusedwrite = true,
                 unusedvariable = true,
-            }
+            },
         },
         staticcheck = true,
     },

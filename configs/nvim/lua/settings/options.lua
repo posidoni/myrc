@@ -1,18 +1,20 @@
 local options = {
     backup = false, -- creates a backup file
-    clipboard = "unnamedplus",
+    background = 'dark',
+    clipboard = 'unnamedplus',
     cmdheight = 2, -- more space in the neovim command line for displaying messages
-    completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+    completeopt = { 'menuone', 'noselect' }, -- mostly just for cmp
     -- fileencoding = "utf-8", -- the encoding written to a file
     hlsearch = true, -- highlight all matches on previous search pattern
     incsearch = true,
     ignorecase = true, -- ignore case in search patterns
-    mouse = "a", -- allow the mouse to be used in neovim
+    mouse = 'a', -- allow the mouse to be used in neovim
     pumheight = 10, -- pop up menu height
-    wildoptions = "pum",
+    wildoptions = 'pum',
     lazyredraw = false,
     conceallevel = 0,
-    concealcursor = "n",
+    concealcursor = 'n',
+    autoread = true,
     autowrite = true,
     autowriteall = true,
     list = true,
@@ -40,39 +42,38 @@ local options = {
     sidescrolloff = 8,
     timeoutlen = 250, -- Very important setting. Experiment with it. 300 feels comfortable & usable
     ttimeoutlen = 30,
-    colorcolumn = "80",
-    belloff = "all",
+    colorcolumn = '80',
+    belloff = 'all',
     spell = false,
     cursorline = true,
-    foldmethod = "expr",
-    listchars = { trail = "·", tab = "» ", extends = "›", precedes = "‹", nbsp = "·" },
-    nrformats = "", -- disables vim support for binary/hex numbers (allows incrementing numbers with trailing spaces 0001, etc.)
+    listchars = {
+        trail = '·',
+        tab = '» ',
+        extends = '›',
+        precedes = '‹',
+        nbsp = '·',
+    },
+    nrformats = '', -- disables vim support for binary/hex numbers (allows incrementing numbers with trailing spaces 0001, etc.)
     -- @Warning! This setting 'merges' all columns into one (i.e. folds, warnings, numbers, etc.)
     -- alternative: 'yes' (always show, to prevent screen jumping)
-    signcolumn = "yes",
+    signcolumn = 'auto:1',
 }
 
-vim.opt.guifont = "FiraCode Nerd Font Mono:h13"
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.foldmethod = 'manual'
 
-vim.cmd([[
-set nofoldenable
-set autoread
-aut FocusGained,BufEnter * checktime
-set foldexpr=nvim_treesitter#foldexpr()
-set sessionoptions-=buffers
-set autoread 
-set background=dark
-set t_Co=256
-au FocusGained,BufEnter * checktime
-]])
+vim.cmd([[ colorscheme tokyonight ]])
 
+-- vim.opt.fillchars:append('fold:•')
+vim.opt.guifont = 'FiraCode Nerd Font Mono:13'
 
 local g = vim.g
 -- See @docs for reference on @Neovide configuration:
 -- https://github.com/neovide/neovide/wiki/Configuration#multigrid
 g.neovide_refresh_rate = 140
 g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullscreen mode of NeoVide. Not recommended.
-
 --- Input settings
 g.neovide_input_use_logo = true
 g.neovide_silent = true
@@ -86,8 +87,8 @@ g.neovide_floating_blur_amount_x = 2.0
 g.neovide_floating_blur_amount_y = 2.0
 -- g.neovide_transparency = 0.8
 g.neovide_hide_mouse_when_typing = true
-vim.opt.wildignore = { "*.o", "*.a", "__pycache__" }
-vim.opt.shortmess:append("c")
+vim.opt.wildignore = { '*.o', '*.a', '__pycache__' }
+vim.opt.shortmess:append('c')
 
 for k, v in pairs(options) do
     vim.opt[k] = v
@@ -106,10 +107,10 @@ end
 
 function IncreaseFontSize()
     fontsize = fontsize + 1
-    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", fontsize)
+    vim.opt.guifont = string.format('FiraCode Nerd Font Mono:h%d', fontsize)
 end
 
 function DecreaseFontSize()
     fontsize = fontsize - 1
-    vim.opt.guifont = string.format("FiraCode Nerd Font Mono:h%d", fontsize)
+    vim.opt.guifont = string.format('FiraCode Nerd Font Mono:h%d', fontsize)
 end

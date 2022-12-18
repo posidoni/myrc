@@ -1,4 +1,4 @@
-local rust_tools_found, rust = pcall(require, "rust-tools")
+local rust_tools_found, rust = pcall(require, 'rust-tools')
 if not rust_tools_found then
     return
 end
@@ -7,7 +7,7 @@ rust.setup({
     tools = { -- rust-tools options
         -- how to execute terminal commands
         -- options right now: termopen / quickfix
-        executor = require("rust-tools/executors").termopen,
+        executor = require('rust-tools/executors').termopen,
 
         -- callback to execute once rust-analyzer is done initializing the workspace
         -- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
@@ -29,11 +29,11 @@ rust.setup({
 
             -- prefix for parameter hints
             -- default: "<-"
-            parameter_hints_prefix = "<- ",
+            parameter_hints_prefix = '<- ',
 
             -- prefix for all the other hints (type, chaining)
             -- default: "=>"
-            other_hints_prefix = "=> ",
+            other_hints_prefix = '=> ',
 
             -- whether to align to the lenght of the longest line in the file
             max_len_align = false,
@@ -48,7 +48,7 @@ rust.setup({
             right_align_padding = 7,
 
             -- The color of the hints
-            highlight = "Comment",
+            highlight = 'Comment',
         },
 
         -- options same as lsp hover / vim.lsp.util.open_floating_preview()
@@ -57,14 +57,14 @@ rust.setup({
             -- the border that is used for the hover window
             -- see vim.api.nvim_open_win()
             border = {
-                { "╭", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "╮", "FloatBorder" },
-                { "│", "FloatBorder" },
-                { "╯", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "╰", "FloatBorder" },
-                { "│", "FloatBorder" },
+                { '╭', 'FloatBorder' },
+                { '─', 'FloatBorder' },
+                { '╮', 'FloatBorder' },
+                { '│', 'FloatBorder' },
+                { '╯', 'FloatBorder' },
+                { '─', 'FloatBorder' },
+                { '╰', 'FloatBorder' },
+                { '│', 'FloatBorder' },
             },
 
             -- whether the hover action window gets automatically focused
@@ -78,7 +78,7 @@ rust.setup({
             -- Backend used for displaying the graph
             -- see: https://graphviz.org/docs/outputs/
             -- default: x11
-            backend = "x11",
+            backend = 'x11',
             -- where to store the output, nil for no output stored (relative
             -- path from pwd)
             -- default: nil
@@ -92,59 +92,60 @@ rust.setup({
             -- Is used for input validation and autocompletion
             -- Last updated: 2021-08-26
             enabled_graphviz_backends = {
-                "bmp",
-                "cgimage",
-                "canon",
-                "dot",
-                "gv",
-                "xdot",
-                "xdot1.2",
-                "xdot1.4",
-                "eps",
-                "exr",
-                "fig",
-                "gd",
-                "gd2",
-                "gif",
-                "gtk",
-                "ico",
-                "cmap",
-                "ismap",
-                "imap",
-                "cmapx",
-                "imap_np",
-                "cmapx_np",
-                "jpg",
-                "jpeg",
-                "jpe",
-                "jp2",
-                "json",
-                "json0",
-                "dot_json", "xdot_json",
-                "pdf",
-                "pic",
-                "pct",
-                "pict",
-                "plain",
-                "plain-ext",
-                "png",
-                "pov",
-                "ps",
-                "ps2",
-                "psd",
-                "sgi",
-                "svg",
-                "svgz",
-                "tga",
-                "tiff",
-                "tif",
-                "tk",
-                "vml",
-                "vmlz",
-                "wbmp",
-                "webp",
-                "xlib",
-                "x11",
+                'bmp',
+                'cgimage',
+                'canon',
+                'dot',
+                'gv',
+                'xdot',
+                'xdot1.2',
+                'xdot1.4',
+                'eps',
+                'exr',
+                'fig',
+                'gd',
+                'gd2',
+                'gif',
+                'gtk',
+                'ico',
+                'cmap',
+                'ismap',
+                'imap',
+                'cmapx',
+                'imap_np',
+                'cmapx_np',
+                'jpg',
+                'jpeg',
+                'jpe',
+                'jp2',
+                'json',
+                'json0',
+                'dot_json',
+                'xdot_json',
+                'pdf',
+                'pic',
+                'pct',
+                'pict',
+                'plain',
+                'plain-ext',
+                'png',
+                'pov',
+                'ps',
+                'ps2',
+                'psd',
+                'sgi',
+                'svg',
+                'svgz',
+                'tga',
+                'tiff',
+                'tif',
+                'tk',
+                'vml',
+                'vmlz',
+                'wbmp',
+                'webp',
+                'xlib',
+                'x11',
             },
         },
     },
