@@ -9,6 +9,7 @@ unsetopt PROMPT_SP
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="neovide"
+export TERM="xterm-256color"
 export TERMINAL="alacritty"
 export BROWSER="google-chrome-stable"
 export XDG_DESKTOP_DIR="$HOME/Desktop"
