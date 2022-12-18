@@ -1,197 +1,135 @@
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    vim.notify("Error! Packer has failed to init!")
-    return
-end
+--[[
+@Lazyloading notes:
+cmd = string or list,        -- Specifies commands which load this plugin. Can be an autocmd pattern.
+ft = string or list,         -- Specifies filetypes which load this plugin.
+keys = string or list,       -- Specifies maps which load this plugin. See "Keybindings".
+event = string or list,      -- Specifies autocommand events which load this plugin.
+fn = string or list          -- Specifies functions which load this plugin.
+]]
+--
 
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
-end
-
-local packer_first_launch = ensure_packer()
-
--- Have packer use a popup window
-packer.init({
-    display = {
-        open_fn = function()
-            return require("packer.util").float({ border = "rounded" })
-        end,
-    },
-})
-
-return packer.startup(function(use)
+local P = function(use)
     -- @Performance --
-    use({ "nathom/filetype.nvim" })
-    use({ "lewis6991/impatient.nvim" })
+    use({ 'lewis6991/impatient.nvim' })
 
     -- @PluginManagement
-    use({ "wbthomason/packer.nvim" })
-    use({ "nvim-lua/popup.nvim" })
-    use({ "nvim-lua/plenary.nvim" })
-
+    use({ 'wbthomason/packer.nvim' })
+    use({ 'nvim-lua/popup.nvim' })
+    use({ 'nvim-lua/plenary.nvim' })
+    use({ 'RRethy/vim-illuminate' })
     -- @FileSystem
-    use({ "kyazdani42/nvim-web-devicons" })
-    use({ "kyazdani42/nvim-tree.lua" })
+    use({ 'kyazdani42/nvim-web-devicons' })
+    use({ 'kyazdani42/nvim-tree.lua' })
 
     -- @Lualine
-    use({ "nvim-lualine/lualine.nvim" })
-
-    -- @Tagbar
-    use({ "simrat39/symbols-outline.nvim" })
+    use({ 'nvim-lualine/lualine.nvim' })
 
     -- @GuiVim
-    use({
-        -- @Mikhail: these two plugins work great together for GUI vim
-        -- on some systems (especially OS X) it's impossible to launch vim
-        -- with CLI arguments (i.e. give certain file), thus it's great to be
-        -- able to quicly jump to Git Projects
-        "ahmedkhalf/project.nvim",
-    })
-    use({
-        "goolord/alpha-nvim",
-    })
+    use({ 'ahmedkhalf/project.nvim' })
+    use({ 'goolord/alpha-nvim' })
 
     -- @VanillaLike_Helpers
-    use({ "kshenoy/vim-signature" })
-    use({ "numToStr/Comment.nvim" }) -- Easily comment stuff
-    use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- smart comments (aware of nested languages)
-    use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
+    use({ 'kshenoy/vim-signature' })
+    use({ 'numToStr/Comment.nvim' })
+    use({ 'akinsho/toggleterm.nvim', tag = 'v2.*' })
+
     -- @Colorschemes
-    use({ "navarasu/onedark.nvim" })
-    use({ "sainnhe/sonokai" })
-    -- use({ "NTBBloodbath/doom-one.nvim" })
+    use({ 'navarasu/onedark.nvim' })
+    use({ 'folke/tokyonight.nvim' })
 
     -- @Completition
-
     use({
+        'hrsh7th/nvim-cmp', -- The completion plugin
 
-        "hrsh7th/nvim-cmp", -- The completion plugin
-
-    })
-    use({
-
-        "L3MON4D3/LuaSnip", -- snippet engine, required for completition
-    })
-    use({
-
-        "hrsh7th/cmp-buffer", -- buffer completions
-    })
-    use({
-
-        "hrsh7th/cmp-path", -- path completions
-    })
-    use({
-
-        "hrsh7th/cmp-cmdline", -- cmdline completions
-    })
-    use({
-
-        "hrsh7th/cmp-nvim-lsp" -- LSP completitions
+        requires = {
+            'L3MON4D3/LuaSnip', -- snippet engine, required for completition
+            'hrsh7th/cmp-buffer', -- buffer completions
+            'saadparwaiz1/cmp_luasnip', -- snippet completions
+            'rafamadriz/friendly-snippets', -- a bunch of snippets to use
+            'hrsh7th/cmp-nvim-lsp', -- LSP completitions
+            'hrsh7th/cmp-path', -- path completions
+            'hrsh7th/cmp-cmdline', -- cmdline completions
+        },
     })
 
-    use({ "folke/todo-comments.nvim" })
-
-    -- @Snippets
-    use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-    use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
+    use({ 'folke/todo-comments.nvim' })
 
     -- @LSP
-    use({ "neovim/nvim-lspconfig"
-    }) -- enable LSP
+    use({ 'neovim/nvim-lspconfig' }) -- enable LSP
 
     -- LSP Installer
-    use({ "williamboman/mason.nvim" })
-    use({ "williamboman/mason-lspconfig.nvim" })
-
-    use({ "jose-elias-alvarez/null-ls.nvim"
-    }) -- for formatters and linters
-    use({ "antoinemadec/FixCursorHold.nvim"
+    use({
+        'williamboman/mason.nvim',
+        requires = {
+            'williamboman/mason-lspconfig.nvim',
+        },
     })
-    use({ "tamago324/nlsp-settings.nvim"
-    })
+    -- for formatters and linters
+    use({ 'jose-elias-alvarez/null-ls.nvim' })
+    --[[ A plugin to configure Neovim LSP using json/yaml files like coc-settings.json. ]]
+    use({ 'tamago324/nlsp-settings.nvim' })
 
     -- @Telescope
-    use({ "nvim-telescope/telescope.nvim"
+    use({
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }),
+            use({ 'nvim-telescope/telescope-symbols.nvim' }),
+        },
     })
-    use({ "nvim-telescope/telescope-symbols.nvim" })
 
     -- @Treesitter @SyntaxHighlighting
-    use({ "lukas-reineke/indent-blankline.nvim" })
+    use({ 'lukas-reineke/indent-blankline.nvim' })
 
-    use({
-        "nvim-treesitter/nvim-treesitter",
-        -- run = ":TSUpdate",
-        -- @Note: this is great plugin for plugin development.
-        -- Provides access to raw tresitter AST.
-        -- use "nvim-treesitter/playground"
-    })
+    use({ 'rcarriga/nvim-notify' }) -- don't really use
+
+    use({ 'nvim-treesitter/nvim-treesitter' })
+    use({ 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' })
 
     -- @Git
-    use({ "lewis6991/gitsigns.nvim" })
-    use({ "tpope/vim-fugitive" })
+    use({ 'lewis6991/gitsigns.nvim' })
+
     -- @Navigation
-    use({ "akinsho/bufferline.nvim", tag = "v2.*" })
-    use({ "christoomey/vim-tmux-navigator" })
+    use({ 'akinsho/bufferline.nvim', tag = 'v2.*' })
+    use({ 'christoomey/vim-tmux-navigator' })
 
     -- @C_CXX_Development
-    use({ "cdelledonne/vim-cmake" })
+    use({
+        'cdelledonne/vim-cmake',
+        ft = { 'c', 'cpp', 'cmake' },
+        cmd = { 'CMakeGenerate', 'CMakeBuild' },
+    })
 
     -- @Web
-    use({ "norcalli/nvim-colorizer.lua" })
-
-    use({ "simrat39/rust-tools.nvim" })
+    use({ 'norcalli/nvim-colorizer.lua', ft = { ' css', 'jsx', 'tsx' } })
+    use({ 'simrat39/rust-tools.nvim', ft = { 'rust' } })
 
     -- @Docker
     -- use 'jamestthompson3/nvim-remote-containers
 
-    use({
-        "ray-x/lsp_signature.nvim",
-    })
-    use({ "windwp/nvim-autopairs" })
+    use({ 'ray-x/lsp_signature.nvim' })
+    use({ 'windwp/nvim-autopairs' })
 
     -- debugger
-    use({ "mfussenegger/nvim-dap" })
-    use({ "leoluz/nvim-dap-go" })
-    use({ "rcarriga/nvim-dap-ui" }) -- A simple UI out of the box
-    use({ "theHamsta/nvim-dap-virtual-text" }) -- Virtual text for variables
-    use({ "nvim-telescope/telescope-dap.nvim" })
-
-
     use({
-        "folke/trouble.nvim",
+        'mfussenegger/nvim-dap',
+        'leoluz/nvim-dap-go',
+        'rcarriga/nvim-dap-ui',
+        'theHamsta/nvim-dap-virtual-text',
+        'nvim-telescope/telescope-dap.nvim',
     })
 
+    use({ 'folke/trouble.nvim', cmd = { 'Trouble', 'TroubleToggle' } })
+
+    -- @SQL
+    use({ 'nanotee/sqls.nvim', ft = { 'sql' } })
+
     -- @Go
-    use {
-        "olexsmir/gopher.nvim",
-        requires = { -- dependencies
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-    }
-    use {
+    use({
+        'olexsmir/gopher.nvim',
         'edolphin-ydf/goimpl.nvim',
-        requires = {
-            { 'nvim-lua/plenary.nvim' },
-            { 'nvim-lua/popup.nvim' },
-            { 'nvim-telescope/telescope.nvim' },
-            { 'nvim-treesitter/nvim-treesitter' },
-        },
-        config = function()
-            require 'telescope'.load_extension 'goimpl'
-        end,
-    }
-    use({ "nanotee/sqls.nvim" })
+        ft = { 'go' },
+    })
+end
 
-
-    if packer_first_launch then
-        require("packer").sync()
-    end
-end)
+return P
