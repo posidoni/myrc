@@ -12,6 +12,7 @@ alias tmux="tmux -2"
 alias code=code --extensions-dir "$XDG_DATA_HOME"/vscode
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
+alias telegram-desktop="QT_QPA_PLATFORM=wayland-egl telegram-desktop"
 # LS Aliases
 # Order is important
 # These are tuned for my needs & may feel a bit strange c:

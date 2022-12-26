@@ -54,6 +54,8 @@ bindsym {
     XF86AudioNext exec playerctl next
     XF86AudioPrev exec playerctl previous
     XF86Search exec $menu
+    Print exec grimshot --notify copy area
+    $mod+Print exec grimshot --notify copy window
 }
 
 
@@ -61,16 +63,17 @@ bindsym {
 # default_floating_border none
 # titlebar_padding 4
 # titlebar_border_thickness 0
-
 input type:touchpad {
   dwt enabled
   tap enabled
   natural_scroll enabled
   middle_emulation enabled
+  click_method button_areas
+  tap_button_map lmr
 }
 # seat seat0 xcursor_theme my_cursor_theme my_cursor_size
 
-exec wl-paste -t text --watch clipman store --no-persist
+exec wshiftl-paste -t text --watch clipman store --histpath="~/.cache/clipman.json"
 
 #   Identifier: 1:1:AT_Translated_Set_2_keyboard
 input type:keyboard {
@@ -94,7 +97,7 @@ bindsym --to-code {
 
     # Kill focused window
     $mod+q kill
-
+    $mod+ctrl+q exec swaylock -f -c 000000
     # Start your launcher
     $mod+o exec $menu
     $mod+d exec $menu
@@ -176,6 +179,8 @@ bindsym --to-code {
 # bindsym  --release $mod+c exec --no-startup-id escrotum -s
 # # make a gif with peek (p for peek)
 # bindsym --release $mod+g "exec --no-startup-id peek"
+# exec obsidian && sway '[app_id="obsidian"]' move container to workspace 5
+
 
 # Status Bar:
 bar {
@@ -186,7 +191,9 @@ bar {
 }
 
 exec pkill nm-applet && nm-applet --indicator
-exec pkill blueman-applet && blueman-applet
+exec swaync
+
+bindsym $mod+n exec swaync-client -t -sw
 
 
 

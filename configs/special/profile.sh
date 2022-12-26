@@ -23,8 +23,8 @@ export XKB_DEFAULT_LAYOUT=us
 export LIBSEAT_BACKEND=logind
 export QT_WAYLAND_DISABLE_WINDOWDECORATIONS=1
 export QT_QPA_PLATFORM=waylang-egl
-export MOZ_ENABLE_WAYLANG=1
 export CLUTTER_BACKEND=waylang
+export MOZ_ENABLE_WAYLANG=1
 
 
 # (~) Cleanup
@@ -111,7 +111,7 @@ export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 # [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && setsid shortcuts >/dev/null 2>&1
  
 # Start graphical server on user's current tty if not already running.
-# [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec sway
+[ "$(tty)" = "/dev/tty1" ] && exec sway
 
 # Switch escape and caps if tty and no passwd required:
 # sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null

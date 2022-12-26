@@ -7,9 +7,8 @@ set colored-stats on
 export plugins=(
     git
     docker
-    golang 
+    golang
     git-auto-fetch
-    magic-enter
     tmux
 )
 

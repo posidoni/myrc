@@ -89,7 +89,8 @@ discharging_symbol = "💦"
 symbol = " "
 
 [character]
-success_symbol = "[❯](bold blue)"
+success_symbol = "[❯](bold #bd93f9)"
+error_symbol = "[❯](bold #ff5555)"
 format = "$symbol "
 
 
@@ -109,22 +110,17 @@ symbol = " "
 format = '[ $symbol]($style)'
 symbol = " "
 
+[container]
+format = '[$symbol \[$name\]]($style) '
+
 [localip]
 format = "@[$localipv4](bold red)"
 disabled = false
-
-
-[custom.extip]
-command = "echo $MY_EXT_IP"
-when = """ test "$HOME" = "$PWD" """
-format = "[@](yellow bold)[$output](yellow)"
-
-[custom.locip]
-command = "echo $MY_PRIV_IP"
-when = """ test "$HOME" = "$PWD" """
-format = " [@](green bold)[$output](green)"
+ssh_only = true
 
 [directory]
+style = "bold #bd93f9"
+format = '[$path]($style)[$read_only]($read_only_style) '
 read_only = " "
 truncate_to_repo = true
 truncation_length = 3 # parent directories to show; default is 3
