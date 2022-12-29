@@ -50,6 +50,7 @@
          }
      },
      "sway/window": {
+        "icon": false,
         "format": "{title}",
         "max-length": 30,
         "rewrite": {
@@ -87,7 +88,8 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "gnome-system-monitor"
     },
     "memory": {
         "format": "{}% "
@@ -142,7 +144,7 @@
         "format-bluetooth": "{volume}% {icon}   {format_source}",
         "format-bluetooth-muted": " {icon}  {format_source}",
         "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
