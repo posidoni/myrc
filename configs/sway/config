@@ -10,6 +10,7 @@ focus_follows_mouse  yes
 # Lazy loads xwayland (i.e. wayland's emulation of X for apps that do not support wayland)
 set $xwayland enable
 set $term kitty
+set $Super mod4
 
 # for_window [title="."] title_format "<b>%title</B> (%app_id)"
 
@@ -21,10 +22,36 @@ set $up k
 set $right l
 
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 4
-set $menu exec $term --class=launcher -e sway-launcher-desktop
+set $menu rofi -show drun
 bindsym $mod+d exec $menu
 
+# Debug these with:
+# swaymsg -t get_tree |less
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable;
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] resize set 800 600
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [app_id = "xdg-desktop-portal-gtk"] floating enable;
+for_window [app_id = "xdg-desktop-portal-gtk"] resize set 700 800;
+for_window [app_id="zoom" title="^zoom$"] border none, floating enable
+# For specific Zoom windows
+for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+# Open Zoom Meeting windows on a new workspace (a bit hacky)
+for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
+for_window [app_id="zoom"] floating enable
 
+for_window [app_id="zoom" title="Choose ONE of the audio conference options"] floating enable
+
+for_window [app_id="zoom" title="zoom"] floating enable
+
+for_window [app_id="zoom" title="Zoom Meeting"] floating disable
+
+for_window [app_id="zoom" title="Zoom - Free Account"] floating disable
 ### Output configuration
 # Display (1) -- my laptop's builtin
 set $wallpapers_path $HOME/Personal/Wallpaper
@@ -136,16 +163,16 @@ bindsym --to-code {
      $mod+9 workspace number 9
      $mod+0 workspace number 10
     # Move focused container to workspace
-     $mod+Shift+1 move container to workspace number 1
-     $mod+Shift+2 move container to workspace number 2
-     $mod+Shift+3 move container to workspace number 3
-     $mod+Shift+4 move container to workspace number 4
-     $mod+Shift+5 move container to workspace number 5
-     $mod+Shift+6 move container to workspace number 6
-     $mod+Shift+7 move container to workspace number 7
-     $mod+Shift+8 move container to workspace number 8
-     $mod+Shift+9 move container to workspace number 9
-     $mod+Shift+0 move container to workspace number 10
+     $Super+1 move container to workspace number 1
+     $Super+2 move container to workspace number 2
+     $Super+3 move container to workspace number 3
+     $Super+4 move container to workspace number 4
+     $Super+5 move container to workspace number 5
+     $Super+6 move container to workspace number 6
+     $Super+7 move container to workspace number 7
+     $Super+8 move container to workspace number 8
+     $Super+9 move container to workspace number 9
+     $Super+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -184,15 +211,14 @@ bindsym --to-code {
 
 # Status Bar:
 bar {
-    position top
-    mode hide
-
-    status_command waybar
+    # position top
+    # mode hide
+    swaybar_command waybar
 }
 
 exec pkill nm-applet && nm-applet --indicator
 exec swaync
-
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 bindsym $mod+n exec swaync-client -t -sw
 
 
