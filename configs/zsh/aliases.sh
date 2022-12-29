@@ -1,5 +1,6 @@
 #!/bin/bash
 
+alias P="psql postgres://postgres:postgres@localhost:5432/postgres -f"
 alias lg="lazygit"
 alias doc="lazydocker"
 alias dd="lazydocker"
@@ -11,6 +12,10 @@ alias vimz="/usr/bin/vim"
 alias tmux="tmux -2"
 alias code=code --extensions-dir "$XDG_DATA_HOME"/vscode
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+
+alias telegram-desktop="QT_QPA_PLATFORM=wayland-egl telegram-desktop"
+alias zoom="XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=GNOME /opt/zoom/ZoomLauncher"
+alias slack="slack --enable-features=WebRTCPipeWireCapturer"
 
 # LS Aliases
 # Order is important

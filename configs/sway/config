@@ -1,0 +1,226 @@
+# `man 5 sway` for a complete reference. 
+
+
+font pango:'FiraCode Nerd Font':monospace 14
+seat * hide_cursor 10000
+hide_edge_borders both
+default_border pixel 2
+focus_follows_mouse  yes
+
+# Lazy loads xwayland (i.e. wayland's emulation of X for apps that do not support wayland)
+set $xwayland enable
+set $term kitty
+set $Super mod4
+
+# for_window [title="."] title_format "<b>%title</B> (%app_id)"
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod1
+set $left h
+set $down j
+set $up k
+set $right l
+
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 4
+set $menu rofi -show drun
+bindsym $mod+d exec $menu
+
+# Debug these with:
+# swaymsg -t get_tree |less
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable;
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] resize set 800 600
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [app_id = "xdg-desktop-portal-gtk"] floating enable;
+for_window [app_id = "xdg-desktop-portal-gtk"] resize set 700 800;
+for_window [app_id="zoom" title="^zoom$"] border none, floating enable
+# For specific Zoom windows
+for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+# Open Zoom Meeting windows on a new workspace (a bit hacky)
+for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
+for_window [app_id="zoom"] floating enable
+
+for_window [app_id="zoom" title="Choose ONE of the audio conference options"] floating enable
+
+for_window [app_id="zoom" title="zoom"] floating enable
+
+for_window [app_id="zoom" title="Zoom Meeting"] floating disable
+
+for_window [app_id="zoom" title="Zoom - Free Account"] floating disable
+### Output configuration
+# Display (1) -- my laptop's builtin
+set $wallpapers_path $HOME/Personal/Wallpaper
+output eDP-1 {
+    scale 1
+    pos 1600 0 res 1920x1080
+    bg `find $wallpapers_path -type f | shuf -n 1` fill
+}
+
+### Idle configuration
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+bindsym {
+    XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    XF86MonBrightnessDown exec brightnessctl set 5%-
+    XF86MonBrightnessUp exec brightnessctl set 5%+
+    XF86AudioPlay exec playerctl play-pause
+    XF86AudioNext exec playerctl next
+    XF86AudioPrev exec playerctl previous
+    XF86Search exec $menu
+    Print exec grimshot --notify copy area
+    $mod+Print exec grimshot --notify copy window
+}
+
+
+# default_border none
+# default_floating_border none
+# titlebar_padding 4
+# titlebar_border_thickness 0
+input type:touchpad {
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+  middle_emulation enabled
+  click_method button_areas
+  tap_button_map lmr
+}
+# seat seat0 xcursor_theme my_cursor_theme my_cursor_size
+
+exec wshiftl-paste -t text --watch clipman store --histpath="~/.cache/clipman.json"
+
+#   Identifier: 1:1:AT_Translated_Set_2_keyboard
+input type:keyboard {
+    xkb_options "caps:escape"
+    xkb_layout "us,ru"
+    xkb_options "grp:alt_shift_toggle"
+    repeat_rate 45
+    repeat_delay 300
+}
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+# `--to-code` = work on any layout, even non English
+bindsym --to-code {
+    # Start a terminal
+    $mod+Return exec $term
+
+    # Kill focused window
+    $mod+q kill
+    $mod+ctrl+q exec swaylock -f -c 000000
+    # Start your launcher
+    $mod+o exec $menu
+    $mod+d exec $menu
+    $mod+tab focus left 
+
+    # Move your focus aroundk
+     $mod+$left focus left
+     $mod+$down focus down
+     $mod+$up focus up
+     $mod+$right focus right
+
+    # Move the focused window with the same, but add Shift
+     $mod+Shift+$left move left
+     $mod+Shift+$down move down
+     $mod+Shift+$up move up
+     $mod+Shift+$right move right
+    # Ditto, with arrow keys
+     $mod+Shift+Left move left
+     $mod+Shift+Down move down
+     $mod+Shift+Up move up
+     $mod+Shift+Right move right
+
+    # Reload config
+    ctrl+$mod+r reload
+
+    # Workspaces:
+    # Switch to workspace
+     $mod+1 workspace number 1
+     $mod+2 workspace number 2
+     $mod+3 workspace number 3
+     $mod+4 workspace number 4
+     $mod+5 workspace number 5
+     $mod+6 workspace number 6
+     $mod+7 workspace number 7
+     $mod+8 workspace number 8
+     $mod+9 workspace number 9
+     $mod+0 workspace number 10
+    # Move focused container to workspace
+     $Super+1 move container to workspace number 1
+     $Super+2 move container to workspace number 2
+     $Super+3 move container to workspace number 3
+     $Super+4 move container to workspace number 4
+     $Super+5 move container to workspace number 5
+     $Super+6 move container to workspace number 6
+     $Super+7 move container to workspace number 7
+     $Super+8 move container to workspace number 8
+     $Super+9 move container to workspace number 9
+     $Super+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+     $mod+b exec google-chrome-stable
+     $mod+v splitv
+    # Switch the current container between different layout styles
+     $mod+w layout tabbed
+     $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+     $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+     $mod+t floating toggle
+
+
+    # Arrow keys
+     $mod+left resize shrink width 30px
+     $mod+down resize grow height 30px
+     $mod+up resize shrink height 30px
+     $mod+right resize grow width 30px
+}
+
+# From Anthony's config:
+# bindsym $mod+v "workspace 5; gaps inner current set 0; bar mode hide; exec --no-startup-id zathura ~/Books/Current/*"  
+# bindsym  --release $mod+c exec --no-startup-id escrotum -s
+# # make a gif with peek (p for peek)
+# bindsym --release $mod+g "exec --no-startup-id peek"
+# exec obsidian && sway '[app_id="obsidian"]' move container to workspace 5
+
+
+# Status Bar:
+bar {
+    # position top
+    # mode hide
+    swaybar_command waybar
+}
+
+exec pkill nm-applet && nm-applet --indicator
+exec swaync
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+bindsym $mod+n exec swaync-client -t -sw
+
+
+
+include /etc/sway/config.d/*

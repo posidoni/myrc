@@ -13,6 +13,18 @@ export TERM="xterm-256color"
 export TERMINAL="alacritty"
 export BROWSER="google-chrome-stable"
 export XDG_DESKTOP_DIR="$HOME/Desktop"
+# export XKB_DEFAULT_LAYOUT=qwerty
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=sway
+export XDG_CURRENT_DESKTOP=sway
+export DESKTOP_SESSION=sway
+export XKB_DEFAULT_LAYOUT=us
+export LIBSEAT_BACKEND=logind
+export QT_WAYLAND_DISABLE_WINDOWDECORATIONS=1
+export QT_QPA_PLATFORM="wayland;xcb"
+export CLUTTER_BACKEND=waylang
+export MOZ_ENABLE_WAYLANG=1
+
 
 # (~) Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -96,9 +108,8 @@ export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
 # [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && setsid shortcuts >/dev/null 2>&1
-
+ 
 # Start graphical server on user's current tty if not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
-
+# [ "$(tty)" = "/dev/tty1" ] && exec dbus-launch --exit-with-session sway -d
 # Switch escape and caps if tty and no passwd required:
 # sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
