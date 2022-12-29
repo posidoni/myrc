@@ -1,26 +1,12 @@
 configuration {
-    location:          6;
-    color-enabled:     true;
-    /* color-window:      argb:ee0F3B5F, #CC9752, #CC9752; */
-    /* color-normal:      argb:00111111, #E5DBCF, argb:00111111, #CC9752, #0F3B5F; */
-    /* color-urgent:      argb:00111111, #af652f, argb:00111111, #af652f, #0F3B5F; */
-    /* color-active:      argb:00111111, #70a16c, argb:00111111, #70a16c, #0F3B5F; */
-    fullscreen:        false;
-    padding:           2;
-    hide-scrollbar:    true;
-    line-margin:       5;
-    fake-transparency: true;
-    yoffset:           -20;
-    xoffset:           0;
-    width:             80;
-    lines:         4;
-    font:      "FiraCode Nerd Font 12";
-    fuzzy:         true;
-    run-command:   "echo -c \"{cmd}\"";
-    opacity:       75;
-    modi: "drun";
+  display-drun: "  ";
+  display-window: "Windows:";
+  drun-display-format: "{icon} {name}";
+  font: "FiraCode Nerd Font Medium 16";
+  modi: "window,run,drun,emoji,calc";
+  show-icons: true;
+  icon-theme: "Papirus";
 }
-
 
 @theme "/dev/null"
 
@@ -53,14 +39,13 @@ element selected {
 }
 
 element-text {
-  background-color: inherit;
   text-color: inherit;
   vertical-align: 0.5;
 }
 
 element-icon {
   size: 30;
-  margin: 0 20px 0 0;
+  padding: 0 10 0 0;
 }
 
 entry {
@@ -91,3 +76,5 @@ prompt {
   padding: 12 0 0 12;
   text-color: @fg;
 }
+
+/* vim: ft=sass
