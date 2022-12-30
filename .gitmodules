@@ -1,3 +1,9 @@
 [submodule "configs/oh-my-zsh"]
 	path = configs/oh-my-zsh
 	url = git@github.com:ohmyzsh/ohmyzsh.git
+[submodule "local/share/tmux/tpm"]
+	path = local/share/tmux/tpm
+	url = git@github.com:tmux-plugins/tpm.git
+[submodule "configs/ranger/plugins/ranger_devicons"]
+	path = configs/ranger/plugins/ranger_devicons
+	url = https://github.com/alexanderjeurissen/ranger_devicons
