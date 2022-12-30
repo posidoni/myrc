@@ -1,8 +1,5 @@
-# `man 5 sway` for a complete reference. 
-
-
 font pango:'FiraCode Nerd Font':monospace 14
-seat * hide_cursor 10000
+seat * hide_cursor 1000
 hide_edge_borders both
 default_border pixel 2
 focus_follows_mouse  yes
@@ -44,22 +41,14 @@ for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_si
 # Open Zoom Meeting windows on a new workspace (a bit hacky)
 for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
 for_window [app_id="zoom"] floating enable
-
+for_window [title="Ranger"] floating enable
 for_window [app_id="zoom" title="Choose ONE of the audio conference options"] floating enable
-
 for_window [app_id="zoom" title="zoom"] floating enable
-
 for_window [app_id="zoom" title="Zoom Meeting"] floating disable
-
 for_window [app_id="zoom" title="Zoom - Free Account"] floating disable
+
 ### Output configuration
 # Display (1) -- my laptop's builtin
-set $wallpapers_path $HOME/Personal/Wallpaper
-output eDP-1 {
-    scale 1
-    pos 1600 0 res 1920x1080
-    bg `find $wallpapers_path -type f | shuf -n 1` fill
-}
 
 ### Idle configuration
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -83,33 +72,10 @@ bindsym {
     XF86Search exec $menu
     Print exec grimshot --notify copy area
     $mod+Print exec grimshot --notify copy window
+    Ctrl+$mod+Print exec grimshot --notify save area
 }
 
 
-# default_border none
-# default_floating_border none
-# titlebar_padding 4
-# titlebar_border_thickness 0
-input type:touchpad {
-  dwt enabled
-  tap enabled
-  natural_scroll enabled
-  middle_emulation enabled
-  click_method button_areas
-  tap_button_map lmr
-}
-# seat seat0 xcursor_theme my_cursor_theme my_cursor_size
-
-exec wshiftl-paste -t text --watch clipman store --histpath="~/.cache/clipman.json"
-
-#   Identifier: 1:1:AT_Translated_Set_2_keyboard
-input type:keyboard {
-    xkb_options "caps:escape"
-    xkb_layout "us,ru"
-    xkb_options "grp:alt_shift_toggle"
-    repeat_rate 45
-    repeat_delay 300
-}
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -119,14 +85,10 @@ input type:keyboard {
 
 # `--to-code` = work on any layout, even non English
 bindsym --to-code {
-    # Start a terminal
     $mod+Return exec $term
-
-    # Kill focused window
     $mod+q kill
     $mod+ctrl+q exec swaylock -f -c 000000
     # Start your launcher
-    $mod+o exec $menu
     $mod+d exec $menu
     $mod+tab focus left 
 
@@ -173,15 +135,12 @@ bindsym --to-code {
      $Super+8 move container to workspace number 8
      $Super+9 move container to workspace number 9
      $Super+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
-# Layout stuff:
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
      $mod+b exec google-chrome-stable
+     $mod+Space exec "kitty --title "Ranger" --execute ranger"
      $mod+v splitv
     # Switch the current container between different layout styles
      $mod+w layout tabbed
@@ -216,11 +175,18 @@ bar {
     swaybar_command waybar
 }
 
-exec pkill nm-applet && nm-applet --indicator
 exec swaync
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec swaymsg "workspace 2; exec google-chrome-stable;"
+exec swaymsg "workspace 4; exec --nostartup-id telegram-desktop;"
+exec swaymsg "workspace 5; exec --no-startup-id obsidian;"
+exec swaymsg "workspace 5; exec --no-startup-id pomodoro-logger;"
+exec swaymsg "workspace 1; exec --no-startup-id kitty;"
+
+assign [class=".*[oO]bsidian.*"] workspace 5
+assign [app_id="org.pwmt.zathura"] workspace 5
+
 bindsym $mod+n exec swaync-client -t -sw
 
-
-
-include /etc/sway/config.d/*
+include keybinding.conf
+include inputs.conf
+include output.conf
