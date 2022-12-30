@@ -1,14 +1,16 @@
-#!/bin/bash
+#!/bin/zsh
 
 bindkey -v
 set colored-stats on
+setopt cdable_vars
 
 # ZSH config
 export plugins=(
     git
     docker
+    docker-compose
     golang
-    git-auto-fetch
+    fzf
     tmux
 )
 
@@ -18,8 +20,6 @@ export ZSH="$HOME/.config/.oh-my-zsh"
 
 # Configs must be exported after oh-my-zsh,
 # because I override some aliases
-source "$HOME/myrc/configs/zsh/env.sh"
 source "$HOME/myrc/configs/zsh/aliases.sh"
-source "$HOME/myrc/configs/zsh/functions.sh"
 
 eval "$(starship init zsh)"

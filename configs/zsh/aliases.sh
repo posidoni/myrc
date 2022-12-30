@@ -2,20 +2,16 @@
 
 alias P="psql postgres://postgres:postgres@localhost:5432/postgres -f"
 alias lg="lazygit"
-alias doc="lazydocker"
 alias dd="lazydocker"
 alias tks="tmux kill-session -t"
-alias vimdiff="nvim -d"
-alias vim="nvim"
-alias vi="nvim"
+[[ -x "/usr/bin/nvim" ]] && alias vim="nvim"
+[[ -x "/usr/bin/nvim" ]] && alias vi="nvim"
+[[ -x "/usr/bin/nvim" ]] && alias v="nvim"
 alias vimz="/usr/bin/vim"
-alias tmux="tmux -2"
-alias code=code --extensions-dir "$XDG_DATA_HOME"/vscode
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
-alias telegram-desktop="QT_QPA_PLATFORM=wayland-egl telegram-desktop"
-alias zoom="XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=GNOME /opt/zoom/ZoomLauncher"
-alias slack="slack --enable-features=WebRTCPipeWireCapturer"
+alias tmux="tmux -2"
+alias code='code --extensions-dir "$XDG_DATA_HOME/vscode"'
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 # LS Aliases
 # Order is important
@@ -34,14 +30,10 @@ alias mkdir="mkdir -p"
 alias rr="ranger"
 alias rrr="ranger"
 alias zz="zathura"
-alias zzz="zathura"
-alias ff="fzf"
-alias fff="fzf"
+alias ff="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias fff="ff"
 
-# Colorize grep output (good for log files)
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 alias diff="diff --color=auto"
 alias ip="ip -color=auto"
 
@@ -49,3 +41,7 @@ alias ip="ip -color=auto"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -vI"
+
+# FZF
+alias paci="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"

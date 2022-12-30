@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function encodeRMQ() {
+encodeRMQ() {
     SALT=$(od -A n -t x -N 4 /dev/urandom)
     PASS="$SALT$(echo -n "$1" | xxd -ps | tr -d '\n' | tr -d ' ')"
     PASS="$(echo -n "$PASS" | xxd -r -p | sha256sum | head -c 128)"
@@ -8,10 +8,27 @@ function encodeRMQ() {
     echo "$PASS"
 }
 
+
+#!/bin/bash
+
+# Allows cd into vars
+
+load-local-conf() {
+     # check file exists, is regular file and is readable:
+     if [[ -f "$HOME/.env" && -r "$HOME/.env" ]]; then
+       source "$HOME/.env"
+     fi
+}
+
+restartTouchpad() {
+	sudo  modprobe -r psmouse
+	sudo modprobe psmouse
+}
+
 # Exists to allow using multiple private SSH keys
 # $1 - URL to clone from
 # $1 - path to private SSH key, $2 - URL to clone from
-function cloneCustomSSH() {
+cloneCustomSSH() {
     if [[ $# -eq 1 ]]; then
         GIT_SSH_COMMAND="ssh -i $HOME/.ssh/sc21-gl -o IdentitiesOnly=yes" git clone "$1"
     elif [[ $# -eq 2 ]]; then
@@ -28,17 +45,17 @@ function cloneCustomSSH() {
 }
 
 # Connects to machine & starts new tmux session
-function ssht() {
+ssht() {
 	/usr/bin/ssh -t "$@" tmux new -A
 }
 
 # Finds and reports broken links in $1
-function findBrokenLinks() {
+findBrokenLinks() {
 	find "$1" -type l -exec sh -c 'file -b "$1" | grep -q "^broken"' sh {} \; -print
 }
 
 # Extracts common file formats
-function extract() {
+extract() {
  if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -77,15 +94,14 @@ fi
 
 # C/C++ convenience functions
 # prefer 'godbolt.org' for any non-trivial things
-function getllvm() {
+getllvm() {
 	clang++ -emit-llvm  -Wall -Wextra -S "$1"
 }
 
-function getasm() {
+getasm() {
 	clang++ -S -fverbose-asm -Wall -Wextra "$1"
 }
 
-function getdisasm() {
+getdisasm() {
 	objdump -S --disassemble "$1"
 }
-
