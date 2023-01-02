@@ -1,3 +1,11 @@
 set selection-clipboard clipboard
 map D set "first-page-column 1:1"
 map <C-d> set "first-page-column 1:2"
+set window-title-basename true
+set window-title-home-tilde true
+
+
+map i recolor
+set adjust-open "best-fit"
+set font "FiraCode Nerd Font 16"
+set guioptions ""
