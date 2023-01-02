@@ -1,0 +1,12 @@
+[Unit]
+Description="Daily sets random UUID as hostname"
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnCalendar=daily
+Unit=random_hostname.service
+
+[Install]
+WantedBy=timers.target

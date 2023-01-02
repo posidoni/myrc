@@ -1,0 +1,6 @@
+[UNIT]
+Description="Sets random UUID as hostname"
+
+
+[Service]
+ExecStart=/bin/bash -c "hostnamectl set-hostname \"$(sed 's/[-]//g' < /proc/sys/kernel/random/uuid)\""
