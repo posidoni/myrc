@@ -4,7 +4,7 @@ Name=Ranger
 GenericName=File Manager
 Comment=Launches the ranger file manager
 # needs full path to bin
-Exec=/home/path-to/open-tui ranger %F
+Exec=/home/posidoni/.local/bin/open-tui ranger %F
 Icon=utilities-terminal
 Terminal=false
 X-MultipleArgs=false
