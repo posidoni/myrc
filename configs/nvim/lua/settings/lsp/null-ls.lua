@@ -14,7 +14,16 @@ null_ls.setup({
     debug = true,
     sources = {
         diagnostics.shellcheck.with({}),
-        diagnostics.golangci_lint.with({}),
+        diagnostics.golangci_lint.with({
+            command = { 'golangci-lint' },
+            args = {
+                'run',
+                '--fix=false',
+                '--fast',
+                '--out-format=json',
+                '--path-prefix',
+            },
+        }),
         diagnostics.cppcheck.with({
             extra_args = {
                 '--enable=style,performance,portability,warning',
