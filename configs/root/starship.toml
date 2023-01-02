@@ -70,20 +70,18 @@ min_time = 1000
 
 [battery]
 format = "[$symbol$percentage]($style) "
-full_symbol = "🔋 "
 charging_symbol = "⚡️ "
-discharging_symbol = "💀 "
 
 [[battery.display]] # "bold red" style and discharging_symbol when capacity is between 0% and 10%
 threshold = 15
 style = "bold red"
 charging_symbol = "⚡️ "
-discharging_symbol = "💀 "
+discharging_symbol = ""
 
 [[battery.display]] # "bold yellow" style and 💦 symbol when capacity is between 10% and 30%
 threshold = 25
 style = "bold yellow"
-discharging_symbol = "💦"
+discharging_symbol = ""
 
 [buf]
 symbol = " "
@@ -153,9 +151,9 @@ bisect = '\[[ BISECTING]\](bold yellow)'
 conflicted = " ﲅ "
 untracked = "  "
 modified = "  "
-behind = "🐢 × ${count} "
-diverged = "🔱×${ahead_count} 🐢×${behind_count}"
-stashed = "📦"
+behind = "↓ × ${count} "
+diverged = "↑×${ahead_count} ↓×${behind_count}"
+stashed = ""
 deleted = " ✘ "
 format = '[$all_status$ahead_behind](purple bold) '
 
