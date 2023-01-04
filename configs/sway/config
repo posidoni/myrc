@@ -4,9 +4,16 @@ hide_edge_borders both
 default_border pixel 2
 focus_follows_mouse  yes
 
+set $wallpapers_path $HOME/Personal/Wallpaper
+output eDP-1 {
+    scale 1
+    pos 1600 0 res 1920x1080
+    bg `find $wallpapers_path -type f | shuf -n 1` fill
+}
 # Lazy loads xwayland (i.e. wayland's emulation of X for apps that do not support wayland)
 set $xwayland enable
 set $term kitty
+set $browser firefox
 set $Super mod4
 
 # for_window [title="."] title_format "<b>%title</B> (%app_id)"
@@ -21,6 +28,36 @@ set $right l
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 4
 set $menu rofi -show drun
 bindsym $mod+d exec $menu
+
+# default_border none
+# default_floating_border none
+# titlebar_padding 4
+# titlebar_border_thickness 0
+input type:touchpad {
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+  middle_emulation enabled
+  click_method button_areas
+  tap_button_map lmr
+}
+
+# swaymsg -t get_inputs
+# set $TPAD "1739:0:Synaptics_TM3288-011"
+# bindsym --input-device=$TPAD --whole-window BTN_LEFT seat - cursor press BTN_LEFT, seat - cursor release BTN_LEFT
+# bindsym --input-device=$TPAD --whole-window BTN_MIDDLE seat - cursor press BTN_RIGHT, seat - cursor release BTN_MIDDLE
+# bindsym --input-device=$TPAD --whole-window BTN_RIGHT seat - cursor press BTN_RIGHT, seat - cursor release BTN_RIGHT
+
+exec wshiftl-paste -t text --watch clipman store --histpath="~/.cache/clipman.json"
+
+#   Identifier: 1:1:AT_Translated_Set_2_keyboard
+input type:keyboard {
+    xkb_options "caps:escape"
+    xkb_layout "us,ru"
+    xkb_options "grp:alt_shift_toggle"
+    repeat_rate 45
+    repeat_delay 300
+}
 
 # Debug these with:
 # swaymsg -t get_tree |less
@@ -54,10 +91,10 @@ for_window [app_id="zoom" title="Zoom - Free Account"] floating disable
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
 
 bindsym {
     XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -139,7 +176,7 @@ bindsym --to-code {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-     $mod+b exec google-chrome-stable
+     $mod+b exec $browser
      $mod+Space exec "kitty --title "Ranger" --execute ranger"
      $mod+v splitv
     # Switch the current container between different layout styles
@@ -175,18 +212,11 @@ bar {
     swaybar_command waybar
 }
 
+exec systemctl --user import-environment
 exec swaync
-exec swaymsg "workspace 2; exec google-chrome-stable;"
-exec swaymsg "workspace 4; exec --nostartup-id telegram-desktop;"
-exec swaymsg "workspace 5; exec --no-startup-id obsidian;"
-exec swaymsg "workspace 5; exec --no-startup-id pomodoro-logger;"
-exec swaymsg "workspace 1; exec --no-startup-id kitty;"
 
 assign [class=".*[oO]bsidian.*"] workspace 5
 assign [app_id="org.pwmt.zathura"] workspace 5
 
 bindsym $mod+n exec swaync-client -t -sw
 
-include keybinding.conf
-include inputs.conf
-include output.conf
