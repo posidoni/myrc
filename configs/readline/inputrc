@@ -1,0 +1,35 @@
+# Configuration for GNU Readline library
+# This lib is very popular in Linux ecosystem
+# Many essential programs, like Bash, Python Intepreter, PgSQL prompt use it
+# See `man (3) readline` for details
+
+set bell-style none
+set editing-mode vi
+set show-mode-in-prompt On
+
+set vi-ins-mode-string \1\e[6 q\2
+set vi-cmd-mode-string \1\e[2 q\2
+
+# Use emacs-style history fetching
+"C-P" previous-history
+"C-P" next-history
+
+
+# CTRL+LEFT / CTRL+RIGHT - move by word
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+
+set colored-stats On
+set visible-stats On
+set mark-symlinked-directories On
+set colored-completion-prefix On
+set menu-complete-display-prefix On
+
+set completion-ignore-case On
+set completion-map-case On
+set enable-bracketed-paste On
+
+
+# Like in LISP interpreter
+# INFO: Test it, may be annoying
+set blink-matching-paren On
