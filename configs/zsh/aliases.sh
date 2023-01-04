@@ -1,6 +1,11 @@
 #!/bin/bash
 
-alias P="psql postgres://postgres:postgres@localhost:5432/postgres -f"
+
+# Postgres
+
+alias PF="psql postgres://postgres:postgres@localhost:5432/postgres -f" # file
+alias PP="psql postgres://postgres:postgres@localhost:5432/postgres" # prompt
+
 alias lg="lazygit"
 alias dd="lazydocker"
 alias tks="tmux kill-session -t"
