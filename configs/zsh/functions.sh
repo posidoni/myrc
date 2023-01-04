@@ -8,10 +8,9 @@ encodeRMQ() {
     echo "$PASS"
 }
 
-
-#!/bin/bash
-
-# Allows cd into vars
+getRandUUIDNoDashes() {
+	sed 's/[-]//g' < /proc/sys/kernel/random/uuid
+}
 
 load-local-conf() {
      # check file exists, is regular file and is readable:
