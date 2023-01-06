@@ -1,8 +1,8 @@
 #!/bin/bash
 
+alias open="xdg-open"
 
 # Postgres
-
 alias PF="psql postgres://postgres:postgres@localhost:5432/postgres -f" # file
 alias PP="psql postgres://postgres:postgres@localhost:5432/postgres" # prompt
 

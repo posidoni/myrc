@@ -1,0 +1,115 @@
+""DTreeToggleDTreeToggle)--------------------
+let mapleader=" "
+nnoremap <SPACE> <Nop>
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set highlightedyank
+set textobj-entire
+set NERDTree
+set vim-commentary
+set ReplaceWithRegister
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set ignorecase smartcase
+set showmode
+set history=1000
+set showmode
+set so=5
+set incsearch
+set nu
+set clipboard+=unnamed
+set colorcolumn=81							" Highlight 81 column
+set list									" Show hidden characters
+set mouse=a									" Enable mouse use in all modes
+set noswapfile								" Turn off .swp file
+set number									" Display line numbering
+set relativenumber							" Display relative line numbering
+set shiftwidth=4							" Number of spaces for autoindent
+set showcmd									" Show (partial) command
+set splitright								" Open new splits on the right
+set tabstop=4								" Column count in tab character
+set splitright
+set splitbelow
+set scrolloff=2
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+nmap <C-h> <C-w>h
+nmap <leader>q :action CloseContent<CR>
+map <leader>o :NERDTreeToggle<CR>
+nmap <leader><leader> <Action>(GotoFile)
+
+sethandler <c-o> a:vim
+sethandler <c-r> a:vim
+sethandler <c-i> a:vim
+sethandler <S-Space> a:vim
+nnoremap <Tab> <C-o>
+nnoremap <S-Tab> <C-i>
+
+" Easy panes navigation
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+sethandler <c-h> a:vim
+sethandler <c-l> a:vim
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <S-l> :action NextTab<CR>
+vnoremap < <gv
+vnoremap > >gv
+
+" Do incremental searching.
+set incsearch
+vnoremap y y`]
+vnoremap p "_dP`]
+nnoremap p p`]
+
+" Y yank whole line by default
+nnoremap Y y$
+
+" YanDTreeToggle)from clipboard
+nnoremap ,y "+y
+vnoremap ,y "+y
+nnoremap ,yy "+yy
+nnoremap ,p "+p
+
+nmap >> <C-W>>
+nmap << <C-W><
+nmap <S-l> :bnext<CR>
+nmap <S-h> :bprevious<CR>
+
+-- @Insert mode
+imap <C-BS> <C-w>
+imap <C-h> <C-w>
+
+vmap p "_dP
+
+xmap K :move '<-2<CR>gv-gv
+xmap J :move '>+1<CR>gv-gv
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+nmap vv <Action>(SplitVertically)
+nmap ss <Action>(SplitHorizontally)
+map <leader>d <Action>(Debug)
+map <leader>rn <Action>(RenameElement)
+map <leader>c <Action>(Stop)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+
+map <leader>s <Action>(SelectInProjectView)
+map <leader>a <Action>(Annotate)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <S-Space> <Action>(GotoNextError)
+map <leader>b <Action>(ToggleLineBreakpoint)
