@@ -11,6 +11,7 @@ export plugins=(
     docker-compose
     golang
     fzf
+	kubectl
     tmux
 )
 
