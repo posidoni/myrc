@@ -64,7 +64,7 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.foldmethod = 'manual'
 
-vim.cmd([[ colorscheme tokyonight ]])
+vim.cmd([[ colorscheme onedark ]])
 
 -- vim.opt.fillchars:append('fold:•')
 vim.opt.guifont = 'FiraCode Nerd Font Mono:13'

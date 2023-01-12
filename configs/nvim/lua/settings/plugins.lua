@@ -11,7 +11,6 @@ fn = string or list          -- Specifies functions which load this plugin.
 local P = function(use)
     -- @Performance --
     use({ 'lewis6991/impatient.nvim' })
-
     -- @PluginManagement
     use({ 'wbthomason/packer.nvim' })
     use({ 'nvim-lua/popup.nvim' })

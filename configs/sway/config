@@ -124,7 +124,7 @@ bindsym {
 bindsym --to-code {
     $mod+Return exec $term
     $mod+q kill
-    $mod+ctrl+q exec swaylock -f -c 000000
+    # $mod+ctrl+q exec swaylock -f -c 000000
     # Start your launcher
     $mod+d exec $menu
     $mod+tab focus left 

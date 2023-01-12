@@ -27,13 +27,15 @@
 	browser = google-chrome
 [alias]
     log = log --graph
+    branch = branch -a
     signAll = rebase --exec 'git commit --amend --no-edit -n -S' -i --root
     rr = rebase -i --root
     cli = restore --staged .
+    t = tag
     c = checkout
     ck = checkout
 [web]
-	browser = google-chrome
+	browser = firefox
 [color]
 	ui = auto
 [diff]
@@ -43,12 +45,8 @@
 [sequence]
 	editor = nvim
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
-[safe]
-	directory = /home/posidoni/myrc
 [gpg]
 	program = gpg
