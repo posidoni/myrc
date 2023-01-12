@@ -1,21 +1,5 @@
 #!/bin/sh
 
-if [ "$SHELL" == '/bin/zsh' ]; then
-    bindkey -v
-    set colored-stats on
-    setopt cdable_vars
-    setopt auto_menu
-    setopt complete_in_word
-    setopt always_to_end
-    setopt INC_APPEND_HISTORY
-    setopt SHARE_HISTORY
-    setopt APPEND_HISTORY
-    setopt HIST_EXPIRE_DUPS_FIRST
-    setopt HIST_IGNORE_DUPS
-    setopt HIST_FIND_NO_DUPS
-    setopt HIST_REDUCE_BLANKS
-fi
-
 # This is global shell profile config
 # It will be used by any shell for any user
 # This shell should use only `sh` syntax to maximize portability,
@@ -29,6 +13,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CACHE_DIR="$HOME/.cache"
 export XDG_DESKTOP_DIR="$HOME/Desktop"
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
 export XDG_DOWNLOAD_DIR="$HOME/Downloads"
@@ -43,17 +28,28 @@ export EDITOR="nvim"
 export VISUAL="neovide"
 export TERM="xterm-256color"
 export TERMINAL="kitty"
-export BROWSER="google-chrome-stable"
+export BROWSER="firefox"
 export ZSH_THEME=""
 export NEOVIDE_MULTIGRID=true
 export ZSH_DISABLE_COMPFIX=true
-export RANGERCD=true
+export SAVEHIST=10000000
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# This influences ZSH autocomplete style,
+# since it uses LS_COLORS
+export LS_COLORS="$(dircolors -b)"
+
+# shellcheck disable=SC2016
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+# shellcheck disable=SC2016
+export GVIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 # Wayland
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=sway
 export XDG_CURRENT_DESKTOP=sway
-# some programs (zoom) require 'GNOME'
 export DESKTOP_SESSION=sway
 export XKB_DEFAULT_LAYOUT=us
 export LIBSEAT_BACKEND=logind
@@ -68,8 +64,7 @@ export HISTFILE="$XDG_CACHE_HOME/zhistory"
 
 export HISTORYCONTROL="ignorespace:ignoredups"
 export HISTORY_IGNORE="(git status|vi|nvim|vim|vimz|ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|exa|tree|t)"
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-export ZSH_COMPDUMP="$ZSH/cache/.zcompdump-$HOST"
+export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump-$HOST"
 
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
@@ -99,7 +94,7 @@ export GDBHISTFILE="$XDG_DATA_HOME"/gdb/history
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
-export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_PLATFORM_DIRS="1"
 export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
@@ -138,7 +133,6 @@ export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/mbsync/config"
 export ELECTRUMDIR="${XDG_DATA_HOME:-$HOME/.local/share}/electrum"
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
-export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
