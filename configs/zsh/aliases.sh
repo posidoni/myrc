@@ -2,6 +2,10 @@
 
 alias open="xdg-open"
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 # Postgres
 alias PF="psql postgres://postgres:postgres@localhost:5432/postgres -f" # file
 alias PP="psql postgres://postgres:postgres@localhost:5432/postgres" # prompt
