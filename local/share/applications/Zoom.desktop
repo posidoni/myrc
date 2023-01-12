@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Zoom
 Comment=Zoom Video Conference
-Exec=env XDG_CURRENT_DESKTOP=GNOME /usr/bin/zoom %U
+Exec=env XDG_CURRENT_DESKTOP=GNOME /usr/bin/zoom
 Icon=Zoom
 Terminal=false
 Type=Application
