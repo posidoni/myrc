@@ -13,9 +13,9 @@ local servers = {
     'yamlls',
     'dockerls',
     'gopls',
-    'rust_analyzer',
     'awk_ls',
     'pyright',
+    'rust_analyzer',
 }
 
 local lsp_handlers = require('settings.lsp.handlers')
@@ -32,9 +32,9 @@ for _, server in pairs(servers) do
     -- Null-ls provides essential tools for C/C++ development,
     -- however, null-ls forces 'utf-16' encoding which results in conflicts
     -- with clangd. Thus, clangd is asked to enable utf-16
-    if server == 'clangd' then
-        opts.capabilities.offsetEncoding = 'utf-16'
-    end
+    -- if server == 'clangd' then
+    --     opts.capabilities.offsetEncoding = 'utf-16'
+    -- end
 
     if has_custom_opts then
         opts = vim.tbl_deep_extend('force', server_custom_opts, opts)

@@ -30,7 +30,6 @@ null_ls.setup({
                 '--std=c++',
             },
         }),
-        formatting.rustfmt.with({}),
         formatting.goimports.with({}),
         formatting.stylua.with({}),
     },

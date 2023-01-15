@@ -5,9 +5,9 @@
     "height": 15,
     "spacing": 4,
     "modules-left": [
-        "sway/workspaces", 
-        "sway/mode", 
-        "sway/scratchpad", 
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad",
         "custom/media"
     ],
     "modules-center": [
@@ -16,12 +16,11 @@
     "modules-right": [
         "pulseaudio", 
         "cpu", 
-        "keyboard-state", 
         "battery", 
-        "network", 
         "bluetooth",
+        "network", 
         "battery#bat2", 
-        "sway/language", 
+        // "sway/language", 
         "clock", 
         "tray"
     ],
@@ -124,7 +123,7 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "",
+        "format-wifi": "  {ipaddr}/{cidr}",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
