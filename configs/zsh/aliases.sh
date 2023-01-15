@@ -2,9 +2,9 @@
 
 alias open="xdg-open"
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+alias cd ..="cd .."
+alias cd ...="cd ../.."
+alias cd ....="cd ../../.."
 
 # Postgres
 alias PF="psql postgres://postgres:postgres@localhost:5432/postgres -f" # file
@@ -36,8 +36,9 @@ alias l="la"
 alias mkdir="mkdir -p"
 
 # Often used utils aliases
-alias rr="ranger"
-alias rrr="ranger"
+alias lf="lf-ueberzug"
+alias rr="lf ."
+alias rrr="lf ."
 alias zz="zathura"
 alias ff="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 alias fff="ff"

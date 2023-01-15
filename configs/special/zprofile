@@ -22,11 +22,13 @@ export XDG_PICTURES_DIR="$HOME/Pictures"
 export XDG_PUBLICSHARE_DIR="$HOME/Public"
 export XDG_TEMPLATES_DIR="$HOME/Templates"
 export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_TRASH_DIR="$HOME/.Trash"
 
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="neovide"
 export TERM="xterm-256color"
+export OPENER="xdg-open"
 export TERMINAL="kitty"
 export BROWSER="firefox"
 export ZSH_THEME=""
@@ -66,6 +68,7 @@ export HISTFILE="$XDG_CACHE_HOME/zhistory"
 
 export HISTORYCONTROL="ignorespace:ignoredups"
 export HISTORY_IGNORE="(git status|vi|nvim|vim|vimz|ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|exa|tree|t)"
+export ZSH_CACHE_DIR="$XDG_DATA_HOME/zsh"
 export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump-$HOST"
 
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
