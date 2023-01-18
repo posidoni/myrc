@@ -10,6 +10,7 @@ preview() {
 	EOF
 }
 
+type="$(file --dereference --brief --mime-type -- "$1")"
 file="$1"; shift
 case "$(basename "$file" | tr '[:upper:]' '[:lower:]')" in
 *.tar*) tar tf "$file" ;;
@@ -38,6 +39,14 @@ case "$(basename "$file" | tr '[:upper:]' '[:lower:]')" in
 	gm convert "$file[0]" "$thumbnail"
 	preview "$thumbnail" "$@"
 	;;
-*) cat "$file" ;;
 esac
+
+case $type in
+	text/* | */xml | application/json) bat -f "$file" ;;
+	audio/* | application/octet-stream) mediainfo "$file" || exit 1 ;;
+	application/*zip) atool --list -- "$file" ;;
+	application/pgp-encrypted) gpg -d -- "$file" ;;
+esac
+
+
 return 127 # nonzero retcode required for lf previews to reload

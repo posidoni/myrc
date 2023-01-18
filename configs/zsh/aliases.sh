@@ -13,10 +13,10 @@ alias PP="psql postgres://postgres:postgres@localhost:5432/postgres" # prompt
 alias lg="lazygit"
 alias dd="lazydocker"
 alias tks="tmux kill-session -t"
-[[ -x "/usr/bin/nvim" ]] && alias vim="nvim"
-[[ -x "/usr/bin/nvim" ]] && alias vi="nvim"
-[[ -x "/usr/bin/nvim" ]] && alias v="nvim"
-alias vimz="/usr/bin/vim"
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
+alias vv="/usr/bin/vim"
 
 alias tmux="tmux -2"
 alias code='code --extensions-dir "$XDG_DATA_HOME/vscode"'

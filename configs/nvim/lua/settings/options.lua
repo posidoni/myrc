@@ -34,7 +34,7 @@ local options = {
     shiftwidth = 4, -- the number of spaces inserted for each indentation
     tabstop = 4, -- insert 2 spaces for a tab
     number = true, -- set numbered lines
-    relativenumber = true, -- set relative numbered lines
+    relativenumber = false, -- set relative numbered lines
     numberwidth = 2, -- set number column width to 2 {default 4}
     wrap = true, -- display lines as one long line
     linebreak = true, -- doesn't break words when wraps lines. To move through breaked (not numbered) lines use: gj gk g$ ...
@@ -72,17 +72,17 @@ vim.opt.guifont = 'FiraCode Nerd Font Mono:13'
 local g = vim.g
 -- See @docs for reference on @Neovide configuration:
 -- https://github.com/neovide/neovide/wiki/Configuration#multigrid
-g.neovide_refresh_rate = 140
+g.neovide_refresh_rate = 30
 g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullscreen mode of NeoVide. Not recommended.
 --- Input settings
 g.neovide_input_use_logo = true
 g.neovide_silent = true
-g.neovide_scale_factor = 0.90
+g.neovide_scale_factor = 0.50
 g.neovide_cursor_antialiasing = true
-g.neovide_cursor_unfocused_outline_width = 0.125
+g.neovide_cursor_unfocused_outline_width = 0
 g.neovide_cursor_animation_length = 0
 g.neovide_cursor_trail_length = 0
-g.scroll_animation_length = 0.05
+g.scroll_animation_length = 0
 g.neovide_floating_blur_amount_x = 2.0
 g.neovide_floating_blur_amount_y = 2.0
 -- g.neovide_transparency = 0.8

@@ -43,6 +43,8 @@ cmd open ${{
 }}
 
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+
+
 ${{
     w=$(tput cols)
     if [ $w -le 80 ]; then
@@ -72,8 +74,6 @@ cmd paste &{{
     lf -remote "send clear"
 }}
 
-# TODO: make 
-
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -100,10 +100,6 @@ map <enter> shell
 map x $$f
 map X !$f
 
-# dedicated keys for file opener actions
-map o &mimeopen $f
-map O $mimeopen --ask $f
-
 map f $vi $(fzf)
 
 cmd fzf_search ${{
@@ -118,17 +114,6 @@ cmd fzf_search ${{
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
 map F :fzf_search
-
-# define a custom 'open' command
-# This command is called when current file is not a directory. You may want to
-# use either file extensions and/or mime types here. Below uses an editor for
-# text files and a file opener for the rest.
-cmd open &{{
-    case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
-    esac
-}}
 
 map r rename
 
@@ -154,7 +139,7 @@ cmd trash %set -f; mv $fx ~/.Trash
 
 # use '<delete>' key for either 'trash' or 'delete' command
 map <delete> trash
-map dd trash
+map D trash
 # map <delete> delete
 
 # extract the current file with the right command
