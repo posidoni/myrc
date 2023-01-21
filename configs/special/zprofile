@@ -145,3 +145,4 @@ export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
 # Start graphical server on user's current tty if not already running.
 # [ "$(tty)" = "/dev/tty1" ] && exec dbus-launch --exit-with-session sway -d
+. "/home/posidoni/.local/share/cargo/env"

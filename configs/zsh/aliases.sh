@@ -36,7 +36,7 @@ alias l="la"
 alias mkdir="mkdir -p"
 
 # Often used utils aliases
-alias lf="lf-ueberzug"
+#alias lf="lf-ueberzug"
 alias rr="lf ."
 alias rrr="lf ."
 alias zz="zathura"

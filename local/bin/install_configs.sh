@@ -36,6 +36,9 @@ main() {
 
 	sudo chown root:root "$HOME/myrc/configs/environment.d/"
 	sudo chmod 755 "$HOME/myrc/configs/environment.d/"
+
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+	 ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 }
 
 main "$@"

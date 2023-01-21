@@ -2,7 +2,7 @@
 set shell zsh
 
 set drawbox
-set preview
+# set preview
 
 set icons
 set dirfirst
@@ -11,8 +11,8 @@ set hidden
 set ignorecase
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 
-set previewer lf-ueberzug-previewer
-set cleaner lf-ueberzug-cleaner
+# set previewer lf-ueberzug-previewer
+# set cleaner lf-ueberzug-cleaner
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
