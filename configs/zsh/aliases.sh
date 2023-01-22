@@ -1,7 +1,5 @@
 #!/bin/bash
 
-alias open="xdg-open"
-
 alias cd ..="cd .."
 alias cd ...="cd ../.."
 alias cd ....="cd ../../.."
