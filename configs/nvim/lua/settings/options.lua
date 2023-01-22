@@ -77,7 +77,7 @@ g.neovide_fullscreen = false -- If this is true, it is impossible to exit fullsc
 --- Input settings
 g.neovide_input_use_logo = true
 g.neovide_silent = true
-g.neovide_scale_factor = 0.50
+g.neovide_scale_factor = 0.80
 g.neovide_cursor_antialiasing = true
 g.neovide_cursor_unfocused_outline_width = 0
 g.neovide_cursor_animation_length = 0

@@ -8,12 +8,13 @@
 
 # $1 (optional) - path where to clone neovim sources
 main() {
-	set -euo pipefail
+	set -euo pipefail # enable strict mode
+
 	local vimdir=${1:-HOME}
 	[[ -d "$vimdir" ]] || vimdir=$HOME
-	git clone git@github.com:neovim/neovim.git $vimdir/neovim
-	patch_neovim.sh $vimdir/neovim
-	cd $vimdir/neovim
+	git clone git@github.com:neovim/neovim.git "$vimdir/neovim"
+	patch_neovim.sh "$vimdir/neovim"
+	cd "$vimdir/neovim"
 	make CMAKE_BUILD_TYPE=Release
 	sudo make install
 }
