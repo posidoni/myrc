@@ -15,7 +15,7 @@ local servers = {
     'gopls',
     'awk_ls',
     'pyright',
-    'rust_analyzer',
+    -- 'rust_analyzer' <-- Do not setup it yourself if using 'rust-tools' plugin
 }
 
 local lsp_handlers = require('settings.lsp.handlers')

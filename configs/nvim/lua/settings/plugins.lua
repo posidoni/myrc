@@ -88,6 +88,9 @@ local P = function(use)
     -- @Git
     use({ 'lewis6991/gitsigns.nvim' })
 
+    use({ 'tpope/vim-surround' })
+    use({ 'tpope/vim-fugitive' })
+
     -- @Navigation
     use({ 'akinsho/bufferline.nvim', tag = 'v2.*' })
     use({ 'christoomey/vim-tmux-navigator' })
@@ -101,7 +104,7 @@ local P = function(use)
 
     -- @Web
     use({ 'norcalli/nvim-colorizer.lua', ft = { ' css', 'jsx', 'tsx' } })
-    use({ 'simrat39/rust-tools.nvim', ft = { 'rust' } })
+    use({ 'simrat39/rust-tools.nvim' })
 
     -- @Docker
     -- use 'jamestthompson3/nvim-remote-containers

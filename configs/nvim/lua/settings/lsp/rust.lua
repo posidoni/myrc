@@ -1,5 +1,6 @@
 local rust_tools_found, rust = pcall(require, 'rust-tools')
 if not rust_tools_found then
+    vim.notify('Rust tools not found', vim.log.levels.WARN)
     return
 end
 
@@ -147,6 +148,20 @@ rust.setup({
                 'xlib',
                 'x11',
             },
+        },
+    },
+    server = {
+        -- standalone file support
+        -- setting it to false may improve startup time
+        standalone = true,
+    }, -- rust-analyzer options
+
+    -- debugging stuff
+    dap = {
+        adapter = {
+            type = 'executable',
+            command = 'lldb-vscode',
+            name = 'rt_lldb',
         },
     },
 })
