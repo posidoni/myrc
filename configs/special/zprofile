@@ -8,11 +8,12 @@
 # Debug ENV (see where variable came from):
 # zsh -xl 2>&1 | grep <var>
 
+
 # (~) Cleanup
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config" # ~/Library/Preferences
+export XDG_DATA_HOME="$HOME/.local/share" # ~/Library
 export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CACHE_HOME="$HOME/.cache" # ~/Library/Caches
 export XDG_CACHE_DIR="$HOME/.cache"
 export XDG_DESKTOP_DIR="$HOME/Desktop"
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
@@ -24,6 +25,12 @@ export XDG_TEMPLATES_DIR="$HOME/Templates"
 export XDG_VIDEOS_DIR="$HOME/Videos"
 export XDG_TRASH_DIR="$HOME/.Trash"
 
+# Macos specific
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_ARCH=native
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_BAT=1
+
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="neovide"
@@ -33,6 +40,7 @@ export TERMINAL="kitty"
 export BROWSER="firefox"
 export ZSH_THEME=""
 export NEOVIDE_MULTIGRID=true
+set NEOVIDE_MULTIGRID
 export ZSH_DISABLE_COMPFIX=true
 export SAVEHIST=10000000
 export HISTFILESIZE=1000000000
@@ -50,17 +58,24 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 # export GVIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 # Wayland
-export XDG_SESSION_TYPE=wayland
-export XDG_SESSION_DESKTOP=sway
-export XDG_CURRENT_DESKTOP=sway
-export DESKTOP_SESSION=sway
-export XKB_DEFAULT_LAYOUT=us
-export LIBSEAT_BACKEND=logind
-export QT_WAYLAND_DISABLE_WINDOWDECORATIONS=1
-export QT_QPA_PLATFORM="wayland;xcb"
-export CLUTTER_BACKEND=waylang
+export OS="$(uname -a | awk '{print $1}')"
+if [ "$OS" != 'Darwin' ]; then
+    export XDG_SESSION_TYPE=wayland
+    export XDG_SESSION_DESKTOP=sway
+    export XDG_CURRENT_DESKTOP=sway
+    export DESKTOP_SESSION=sway
+    export XKB_DEFAULT_LAYOUT=us
+    export LIBSEAT_BACKEND=logind
+    export QT_WAYLAND_DISABLE_WINDOWDECORATIONS=1
+    export QT_QPA_PLATFORM="wayland;xcb"
+    export CLUTTER_BACKEND=waylang
+    export MOZ_ENABLE_WAYLANG=1
+else
+	export BREW_PATH="$HOME/homebrew"
+    export QT_QPA_PLATFORM_PLUGIN_PATH="$BREW_PATH/Cellar/qt/6.4.2_1/share/qt/plugins/platforms"
+fi
+
 export LANG="en_US.UTF-8"
-export MOZ_ENABLE_WAYLANG=1
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export HISTFILE="$XDG_CACHE_HOME/zhistory"
@@ -73,7 +88,7 @@ export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump-$HOST"
 
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export PATH="$PATH:$HOME/.local/bin:$CARGO_HOME:$GOPATH/bin"
+export PATH="$PATH:$HOME/.local/bin:$CARGO_HOME:$GOPATH/bin:$BREW_PATH/bin"
 
 # Xorg config
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
@@ -145,4 +160,4 @@ export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
 # Start graphical server on user's current tty if not already running.
 # [ "$(tty)" = "/dev/tty1" ] && exec dbus-launch --exit-with-session sway -d
-. "/home/posidoni/.local/share/cargo/env"
+. "$HOME/.local/share/cargo/env"
