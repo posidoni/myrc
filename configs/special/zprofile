@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This is global shell profile config
 # It will be used by any shell for any user
@@ -53,11 +53,18 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export PATH="/usr/local/bin:/bin:$PATH:$HOME/.local/bin:$CARGO_HOME:$GOPATH/bin"
+export PATH="$PATH:$HOME/.local/bin:$CARGO_HOME:$GOPATH/bin"
 
 # Wayland
-export OS="$(uname -a | awk '{print $1}')"
-if [ "$OS" != 'Darwin' ]; then
+if [[ "$(uname -a)" =~ 'Darwin' ]]; then
+	export BREW_PATH="$HOME/homebrew"
+    export QT_QPA_PLATFORM_PLUGIN_PATH="$BREW_PATH/Cellar/qt/6.4.2_1/share/qt/plugins/platforms"
+    export HOMEBREW_ARCH=native
+    export HOMEBREW_NO_ANALYTICS=1
+    export HOMEBREW_NO_AUTO_UPDATE=1
+	export MANPATH="$BREW_PATH/opt/coreutils/libexec/gnuman"
+    export PATH="$PATH:$BREW_PATH/bin:/usr/local/bin"
+else
     export XDG_SESSION_TYPE=wayland
     export XDG_SESSION_DESKTOP=sway
     export XDG_CURRENT_DESKTOP=sway
@@ -68,24 +75,23 @@ if [ "$OS" != 'Darwin' ]; then
     export QT_QPA_PLATFORM="wayland;xcb"
     export CLUTTER_BACKEND=waylang
     export MOZ_ENABLE_WAYLANG=1
-else
-    # Macos specific
-	export BREW_PATH="$HOME/homebrew"
-    export QT_QPA_PLATFORM_PLUGIN_PATH="$BREW_PATH/Cellar/qt/6.4.2_1/share/qt/plugins/platforms"
-    # Use gnu utils instead of bsd versionis
-    # Order of vars is important
-    export PATH="$BREW_PATH/opt/gnu-sed/libexec/gnubin:$BREW_PATH/bin:$PATH"
-    export HOMEBREW_NO_ANALYTICS=1
-    export HOMEBREW_ARCH=native
-    export HOMEBREW_NO_AUTO_UPDATE=1
-    export HOMEBREW_BAT=1
 fi
+
+# if [[ -z "$USE_MINIKUBE" ]]; then
+#     export DOCKER_TLS_VERIFY="1"
+#     export DOCKER_HOST="tcp://127.0.0.1:53782"
+#     export DOCKER_CERT_PATH="/Users/posidoni/.minikube/certs"
+#     export MINIKUBE_ACTIVE_DOCKERD="minikube"
+#
+#     # To point your shell to minikube's docker-daemon, run:
+#     eval "$($HOME/homebrew/bin/minikube -p minikube docker-env)"
+# fi
 
 export LANG="en_US.UTF-8"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export HISTFILE="$XDG_CACHE_HOME/zhistory"
-[ -f "$HISTFILE" ] || touch "$HISTFILE"
+[[ -f "$HISTFILE" ]] || touch "$HISTFILE"
 
 export HISTORYCONTROL="ignorespace:ignoredups"
 export HISTORY_IGNORE="(git status|vi|nvim|vim|vimz|ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|exa|tree|t)"
