@@ -93,7 +93,6 @@ vim.opt.shortmess:append('c')
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
-
 --[[
     @MikhailKuzntsov1
     @brief: these are very simple global lua functions for changing GUI font
