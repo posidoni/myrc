@@ -4,7 +4,7 @@
     pager = less
 	excludesfile = ~/myrc/configs/.gitignore_global
 [user]
-	name = "Mikhail Kuznetsov"
+	name = "Mikhail K."
 	email = mikhail.n.kuznetsov@gmail.com
 	username = MikhailKuzntsov1
 	signingkey = 7E0F211FD77E944B
@@ -15,9 +15,12 @@
 [pull]
     rebase = false
 [merge]
-    tool = nvim -d
+	tool = "nvim"
 [mergetool]
-    prompt = false
+	keepBackup = false
+	prompt = false
+[mergetool "nvim"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 [commit]
 	template = ~/myrc/configs/git/.gitmessage
 	gpgsign = false
@@ -29,11 +32,12 @@
     log = log --graph
     branch = branch -a
     signAll = rebase --exec 'git commit --amend --no-edit -n -S' -i --root
-    rr = rebase -i --root
-    cli = restore --staged .
+    rr = rebase -i --root # Rebase from root
+    cli = restore --staged . # Clear index (staged), unstage everything
     t = tag
     c = checkout
     ck = checkout
+    mt = mergetool # Launch mergetool
 [web]
 	browser = firefox
 [color]
@@ -50,3 +54,8 @@
 	helper = !/usr/bin/gh auth git-credential
 [gpg]
 	program = gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
