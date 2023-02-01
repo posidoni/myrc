@@ -7,6 +7,8 @@ alias cd ....="cd ../../.."
 alias v="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim"
 bindkey -s '^F' 'v \n'
 
+alias mk="minikube"
+
 # Postgres
 alias PF="psql postgres://postgres:postgres@localhost:5432/postgres -f" # file
 alias PP="psql postgres://postgres:postgres@localhost:5432/postgres" # prompt

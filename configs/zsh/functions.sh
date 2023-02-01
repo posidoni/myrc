@@ -12,13 +12,6 @@ getRandUUIDNoDashes() {
 	sed 's/[-]//g' < /proc/sys/kernel/random/uuid
 }
 
-load-local-conf() {
-     # check file exists, is regular file and is readable:
-     if [[ -f "$HOME/.env" && -r "$HOME/.env" ]]; then
-       source "$HOME/.env"
-     fi
-}
-
 restartTouchpad() {
 	sudo  modprobe -r psmouse
 	sudo modprobe psmouse
@@ -45,7 +38,7 @@ cloneCustomSSH() {
 
 # Connects to machine & starts new tmux session
 ssht() {
-	/usr/bin/ssh -t "$@" tmux new -A
+	ssh -t "$@" tmux new -A
 }
 
 # Finds and reports broken links in $1
@@ -65,26 +58,36 @@ extract() {
       if [ -f "$n" ] ; then
           case "${n%,}" in
             *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
+			 tar xvf "$n"       ;;
+            *.lzma)
+				unlzma ./"$n"      ;;
+            *.bz2)
+				bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)
+				unrar x -ad ./"$n" ;;
+            *.gz)
+				gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)
+				unzip ./"$n"       ;;
+            *.z)
+				uncompress ./"$n"  ;;
             *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
+				 7z x ./"$n"        ;;
+            *.xz)
+				unxz ./"$n"        ;;
+            *.exe)
+				cabextract ./"$n"  ;;
+            *.cpio)
+				cpio -id < ./"$n"  ;;
+            *.cba|*.ace)
+				unace x ./"$n"      ;;
             *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
+				 echo "extract: '$n' - unknown archive method"
+				 return 1
+				 ;;
           esac
       else
-          echo "'$n' - file does not exist"
+          1>&2 echo "'$n' - file does not exist"
           return 1
       fi
     done
