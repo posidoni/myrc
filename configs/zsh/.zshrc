@@ -2,6 +2,22 @@
 
 bindkey -v
 
+plugins=(
+    git
+    macos
+    brew
+    dash
+    docker
+    gh
+    git-auto-fetch
+    helm
+    kubectl
+    minikube
+    tmux
+)
+
+source "$HOME/myrc/configs/ohmyzsh/oh-my-zsh.sh"
+
 set colored-stats on
 setopt cdable_vars
 setopt auto_menu
@@ -15,8 +31,6 @@ setopt INCAPPENDHISTORY  # Immediately append to the history file, not just when
 
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/.zcompdump-$HOST"
 export HISTFILE="$XDG_CACHE_HOME/zhistory"
-
-export PATH="$BREW_PATH/opt/gnu-sed/libexec/gnubin:$BREW_PATH/bin:$PATH"
 
 source "$HOME/myrc/configs/zsh/aliases.sh"
 source "$HOME/myrc/configs/zsh/functions.sh"
