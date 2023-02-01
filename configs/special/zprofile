@@ -25,12 +25,6 @@ export XDG_TEMPLATES_DIR="$HOME/Templates"
 export XDG_VIDEOS_DIR="$HOME/Videos"
 export XDG_TRASH_DIR="$HOME/.Trash"
 
-# Macos specific
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_ARCH=native
-export HOMEBREW_NO_AUTO_UPDATE=1
-export HOMEBREW_BAT=1
-
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="neovide"
@@ -57,6 +51,10 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 # shellcheck disable=SC2016
 # export GVIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export PATH="/usr/local/bin:/bin:$PATH:$HOME/.local/bin:$CARGO_HOME:$GOPATH/bin"
+
 # Wayland
 export OS="$(uname -a | awk '{print $1}')"
 if [ "$OS" != 'Darwin' ]; then
@@ -71,8 +69,16 @@ if [ "$OS" != 'Darwin' ]; then
     export CLUTTER_BACKEND=waylang
     export MOZ_ENABLE_WAYLANG=1
 else
+    # Macos specific
 	export BREW_PATH="$HOME/homebrew"
     export QT_QPA_PLATFORM_PLUGIN_PATH="$BREW_PATH/Cellar/qt/6.4.2_1/share/qt/plugins/platforms"
+    # Use gnu utils instead of bsd versionis
+    # Order of vars is important
+    export PATH="$BREW_PATH/opt/gnu-sed/libexec/gnubin:$BREW_PATH/bin:$PATH"
+    export HOMEBREW_NO_ANALYTICS=1
+    export HOMEBREW_ARCH=native
+    export HOMEBREW_NO_AUTO_UPDATE=1
+    export HOMEBREW_BAT=1
 fi
 
 export LANG="en_US.UTF-8"
@@ -85,10 +91,6 @@ export HISTORYCONTROL="ignorespace:ignoredups"
 export HISTORY_IGNORE="(git status|vi|nvim|vim|vimz|ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|exa|tree|t)"
 export ZSH_CACHE_DIR="$XDG_DATA_HOME/zsh"
 export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump-$HOST"
-
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export PATH="$PATH:$HOME/.local/bin:$CARGO_HOME:$GOPATH/bin:$BREW_PATH/bin"
 
 # Xorg config
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"

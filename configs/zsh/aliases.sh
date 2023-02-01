@@ -4,6 +4,9 @@ alias cd ..="cd .."
 alias cd ...="cd ../.."
 alias cd ....="cd ../../.."
 
+alias v="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim"
+bindkey -s '^F' 'v \n'
+
 # Postgres
 alias PF="psql postgres://postgres:postgres@localhost:5432/postgres -f" # file
 alias PP="psql postgres://postgres:postgres@localhost:5432/postgres" # prompt
@@ -13,7 +16,6 @@ alias dd="lazydocker"
 alias tks="tmux kill-session -t"
 alias vim="nvim"
 alias vi="nvim"
-alias v="nvim"
 alias vv="/usr/bin/vim"
 
 alias tmux="tmux -2"
@@ -38,8 +40,6 @@ alias mkdir="mkdir -p"
 alias rr="lf ."
 alias rrr="lf ."
 alias zz="zathura"
-alias ff="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-alias fff="ff"
 
 alias grep='grep --color=auto'
 alias diff="diff --color=auto"
