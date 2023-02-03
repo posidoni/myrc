@@ -1,10 +1,30 @@
 return {
+    patch_default_opts = function(default_opts)
+        -- Null-ls provides essential tools for C/C++ development,
+        -- however, null-ls forces 'utf-16' encoding which results in conflicts
+        -- with clangd. Thus, clangd is asked to enable utf-16
+        default_opts.capabilities.offsetEncoding = 'utf-16'
+        default_opts.filetypes = {
+            -- hack to remove 'proto' files from default
+            -- filetypes (since we need to overwrite default values)
+            'c',
+            'cpp',
+            'cuda',
+            'cc',
+            'hpp',
+            'h',
+            'cxx',
+        }
+    end,
     cmd = {
         'clangd',
         '--background-index',
         '--pch-storage=memory',
         '--suggest-missing-includes',
         '--clang-tidy',
+        '--clang-tidy-checks=*',
+        '--completion-style=detailed',
+        '--header-insertion-decorators',
         '--fallback-style=google',
         '--function-arg-placeholders',
         '--header-insertion=iwyu',
@@ -37,11 +57,9 @@ return {
                 completeUnimported = true,
                 semanticHighlighting = true,
             },
-            filetypes = {
+            filetype = {
                 'c',
                 'cpp',
-                'objc',
-                'objcpp',
                 'cuda',
                 'cc',
                 'hpp',
