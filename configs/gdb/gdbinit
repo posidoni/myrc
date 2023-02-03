@@ -1,0 +1,8 @@
+set host-charset UTF-8
+set target-charset UTF-8
+set target-wide-charset UTF-8
+set osabi none
+set complaints 0
+set confirm off
+set history save on
+set history filename ~/.local/.gdb_history
