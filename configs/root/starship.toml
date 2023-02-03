@@ -1,6 +1,5 @@
 format = """
 $username\
-$time\
 $hostname\
 $shlvl\
 $directory\
@@ -49,12 +48,11 @@ $git_status\
 $status\
 $fill\
 $kubernetes\
-$line_break\
 $time\
+$line_break\
 $jobs\
 $battery\
 $character"""
-
 
 # right_format = """$custom"""
 add_newline = true
@@ -62,6 +60,13 @@ add_newline = true
 [fill]
 # style = "bold blue"
 symbol = " "
+
+[time]
+disabled = false
+format = ' [\[ $time \]](blue) '
+time_format = '%T'
+utc_time_offset = '+4'
+time_range = '10:00:00-14:00:00'
 
 [kubernetes]
 format = '[⎈ ($user on )($cluster in )$context \(::$namespace\)](cyan)'
