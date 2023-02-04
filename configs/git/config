@@ -38,6 +38,8 @@
     c = checkout
     ck = checkout
     mt = mergetool # Launch mergetool
+    clone = clone --recursive
+    clonefast = clone --depth 1
 [web]
 	browser = firefox
 [color]
