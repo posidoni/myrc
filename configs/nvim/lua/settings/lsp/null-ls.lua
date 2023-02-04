@@ -33,6 +33,9 @@ null_ls.setup({
         formatting.goimports.with({}),
         formatting.stylua.with({}),
         formatting.rustfmt.with({}),
+        formatting.clang_format.with({
+            filetypes = { 'proto', 'pb', 'protobuf' }
+        }),
     },
     on_attach = lsp_handlers.on_attach,
     capabilities = lsp_handlers.capabilities,

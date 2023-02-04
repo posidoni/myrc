@@ -62,6 +62,10 @@ local P = function(use)
         requires = {
             'williamboman/mason-lspconfig.nvim',
         },
+        cmd = { 'Mason' },
+        config = function ()
+            require('settings.lsp.mason')
+        end
     })
     -- for formatters and linters
     use({ 'jose-elias-alvarez/null-ls.nvim' })

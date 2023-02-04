@@ -25,6 +25,13 @@ map({ 'n' }, '<leader>f', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
 map({ 'n' }, '<leader>F', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
 map({ 'n' }, 'gr', '<cmd>TroubleToggle lsp_references<cr>', opts)
 
+map({'n'}, '<leader>8',
+    function()
+        vim.cmd[[ LspRestart ]]
+    end,
+    opts
+)
+
 -- Better wrap navigation
 map({ 'n' }, 'j', 'gj', opts)
 map({ 'n' }, 'k', 'gk', opts)
