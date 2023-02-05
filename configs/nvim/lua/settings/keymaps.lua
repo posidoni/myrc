@@ -113,7 +113,6 @@ map(
 map({ 'n' }, '<leader>y', tbuiltin.builtin, opts)
 map({ 'n' }, '<leader><leader>', tbuiltin.find_files, opts)
 map({ 'n' }, '<leader>d', tbuiltin.diagnostics, opts)
-map({ 'n' }, '<leader>b', tbuiltin.buffers, opts)
 map({ 'n' }, '<leader>r', tbuiltin.live_grep, opts)
 
 -- @NvimTree --
