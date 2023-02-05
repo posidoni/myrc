@@ -73,25 +73,10 @@ rust.setup({
             auto_focus = false,
         },
 
-        -- settings for showing the crate graph based on graphviz and the dot
-        -- command
         crate_graph = {
-            -- Backend used for displaying the graph
-            -- see: https://graphviz.org/docs/outputs/
-            -- default: x11
             backend = 'x11',
-            -- where to store the output, nil for no output stored (relative
-            -- path from pwd)
-            -- default: nil
             output = nil,
-            -- true for all crates.io and external crates, false only the local
-            -- crates
-            -- default: true
             full = true,
-
-            -- List of backends found on: https://graphviz.org/docs/outputs/
-            -- Is used for input validation and autocompletion
-            -- Last updated: 2021-08-26
             enabled_graphviz_backends = {
                 'bmp',
                 'cgimage',
@@ -151,12 +136,11 @@ rust.setup({
         },
     },
     server = {
-        -- standalone file support
-        -- setting it to false may improve startup time
         standalone = true,
-    }, -- rust-analyzer options
-
-    -- debugging stuff
+        checkOnSave = {
+            allFeatures = true,
+        },
+    },
     dap = {
         adapter = {
             type = 'executable',
