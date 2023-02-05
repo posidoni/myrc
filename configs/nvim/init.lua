@@ -29,3 +29,10 @@ require('settings.dap')
 require('settings.lsp.go')
 require('settings.lsp.sql')
 require('settings.lsp.rust')
+
+vim.cmd [[
+    if exists('g:started_by_firenvim')
+        au TextChanged * ++nested write
+        au TextChangedI * ++nested write
+    endif
+]]

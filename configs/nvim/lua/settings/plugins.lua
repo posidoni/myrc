@@ -136,6 +136,14 @@ local P = function(use)
         'edolphin-ydf/goimpl.nvim',
         ft = { 'go' },
     })
+
+
+    use {
+        'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end,
+        config = function()
+        end
+    }
 end
 
 return P
