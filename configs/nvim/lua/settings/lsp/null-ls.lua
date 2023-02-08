@@ -13,29 +13,32 @@ local lsp_handlers = require('settings.lsp.handlers')
 null_ls.setup({
     debug = true,
     sources = {
-        diagnostics.shellcheck.with({}),
-        diagnostics.golangci_lint.with({
-            command = { 'golangci-lint' },
-            args = {
-                'run',
-                '--fix=false',
-                '--fast',
-                '--out-format=json',
-                '--path-prefix',
-            },
+        -- formatting.gofumpt.with({}), -- already defined in gopls
+        -- formatting.golines.with({}),
+        -- '--enable-all',
+        -- '-build-tags e2e,integration,smoke',
+        formatting.goimports_reviser.with({
+            extra_args = {
+                '-rm-unused',
+                '-excludes ".git/,mocks/*go"',
+                '-format',
+                '-set-alias',
+                '-use-cache',
+            }
         }),
+        diagnostics.shellcheck.with({}),
         diagnostics.cppcheck.with({
             extra_args = {
                 '--enable=style,performance,portability,warning',
                 '--std=c++',
             },
         }),
-        formatting.goimports.with({}),
-        formatting.stylua.with({}),
+        -- formatting.stylua.with({}),
         formatting.rustfmt.with({}),
-        formatting.clang_format.with({
-            filetypes = { 'proto', 'pb', 'protobuf' }
-        }),
+        formatting.autoflake.with({}),
+        -- formatting.clang_format.with({
+        --     -- filetypes = { 'proto', 'pb', 'protobuf' },
+        -- }),
     },
     on_attach = lsp_handlers.on_attach,
     capabilities = lsp_handlers.capabilities,

@@ -9,6 +9,7 @@ return {
                     [vim.fn.expand('$VIMRUNTIME/lua')] = true,
                     [vim.fn.stdpath('config') .. '/lua'] = true,
                 },
+                checkThirdParty = false,
             },
             completion = {
                 autoRequire = true,

@@ -4,13 +4,10 @@ env:
   TERM: xterm
 
 window:
-  opacity: 0.8
+  opacity: 1.0
   padding:
     x: 5
     y: 0
-
-    dynamic_padding: false
-    decoration: full
 
 font:
   normal:

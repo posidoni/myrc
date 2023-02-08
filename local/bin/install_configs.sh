@@ -3,7 +3,7 @@
 export MYRC="$HOME/myrc"
 
 main() {
-	. "$MYRC/configs/special/zprofile"
+	. "$MYRC/configs/zsh/zprofile"
 
 	# Creates all _DIRS, filters out complex paths as 'path1:path2:path3'
 	env | grep -E "(_DIR)[^:]+$" | awk -F'=' '{print $2}' | sed 's/^1$//' | xargs -I _ mkdir -pv _
@@ -33,7 +33,7 @@ main() {
 		$HOME/Pictures
 	EOF
 
-	sudo ln -fvs "$HOME/myrc/configs/special/zprofile" /etc/profile.d/zprofile.sh
+	sudo ln -fvs "$HOME/myrc/configs/zsh/zprofile" /etc/profile.d/zprofile.sh
 	sudo ln -fvs "$HOME/myrc/configs/zsh/functions.sh" /etc/profile.d/my_functions.sh
 	sudo ln -fvs "$HOME/myrc/configs/environment.d/" /etc/
 

@@ -22,9 +22,12 @@ end
 ---@param name string the augroup name
 function M.clear_augroup(name)
     -- defer the function in case the autocommand is still in-use
-    local exists, _ = pcall(vim.api.nvim_get_autocmds, { group = name })
+    local ok, _ = pcall(vim.api.nvim_get_autocmds, { group = name })
+    if not ok then
+        return
+    end
     vim.schedule(function()
-        local status_ok, _ = xpcall(function()
+        local _, _ = xpcall(function()
             vim.api.nvim_clear_autocmds { group = name }
         end, debug.traceback)
     end)

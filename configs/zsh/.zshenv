@@ -1,1 +1,0 @@
-/home/posidoni/myrc/configs/special/zprofile

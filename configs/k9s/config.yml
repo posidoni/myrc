@@ -1,4 +1,5 @@
 k9s:
+  liveViewAutoRefresh: false
   refreshRate: 2
   maxConnRetry: 5
   enableMouse: true
@@ -24,6 +25,27 @@ k9s:
         active: default
         lockFavorites: false
         favorites:
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    orbstack:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - all
         - default
       view:
         active: po

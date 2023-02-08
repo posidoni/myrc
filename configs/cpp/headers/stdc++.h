@@ -1,6 +1,8 @@
 #ifndef MYSTDCPP_HPP_
 #define MYSTDCPP_HPP_
 
+// Easy to use precompiled header for codeforces-like stuff
+
 // C++ includes used for precompiling -*- C++ -*-
 
 // Copyright (C) 2003-2013 Free Software Foundation, Inc.

@@ -1,5 +1,15 @@
 #!/bin/bash
 
+clear_goenv() {
+	go env -u GOPROXY
+	go env -u GOSUMDB
+	go env -u GOPRIVATE
+}
+
+sign_wezterm_osx() {
+	codesign --force --deep --sign - /Applications/WezTerm.app
+}
+
 encodeRMQ() {
     SALT=$(od -A n -t x -N 4 /dev/urandom)
     PASS="$SALT$(echo -n "$1" | xxd -ps | tr -d '\n' | tr -d ' ')"
@@ -13,27 +23,8 @@ getRandUUIDNoDashes() {
 }
 
 restartTouchpad() {
-	sudo  modprobe -r psmouse
+	sudo modprobe -r psmouse
 	sudo modprobe psmouse
-}
-
-# Exists to allow using multiple private SSH keys
-# $1 - URL to clone from
-# $1 - path to private SSH key, $2 - URL to clone from
-cloneCustomSSH() {
-    if [[ $# -eq 1 ]]; then
-        GIT_SSH_COMMAND="ssh -i $HOME/.ssh/sc21-gl -o IdentitiesOnly=yes" git clone "$1"
-    elif [[ $# -eq 2 ]]; then
-        GIT_SSH_COMMAND="ssh -i $1 -o IdentitiesOnly=yes" git clone "$1"
-    else
-        cat <<- END
-		Error. Incorrect number of arguments!
-		Usage:
-			$0 repo-url
-			$0 path-to-private-ssh repo-url
-		END
-        return 1
-    fi
 }
 
 # Connects to machine & starts new tmux session
@@ -106,4 +97,17 @@ getasm() {
 
 getdisasm() {
 	objdump -S --disassemble "$1"
+}
+
+githash() {
+	git rev-parse --short HEAD || 1>&2 echo "failed to get git hash"
+}
+
+# $1 - img name
+builddocker() {
+	local name="$1"
+	if [[ -z "$1" ]]; then
+		name="$(pwd | awk -F/ '{print $NF}')"
+	fi
+	docker build . --tag "$name":"$(githash)"
 }

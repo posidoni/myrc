@@ -1,0 +1,176 @@
+#!/bin/bash
+
+# (~) Cleanup
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CACHE_DIR="$HOME/.cache"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_PUBLICSHARE_DIR="$HOME/Public"
+export XDG_TEMPLATES_DIR="$HOME/Templates"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_TRASH_DIR="$HOME/.Trash"
+export XDG_RUNTIME_DIR="" # set at runtime to other value by apps
+
+# Default programs
+set NEOVIDE_MULTIGRID
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERM="xterm-256color"
+export OPENER="xdg-open"
+export ZSH_THEME=""
+export NEOVIDE_MULTIGRID=true
+export ZSH_DISABLE_COMPFIX=true
+export SAVEHIST=10000000
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
+
+export LANG="en_US.UTF-8"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export HISTFILE="$XDG_CACHE_HOME/zhistory"
+[[ -f "$HISTFILE" ]] || touch "$HISTFILE"
+export HISTORYCONTROL="ignorespace:ignoredups"
+export HISTORY_IGNORE="(git status|vi *|nvim *|vim *|vimz *|ls *|l *|l |cd|pwd|exit|sudo reboot|history|cd -|cd ..|exa|tree|t)"
+export ZSH_CACHE_DIR="$XDG_DATA_HOME/zsh"
+export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump-$HOST"
+
+# shellcheck disable=SC2016
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+# export GVIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC' # shellcheck disable=SC2016
+
+export GOPATH="$HOME/go"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export BINPATH="$HOME/.local/bin"
+
+### 🍏 MacOS Specific
+if [[ "$(uname -a)" =~ 'Darwin' ]]; then
+	export TERMINAL="wezterm"
+	export BROWSER="Arc"
+	export BREW_PATH="$HOME/homebrew"
+
+	## PATH MacOS
+	export GNUBIN="/opt/homebrew/opt/gawk/libexec/gnubin"
+	export GSED="/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+	export PSQL_BIN="/opt/homebrew/opt/postgresql@16/bin"
+	export NPM_BIN="$HOME/.local/share/npm/bin"
+	export KAFKA_BIN="/opt/homebrew/Cellar/kafka-protobuf-console-consumer/3.0.0/bin"
+	export VSCODE_BIN="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+	## Brew
+    export QT_QPA_PLATFORM_PLUGIN_PATH="$BREW_PATH/Cellar/qt/6.4.2_1/share/qt/plugins/platforms"
+    export HOMEBREW_ARCH=native
+    export HOMEBREW_NO_ANALYTICS=1
+    export HOMEBREW_NO_AUTO_UPDATE=1
+	
+    export MANPATH="$MANPATH:$BREW_PATH/opt/coreutils/libexec/gnuman" ## First "$MANPATH" MUST be empty, this is expected
+	export PATH="$PATH:$BINPATH:$CARGO_HOME:$GOPATH/bin:$GNUBIN:$GSED:$PSQL_BIN:$NPM_BIN:$VSCODE_BIN:$KAFKA_BIN:$BREW_PATH/bin:/usr/local/bin"
+
+	# Added by OrbStack: command-line tools and integration
+	source ~/.orbstack/shell/init.zsh 2>/dev/null || eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi ### MacOS specific end
+
+### 🐧 Linux specific
+if ! [[ "$(uname -a)" =~ 'Darwin' ]]; then
+	# Wayland
+    export XDG_SESSION_TYPE=wayland
+    export XDG_SESSION_DESKTOP=sway
+    export XDG_CURRENT_DESKTOP=sway
+    export DESKTOP_SESSION=sway
+    export XKB_DEFAULT_LAYOUT=us
+    export LIBSEAT_BACKEND=logind
+    export QT_WAYLAND_DISABLE_WINDOWDECORATIONS=1
+    export QT_QPA_PLATFORM="wayland;xcb"
+    export CLUTTER_BACKEND=waylang
+    export MOZ_ENABLE_WAYLANG=1
+
+	# Xorg config
+	export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+	export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+	export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
+	export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
+	export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+	export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
+	export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverr"
+	export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
+
+
+	# PATH Linux
+	export PATH="$PATH:$GOPATH/bin:$BINPATH"
+
+	
+	# Start graphical server on user's current tty if not already running.
+	[[ "$(tty)" = "/dev/tty1" ]] && exec dbus-launch --exit-with-session sway -d
+fi ## Linux specific END
+
+# Programs that require special ENV
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
+export ATOM_HOME="$XDG_DATA_HOME/atom"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export GDBHISTFILE="$XDG_DATA_HOME/gdb/history"
+export LESSHISTFILE="-"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
+export JUPYTER_PLATFORM_DIRS="1"
+export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql_history"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
+export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
+export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode"
+
+## PostgreSQL
+[[ -d "$XDG_CONFIG_HOME/pg" ]] || mkdir "$XDG_CONFIG_HOME/pg"
+export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
+unset PGSERVICEFILE # export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
+###
+
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
+export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
+export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
+export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
+export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/mbsync/config"
+export ELECTRUMDIR="${XDG_DATA_HOME:-$HOME/.local/share}/electrum"
+
+# Other program settings:
+export DICS="/usr/share/stardict/dic/"
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
+
+[[ -e "$HOME/.env" ]] && . "$HOME/.env"
+
+
+# This influences ZSH autocomplete style,
+# since it uses LS_COLORS
+# value is got from $(dircolors)
+export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+

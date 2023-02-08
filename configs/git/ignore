@@ -1,9 +1,18 @@
 ############################
-######### C/C++      #######
-############################
 # To check why the file if ignored:
 # git check-ignore -v <path/file>
 ############################
+
+# Mac
+.DS_Store
+# Windows
+Thumbs.db
+# WebStorm
+.idea/
+**/pgpass
+pgpass
+**/.pgpass
+.pgpass
 .vscode
 compile_commands.json
 .cache/
@@ -24,6 +33,7 @@ tags
 *.orig
 */.env
 **/.env
+/.env
 .env
 .env.chico
 gcov_obj/*
@@ -156,7 +166,6 @@ compile_commands.json
 *.pdb
 
 # Kernel Module Compile Results
-*.mod*
 *.cmd
 .tmp_versions/
 modules.order

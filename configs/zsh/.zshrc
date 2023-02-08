@@ -2,18 +2,27 @@
 
 bindkey -v
 
+# source "$HOME/myrc/configs/zsh/python.sh"
+
 plugins=(
     git
-    macos
-    brew
-    dash
     docker
-    gh
-    git-auto-fetch
-    helm
     kubectl
-    minikube
     tmux
+    fzf
+    golang
+    git-auto-fetch
+    gpg-agent
+    # zsh-syntax-highlighting
+    # macos
+    # brew
+    # dash
+    # gh
+    # helm
+    # minikube
+    # python
+    # pip
+    # pyenv
 )
 
 source "$HOME/myrc/configs/ohmyzsh/oh-my-zsh.sh"
@@ -34,7 +43,9 @@ export HISTFILE="$XDG_CACHE_HOME/zhistory"
 
 source "$HOME/myrc/configs/zsh/aliases.sh"
 source "$HOME/myrc/configs/zsh/functions.sh"
+source "$HOME/myrc/configs/zsh/kafka.sh"
 source "$HOME/myrc/configs/zsh/comp_setup.sh"
+source "$HOME/myrc/configs/zsh/node.sh"
 
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -42,13 +53,10 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
 bindkey "jk" vi-cmd-mode
-bindkey "^R" history-incremental-search-backward
 bindkey "^H" backward-kill-word
 bindkey "^N" down-line-or-history
 bindkey "^P" up-line-or-history
 
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+unset PGSERVICEFILE
 
 eval "$(starship init zsh)"

@@ -6,7 +6,7 @@ end
 -- Disable some builtin vim plugins
 
 local actions = require('telescope.actions')
---
+
 -- local _, builtin = pcall(require, 'telescope.builtin')
 -- local _, finders = pcall(require, 'telescope.finders')
 -- local _, pickers = pcall(require, 'telescope.pickers')

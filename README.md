@@ -1,25 +1,62 @@
 # My config files
 
+## Installation
+
+1) Configs
+
+```sh
+$ mkdir -pv "$HOME/myrc"
+$ git clone <repo> "$HOME/myrc" && cd "$HOME/myrc"
+$ git submodule update --init --recursive # to update tmux plugin manager + omz
+$ # manually backup existing configs, especially ENV, including ENV in /etc/*
+$ sudo local/bin/install_configs.sh
+```
+
+2) Download NVim, patch it, compile & install
+
+```sh
+$ local/bin/local/bin/install_latest_nvim.sh # download latest nvim
+$ local/bin/patch_neovim.sh # patch neovim variable 'VIMINIT' -> 'NVIMINIT' to decouple vim and nvim
+
+# scripts patching may not be forward compatbile (tested on NVim v0.9)
+# generally, it is easy navigate & patch nvim sources
+```
+
+3) Bootstrap Tmux + Install TPM plugins
+
+```sh
+1. launch tmux session
+2. press <leader> + i # in my config tmux leader is `~`
+```
+
+4) Install NVim plugins (Lazy + TS Parsers)
+
+```sh
+1. launch nvim 
+2. use lazy to install plugins `:Lazy install`
+3. install TreeSitter parsers `:TSInstall all`
+```
+
 ## Terminal
 
-- Recommended terminal emulators: [Alacritty for GNU/Linux](https://github.com/alacritty/alacritty), [iTerm2 for OS X](https://github.com/gnachman/iTerm2)
-- For better experience with my Nvim config I recommend using [FiraCode Nerd Font with ligatures & default icons](https://github.com/ryanoasis/nerd-fonts)
+- Recommended terminal emulator: [WezTerm for OS X](https://wezfurlong.org/wezterm/index.html)
+- [FiraCode Nerd Font with ligatures & default icons](https://github.com/ryanoasis/nerd-fonts) font or any other font with icons must be used by terminal emulator to render icons properly
 
 ## Nvim config
 
-- My Neovim config is written with mostly lua
+- My Neovim config is written with mostly lua and uses most modern nvim ecosystem plugins. I try to keep it up to date with latest NVim community developments on the best effort basis.
 - This config is compatible with both console Nvim & GUI versions
-- My preferred GUI is [Neovide](https://github.com/neovide/neovide)
 
-![C workflow](./assets/nvim_c.png)
+![C workflow](./assets/2024-01-02%2017.03.50.jpg)
+![C workflow](./assets/2024-01-02%2017.03.54.jpg)
+![C workflow](./assets/2024-01-02%2017.03.56.jpg)
+
+- Old config look with Neovide GUI (before v3)
+
 ![Lua workflow](./assets/nvim_lua_2.png)
 ![Lua plugins](./assets/nvim_lua_plugins.png)
 
 ## Credits
 
 - [@bezlant](https://github.com/bezlant)
-- [Christian Chiarulli @ChristianChiarulli](https://github.com/ChristianChiarulli) created awesome
-  tutorial on lua configuration of NeoVim. It is available on [Youtube](https://www.youtube.com/watch?v=ctH-a-1eUME&t=9s&ab_channel=chris%40machine). Many things in my NeoVim
-  are based on his tutorial. Although, some things in this tutorial may be outdated. I highly recommend to pin all plugins to avoid constant headache with updates.
-- [TJ DeVries](https://github.com/tjdevries), one of the NVim enthusiasts, delievered a great [talk](https://www.youtube.com/watch?v=IK_-C0GXfjo) on the concept of PDE, which I absolutely recommend checking out.
-- Special thanks to all FOSS developers for providing great software, nothing would be possible without you.
+- [TJ DeVries](https://github.com/tjdevries) - one of NVim enthusiasts delievered a great [talk](https://www.youtube.com/watch?v=IK_-C0GXfjo) on the concept of PDE, which I absolutely recommend checking out.

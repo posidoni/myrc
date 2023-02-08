@@ -1,9 +1,27 @@
 local status_ok, utils = pcall(require, 'settings.util.utility')
 if not status_ok then
+    vim.notify('failed to load settings.util.utility', vim.log.levels.ERROR)
+    return
+end
+
+local highlight_ok, vim_highlight = pcall(require, 'vim.highlight')
+if not highlight_ok then
+    vim.notify('failed to load vim.highlight', vim.log.levels.ERROR)
     return
 end
 
 local autocmds = {
+    {
+        { "BufRead", "BufNewFile" },
+        {
+            group = '_general_settings',
+            pattern = '*/node_modules/*',
+            desc = 'disable diagnostic inside node modules',
+            callback = function()
+                vim.diagnostic.disable(0)
+            end
+        }
+    },
     {
         'TextYankPost',
         {
@@ -11,7 +29,7 @@ local autocmds = {
             pattern = '*',
             desc = 'Highlight text on yank',
             callback = function()
-                require('vim.highlight').on_yank({
+                vim_highlight.on_yank({
                     higroup = 'Search',
                     timeout = 250,
                 })
@@ -65,20 +83,6 @@ local autocmds = {
             group = '_auto_resize',
             pattern = '*',
             command = 'tabdo wincmd =',
-        },
-    },
-    {
-        'TabNewEntered',
-        {
-            group = '_change_cwd',
-            pattern = '*',
-            callback = function()
-                local path = vim.fn.expand('<amatch>')
-                if not utils.is_directory(path) then
-                    path = vim.fn.fnamemodify(path, ':h')
-                end
-                vim.fn.execute('cd ' .. 'path')
-            end,
         },
     },
     { -- Tabs are forces for shell scripts. Spaces break heredoc.

@@ -18,8 +18,14 @@
 # $1 - path to neovim dir (root)
 main() {
 	[[ $# -eq 1 ]] || { 2>&1 echo "Usage: $0 <path_to_nvim_root>"; exit 1; }
-	# shellcheck disable=SC2094 # The file must be overwritten
-	sed -i 's/VIMINIT/NVIMINIT/g' "$1"/src/nvim/main.c < "$1"/src/nvim/main.c
+
+	if [[ "$OSTYPE" =~ darwin|DARWIN ]]; then
+		# shellcheck disable=SC2094 # The file must be overwritten
+		gsed -i 's/VIMINIT/NVIMINIT/g' "$1"/src/nvim/main.c < "$1"/src/nvim/main.c
+	else
+		# shellcheck disable=SC2094 # The file must be overwritten
+		sed -i 's/VIMINIT/NVIMINIT/g' "$1"/src/nvim/main.c < "$1"/src/nvim/main.c
+	fi
 
 	# git clone git@github.com:neovim/neovim.git "$HOME/neovim_nightly"
 	# make CMAKE_BUILD_TYPE=RelWithDebInfo

@@ -8,40 +8,39 @@ if not snip_status_ok then
     return
 end
 
-require('luasnip/loaders/from_vscode').lazy_load()
+-- require('luasnip/loaders/from_vscode').lazy_load()
 
 local check_backspace = function()
     local col = vim.fn.col('.') - 1
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
 end
 
---   פּ ﯟ   some other good icons
 local kind_icons = {
-    Text = '',
+    Text = '󰉿',
     Method = 'm',
-    Function = '',
+    Function = '󰊕',
     Constructor = '',
     Field = '',
-    Variable = '',
-    Class = '',
+    Variable = '󰆧',
+    Class = '󰌗',
     Interface = '',
     Module = '',
     Property = '',
     Unit = '',
-    Value = '',
+    Value = '󰎠',
     Enum = '',
-    Keyword = '',
+    Keyword = '󰌋',
     Snippet = '',
-    Color = '',
-    File = '',
+    Color = '󰏘',
+    File = '󰈙',
     Reference = '',
-    Folder = '',
+    Folder = '󰉋',
     EnumMember = '',
-    Constant = '',
+    Constant = '󰇽',
     Struct = '',
     Event = '',
-    Operator = '',
-    TypeParameter = '',
+    Operator = '󰆕',
+    TypeParameter = '󰊄',
 }
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -111,8 +110,9 @@ cmp.setup({
         end,
     },
     sources = {
+        { name = "copilot", group_index = 2 },
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
+        -- { name = 'luasnip' },
         { name = 'path' },
         { name = 'buffer' },
     },

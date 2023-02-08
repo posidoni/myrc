@@ -48,25 +48,16 @@ $git_status\
 $status\
 $fill\
 $kubernetes\
-$time\
 $line_break\
 $jobs\
 $battery\
 $character"""
 
-# right_format = """$custom"""
 add_newline = true
 
 [fill]
 # style = "bold blue"
 symbol = " "
-
-[time]
-disabled = false
-format = ' [\[ $time \]](blue) '
-time_format = '%T'
-utc_time_offset = '+4'
-time_range = '10:00:00-14:00:00'
 
 [kubernetes]
 format = '[⎈ ($user on )($cluster in )$context \(::$namespace\)](cyan)'
@@ -93,12 +84,12 @@ charging_symbol = "⚡️ "
 threshold = 15
 style = "bold red"
 charging_symbol = "⚡️ "
-discharging_symbol = ""
+discharging_symbol = "󰂇"
 
 [[battery.display]] # "bold yellow" style and 💦 symbol when capacity is between 10% and 30%
 threshold = 25
 style = "bold yellow"
-discharging_symbol = ""
+discharging_symbol = "󰂇"
 
 [buf]
 symbol = " "
@@ -114,7 +105,7 @@ format = '[ $symbol]($style)'
 symbol = " "
 
 [cmake]
-symbol = "卑"
+symbol = "󰔶"
 format = '[ $symbol]($style)'
 
 [conda]
@@ -136,9 +127,9 @@ ssh_only = true
 [directory]
 style = "bold #bd93f9"
 format = '[$path]($style)[$read_only]($read_only_style) '
-read_only = " "
+read_only = " 󰌾"
 truncate_to_repo = true
-truncation_length = 3 # parent directories to show; default is 3
+truncation_length = 5 # parent directories to show; default is 3
 truncation_symbol = "…/"
 
 [docker_context]
@@ -160,17 +151,17 @@ format = '[$symbol$branch (:$remote_branch)]($style) '
 [git_state]
 format = '[\[$state( $progress_current of $progress_total)\]]($style) '
 cherry_pick = "[🍒 PICKING](bold red)]"
-merge = "[理MERGING](bold red)"
-rebase = "[理REBASING](bold red)"
-bisect = '\[[ BISECTING]\](bold yellow)'
+merge = "[󰓥MERGING](bold red)"
+rebase = "[󰓥REBASING](bold red)"
+bisect = '\[[󰆐 BISECTING]\](bold yellow)'
 
 [git_status]
-conflicted = " ﲅ "
+conflicted = " 󰞇 "
 untracked = "  "
 modified = "  "
 behind = "↓ × ${count} "
 diverged = "↑×${ahead_count} ↓×${behind_count}"
-stashed = ""
+stashed = "󰇽"
 deleted = " ✘ "
 format = '[$all_status$ahead_behind](purple bold) '
 
@@ -194,11 +185,11 @@ format = '[ $symbol]($style)'
 symbol = " "
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 
 [nim]
 format = '[ $symbol]($style)'
-symbol = " "
+symbol = "󰆥 "
 
 [nix_shell]
 symbol = " "
@@ -209,7 +200,7 @@ symbol = " "
 
 [package]
 format = '[ $symbol]($style)'
-symbol = " "
+symbol = "󰏗 "
 
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\))]($style)'

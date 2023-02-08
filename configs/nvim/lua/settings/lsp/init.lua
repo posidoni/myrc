@@ -3,22 +3,35 @@ if not lsp_config_ok then
     return
 end
 
--- @Warning. This is used servers. Any other servers are unused (even if installed)
+-- @Warning. These are used servers. Any other servers are unused (even if installed)
 local servers = {
-    'sumneko_lua',
+    -- C / C++ / ASM
     'clangd',
-    'bashls',
     'cmake',
+    'asm_lsp',
+    'autotools_ls',
+    -- Shell
+    'bashls',
+    'awk_ls',
+    -- Json / yaml / html
     'jsonls',
     'yamlls',
-    'dockerls',
+    'html',
+    --
+    'lua_ls',
     'gopls',
-    'awk_ls',
     'pyright',
-    -- 'rust_analyzer' <-- Do not setup it yourself if using 'rust-tools' plugin
+    'solc',
+    'eslint',
+    'golangci_lint_ls',
+    -- 🐳 Docker
+    'terraformls',
+    'docker_compose_language_service',
+    'dockerls',
+    -- 'rust_analyzer' <-- 🦀 Do not setup it yourself if using 'rust-tools' plugin
 }
 
-require('neodev').setup({}) -- must be setup before lspconfig.sumneko_lua.setup({}{)
+require('neodev').setup({}) -- must be called before lspconfig.sumneko_lua.setup({})
 
 local lsp_handlers = require('settings.lsp.handlers')
 
@@ -39,8 +52,9 @@ for _, server in pairs(servers) do
         end
     end
 
-    lspconfig[server].setup(opts)
+    lspconfig[server].setup(opts) -- call setup for each server
 end
 
 lsp_handlers.setup()
+
 require('settings.lsp.null-ls')

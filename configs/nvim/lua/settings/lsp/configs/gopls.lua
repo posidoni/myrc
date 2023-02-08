@@ -1,7 +1,8 @@
-return {
+local conf = {
     settings = {
         gopls = {
             gofumpt = true,
+            completeUnimported = true,
             annotations = {
                 bounds = true,
                 escape = true,
@@ -43,3 +44,5 @@ return {
         rangeVariableTypes = true,
     },
 }
+
+return conf

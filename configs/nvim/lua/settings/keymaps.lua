@@ -9,6 +9,7 @@ map({ 'n' }, '<ESC>', ':noh<CR>', opts)
 map({ 'n' }, '<leader>q', ':q!<CR>', opts)
 map({ 'n' }, '<leader>a', ':Alpha<CR>', opts)
 map({ 'n' }, '<leader>n', '<C-W>n', opts)
+
 -- close all buffers except current & restore cursor position in current buffer
 map({ 'n' }, '<F6>', ':%bd |e# | bd#<cr> |\'"', opts)
 map({ 'n' }, 'Y', 'yg$', opts)
@@ -18,19 +19,21 @@ local lsp = vim.lsp.buf
 map({ 'n' }, 'K', lsp.hover, opts)
 map({ 'n' }, 'gD', lsp.declaration, opts)
 map({ 'n' }, 'gd', lsp.definition, opts)
-map({ 'n' }, 'gi', lsp.implementation, opts)
+map({ 'n' }, 'gou', lsp.outgoing_calls, opts)
+map({ 'n' }, 'gin', lsp.incoming_calls, opts)
+map({ 'n' }, '<C-Space>', lsp.completion, opts)
+map({ 'n' }, '<M-CR>', lsp.code_action, opts)
 map({ 'n' }, '<leader>ll', lsp.code_action, opts)
 map({ 'n' }, '<leader>rn', lsp.rename, opts)
-map({ 'n' }, '<leader>f', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
-map({ 'n' }, '<leader>F', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
-map({ 'n' }, 'gr', '<cmd>TroubleToggle lsp_references<cr>', opts)
 
-map({'n'}, '<leader>8',
-    function()
-        vim.cmd[[ LspRestart ]]
-    end,
-    opts
-)
+map({ 'n' }, 'gi', '<cmd>TroubleToggle lsp_implementations<cr>', opts)
+map({ 'n' }, 'gr', '<cmd>TroubleToggle lsp_references<cr>', opts)
+map({ 'n' }, '<leader>F', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
+map({ 'n' }, '<leader>f', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
+
+map({ 'n' }, '<leader>8', function()
+    vim.cmd([[ LspRestart ]])
+end, opts)
 
 -- Better wrap navigation
 map({ 'n' }, 'j', 'gj', opts)
@@ -41,10 +44,11 @@ map({ 'n' }, '^', '<C-d>', opts)
 map({ 'n' }, '&', '<C-u>', opts)
 
 -- Better window navigation
-map({ 'n' }, '<C-h>', '<C-w>h', opts)
-map({ 'n' }, '<C-j>', '<C-w>j', opts)
-map({ 'n' }, '<C-k>', '<C-w>k', opts)
-map({ 'n' }, '<C-l>', '<C-w>l', opts)
+map({ 'n' }, '<C-h>', '<cmd>TmuxNavigateLeft<cr>', opts)
+map({ 'n' }, '<C-j>', '<cmd>TmuxNavigateDown<cr>', opts)
+map({ 'n' }, '<C-k>', '<cmd>TmuxNavigateUp<cr>', opts)
+map({ 'n' }, '<C-l>', '<cmd>TmuxNavigateRight<cr>', opts)
+
 
 -- Easier splits
 map({ 'n' }, 'ss', '<C-w>s', opts)
@@ -91,10 +95,6 @@ map('t', '<C-j>', '<C-\\><C-N><C-w>j', opts)
 map('t', '<C-k>', '<C-\\><C-N><C-w>k', opts)
 map('t', '<C-l>', '<C-\\><C-N><C-w>l', opts)
 
-map({ 'n' }, '<leader>=', IncreaseFontSize, opts)
-map({ 'n' }, '<leader>+', ToggleFullscreen, opts)
-map({ 'n' }, '<leader>-', DecreaseFontSize, opts)
-
 -- Disable <Backspace> & <Del>
 -- keymap("i", "<BS>", "<Nop>", opts)
 map('i', '<Del>', '<Nop>', opts)
@@ -112,7 +112,9 @@ map(
 
 map({ 'n' }, '<leader>y', tbuiltin.builtin, opts)
 map({ 'n' }, '<leader><leader>', tbuiltin.find_files, opts)
-map({ 'n' }, '<leader>d', tbuiltin.diagnostics, opts)
+map({ 'n' }, '<leader>d', function()
+    vim.cmd([[ DevdocsOpen ]])
+end, opts)
 map({ 'n' }, '<leader>r', tbuiltin.live_grep, opts)
 
 -- @NvimTree --

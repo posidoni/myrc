@@ -10,6 +10,7 @@ set easymotion
 set highlightedyank
 set textobj-entire
 set NERDTree
+
 set vim-commentary
 set ReplaceWithRegister
 
@@ -17,43 +18,52 @@ set ReplaceWithRegister
 let g:argtextobj_pairs="[:],(:),<:>"
 
 """ Common settings -------------------------
+set ideajoin
+set idearefactormode=keep
+set incsearch
 set ignorecase smartcase
 set showmode
-set history=1000
+set history=100000
 set showmode
 set so=5
 set incsearch
 set nu
 set clipboard+=unnamed
-set colorcolumn=81							" Highlight 81 column
+set colorcolumn=120							" Highlight 81 column
 set list									" Show hidden characters
 set mouse=a									" Enable mouse use in all modes
 set noswapfile								" Turn off .swp file
 set number									" Display line numbering
-set relativenumber							" Display relative line numbering
+set norelativenumber							" Display relative line numbering
 set shiftwidth=4							" Number of spaces for autoindent
 set showcmd									" Show (partial) command
-set splitright								" Open new splits on the right
 set tabstop=4								" Column count in tab character
 set splitright
 set splitbelow
 set scrolloff=2
-
+set visualbell
+set noerrorbells
 """ Idea specific settings ------------------
 set ideajoin
 set ideastatusicon=gray
 set idearefactormode=keep
 nmap <C-h> <C-w>h
 nmap <leader>q :action CloseContent<CR>
-map <leader>o :NERDTreeToggle<CR>
+map <leader>o :NERDTree<CR>
 nmap <leader><leader> <Action>(GotoFile)
+nmap <leader>y <Action>()
+
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
 sethandler <c-o> a:vim
 sethandler <c-r> a:vim
 sethandler <c-i> a:vim
+sethandler <c-r> a:vim
+sethandler <c-R> a:vim
 sethandler <S-Space> a:vim
 nnoremap <Tab> <C-o>
 nnoremap <S-Tab> <C-i>
+nmap <C-S-A-> <gv
 
 " Easy panes navigation
 sethandler <c-j> a:vim
@@ -65,51 +75,50 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
-nnoremap <TAB> :action PreviousTab<CR>
-nnoremap <S-l> :action NextTab<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+" Experimental, not tested
+nmap ; :
+nmap : ;
+
 " Do incremental searching.
-set incsearch
 vnoremap y y`]
 vnoremap p "_dP`]
 nnoremap p p`]
 
 " Y yank whole line by default
 nnoremap Y y$
-
-" YanDTreeToggle)from clipboard
-nnoremap ,y "+y
-vnoremap ,y "+y
-nnoremap ,yy "+yy
-nnoremap ,p "+p
-
+nnoremap zC :action CollapseRegionRecursively<CR>
+nnoremap zO :action ExpandRegionRecursively<CR>
 nmap >> <C-W>>
 nmap << <C-W><
-nmap <S-l> :bnext<CR>
-nmap <S-h> :bprevious<CR>
+nmap <S-h> :bnext<CR>
+nmap <S-l> :bprevious<CR>
+nmap = <Action>(ActivateTerminalToolWindow)
 
--- @Insert mode
+" @Insert mode
 imap <C-BS> <C-w>
 imap <C-h> <C-w>
 
 vmap p "_dP
 
-xmap K :move '<-2<CR>gv-gv
-xmap J :move '>+1<CR>gv-gv
+xmap K <Action>(MoveLineUp)
+xmap J <Action>(MoveLineDown)
+
+nmap <leader>f Action(ActivateProblemsViewToolWindow)
 
 " Don't use Ex mode, use Q for formatting.
-map Q gq
 nmap vv <Action>(SplitVertically)
 nmap ss <Action>(SplitHorizontally)
-map <leader>d <Action>(Debug)
-map <leader>rn <Action>(RenameElement)
-map <leader>c <Action>(Stop)
-map <leader>z <Action>(ToggleDistractionFreeMode)
-
-map <leader>s <Action>(SelectInProjectView)
-map <leader>a <Action>(Annotate)
-map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
-map <S-Space> <Action>(GotoNextError)
+nmap <leader>d <Action>(Debug)
+nmap rn <Action>(RenameElement)
+nmap <leader>c <Action>(Stop)
+nmap <leader>z <Action>(ToggleDistractionFreeMode)
+nnoremap <c-r> :action RecentFiles<CR>
+nmap <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+nmap dn <Action>(GotoNextError)
+nmap dp <Action>(GotoPreviousError)
 map <leader>b <Action>(ToggleLineBreakpoint)
+map gcc <Action>(CommentByLineComment)
+map <leader>f <Action>(Diagnostics)

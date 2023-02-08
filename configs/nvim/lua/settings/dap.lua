@@ -1,11 +1,11 @@
 local dap_ok, dap = pcall(require, 'dap')
 if not dap_ok then
-    vim.notify('Dap not found', 'error')
+    vim.notify('Dap not found', vim.log.levels.ERROR)
     return
 end
 local dapui_ok, dapui = pcall(require, 'dapui')
 if not dapui_ok then
-    vim.notify('DapUI not found', 'error')
+    vim.notify('DapUI not found', vim.log.levels.ERROR)
     return
 end
 local dap_vtext_ok, dap_vtext = pcall(require, 'nvim-dap-virtual-text')
@@ -74,82 +74,86 @@ vim.fn.sign_define(
     { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' }
 )
 
-dapui.setup(
-  {
+dapui.setup({
     controls = {
-      element = "repl",
-      enabled = true,
-      icons = {
-        pause = "",
-        play = "",
-        run_last = "",
-        step_back = "",
-        step_into = "",
-        step_out = "",
-        step_over = "",
-        terminate = ""
-      }
+        element = 'repl',
+        enabled = true,
+        icons = {
+            pause = '',
+            play = '',
+            run_last = '',
+            step_back = '',
+            step_into = '',
+            step_out = '',
+            step_over = '',
+            terminate = '',
+        },
     },
     element_mappings = {},
     expand_lines = true,
     floating = {
-      border = "single",
-      mappings = {
-        close = { "q", "<Esc>" }
-      }
+        border = 'single',
+        mappings = {
+            close = { 'q', '<Esc>' },
+        },
     },
     force_buffers = true,
     icons = {
-      collapsed = "",
-      current_frame = "",
-      expanded = ""
+        collapsed = '',
+        current_frame = '',
+        expanded = '',
     },
-    layouts = { {
-        elements = { 
+    layouts = {
         {
-            id = "scopes",
-            size = 0.25
-          }, 
+            elements = {
                 {
-            id = "breakpoints",
-            size = 0.25
-          }, {
-            id = "stacks",
-            size = 0.25
-          }, 
-            },
-        position = "left",
-        size = 60
-      }, {
-        elements = { {
-            id = "repl",
-            size = 0.5
-          }, {
-            id = "console",
-            size = 0.5
-          } ,
-        {
-            id = "watches",
-            size = 0.25
-          } ,
+                    id = 'scopes',
+                    size = 0.25,
                 },
-        position = "bottom",
-        size = 10
-      } },
+                {
+                    id = 'breakpoints',
+                    size = 0.25,
+                },
+                {
+                    id = 'stacks',
+                    size = 0.25,
+                },
+            },
+            position = 'left',
+            size = 60,
+        },
+        {
+            elements = {
+                {
+                    id = 'repl',
+                    size = 0.5,
+                },
+                {
+                    id = 'console',
+                    size = 0.5,
+                },
+                {
+                    id = 'watches',
+                    size = 0.25,
+                },
+            },
+            position = 'bottom',
+            size = 10,
+        },
+    },
     mappings = {
-      edit = "e",
-      expand = { "<CR>", "<2-LeftMouse>" },
-      open = "o",
-      remove = "d",
-      repl = "r",
-      toggle = "t"
+        edit = 'e',
+        expand = { '<CR>', '<2-LeftMouse>' },
+        open = 'o',
+        remove = 'd',
+        repl = 'r',
+        toggle = 't',
     },
     render = {
-       indent = 1,
-      max_value_lines = 100
-    }
-  }
-)
+        indent = 1,
+        max_value_lines = 100,
+    },
+})
 
 dap_vtext.setup()
 

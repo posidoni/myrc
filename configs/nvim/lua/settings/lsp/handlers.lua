@@ -47,7 +47,7 @@ M.setup = function()
             },
             severity_sort = true,
             virtual_text = true,
-            update_in_insert = true,
+            update_in_insert = false,
             float = {
                 focusable = true,
                 style = 'minimal',
@@ -82,8 +82,9 @@ M.on_attach = function(client, bufnr)
                 vim.lsp.buf.format({
                     filter = M.format_filter,
                     bufnr = bufnr,
-                    async = true,
+                    async = false,
                 })
+                vim.notify(string.format('[LSP][%s] %s', client.name, err), vim.log.levels.WARN)
             end,
         })
     end
