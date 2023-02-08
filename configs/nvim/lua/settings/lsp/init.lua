@@ -18,6 +18,8 @@ local servers = {
     -- 'rust_analyzer' <-- Do not setup it yourself if using 'rust-tools' plugin
 }
 
+require('neodev').setup({}) -- must be setup before lspconfig.sumneko_lua.setup({}{)
+
 local lsp_handlers = require('settings.lsp.handlers')
 
 for _, server in pairs(servers) do

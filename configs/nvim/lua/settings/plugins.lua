@@ -19,7 +19,7 @@ local P = function(use)
     -- @FileSystem
     use({ 'kyazdani42/nvim-web-devicons' })
     use({ 'kyazdani42/nvim-tree.lua' })
-
+    use({ 'editorconfig/editorconfig-vim' })
     -- @Lualine
     use({ 'nvim-lualine/lualine.nvim' })
 
@@ -55,17 +55,13 @@ local P = function(use)
 
     -- @LSP
     use({ 'neovim/nvim-lspconfig' }) -- enable LSP
-
+    use('folke/neodev.nvim')
     -- LSP Installer
     use({
         'williamboman/mason.nvim',
         requires = {
             'williamboman/mason-lspconfig.nvim',
         },
-        cmd = { 'Mason' },
-        config = function()
-            require('settings.lsp.mason')
-        end,
     })
     -- for formatters and linters
     use({ 'jose-elias-alvarez/null-ls.nvim' })
@@ -137,13 +133,13 @@ local P = function(use)
         ft = { 'go' },
     })
 
-
-    use {
+    use({
         'glacambre/firenvim',
-        run = function() vim.fn['firenvim#install'](0) end,
-        config = function()
-        end
-    }
+        run = function()
+            vim.fn['firenvim#install'](0)
+        end,
+        config = function() end,
+    })
 end
 
 return P
