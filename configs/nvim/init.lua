@@ -28,11 +28,14 @@ require('settings.trouble')
 require('settings.dap')
 require('settings.lsp.go')
 require('settings.lsp.sql')
+require('settings.lsp.mason')
 require('settings.lsp.rust')
 
-vim.cmd [[
+vim.cmd([[
     if exists('g:started_by_firenvim')
         au TextChanged * ++nested write
         au TextChangedI * ++nested write
+        let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+        let g:EditorConfig_disable_rules = ['']
     endif
-]]
+]])
