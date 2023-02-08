@@ -47,4 +47,8 @@ bindkey "^H" backward-kill-word
 bindkey "^N" down-line-or-history
 bindkey "^P" up-line-or-history
 
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
 eval "$(starship init zsh)"
