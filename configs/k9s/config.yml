@@ -1,75 +1,49 @@
-# $XDG_CONFIG_HOME/k9s/config.yml
 k9s:
-  # Represents ui poll intervals. Default 2secs
   refreshRate: 2
-  # Number of retries once the connection to the api-server is lost. Default 15.
   maxConnRetry: 5
-  # Enable mouse support. Default false
   enableMouse: true
-  # Set to true to hide K9s header. Default false
   headless: false
-  # Set to true to hide K9s crumbs. Default false
+  logoless: false
   crumbsless: false
-  # Indicates whether modification commands like delete/kill/edit are disabled. Default is false
   readOnly: true
-  # Toggles whether k9s should exit when CTRL-C is pressed. When set to true, you will need to exist k9s via the :quit command. Default is false.
   noExitOnCtrlC: false
-  # Toggles icons display as not all terminal support these chars.
   noIcons: false
-  # Toggles whether k9s should check for the latest revision from the Github repository releases. Default is false.
   skipLatestRevCheck: false
-  # Logs configuration
   logger:
-    # Defines the number of lines to return. Default 100 tail: 200
-    # Defines the total number of log lines to allow in the view. Default 1000
+    tail: 100
     buffer: 500
-    # Represents how far to go back in the log timeline in seconds. Setting to -1 will show all available logs. Default is 5min.
     sinceSeconds: 300
-    # Go full screen while displaying logs. Default false
     fullScreenLogs: false
-    # Toggles log line wrap. Default false
     textWrap: false
-    # Toggles log line timestamp info. Default false
     showTime: false
-  # Indicates the current kube context. Defaults to current context
   currentContext: minikube
-  # Indicates the current kube cluster. Defaults to current context cluster
   currentCluster: minikube
-  # Persists per cluster preferences for favorite namespaces and view.
   clusters:
-    coolio:
+    minikube:
       namespace:
-        active: coolio
-        # With this set, the favorites list won't be updated as you switch namespaces
+        active: default
         lockFavorites: false
         favorites:
-        - cassandra
         - default
       view:
         active: po
       featureGates:
-        # Toggles NodeShell support. Allow K9s to shell into nodes if needed. Default false.
         nodeShell: false
-      # Provide shell pod customization of feature gate is enabled
       shellPod:
-        # The shell pod image to use.
-        image: killerAdmin
-        # The namespace to launch to shell pod into.
-        namespace: fred
-        # The resource limit to set on the shell pod.
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
         limits:
           cpu: 100m
           memory: 100Mi
-      # The IP Address to use when launching a port-forward.
-      portForwardAddress: 1.2.3.4
-    kind:
-      namespace:
-        active: all
-        favorites:
-        - all
-        - kube-system
-        - default
-      view:
-        active: dp
-  # The path to screen dump. Default: '%temp_dir%/k9s-screens-%username%' (k9s info)
+        labels: {}
+      portForwardAddress: localhost
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
   screenDumpDir: /tmp
