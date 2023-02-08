@@ -24,8 +24,14 @@ set listchars+=trail:·						" Set trailing space character
 set listchars=tab:»\ |						" Set tab character
 set ignorecase smartcase
 set showmode
+set wildmenu
+set noerrorbells
+set laststatus=2
 set history=1000
+filetype plugin on
+filetype plugin indent on
 set showmode
+syntax on
 set so=5
 set incsearch
 set nu
@@ -34,6 +40,7 @@ set colorcolumn=81							" Highlight 81 column
 set mouse=a									" Enable mouse use in all modes
 set noswapfile								" Turn off .swp file
 set number									" Display line numbering
+set autoindent
 set relativenumber							" Display relative line numbering
 set shiftwidth=4							" Number of spaces for autoindent
 set showcmd									" Show (partial) command
