@@ -62,8 +62,9 @@ if [[ "$(uname -a)" =~ 'Darwin' ]]; then
     export HOMEBREW_ARCH=native
     export HOMEBREW_NO_ANALYTICS=1
     export HOMEBREW_NO_AUTO_UPDATE=1
-	export MANPATH="$BREW_PATH/opt/coreutils/libexec/gnuman"
+    export MANPATH="$BREW_PATH/opt/coreutils/libexec/gnuman"
     export PATH="$PATH:$BREW_PATH/bin:/usr/local/bin"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 else
     export XDG_SESSION_TYPE=wayland
     export XDG_SESSION_DESKTOP=sway
