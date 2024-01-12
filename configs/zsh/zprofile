@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # (~) Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"

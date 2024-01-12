@@ -20,15 +20,17 @@ alias m="make"
 alias lg="lazygit"
 alias dd="lazydocker"
 alias kk="k9s"
+
+###
+alias zj="zellij"
+alias tmux="tmux -2"
 alias tt="tmux"
 alias tks="tmux kill-session -t"
-
 # shellcheck disable=SC2139
 alias vv="$(which vim)"
 alias vim="nvim"
 alias vi="nvim"
 
-alias tmux="tmux -2"
 alias code='code --extensions-dir "$XDG_DATA_HOME/vscode"'
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
