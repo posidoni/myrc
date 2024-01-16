@@ -12,15 +12,15 @@ end
 
 local autocmds = {
     {
-        { "BufRead", "BufNewFile" },
+        { 'BufRead', 'BufNewFile' },
         {
             group = '_general_settings',
             pattern = '*/node_modules/*',
             desc = 'disable diagnostic inside node modules',
             callback = function()
                 vim.diagnostic.disable(0)
-            end
-        }
+            end,
+        },
     },
     {
         'TextYankPost',

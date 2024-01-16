@@ -110,9 +110,7 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = "copilot", group_index = 2 },
         { name = 'nvim_lsp' },
-        -- { name = 'luasnip' },
         { name = 'path' },
         { name = 'buffer' },
     },
@@ -127,6 +125,13 @@ cmp.setup({
     },
     experimental = {
         ghost_text = false,
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    completion = {
+        border = 'rounded',
     },
 })
 

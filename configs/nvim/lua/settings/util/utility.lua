@@ -6,7 +6,7 @@ local uv = vim.loop
 --- @returns (bool)
 function M.is_file(path)
     local stat = uv.fs_stat(path)
-    return stat and stat.type == "file" or false
+    return stat and stat.type == 'file' or false
 end
 
 --- Checks whether a given path exists and is a directory
@@ -14,7 +14,7 @@ end
 --@returns (bool)
 function M.is_directory(path)
     local stat = uv.fs_stat(path)
-    return stat and stat.type == "directory" or false
+    return stat and stat.type == 'directory' or false
 end
 
 --- Clean autocommand in a group if it exists
@@ -28,7 +28,7 @@ function M.clear_augroup(name)
     end
     vim.schedule(function()
         local _, _ = xpcall(function()
-            vim.api.nvim_clear_autocmds { group = name }
+            vim.api.nvim_clear_autocmds({ group = name })
         end, debug.traceback)
     end)
 end
@@ -40,8 +40,9 @@ function M.define_autocmds(definitions)
     for _, entry in ipairs(definitions) do
         local event = entry[1]
         local opts = entry[2]
-        if type(opts.group) == "string" and opts.group ~= "" then
-            local exists, _ = pcall(vim.api.nvim_get_autocmds, { group = opts.group })
+        if type(opts.group) == 'string' and opts.group ~= '' then
+            local exists, _ =
+                pcall(vim.api.nvim_get_autocmds, { group = opts.group })
             if not exists then
                 vim.api.nvim_create_augroup(opts.group, {})
             end
@@ -57,6 +58,5 @@ M.map = function(mode, lhs, rhs)
 end
 
 M.keymap = vim.api.nvim_set_keymap
-
 
 return M

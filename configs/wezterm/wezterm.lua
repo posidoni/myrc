@@ -25,6 +25,7 @@ config.window_padding               = {
     bottom = 0,
 }
 
+config.color_scheme                 = 'Monokai Dark (Gogh)'
 config.hyperlink_rules              = wezterm.default_hyperlink_rules()
 config.max_fps                      = 144
 config.audible_bell                 = 'Disabled'

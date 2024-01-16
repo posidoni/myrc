@@ -59,7 +59,7 @@ M.setup = function()
         })
 end
 
-LSPFormatAutocmdGroup = vim.api.nvim_create_augroup('LspFormatting', {})
+-- LSPFormatAutocmdGroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
 M.format_filter = function(_)
     -- example: disabling specific clients
@@ -70,24 +70,24 @@ end
 
 M.on_attach = function(client, bufnr)
     lsp_signature.on_attach(lsp_signature.config, bufnr)
-    if client.supports_method('textDocument/formatting') then
-        vim.api.nvim_clear_autocmds({
-            group = LSPFormatAutocmdGroup,
-            buffer = bufnr,
-        })
-        vim.api.nvim_create_autocmd('BufWritePre', {
-            group = LSPFormatAutocmdGroup,
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.format({
-                    filter = M.format_filter,
-                    bufnr = bufnr,
-                    async = false,
-                })
-                vim.notify(string.format('[LSP][%s] %s', client.name, err), vim.log.levels.WARN)
-            end,
-        })
-    end
+    -- if client.supports_method('textDocument/formatting') then
+    --     vim.api.nvim_clear_autocmds({
+    --         group = LSPFormatAutocmdGroup,
+    --         buffer = bufnr,
+    --     })
+    --     vim.api.nvim_create_autocmd('BufWritePre', {
+    --         group = LSPFormatAutocmdGroup,
+    --         buffer = bufnr,
+    --         callback = function()
+    --             vim.lsp.buf.format({
+    --                 filter = M.format_filter,
+    --                 bufnr = bufnr,
+    --                 async = false,
+    --             })
+    --             vim.notify(string.format('[LSP][%s] %s', client.name, err), vim.log.levels.WARN)
+    --         end,
+    --     })
+    -- end
 end
 
 return M

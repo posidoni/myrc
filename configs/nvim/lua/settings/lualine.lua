@@ -58,13 +58,13 @@ local mode = {
 
 local filename = {
     'filename',
-    file_status = false,  -- Displays file status (readonly status, modified status)
+    file_status = false, -- Displays file status (readonly status, modified status)
     path = 3,
     shorting_target = 40, -- Shortens path to leave 40 spaces in the window
     -- for other components. (terrible name, any suggestions?)
     symbols = {
-        modified = '[+]',      -- Text to show when the file is modified.
-        readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+        modified = '[+]', -- Text to show when the file is modified.
+        readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
         unnamed = '[No Name]', -- Text to show for unnamed buffers.
     },
 }
@@ -73,7 +73,7 @@ local filetype = {
     'filetype',
     colores = true,
     icons_enabled = true,
-    icon_only = false,          -- Display only an icon for filetype
+    icon_only = false, -- Display only an icon for filetype
     icon = { align = 'right' }, -- Display filetype icon on the right hand side
 }
 
@@ -91,7 +91,7 @@ local location = {
 local function get_attached_clients()
     local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
     if #buf_clients == 0 then
-        return "LSP ∅"
+        return 'LSP ∅'
     end
 
     local buf_ft = vim.bo.filetype
@@ -99,12 +99,12 @@ local function get_attached_clients()
 
     -- add client
     for _, client in pairs(buf_clients) do
-        if client.name ~= "copilot" and client.name ~= "null-ls" then
+        if client.name ~= 'copilot' and client.name ~= 'null-ls' then
             table.insert(buf_client_names, client.name)
         end
     end
 
-    local null_ls_s, null_ls = pcall(require, "null-ls")
+    local null_ls_s, null_ls = pcall(require, 'null-ls')
     if null_ls_s then
         local sources = null_ls.get_sources()
         for _, source in ipairs(sources) do
@@ -119,17 +119,17 @@ local function get_attached_clients()
     end
 
     -- Add formatters (from formatter.nvim)
-    local formatter_s, _ = pcall(require, "formatter")
+    local formatter_s, _ = pcall(require, 'formatter')
     if formatter_s then
-        local formatter_util = require("formatter.util")
-        for _, formatter in ipairs(formatter_util.get_available_formatters_for_ft(buf_ft)) do
+        local formatter_util = require('formatter.util')
+        for _, formatter in
+            ipairs(formatter_util.get_available_formatters_for_ft(buf_ft))
+        do
             if formatter then
                 table.insert(buf_client_names, formatter)
             end
         end
     end
-
-
 
     local unique_client_names = {}
     for _, client_name_target in ipairs(buf_client_names) do
@@ -152,8 +152,8 @@ local function get_attached_clients()
         end
     end
 
-    local client_names_str = table.concat(str, ", ")
-    local language_servers = string.format("[%s]", client_names_str)
+    local client_names_str = table.concat(str, ', ')
+    local language_servers = string.format('[%s]', client_names_str)
 
     return language_servers
 end
@@ -161,14 +161,14 @@ end
 local attached_clients_section = {
     get_attached_clients,
     color = {
-        gui = "bold"
-    }
+        gui = 'bold',
+    },
 }
 
 lualine.setup({
     options = {
         icons_enabled = true,
-        theme = 'auto',
+        theme = 'monokai-pro',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = { 'alpha', 'dashboard', 'Outline', 'qf' },
@@ -177,9 +177,9 @@ lualine.setup({
     },
     sections = {
         lualine_a = { mode },
-        lualine_b = { branch, },
-        lualine_c = { diagnostics, },
-        lualine_y = { attached_clients_section, diff, filetype },
+        lualine_b = { branch },
+        lualine_c = { diagnostics, filename },
+        lualine_y = { diff, filetype },
         lualine_z = { location },
         lualine_x = {},
     },

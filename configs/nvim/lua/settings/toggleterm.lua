@@ -14,7 +14,7 @@ toggleterm.setup({
     persist_size = true,
     direction = 'float',
     close_on_exit = true,
-    shell = '/bin/bash', -- use non-default shell so terminal works instantly
+    -- shell = '/bin/bash', -- use non-default shell so terminal works instantly
     float_opts = {
         border = 'double',
         width = 130,

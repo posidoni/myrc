@@ -56,5 +56,3 @@ for _, server in pairs(servers) do
 end
 
 lsp_handlers.setup()
-
-require('settings.lsp.null-ls')

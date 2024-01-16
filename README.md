@@ -8,7 +8,11 @@
 $ mkdir -pv "$HOME/myrc"
 $ git clone <repo> "$HOME/myrc" && cd "$HOME/myrc"
 $ git submodule update --init --recursive # to update tmux plugin manager + omz
-$ # manually backup existing configs, especially ENV, including ENV in /etc/*
+
+# ❗it is non-trivial to make install script that is compatible with arbitrary systems, please,
+# read source code before launching anything. Also you are responsible for
+# manual backup of existing configs, especially ENV, including critical system-wide confs in /etc/*
+$ chmod +x local/bin/install_configs.sh
 $ sudo local/bin/install_configs.sh
 ```
 

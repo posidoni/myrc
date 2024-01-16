@@ -49,7 +49,6 @@ map({ 'n' }, '<C-j>', '<cmd>TmuxNavigateDown<cr>', opts)
 map({ 'n' }, '<C-k>', '<cmd>TmuxNavigateUp<cr>', opts)
 map({ 'n' }, '<C-l>', '<cmd>TmuxNavigateRight<cr>', opts)
 
-
 -- Easier splits
 map({ 'n' }, 'ss', '<C-w>s', opts)
 map({ 'n' }, 'vv', '<C-w>v', opts)

@@ -69,7 +69,7 @@ if [[ "$(uname -a)" =~ 'Darwin' ]]; then
     export HOMEBREW_ARCH=native
     export HOMEBREW_NO_ANALYTICS=1
     export HOMEBREW_NO_AUTO_UPDATE=1
-	
+
     export MANPATH="$MANPATH:$BREW_PATH/opt/coreutils/libexec/gnuman" ## First "$MANPATH" MUST be empty, this is expected
 	export PATH="$PATH:$BINPATH:$CARGO_HOME:$GOPATH/bin:$GNUBIN:$GSED:$PSQL_BIN:$NPM_BIN:$VSCODE_BIN:$KAFKA_BIN:$BREW_PATH/bin:/usr/local/bin"
 
@@ -107,7 +107,7 @@ if ! [[ "$(uname -a)" =~ 'Darwin' ]]; then
 	# PATH Linux
 	export PATH="$PATH:$GOPATH/bin:$BINPATH"
 
-	
+
 	# Start graphical server on user's current tty if not already running.
 	[[ "$(tty)" = "/dev/tty1" ]] && exec dbus-launch --exit-with-session sway -d
 fi ## Linux specific END
