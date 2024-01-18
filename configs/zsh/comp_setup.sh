@@ -35,3 +35,4 @@ zstyle ':completion:*' file-sort modification
 # Small letters also match capital letters
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+

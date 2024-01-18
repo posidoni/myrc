@@ -49,6 +49,9 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 export GOPATH="$HOME/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export BINPATH="$HOME/.local/bin"
+export CARGOBIN="$CARGO_HOME/bin"
+
+source "$CARGO_HOME/env"
 
 ### 🍏 MacOS Specific
 if [[ "$(uname -a)" =~ 'Darwin' ]]; then
@@ -71,7 +74,7 @@ if [[ "$(uname -a)" =~ 'Darwin' ]]; then
     export HOMEBREW_NO_AUTO_UPDATE=1
 
     export MANPATH="$MANPATH:$BREW_PATH/opt/coreutils/libexec/gnuman" ## First "$MANPATH" MUST be empty, this is expected
-	export PATH="$PATH:$BINPATH:$CARGO_HOME:$GOPATH/bin:$GNUBIN:$GSED:$PSQL_BIN:$NPM_BIN:$VSCODE_BIN:$KAFKA_BIN:$BREW_PATH/bin:/usr/local/bin"
+	export PATH="$PATH:$BINPATH:$CARGO_HOME:$GOPATH/bin:$GNUBIN:$GSED:$PSQL_BIN:$NPM_BIN:$VSCODE_BIN:$KAFKA_BIN:$BREW_PATH/bin:/usr/local/bin:$CARGOBIN"
 
 	# Added by OrbStack: command-line tools and integration
 	source ~/.orbstack/shell/init.zsh 2>/dev/null || eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -105,7 +108,7 @@ if ! [[ "$(uname -a)" =~ 'Darwin' ]]; then
 
 
 	# PATH Linux
-	export PATH="$PATH:$GOPATH/bin:$BINPATH"
+	export PATH="$PATH:$GOPATH/bin:$BINPATH:$CARGOBIN"
 
 
 	# Start graphical server on user's current tty if not already running.
@@ -166,7 +169,6 @@ export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
-[[ -e "$HOME/.env" ]] && . "$HOME/.env"
 
 
 # This influences ZSH autocomplete style,

@@ -12,8 +12,14 @@ return {
                 c = { 'clang_format' },
                 cpp = { 'clang_format' },
                 cmake = { 'cmake_format' },
-                sql = { 'sql_formatter' },
-                bash = { 'shfmt' },
+
+                -- annoying with default conf. require custom config
+                bash = {
+                    -- 'shfmt' ,
+                },
+                sql = {
+                    -- 'pg_format' ,
+                },
 
                 -- Use the "*" filetype to run formatters on all filetypes.
                 ['*'] = { 'codespell' },
@@ -30,6 +36,7 @@ return {
                 elixir = 'exs',
                 javascript = 'js',
                 julia = 'jl',
+                sql = 'sql',
                 latex = 'tex',
                 markdown = 'md',
                 python = 'py',

@@ -5,23 +5,19 @@ if not vim.loop.fs_stat(lazypath) then
         'clone',
         '--filter=blob:none',
         'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable', -- latest stable release
+        '--branch=stable',
         lazypath,
     })
 end
 
 vim.opt.rtp:prepend(lazypath)
+vim.g.mapleader = ' '
 
 local lazy_opts = {
     checker = { enabled = true, notify = false },
     install = {
         colorscheme = { 'monokai-pro-classic' },
         missing = true,
-    },
-    change_detection = {
-        -- automatically check for config file changes and reload the ui
-        enabled = true,
-        notify = true, -- get a notification when changes are found
     },
     concurrency = 8, -- hardcoded, because I don't want to make any syscalls here
     performance = {
@@ -55,13 +51,18 @@ local lazy_opts = {
     },
 }
 
--- write function that creates object Andrew
-
-vim.g.mapleader = ' '
-
 require('lazy').setup({
-    { { import = 'colorschemes.monokai-pro' } },
     { { import = 'lsp' } },
+    -- { { import = 'settings.lsp.rust' } },
+    { { import = 'settings.lsp.mason' } },
+    { { import = 'dap' } },
+
+    { { import = 'colorschemes.monokai-pro' } },
+
+    -- Settings
+    { { import = 'settings.todo-comments' } },
+
+    --
     { 'lewis6991/impatient.nvim', lazy = false },
     {
         'sindrets/diffview.nvim',
@@ -104,18 +105,10 @@ require('lazy').setup({
         },
         lazy = true,
     },
-    { 'folke/todo-comments.nvim' },
     -- @LSP
     { 'neovim/nvim-lspconfig' }, -- enable LSP
     { 'folke/neodev.nvim', lazy = true, ft = { 'lua' } },
     -- LSP Installer
-    {
-        'williamboman/mason.nvim',
-        dependencies = {
-            'williamboman/mason-lspconfig.nvim',
-        },
-        event = 'VeryLazy',
-    },
 
     { 'tamago324/nlsp-settings.nvim' },
     -- @Telescope
@@ -173,24 +166,10 @@ require('lazy').setup({
         'norcalli/nvim-colorizer.lua',
         ft = { ' css', 'jsx', 'tsx' },
     },
-    { 'simrat39/rust-tools.nvim', lazy = true },
 
-    -- @Docker
     { 'jamestthompson3/nvim-remote-containers', event = 'VeryLazy' },
     { 'ray-x/lsp_signature.nvim', lazy = true },
-    { 'onsails/lspkind-nvim', lazy = true },
     { 'windwp/nvim-autopairs' },
-    -- debugger
-    {
-        'mfussenegger/nvim-dap',
-        dependencies = {
-            { 'leoluz/nvim-dap-go' },
-            { 'rcarriga/nvim-dap-ui' },
-            { 'theHamsta/nvim-dap-virtual-text' },
-            { 'nvim-telescope/telescope-dap.nvim' },
-        },
-        lazy = true,
-    },
     { 'folke/trouble.nvim', cmd = { 'Trouble', 'TroubleToggle' }, lazy = true },
     {
         'edolphin-ydf/goimpl.nvim',
@@ -205,7 +184,6 @@ require('settings.cmp')
 require('settings.lsp')
 require('settings.telescope')
 require('settings.autopairs')
-require('settings.todo-comments')
 require('settings.treesitter')
 require('settings.illuminate')
 require('settings.gitsigns')
@@ -219,8 +197,6 @@ require('settings.indentline')
 require('settings.cmake')
 require('settings.toggleterm')
 require('settings.trouble')
-require('settings.dap')
-require('settings.lsp.mason')
 require('settings.lsp.rust')
 
 -- Turned off

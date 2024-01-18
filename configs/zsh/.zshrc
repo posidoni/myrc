@@ -59,4 +59,6 @@ bindkey "^P" up-line-or-history
 
 unset PGSERVICEFILE
 
+source "$HOME/.env"
+
 eval "$(starship init zsh)"

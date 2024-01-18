@@ -12,6 +12,7 @@ $ git submodule update --init --recursive # to update tmux plugin manager + omz
 # ❗it is non-trivial to make install script that is compatible with arbitrary systems, please,
 # read source code before launching anything. Also you are responsible for
 # manual backup of existing configs, especially ENV, including critical system-wide confs in /etc/*
+# if you are not confident in your sh / vi / tmux troubleshooting abilities, please, don't install this stuff
 $ chmod +x local/bin/install_configs.sh
 $ sudo local/bin/install_configs.sh
 ```
@@ -22,21 +23,24 @@ $ sudo local/bin/install_configs.sh
 $ local/bin/local/bin/install_latest_nvim.sh # download latest nvim
 $ local/bin/patch_neovim.sh # patch neovim variable 'VIMINIT' -> 'NVIMINIT' to decouple vim and nvim
 
-# scripts patching may not be forward compatbile (tested on NVim v0.9)
-# generally, it is easy navigate & patch nvim sources
+# patching by scripts may not be forward compatible (tested on NVim v0.9)
+# generally, it is easy to navigate & patch nvim sources
+#
+# also you may want to consider this popular patch from nvim-ufo issues
+# https://github.com/kevinhwang91/nvim-ufo/issues/4
 ```
 
 3) Bootstrap Tmux + Install TPM plugins
 
 ```sh
 1. launch tmux session
-2. press <leader> + i # in my config tmux leader is `~`
+2. press <leader> + i to install TMP plugins # in my config tmux leader is `~`
 ```
 
 4) Install NVim plugins (Lazy + TS Parsers)
 
 ```sh
-1. launch nvim 
+1. launch nvim
 2. use lazy to install plugins `:Lazy install`
 3. install TreeSitter parsers `:TSInstall all`
 ```
@@ -63,4 +67,4 @@ $ local/bin/patch_neovim.sh # patch neovim variable 'VIMINIT' -> 'NVIMINIT' to d
 ## Credits
 
 - [@bezlant](https://github.com/bezlant)
-- [TJ DeVries](https://github.com/tjdevries) - one of NVim enthusiasts delievered a great [talk](https://www.youtube.com/watch?v=IK_-C0GXfjo) on the concept of PDE, which I absolutely recommend checking out.
+- [TJ DeVries](https://github.com/tjdevries) - one of NVim enthusiasts delivered a great [talk](https://www.youtube.com/watch?v=IK_-C0GXfjo) on the concept of PDE, which I absolutely recommend checking out.
