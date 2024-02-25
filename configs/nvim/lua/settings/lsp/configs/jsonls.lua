@@ -181,6 +181,12 @@ local opts = {
     settings = {
         json = {
             schemas = extended_schemas,
+            format = {
+                enable = true,
+            },
+            validate = {
+                enable = true,
+            },
         },
     },
     setup = {

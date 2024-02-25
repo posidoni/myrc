@@ -54,6 +54,7 @@ local options = {
         precedes = '‹',
         nbsp = '·',
     },
+    foldenable = false,
     nrformats = '', -- disables vim support for binary/hex numbers (allows incrementing numbers with trailing spaces 0001, etc.)
     -- @Warning! This setting 'merges' all columns into one (i.e. folds, warnings, numbers, etc.)
     -- alternative: 'yes' (always show, to prevent screen jumping)

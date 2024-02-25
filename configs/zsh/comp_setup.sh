@@ -35,4 +35,6 @@ zstyle ':completion:*' file-sort modification
 # Small letters also match capital letters
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-
+setup_completions() {
+    golangci-lint completion zsh > $(brew --prefix)/share/zsh/site-functions/_golangci-lint
+}

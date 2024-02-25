@@ -1,14 +1,37 @@
 #!/bin/bash
 
-clear_goenv()
-              {
+## Installs lefthook hooks to repository (if any)
+hooks() {
+    lefthook install
+    lefthook completion zsh > "$(brew --prefix)/share/zsh/site-functions/_lefthook"
+}
+
+# -------------------------------------------------------------------
+# display a neatly formatted path
+# -------------------------------------------------------------------
+path() {
+  echo "$PATH" | tr ":" "\n" | \
+    awk "{ sub(\"/usr\",   \"/usr\"); \
+           sub(\"/bin\",   \"/bin\"); \
+           sub(\"/opt\",   \"/opt\"); \
+           sub(\"/sbin\",  \"/sbin\"); \
+           sub(\"/local\", \"/local\"); \
+           print }"
+}
+
+clear_goenv() {
     go env -u GOPROXY
     go env -u GOSUMDB
     go env -u GOPRIVATE
 }
 
-sign_wezterm_osx()
-                   {
+## Enabled Intercept for Requestly app
+## Local Proxy must be enabled
+intercept_requestly() {
+    . <(curl -sS localhost:7040/tpsetup)
+}
+
+sign_wezterm_osx() {
     codesign --force --deep --sign - /Applications/WezTerm.app
 }
 

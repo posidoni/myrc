@@ -1,0 +1,31 @@
+## https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md#config-file
+##
+## lefthook.yml
+## .lefthook.yml
+## lefthook.yaml
+## .lefthook.yaml
+## lefthook.toml
+## .lefthook.toml
+## lefthook.json
+## .lefthook.json
+## extends:
+##
+## - /home/user/work/lefthook-extend.yml
+## - /home/user/work/lefthook-extend-2.yml
+## - lefthook-extends/file.yml
+## - ../extend.yml
+##
+## Remotes
+## remotes:
+## - git_url: https://github.com/evilmartians/lefthook
+---
+pre-commit:
+  assert_lefthook_installed: true
+  parallel: true
+  commands:
+    lint:
+      run: golangci-lint run -E --fix
+      stage_fixed: true
+    fmt:
+      run: golangci-lint run --disable-all -E gofumpt --fix
+      stage_fixed: true

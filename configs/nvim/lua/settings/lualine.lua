@@ -168,7 +168,7 @@ local attached_clients_section = {
 lualine.setup({
     options = {
         icons_enabled = true,
-        theme = 'monokai-pro',
+        theme = 'auto',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = { 'alpha', 'dashboard', 'Outline', 'qf' },
@@ -179,7 +179,7 @@ lualine.setup({
         lualine_a = { mode },
         lualine_b = { branch },
         lualine_c = { diagnostics, filename },
-        lualine_y = { diff, filetype },
+        lualine_y = { 'copilot', diff, filetype },
         lualine_z = { location },
         lualine_x = {},
     },

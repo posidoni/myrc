@@ -11,15 +11,16 @@ plugins=(
     tmux
     fzf
     golang
+    autoenv
     git-auto-fetch
     gpg-agent
-    # zsh-syntax-highlighting
-    # macos
-    # brew
-    # dash
+    zoxide
+    brew
+    helm
+    minikube
+    rust
+    zsh-bat
     # gh
-    # helm
-    # minikube
     # python
     # pip
     # pyenv
@@ -45,7 +46,6 @@ source "$HOME/myrc/configs/zsh/aliases.sh"
 source "$HOME/myrc/configs/zsh/functions.sh"
 source "$HOME/myrc/configs/zsh/kafka.sh"
 source "$HOME/myrc/configs/zsh/comp_setup.sh"
-source "$HOME/myrc/configs/zsh/node.sh"
 
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -61,4 +61,8 @@ unset PGSERVICEFILE
 
 source "$HOME/.env"
 
+alias -g -- -h='-h 2>&1 | bat --language=help --style=grid'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=grid'
+
+eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"

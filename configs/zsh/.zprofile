@@ -1,1 +1,1 @@
-../special/zprofile
+zprofile

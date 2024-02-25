@@ -23,12 +23,18 @@ local servers = {
     'pyright',
     'solc',
     'eslint',
-    'golangci_lint_ls',
+    'tsserver',
+    'stylelint_lsp',
     -- 🐳 Docker
+    'intelephense',
     'terraformls',
     'docker_compose_language_service',
     'dockerls',
-    -- 'rust_analyzer' <-- 🦀 Do not setup it yourself if using 'rust-tools' plugin
+    'cssls',
+    'cssmodules_ls',
+    'eslint',
+    'html',
+    -- 'rust_analyzer' <-- 🦀 Do not setup it yourself if using '' plugin
 }
 
 require('neodev').setup({}) -- must be called before lspconfig.sumneko_lua.setup({})

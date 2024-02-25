@@ -2,7 +2,7 @@
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = bat
-    excludesfile = ~/myrc/configs/git/ignore
+	excludesfile = /Users/posidoni/myrc/configs/git/ignore
 [user]
 	name = "Mikhail Kuznetsov"
 	email = mikhail.n.kuznetsov@gmail.com
@@ -45,3 +45,9 @@
     path = "github.inc"
     path = "alias.inc"
     path = "~/Personal/Private/Git/conf.inc" # Include sensitive creds & data
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

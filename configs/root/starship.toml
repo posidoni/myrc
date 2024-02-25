@@ -1,3 +1,5 @@
+palette = "catppuccin_mocha"
+
 format = """
 $username\
 $hostname\
@@ -60,15 +62,17 @@ add_newline = true
 symbol = " "
 
 [kubernetes]
-format = '[⎈ ($user on )($cluster in )$context \(::$namespace\)](cyan)'
+format = '[K8s::$user::$cluster::$context::$namespace](cyan)'
 disabled = false
 [kubernetes.context_aliases]
 'dev.local.cluster.k8s' = 'dev'
 '.*/openshift-cluster/.*' = 'openshift'
+'minikube' = 'MK'
 'gke_.*_(?P<var_cluster>[\\w-]+)' = 'gke-$var_cluster'
 [kubernetes.user_aliases]
 'dev.local.cluster.k8s' = 'dev'
 'root/.*' = 'root'
+'minikube' = 'MK'
 
 [aws]
 symbol = "  "
@@ -143,8 +147,14 @@ symbol = " "
 format = '[ $symbol]($style)'
 symbol = " "
 
+[time]
+disabled = false
+format = ' [\[ $time \]](bold yellow) '
+time_format = "%T"
+use_12hr = false
+
 [git_branch]
-# always_show_remote = true # sometimes might be helpful, when remote branch name doesnt match local name
+always_show_remote = false # sometimes might be helpful, when remote branch name doesnt match local name
 symbol = " "
 format = '[$symbol$branch (:$remote_branch)]($style) '
 
@@ -153,7 +163,7 @@ format = '[\[$state( $progress_current of $progress_total)\]]($style) '
 cherry_pick = "[🍒 PICKING](bold red)]"
 merge = "[󰓥MERGING](bold red)"
 rebase = "[󰓥REBASING](bold red)"
-bisect = '\[[󰆐 BISECTING]\](bold yellow)'
+bisect = '[ BINARY SEARCH](bold yellow)'
 
 [git_status]
 conflicted = " 󰞇 "
@@ -166,8 +176,7 @@ deleted = " ✘ "
 format = '[$all_status$ahead_behind](purple bold) '
 
 [golang]
-format = '[ $symbol]($style)'
-symbol = " "
+format = '[ ](bold cyan)'
 
 [haskell]
 format = '[ $symbol]($style)'
@@ -213,3 +222,31 @@ symbol = "🅢 "
 [rust]
 format = '[ $symbol]($style)'
 symbol = " "
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"

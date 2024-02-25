@@ -13,6 +13,7 @@ illuminate.configure({
     delay = 120,
     filetype_overrides = {},
     filetypes_denylist = {
+        'dropbar_menu',
         'dirvish',
         'fugitive',
         'alpha',

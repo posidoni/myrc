@@ -16,7 +16,6 @@ vim.g.mapleader = ' '
 local lazy_opts = {
     checker = { enabled = true, notify = false },
     install = {
-        colorscheme = { 'monokai-pro-classic' },
         missing = true,
     },
     concurrency = 8, -- hardcoded, because I don't want to make any syscalls here
@@ -52,18 +51,24 @@ local lazy_opts = {
 }
 
 require('lazy').setup({
+    { 'lewis6991/impatient.nvim', lazy = false },
+    --
     { { import = 'lsp' } },
-    -- { { import = 'settings.lsp.rust' } },
     { { import = 'settings.lsp.mason' } },
+    { { import = 'settings.cmp' } },
+    { { import = 'ui.dropbar' } },
+    { { import = 'ui.noice' } },
     { { import = 'dap' } },
-
-    { { import = 'colorschemes.monokai-pro' } },
-
-    -- Settings
+    { { import = 'colorschemes' } },
+    { { import = 'settings.languages.neotest' } },
+    { { import = 'settings.languages.lua' } },
+    { { import = 'settings.languages.rust' } },
+    { { import = 'settings.languages.go' } },
+    { { import = 'settings.neotree' } },
     { { import = 'settings.todo-comments' } },
+    { { import = 'settings.ufo' } },
 
     --
-    { 'lewis6991/impatient.nvim', lazy = false },
     {
         'sindrets/diffview.nvim',
         keys = {
@@ -77,37 +82,55 @@ require('lazy').setup({
     { 'RRethy/vim-illuminate' },
     -- @FileSystem
     { 'kyazdani42/nvim-web-devicons', lazy = true },
-    { 'kyazdani42/nvim-tree.lua', lazy = true },
     { 'editorconfig/editorconfig-vim', lazy = true },
     -- @Lualine
-    { 'nvim-lualine/lualine.nvim' },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = {
+            'AndreM222/copilot-lualine',
+        },
+    },
+
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            padding = true,
+            sticky = true,
+            toggler = {
+                line = 'gcc',
+                block = 'gbc',
+            },
+            opleader = {
+                line = 'gc',
+                block = 'gb',
+            },
+            extra = {
+                ---Add comment on the line above
+                above = 'gcO',
+                ---Add comment on the line below
+                below = 'gco',
+                ---Add comment at the end of line
+                eol = 'gcA',
+            },
+            mappings = {
+                ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+                basic = true,
+                ---Extra mapping; `gco`, `gcO`, `gcA`
+                extra = true,
+            },
+        },
+        lazy = false,
+    },
 
     -- @Tui for Nvim
     { 'ahmedkhalf/project.nvim' },
     { 'goolord/alpha-nvim' },
     -- @VanillaLike_Helpers
     { 'kshenoy/vim-signature' },
-    {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end,
-    },
+    { 'numToStr/Comment.nvim', opts = {}, lazy = true },
     { 'akinsho/toggleterm.nvim', version = 'v2.*', event = 'VeryLazy' },
-    {
-        'hrsh7th/nvim-cmp', -- The completion plugin
-        dependencies = {
-            'L3MON4D3/LuaSnip', -- snippet engine, required for completition
-            'hrsh7th/cmp-buffer', -- buffer completions
-            'hrsh7th/cmp-nvim-lsp', -- LSP completitions
-            'hrsh7th/cmp-path', -- path completions
-            'hrsh7th/cmp-cmdline', -- cmdline completions
-        },
-        lazy = true,
-    },
     -- @LSP
     { 'neovim/nvim-lspconfig' }, -- enable LSP
-    { 'folke/neodev.nvim', lazy = true, ft = { 'lua' } },
     -- LSP Installer
 
     { 'tamago324/nlsp-settings.nvim' },
@@ -125,7 +148,7 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
             'windwp/nvim-ts-autotag',
-            'nvim-treesitter/nvim-treesitter-context',
+            -- 'nvim-treesitter/nvim-treesitter-context', -- Don't use it really
             'nvim-treesitter/nvim-treesitter-textobjects',
             'RRethy/nvim-treesitter-textsubjects',
         },
@@ -156,31 +179,14 @@ require('lazy').setup({
             },
         },
     },
-    -- @C_CXX_Development
-    {
-        'cdelledonne/vim-cmake',
-        ft = { 'c', 'cpp', 'cmake' },
-        cmd = { 'CMakeGenerate', 'CMakeBuild' },
-    },
-    {
-        'norcalli/nvim-colorizer.lua',
-        ft = { ' css', 'jsx', 'tsx' },
-    },
-
     { 'jamestthompson3/nvim-remote-containers', event = 'VeryLazy' },
     { 'ray-x/lsp_signature.nvim', lazy = true },
     { 'windwp/nvim-autopairs' },
-    { 'folke/trouble.nvim', cmd = { 'Trouble', 'TroubleToggle' }, lazy = true },
-    {
-        'edolphin-ydf/goimpl.nvim',
-        ft = { 'go' },
-        lazy = true,
-    },
+    { 'ray-x/guihua.lua', build = 'cd lua/fzy && make' },
 }, lazy_opts)
 
 require('settings.options')
 require('settings.keymaps')
-require('settings.cmp')
 require('settings.lsp')
 require('settings.telescope')
 require('settings.autopairs')
@@ -196,9 +202,3 @@ require('settings.bufferline')
 require('settings.indentline')
 require('settings.cmake')
 require('settings.toggleterm')
-require('settings.trouble')
-require('settings.lsp.rust')
-
--- Turned off
--- require('settings.ufo')
--- require('settings.firenvim')

@@ -3,11 +3,14 @@
 # git check-ignore -v <path/file>
 ############################
 
+!go.mod
+
 # Mac
 .DS_Store
 # Windows
 Thumbs.db
 # WebStorm
+*.phar
 .idea/
 **/pgpass
 pgpass
@@ -101,6 +104,24 @@ ui_*.h
 *.qm
 *.prl
 
+### PHP
+##### Composer
+composer.phar
+/vendor/
+
+# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+composer.lock
+
+##### PHP CodeSniffer
+# gitignore for the PHP Codesniffer framework
+# website: https://github.com/squizlabs/PHP_CodeSniffer
+#
+# Recommended template: PHP.gitignore
+
+/wpcs/*
+
+
 # Qt unit tests
 target_wrapper.*
 
@@ -189,10 +210,6 @@ dkms.conf
 *.so
 *.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
 
 # Compiled Static libraries
 *.lai

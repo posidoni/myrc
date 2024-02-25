@@ -16,6 +16,7 @@ map({ 'n' }, 'Y', 'yg$', opts)
 map({ 'n' }, '0', '^', opts)
 
 local lsp = vim.lsp.buf
+local lenses = vim.lsp.codelens
 map({ 'n' }, 'K', lsp.hover, opts)
 map({ 'n' }, 'gD', lsp.declaration, opts)
 map({ 'n' }, 'gd', lsp.definition, opts)
@@ -23,7 +24,7 @@ map({ 'n' }, 'gou', lsp.outgoing_calls, opts)
 map({ 'n' }, 'gin', lsp.incoming_calls, opts)
 map({ 'n' }, '<C-Space>', lsp.completion, opts)
 map({ 'n' }, '<M-CR>', lsp.code_action, opts)
-map({ 'n' }, '<leader>ll', lsp.code_action, opts)
+map({ 'n' }, '<leader>ll', lenses.get, opts)
 map({ 'n' }, '<leader>rn', lsp.rename, opts)
 
 map({ 'n' }, 'gi', '<cmd>TroubleToggle lsp_implementations<cr>', opts)
@@ -86,7 +87,7 @@ map('x', 'K', ":move '<-2<CR>gv-gv", opts)
 -- @Terminal --
 
 -- Open terminal from N mode
-map({ 'n' }, '<leader>t', ':vsplit term://zsh<CR>', opts)
+map({ 'n' }, '<leader>t', ':Toggleterm float<CR>', opts)
 
 map('t', '<ESC>', '<C-\\><C-N>', opts)
 map('t', '<C-h>', '<C-\\><C-N><C-w>h', opts)
@@ -117,8 +118,8 @@ end, opts)
 map({ 'n' }, '<leader>r', tbuiltin.live_grep, opts)
 
 -- @NvimTree --
-local tree = require('nvim-tree.api')
-map({ 'n' }, '<leader>o', tree.tree.toggle, { silent = true })
+-- local tree = require('nvim-tree.api')
+-- map({ 'n' }, '<leader>o', tree.tree.toggle, { silent = true })
 
 -- @CMake --
 map({ 'n' }, '<F1>', function()

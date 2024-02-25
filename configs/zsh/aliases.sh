@@ -13,7 +13,6 @@ fi
 alias v="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim"
 bindkey -s '^F' 'v \n'
 
-alias mk="minikube"
 alias kctx="kubectx"
 alias kns="kubens"
 alias m="make"
@@ -41,7 +40,7 @@ alias l="exa -l -g --git --icons"
 alias ls="exa --icons -F --git --sort=size"
 
 t() { # tree with default depth (1) overridable with '$1'
-	exa --icons -F -T -a -L "${1:-1}"
+	exa -F -T -a -L "${1:-1}"
 }
 
 # Better mkdir
@@ -65,10 +64,14 @@ alias paci="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sud
 alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 
 # 🦀 Rust alternatives
+alias nvm="fnm"
 alias du="dust"
 alias cat="bat"
 alias ps="procs"
 alias top="btm"
 alias htop="btm"
-
-alias av="avito"
+alias calc="eva"
+alias calculator="eva"
+alias av="avito --skip-self-update --skip-vpn-check"
+alias avs="avito service start -v --platform native --skip-self-update --skip-vpn-check"
+alias avd="avito service debug -v --platform native --skip-self-update --skip-vpn-check"

@@ -5,11 +5,8 @@
 
 return {
     'mfussenegger/nvim-lint',
+    lazy = false,
     config = function()
-        if true then -- turn off for now
-            return
-        end
-
         local lint = require('lint')
         local linters = require('lint').linters
 
@@ -18,7 +15,7 @@ return {
         lint.linters_by_ft = {
             -- lua = { 'luacheck' },
             css = { 'stylelint' },
-            sh = { 'shellcheck' },
+            sh = {},
             markdown = { 'markdownlint' },
             cpp = {
                 'cpplint',
@@ -29,7 +26,9 @@ return {
             yaml = { 'yamllint' },
             python = { 'pylint' },
             gitcommit = {},
-            json = {},
+            json = {
+                'jsonlint',
+            },
             javascript = {},
             typescript = {},
             toml = {},
@@ -43,10 +42,9 @@ return {
             end
         end
 
-        linters.shellcheck.args = {
-            '--shell=bash', -- force to work with zsh
-            '--format=json',
-            '-',
+        linters.codespell.args = {
+            '--ignore-words',
+            '--builtin=rare,clear,informal,code,names,en-GB_to_en-US',
         }
 
         -- linters.yamllint.args = {

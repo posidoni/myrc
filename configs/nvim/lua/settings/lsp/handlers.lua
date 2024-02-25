@@ -11,8 +11,25 @@ if not lsp_sig_ok then
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem = {
+    documentationFormat = { 'markdown', 'plaintext' },
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    labelDetailsSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = {
+        properties = {
+            'documentation',
+            'detail',
+            'additionalTextEdits',
+        },
+    },
+}
+
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
-M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 M.setup = function()
     local signs = {
@@ -37,7 +54,12 @@ M.setup = function()
     vim.lsp.handlers['textDocument/signatureHelp'] =
         vim.lsp.with(vim.lsp.handlers.signature_help, {
             border = 'rounded',
+            silent = true,
         })
+
+    -- TODO: - textDocument/inlayHint
+    -- - textDocument/implementation*
+    -- - textDocument/codeAction
 
     vim.lsp.handlers['textDocument/publishDiagnostics'] =
         vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -59,35 +81,8 @@ M.setup = function()
         })
 end
 
--- LSPFormatAutocmdGroup = vim.api.nvim_create_augroup('LspFormatting', {})
-
-M.format_filter = function(_)
-    -- example: disabling specific clients
-    -- rename '_' into client
-    -- return client.name ~= 'null-ls' and client.name ~= 'foo-bar'
-    return true
-end
-
 M.on_attach = function(client, bufnr)
     lsp_signature.on_attach(lsp_signature.config, bufnr)
-    -- if client.supports_method('textDocument/formatting') then
-    --     vim.api.nvim_clear_autocmds({
-    --         group = LSPFormatAutocmdGroup,
-    --         buffer = bufnr,
-    --     })
-    --     vim.api.nvim_create_autocmd('BufWritePre', {
-    --         group = LSPFormatAutocmdGroup,
-    --         buffer = bufnr,
-    --         callback = function()
-    --             vim.lsp.buf.format({
-    --                 filter = M.format_filter,
-    --                 bufnr = bufnr,
-    --                 async = false,
-    --             })
-    --             vim.notify(string.format('[LSP][%s] %s', client.name, err), vim.log.levels.WARN)
-    --         end,
-    --     })
-    -- end
 end
 
 return M
