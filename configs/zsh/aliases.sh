@@ -77,4 +77,5 @@ alias avs="avito service start -v --platform native --skip-self-update --skip-vp
 alias avd="avito service debug -v --platform native --skip-self-update --skip-vpn-check"
 alias li="limactl"
 alias lctl="limactl"
-alias lissh="ssh -F $HOME/.lima/avito/ssh.config lima-avito"
+alias lissh='ssh -F $HOME/.lima/avito/ssh.config lima-avito'
+alias mm='matterhorn -c $HOME/.mm.conf'

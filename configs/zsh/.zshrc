@@ -20,6 +20,7 @@ plugins=(
     minikube
     rust
     zsh-bat
+    macos ## primarily for cryptic 'launchd' cmds which I don't remember
     # --- Unused
     # gh
     # python
@@ -61,6 +62,7 @@ bindkey "^P" up-line-or-history
 unset PGSERVICEFILE
 
 source "$HOME/.env"
+source "$HOME/.cargo/env"
 
 alias -g -- -h='-h 2>&1 | bat --language=help --style=grid'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=grid'
