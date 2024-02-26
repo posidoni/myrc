@@ -56,7 +56,6 @@ return {
         },
     },
     config = function(_, opts)
-        vim.keymap.set('n', '<leader>g', ':Neotree  float git_status<cr>', {})
         vim.keymap.set(
             'n',
             '<leader>o',

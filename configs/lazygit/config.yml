@@ -1,4 +1,4 @@
-notARepository: 'quit' # one of: 'prompt' | 'create' | 'skip' | 'quit'
+notARepository: 'skip' # one of: 'prompt' | 'create' | 'skip' | 'quit'
 gui: #### GUI
   nerdFontsVersion: "3"
   skipRewordInEditorWarning: true

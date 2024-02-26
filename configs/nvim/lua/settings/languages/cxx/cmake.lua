@@ -45,5 +45,19 @@ return {
         'Civitasv/cmake-tools.nvim',
         opts = {},
         event = 'LazyFile',
+        config = function(_, opts)
+            local map = vim.keymap.set
+
+            map({ 'n' }, '<F1>', function()
+                vim.cmd('make')
+            end, opts)
+
+            map({ 'n' }, '<F2>', function()
+                vim.cmd('CMakeGenerate')
+            end, opts)
+            map({ 'n' }, '<F3>', function()
+                vim.cmd('CMakeBuild')
+            end, opts)
+        end,
     },
 }

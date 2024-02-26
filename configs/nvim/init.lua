@@ -67,6 +67,7 @@ require('lazy').setup({
     { { import = 'settings.neotree' } },
     { { import = 'settings.todo-comments' } },
     { { import = 'settings.ufo' } },
+    { { import = 'settings.toggleterm' } },
 
     --
     {
@@ -128,7 +129,6 @@ require('lazy').setup({
     -- @VanillaLike_Helpers
     { 'kshenoy/vim-signature' },
     { 'numToStr/Comment.nvim', opts = {}, lazy = true },
-    { 'akinsho/toggleterm.nvim', version = 'v2.*', event = 'VeryLazy' },
     -- @LSP
     { 'neovim/nvim-lspconfig' }, -- enable LSP
     -- LSP Installer
@@ -201,4 +201,3 @@ require('settings.autocommands')
 require('settings.bufferline')
 require('settings.indentline')
 require('settings.cmake')
-require('settings.toggleterm')

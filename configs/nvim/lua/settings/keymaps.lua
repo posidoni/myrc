@@ -85,10 +85,6 @@ map('x', 'J', ":move '>+1<CR>gv-gv", opts)
 map('x', 'K', ":move '<-2<CR>gv-gv", opts)
 
 -- @Terminal --
-
--- Open terminal from N mode
-map({ 'n' }, '<leader>t', ':Toggleterm float<CR>', opts)
-
 map('t', '<ESC>', '<C-\\><C-N>', opts)
 map('t', '<C-h>', '<C-\\><C-N><C-w>h', opts)
 map('t', '<C-j>', '<C-\\><C-N><C-w>j', opts)
@@ -112,26 +108,9 @@ map(
 
 map({ 'n' }, '<leader>y', tbuiltin.builtin, opts)
 map({ 'n' }, '<leader><leader>', tbuiltin.find_files, opts)
-map({ 'n' }, '<leader>d', function()
-    vim.cmd([[ DevdocsOpen ]])
-end, opts)
 map({ 'n' }, '<leader>r', tbuiltin.live_grep, opts)
 
--- @NvimTree --
--- local tree = require('nvim-tree.api')
--- map({ 'n' }, '<leader>o', tree.tree.toggle, { silent = true })
-
 -- @CMake --
-map({ 'n' }, '<F1>', function()
-    vim.cmd('make')
-end, opts)
-
-map({ 'n' }, '<F2>', function()
-    vim.cmd('CMakeGenerate')
-end, opts)
-map({ 'n' }, '<F3>', function()
-    vim.cmd('CMakeBuild')
-end, opts)
 
 -- 🤖 @Command --
 -- keymap("c", "++", "%!sudo tee > /dev/null %", opts)

@@ -13,7 +13,6 @@ return {
                 goimport = 'goimports',
                 fillstruct = 'fillstruct',
                 gofmt = 'gofumpt',
-                max_line_len = 128,
                 tag_transform = 'snakecase',
                 tag_options = 'json=omitempty', -- sets options sent to gomodifytags, i.e., json=omitempty
                 gotests_template = '', -- sets gotests -template parameter (check gotests for details)

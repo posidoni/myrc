@@ -34,7 +34,7 @@ local servers = {
     'cssmodules_ls',
     'eslint',
     'html',
-    -- 'rust_analyzer' <-- 🦀 Do not setup it yourself if using '' plugin
+    -- 'rust_analyzer' <-- 🦀 Do not setup it yourself if using separate plugin
 }
 
 require('neodev').setup({}) -- must be called before lspconfig.sumneko_lua.setup({})
