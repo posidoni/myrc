@@ -2,7 +2,7 @@ configs/zsh/.zsh_sessions/
 configs/lazygit/state.yml
 configs/nvim/plugin/
 configs/gtk-3.0/bookmarks/
-configs/k9s/
+configs/k9s/*
 configs/nvim/.luarc.json
 # Otherwise there will be a lot of stuff
 configs/systemd/user/*
