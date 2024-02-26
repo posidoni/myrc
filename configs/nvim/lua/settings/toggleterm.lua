@@ -3,7 +3,6 @@ return {
         'akinsho/toggleterm.nvim',
         version = '*',
         opts = {
-            open_mapping = '<leader>t',
             size = 10,
             display_name = '🚀 Terminal',
             hide_numbers = true,
@@ -66,6 +65,10 @@ return {
             lazydocker.display_name = '🐳 Containerd'
             lazygit.display_name = '🔮 Git'
             k9s.display_name = '🚀 K8s'
+
+            vim.keymap.set('n', '<leader>t', function()
+                baseTerminal:toggle(10, 'float')
+            end, { noremap = true, silent = true })
 
             vim.keymap.set('n', '<leader>g', function()
                 lazygit:toggle(10, 'float')

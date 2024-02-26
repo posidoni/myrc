@@ -91,10 +91,6 @@ map('t', '<C-j>', '<C-\\><C-N><C-w>j', opts)
 map('t', '<C-k>', '<C-\\><C-N><C-w>k', opts)
 map('t', '<C-l>', '<C-\\><C-N><C-w>l', opts)
 
--- Disable <Backspace> & <Del>
--- keymap("i", "<BS>", "<Nop>", opts)
-map('i', '<Del>', '<Nop>', opts)
-
 --  Telescope --
 local telescope = require('telescope')
 local tbuiltin = require('telescope.builtin')
