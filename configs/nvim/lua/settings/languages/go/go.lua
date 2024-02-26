@@ -10,8 +10,8 @@ return {
             require('go').setup({
                 disable_defaults = false,
                 go = 'go',
-                goimport = 'goimports',
-                fillstruct = 'fillstruct',
+                goimport = 'gopls',
+                fillstruct = 'gopls',
                 gofmt = 'gofumpt',
                 tag_transform = 'snakecase',
                 tag_options = 'json=omitempty', -- sets options sent to gomodifytags, i.e., json=omitempty
@@ -63,16 +63,17 @@ return {
                 lsp_inlay_hints = {
                     enable = true,
                     style = 'eol',
-                    only_current_line = false,
+                    only_current_line = true,
+                    only_current_line_autocmd = 'CursorHold',
                     show_variable_name = true,
                     parameter_hints_prefix = '󰊕 ',
                     show_parameter_hints = true,
-                    other_hints_prefix = '=> ',
-                    max_len_align = false,
+                    other_hints_prefix = '<==',
+                    max_len_align = 200,
                     max_len_align_padding = 1,
-                    right_align = true,
+                    right_align = false,
                     right_align_padding = 6,
-                    highlight = 'Comment',
+                    highlight = 'Purple',
                 },
                 gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
                 gopls_remote_auto = true, -- add -remote=auto to gopls
@@ -92,7 +93,7 @@ return {
                 verbose_tests = true, -- set to add verbose flag to tests deprecated, see '-v' option
                 run_in_floaterm = true, -- set to true to run in a float window. :GoTermClose closes the floatterm
                 floaterm = { -- position
-                    posititon = 'left', -- one of {`top`, `bottom`, `left`, `right`, `center`, `auto`}
+                    posititon = 'right', -- one of {`top`, `bottom`, `left`, `right`, `center`, `auto`}
                     width = 0.45, -- width of float window if not auto
                     height = 0.98, -- height of float window if not auto
                     title_colors = 'nord', -- default to nord, one of {'nord', 'tokyo', 'dracula', 'rainbow', 'solarized ', 'monokai'}

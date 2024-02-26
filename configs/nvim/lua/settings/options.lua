@@ -43,7 +43,7 @@ local options = {
     sidescrolloff = 8,
     timeoutlen = 250, -- Very important setting. Experiment with it. 300 feels comfortable & usable
     ttimeoutlen = 30,
-    colorcolumn = '80',
+    colorcolumn = '100',
     belloff = 'all',
     spell = false,
     cursorline = true,
@@ -54,6 +54,7 @@ local options = {
         precedes = '‹',
         nbsp = '·',
     },
+    foldlevel = 3,
     foldenable = false,
     nrformats = '', -- disables vim support for binary/hex numbers (allows incrementing numbers with trailing spaces 0001, etc.)
     -- @Warning! This setting 'merges' all columns into one (i.e. folds, warnings, numbers, etc.)
