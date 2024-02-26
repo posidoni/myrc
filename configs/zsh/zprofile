@@ -17,6 +17,8 @@ export XDG_TEMPLATES_DIR="$HOME/Templates"
 export XDG_VIDEOS_DIR="$HOME/Videos"
 export XDG_TRASH_DIR="$HOME/.Trash"
 export XDG_RUNTIME_DIR="" # set at runtime to other value by apps
+export STARSHIP_LOG="error" # disabled warnings about timeout for prompt ## Alt: env STARSHIP_LOG=trace starship timings
+
 
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/X11/bin"

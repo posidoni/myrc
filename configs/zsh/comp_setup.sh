@@ -36,5 +36,8 @@ zstyle ':completion:*' file-sort modification
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 setup_completions() {
-    golangci-lint completion zsh > $(brew --prefix)/share/zsh/site-functions/_golangci-lint
+    prefix="$(brew --prefix)/share/zsh/site-functions"
+    golangci-lint completion zsh > "$prefix/_golangci-lint"
+    lefthook completion zsh > "$prefix/_lefthook"
+    limactl completion zsh > "$prefix/_limactl"
 }

@@ -3,7 +3,6 @@
 ## Installs lefthook hooks to repository (if any)
 hooks() {
     lefthook install
-    lefthook completion zsh > "$(brew --prefix)/share/zsh/site-functions/_lefthook"
 }
 
 # -------------------------------------------------------------------

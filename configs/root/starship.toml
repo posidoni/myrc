@@ -165,6 +165,14 @@ merge = "[󰓥MERGING](bold red)"
 rebase = "[󰓥REBASING](bold red)"
 bisect = '[ BINARY SEARCH](bold yellow)'
 
+[status]
+style = ''
+symbol = '🔴 '
+success_symbol = ''
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = true
+
 [git_status]
 conflicted = " 󰞇 "
 untracked = "  "
@@ -195,6 +203,10 @@ symbol = " "
 
 [memory_usage]
 symbol = "󰍛 "
+disabled = false
+threshold = 75
+format = '$symbol [${ram}( | ${swap})]($style) '
+style = 'bold dimmed white'
 
 [nim]
 format = '[ $symbol]($style)'

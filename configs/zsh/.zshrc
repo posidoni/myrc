@@ -20,6 +20,7 @@ plugins=(
     minikube
     rust
     zsh-bat
+    # --- Unused
     # gh
     # python
     # pip
