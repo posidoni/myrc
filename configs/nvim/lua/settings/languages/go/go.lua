@@ -89,7 +89,7 @@ return {
                 dap_retries = 20, -- see dap option max_retries
                 build_tags = 'e2e,integration', -- set default build tags
                 textobjects = true,
-                test_runner = 'go', -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
+                test_runner = 'richgo', -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
                 verbose_tests = true, -- set to add verbose flag to tests deprecated, see '-v' option
                 run_in_floaterm = true, -- set to true to run in a float window. :GoTermClose closes the floatterm
                 floaterm = { -- position
