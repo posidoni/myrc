@@ -103,8 +103,19 @@ map(
 )
 
 map({ 'n' }, '<leader>y', tbuiltin.builtin, opts)
-map({ 'n' }, '<leader><leader>', tbuiltin.find_files, opts)
-map({ 'n' }, '<leader>r', tbuiltin.live_grep, opts)
+map({ 'n' }, '<leader><leader>', function()
+    tbuiltin.find_files({
+        hidden = true,
+        follow = true,
+    })
+end, opts)
+
+map({ 'n' }, '<leader>r', function()
+    tbuiltin.live_grep({
+        hidden = true,
+        follow = true,
+    })
+end, opts)
 
 -- @CMake --
 
