@@ -10,8 +10,9 @@ return {
             require('go').setup({
                 disable_defaults = false,
                 go = 'go',
-                goimport = 'gopls',
+                goimports = 'gopls',
                 fillstruct = 'gopls',
+                max_line_len = 1000,
                 gofmt = 'gofumpt',
                 tag_transform = 'snakecase',
                 tag_options = 'json=omitempty', -- sets options sent to gomodifytags, i.e., json=omitempty
@@ -110,7 +111,7 @@ return {
             vim.api.nvim_create_autocmd('BufWritePre', {
                 pattern = '*.go',
                 callback = function()
-                    require('go.format').goimport()
+                    require('go.format').gofmt()
                 end,
                 group = format_sync_grp,
             })
