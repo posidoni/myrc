@@ -19,6 +19,8 @@ alias m="make"
 alias lg="lazygit"
 alias dd="lazydocker"
 alias kk="k9s"
+alias b="brew"
+alias bctl="brew services"
 
 ###
 alias zj="zellij"
