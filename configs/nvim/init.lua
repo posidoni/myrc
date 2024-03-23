@@ -14,7 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 
 local lazy_opts = {
-    checker = { enabled = true, notify = false },
+    checker = {
+        enabled = true,
+        notify = false,
+    },
     install = {
         missing = true,
     },
@@ -66,7 +69,7 @@ require('lazy').setup({
     { { import = 'settings.languages.go' } },
     { { import = 'settings.neotree' } },
     { { import = 'settings.todo-comments' } },
-    { { import = 'settings.ufo' } },
+    -- { { import = 'settings.ufo' } },
     { { import = 'settings.toggleterm' } },
 
     --
@@ -128,7 +131,6 @@ require('lazy').setup({
     { 'goolord/alpha-nvim' },
     -- @VanillaLike_Helpers
     { 'kshenoy/vim-signature' },
-    { 'numToStr/Comment.nvim', opts = {}, lazy = true },
     -- @LSP
     { 'neovim/nvim-lspconfig' }, -- enable LSP
     -- LSP Installer
